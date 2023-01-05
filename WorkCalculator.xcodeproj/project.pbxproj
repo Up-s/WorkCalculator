@@ -9,23 +9,27 @@
 /* Begin PBXBuildFile section */
 		B412157936F7C192E92E4B2A /* Pods_WorkCalculator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD3D56EF106A0A1326EF920F /* Pods_WorkCalculator.framework */; };
 		BD470D402966C4CE00404AB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D3F2966C4CE00404AB4 /* AppDelegate.swift */; };
-		BD470D422966C4CE00404AB4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D412966C4CE00404AB4 /* SceneDelegate.swift */; };
 		BD470D442966C4CE00404AB4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D432966C4CE00404AB4 /* ViewController.swift */; };
-		BD470D472966C4CE00404AB4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD470D452966C4CE00404AB4 /* Main.storyboard */; };
 		BD470D492966C4CF00404AB4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD470D482966C4CF00404AB4 /* Assets.xcassets */; };
-		BD470D4C2966C4CF00404AB4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD470D4A2966C4CF00404AB4 /* LaunchScreen.storyboard */; };
+		BD470D542966C66E00404AB4 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D532966C66E00404AB4 /* SplashViewController.swift */; };
+		BD470D562966C74400404AB4 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D552966C74400404AB4 /* Scene.swift */; };
+		BD470D582966C88E00404AB4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BD470D572966C88E00404AB4 /* GoogleService-Info.plist */; };
+		BD470D5E2966C8DB00404AB4 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D5D2966C8DB00404AB4 /* FirebaseManager.swift */; };
+		BD470D622966C98A00404AB4 /* TodayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D612966C98A00404AB4 /* TodayModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7C1EE0EB68718F63657B4F93 /* Pods-WorkCalculator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkCalculator.release.xcconfig"; path = "Target Support Files/Pods-WorkCalculator/Pods-WorkCalculator.release.xcconfig"; sourceTree = "<group>"; };
 		BD470D3C2966C4CE00404AB4 /* WorkCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD470D3F2966C4CE00404AB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BD470D412966C4CE00404AB4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		BD470D432966C4CE00404AB4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		BD470D462966C4CE00404AB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BD470D482966C4CF00404AB4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		BD470D4B2966C4CF00404AB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BD470D4D2966C4CF00404AB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BD470D532966C66E00404AB4 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		BD470D552966C74400404AB4 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
+		BD470D572966C88E00404AB4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		BD470D5D2966C8DB00404AB4 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		BD470D612966C98A00404AB4 /* TodayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayModel.swift; sourceTree = "<group>"; };
 		DD3D56EF106A0A1326EF920F /* Pods_WorkCalculator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WorkCalculator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F47CB2F4618F1E637D6BE650 /* Pods-WorkCalculator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkCalculator.debug.xcconfig"; path = "Target Support Files/Pods-WorkCalculator/Pods-WorkCalculator.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -80,15 +84,49 @@
 		BD470D3E2966C4CE00404AB4 /* WorkCalculator */ = {
 			isa = PBXGroup;
 			children = (
-				BD470D3F2966C4CE00404AB4 /* AppDelegate.swift */,
-				BD470D412966C4CE00404AB4 /* SceneDelegate.swift */,
-				BD470D432966C4CE00404AB4 /* ViewController.swift */,
-				BD470D452966C4CE00404AB4 /* Main.storyboard */,
-				BD470D482966C4CF00404AB4 /* Assets.xcassets */,
-				BD470D4A2966C4CF00404AB4 /* LaunchScreen.storyboard */,
-				BD470D4D2966C4CF00404AB4 /* Info.plist */,
+				BD470D5C2966C8D100404AB4 /* Manager */,
+				BD470D5B2966C8C900404AB4 /* Scene */,
+				BD470D5A2966C8BF00404AB4 /* Model */,
+				BD470D592966C8B300404AB4 /* Support */,
 			);
 			path = WorkCalculator;
+			sourceTree = "<group>";
+		};
+		BD470D592966C8B300404AB4 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				BD470D572966C88E00404AB4 /* GoogleService-Info.plist */,
+				BD470D482966C4CF00404AB4 /* Assets.xcassets */,
+				BD470D4D2966C4CF00404AB4 /* Info.plist */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		BD470D5A2966C8BF00404AB4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BD470D612966C98A00404AB4 /* TodayModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BD470D5B2966C8C900404AB4 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				BD470D3F2966C4CE00404AB4 /* AppDelegate.swift */,
+				BD470D552966C74400404AB4 /* Scene.swift */,
+				BD470D532966C66E00404AB4 /* SplashViewController.swift */,
+				BD470D432966C4CE00404AB4 /* ViewController.swift */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
+		BD470D5C2966C8D100404AB4 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				BD470D5D2966C8DB00404AB4 /* FirebaseManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,9 +189,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BD470D4C2966C4CF00404AB4 /* LaunchScreen.storyboard in Resources */,
 				BD470D492966C4CF00404AB4 /* Assets.xcassets in Resources */,
-				BD470D472966C4CE00404AB4 /* Main.storyboard in Resources */,
+				BD470D582966C88E00404AB4 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,32 +243,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD470D562966C74400404AB4 /* Scene.swift in Sources */,
+				BD470D542966C66E00404AB4 /* SplashViewController.swift in Sources */,
+				BD470D5E2966C8DB00404AB4 /* FirebaseManager.swift in Sources */,
 				BD470D442966C4CE00404AB4 /* ViewController.swift in Sources */,
 				BD470D402966C4CE00404AB4 /* AppDelegate.swift in Sources */,
-				BD470D422966C4CE00404AB4 /* SceneDelegate.swift in Sources */,
+				BD470D622966C98A00404AB4 /* TodayModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		BD470D452966C4CE00404AB4 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BD470D462966C4CE00404AB4 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		BD470D4A2966C4CF00404AB4 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BD470D4B2966C4CF00404AB4 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		BD470D4E2966C4CF00404AB4 /* Debug */ = {
@@ -358,10 +379,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZLN97H98PA;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = WorkCalculator/Info.plist;
+				INFOPLIST_FILE = WorkCalculator/Support/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UILaunchStoryboardName = SplashViewController;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -388,10 +408,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZLN97H98PA;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = WorkCalculator/Info.plist;
+				INFOPLIST_FILE = WorkCalculator/Support/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UILaunchStoryboardName = SplashViewController;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
