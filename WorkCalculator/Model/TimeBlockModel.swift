@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TimeBlockModel {
+struct TimeBlockModel: Codable {
     
     var date: Date?
     let day: DateManager.Day

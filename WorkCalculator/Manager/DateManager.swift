@@ -9,7 +9,7 @@ import Foundation
 
 class DateManager {
     
-    enum Day: CaseIterable {
+    enum Day: Codable, CaseIterable {
         case sun
         case mon
         case tue
@@ -41,9 +41,45 @@ class DateManager {
             case .sat: return 7
             }
         }
+        
+        var startKey: UserDefaultsManager.Key {
+            switch self {
+            case .sun: return .sunStartTimeBlock
+            case .mon: return .monStartTimeBlock
+            case .tue: return .tueStartTimeBlock
+            case .wed: return .wedStartTimeBlock
+            case .thu: return .thuStartTimeBlock
+            case .fri: return .friStartTimeBlock
+            case .sat: return .satStartTimeBlock
+            }
+        }
+        
+        var endKey: UserDefaultsManager.Key {
+            switch self {
+            case .sun: return .sunEndTimeBlock
+            case .mon: return .monEndTimeBlock
+            case .tue: return .tueEndTimeBlock
+            case .wed: return .wedEndTimeBlock
+            case .thu: return .thuEndTimeBlock
+            case .fri: return .friEndTimeBlock
+            case .sat: return .satEndTimeBlock
+            }
+        }
+        
+        var restKey: UserDefaultsManager.Key {
+            switch self {
+            case .sun: return .sunRestTimeBlock
+            case .mon: return .monRestTimeBlock
+            case .tue: return .tueRestTimeBlock
+            case .wed: return .wedRestTimeBlock
+            case .thu: return .thuRestTimeBlock
+            case .fri: return .friRestTimeBlock
+            case .sat: return .satRestTimeBlock
+            }
+        }
     }
     
-    enum State: CaseIterable {
+    enum State: Codable, CaseIterable {
         case start
         case end
         case rest

@@ -17,15 +17,31 @@ final class EditView: BaseView {
     // MARK: - Property
     
     private let contentsScrollView = UIScrollView()
-    private let contentsStackView = UPsStackView(axis: .vertical, spacing: 24.0)
+    private let contentsStackView = UPsStackView(axis: .vertical, spacing: 32.0)
     private let titleLabel = UILabel().then { view in
         view.text = "칼퇴 계산기"
         view.textColor = .gray900
         view.textAlignment = .center
         view.font = .boldSystemFont(ofSize: 40.0)
     }
+    
     var unitViews: [EditUnitView] = []
     var unitViewModels: [EditUnitViewModel] = []
+    
+    private let sumUnitStackView = UPsStackView(axis: .horizontal, distribution: .fillEqually, spacing: 16.0)
+    let totalSumUnitView = EditSumUnitView().then { view in
+        view.titleLabel.text = "총 근무시간"
+    }
+    let remainedSumUnitView = EditSumUnitView().then { view in
+        view.titleLabel.text = "남은 근무시간"
+    }
+    
+    let resetButton = UIButton().then { view in
+        view.setTitle("리셋", for: .normal)
+        view.setTitleColor(.light, for: .normal)
+        view.backgroundColor = .systemBlue
+        view.titleLabel?.font = .boldSystemFont(ofSize: 20.0)
+    }
     
     private let disposeBag = DisposeBag()
     
@@ -49,6 +65,28 @@ final class EditView: BaseView {
     
     // MARK: - Interface
     
+    func setData(_ sumRunTime: Int) {
+        let max = 40 * 60
+        
+        let sumRunTimeHour = sumRunTime / 60
+        let sumRunTimeMin = sumRunTime % 60
+        let sumRunTimeText = String(format: "%d시간 %02d분", sumRunTimeHour, sumRunTimeMin)
+        let keyword = String(max / 60) + "시간"
+        let totalText = sumRunTimeText + "\n" + keyword
+        let attributedText = NSMutableAttributedString.make(
+            text: totalText,
+            keyword: keyword,
+            keywordFont: .systemFont(ofSize: 16.0),
+            keywordColor: .gray900
+        )
+        self.totalSumUnitView.subLabel.attributedText = attributedText
+        
+        let remained = max - sumRunTime
+        let remainedHour = remained / 60
+        let remainedMin = remained % 60
+        let remainedText = String(format: "%d시간 %02d분", remainedHour, remainedMin)
+        self.remainedSumUnitView.subLabel.text = remainedText
+    }
     
     
     
@@ -96,6 +134,7 @@ final class EditView: BaseView {
     }
     
     private func setAttribute() {
+        self.backgroundColor = .light
         
         
         
@@ -108,6 +147,12 @@ final class EditView: BaseView {
         
         self.unitViews
             .forEach(self.contentsStackView.addArrangedSubview(_:))
+        
+        [self.sumUnitStackView, self.resetButton]
+            .forEach(self.contentsStackView.addArrangedSubview(_:))
+        
+        [self.totalSumUnitView, self.remainedSumUnitView]
+            .forEach(self.sumUnitStackView.addArrangedSubview(_:))
     }
     
     private func setConstraint() {
@@ -120,6 +165,10 @@ final class EditView: BaseView {
         self.contentsStackView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.edges.equalToSuperview().inset(24.0)
+        }
+        
+        self.resetButton.snp.makeConstraints { make in
+            make.height.equalTo(48.0)
         }
     }
 }

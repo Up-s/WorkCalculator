@@ -22,13 +22,13 @@
 		BD470D6E2966CA6C00404AB4 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D6D2966CA6C00404AB4 /* SplashViewModel.swift */; };
 		BD470D702966CC1700404AB4 /* EidtUnitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D6F2966CC1700404AB4 /* EidtUnitView.swift */; };
 		BD470D722966D42700404AB4 /* EditUnitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D712966D42700404AB4 /* EditUnitViewModel.swift */; };
-		BD470D752966D5E500404AB4 /* Extension+SceneCoordicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D742966D5E500404AB4 /* Extension+SceneCoordicator.swift */; };
-		BD470D772966D62400404AB4 /* Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D762966D62400404AB4 /* Extension+UIViewController.swift */; };
 		BD470D792966DDD600404AB4 /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D782966DDD600404AB4 /* DateManager.swift */; };
 		BD470D832966EE1800404AB4 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D822966EE1800404AB4 /* PickerView.swift */; };
 		BD470D852966EE1C00404AB4 /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D842966EE1C00404AB4 /* PickerViewController.swift */; };
 		BD470D872966EE2100404AB4 /* PickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D862966EE2100404AB4 /* PickerViewModel.swift */; };
 		BD470D892966F80F00404AB4 /* TimeBlockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D882966F80F00404AB4 /* TimeBlockModel.swift */; };
+		BD9A16C7296725E70093FB1C /* EditSumUnitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9A16C6296725E70093FB1C /* EditSumUnitView.swift */; };
+		BD9A16C9296736430093FB1C /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9A16C8296736430093FB1C /* UserDefaultsManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,13 +49,13 @@
 		BD470D6D2966CA6C00404AB4 /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
 		BD470D6F2966CC1700404AB4 /* EidtUnitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EidtUnitView.swift; sourceTree = "<group>"; };
 		BD470D712966D42700404AB4 /* EditUnitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUnitViewModel.swift; sourceTree = "<group>"; };
-		BD470D742966D5E500404AB4 /* Extension+SceneCoordicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+SceneCoordicator.swift"; sourceTree = "<group>"; };
-		BD470D762966D62400404AB4 /* Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIViewController.swift"; sourceTree = "<group>"; };
 		BD470D782966DDD600404AB4 /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		BD470D822966EE1800404AB4 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		BD470D842966EE1C00404AB4 /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
 		BD470D862966EE2100404AB4 /* PickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewModel.swift; sourceTree = "<group>"; };
 		BD470D882966F80F00404AB4 /* TimeBlockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBlockModel.swift; sourceTree = "<group>"; };
+		BD9A16C6296725E70093FB1C /* EditSumUnitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSumUnitView.swift; sourceTree = "<group>"; };
+		BD9A16C8296736430093FB1C /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		DD3D56EF106A0A1326EF920F /* Pods_WorkCalculator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WorkCalculator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F47CB2F4618F1E637D6BE650 /* Pods-WorkCalculator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkCalculator.debug.xcconfig"; path = "Target Support Files/Pods-WorkCalculator/Pods-WorkCalculator.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -110,7 +110,6 @@
 		BD470D3E2966C4CE00404AB4 /* WorkCalculator */ = {
 			isa = PBXGroup;
 			children = (
-				BD470D732966D5D200404AB4 /* Extension */,
 				BD470D5C2966C8D100404AB4 /* Manager */,
 				BD470D5B2966C8C900404AB4 /* Scene */,
 				BD470D5A2966C8BF00404AB4 /* Model */,
@@ -153,6 +152,7 @@
 		BD470D5C2966C8D100404AB4 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				BD9A16C8296736430093FB1C /* UserDefaultsManager.swift */,
 				BD470D5D2966C8DB00404AB4 /* FirebaseManager.swift */,
 				BD470D782966DDD600404AB4 /* DateManager.swift */,
 			);
@@ -173,21 +173,13 @@
 			isa = PBXGroup;
 			children = (
 				BD470D6F2966CC1700404AB4 /* EidtUnitView.swift */,
+				BD470D712966D42700404AB4 /* EditUnitViewModel.swift */,
+				BD9A16C6296725E70093FB1C /* EditSumUnitView.swift */,
 				BD470D652966CA1000404AB4 /* EditView.swift */,
 				BD470D672966CA1500404AB4 /* EditViewController.swift */,
-				BD470D712966D42700404AB4 /* EditUnitViewModel.swift */,
 				BD470D692966CA1900404AB4 /* EditViewModel.swift */,
 			);
 			path = Edit;
-			sourceTree = "<group>";
-		};
-		BD470D732966D5D200404AB4 /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				BD470D742966D5E500404AB4 /* Extension+SceneCoordicator.swift */,
-				BD470D762966D62400404AB4 /* Extension+UIViewController.swift */,
-			);
-			path = Extension;
 			sourceTree = "<group>";
 		};
 		BD470D812966EDF900404AB4 /* Picker */ = {
@@ -319,6 +311,7 @@
 				BD470D6A2966CA1900404AB4 /* EditViewModel.swift in Sources */,
 				BD470D562966C74400404AB4 /* Scene.swift in Sources */,
 				BD470D832966EE1800404AB4 /* PickerView.swift in Sources */,
+				BD9A16C9296736430093FB1C /* UserDefaultsManager.swift in Sources */,
 				BD470D542966C66E00404AB4 /* SplashViewController.swift in Sources */,
 				BD470D892966F80F00404AB4 /* TimeBlockModel.swift in Sources */,
 				BD470D872966EE2100404AB4 /* PickerViewModel.swift in Sources */,
@@ -326,12 +319,11 @@
 				BD470D5E2966C8DB00404AB4 /* FirebaseManager.swift in Sources */,
 				BD470D6E2966CA6C00404AB4 /* SplashViewModel.swift in Sources */,
 				BD470D702966CC1700404AB4 /* EidtUnitView.swift in Sources */,
-				BD470D772966D62400404AB4 /* Extension+UIViewController.swift in Sources */,
 				BD470D402966C4CE00404AB4 /* AppDelegate.swift in Sources */,
-				BD470D752966D5E500404AB4 /* Extension+SceneCoordicator.swift in Sources */,
 				BD470D622966C98A00404AB4 /* TodayModel.swift in Sources */,
 				BD470D682966CA1500404AB4 /* EditViewController.swift in Sources */,
 				BD470D6C2966CA6500404AB4 /* SplashView.swift in Sources */,
+				BD9A16C7296725E70093FB1C /* EditSumUnitView.swift in Sources */,
 				BD470D852966EE1C00404AB4 /* PickerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

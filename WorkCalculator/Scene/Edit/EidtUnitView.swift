@@ -16,7 +16,7 @@ final class EditUnitView: UIView {
     // MARK: - Property
     
     let dayLabel = UILabel().then { view in
-        view.backgroundColor = .gray300
+        view.backgroundColor = .gray200
         view.textAlignment = .center
         view.textColor = .gray900
         view.font = .boldSystemFont(ofSize: 20.0)
@@ -25,8 +25,12 @@ final class EditUnitView: UIView {
     let startTimeButton = UIButton()
     let endTimeButton = UIButton()
     let restTimeButton = UIButton()
+    let runTimeInfoLabel = UILabel().then { view in
+        view.text = "일일근무시간"
+        view.textColor = .gray900
+        view.font = .systemFont(ofSize: 16.0)
+    }
     let runTimeLabel = UILabel().then { view in
-        view.text = "일일근무시간 00시간 00분"
         view.textColor = .gray900
         view.font = .boldSystemFont(ofSize: 16.0)
     }
@@ -41,8 +45,6 @@ final class EditUnitView: UIView {
         self.day = day
         
         super.init(frame: .zero)
-        
-        self.dayLabel.text = day.title
         
         self.setAttribute()
         self.setConstraint()
@@ -61,15 +63,17 @@ final class EditUnitView: UIView {
     // MARK: - UI
     
     private func setAttribute() {
+        self.dayLabel.text = day.title
+        
         [self.startTimeButton, self.endTimeButton, self.restTimeButton].forEach {
             $0.setTitle("00:00", for: .normal)
             $0.setTitleColor(.gray900, for: .normal)
             $0.titleLabel?.font = .boldSystemFont(ofSize: 20.0)
-            $0.backgroundColor = .gray300
+            $0.backgroundColor = .gray200
         }
         
         
-        [self.dayLabel, self.dateStackView, self.runTimeLabel]
+        [self.dayLabel, self.dateStackView, self.runTimeInfoLabel, self.runTimeLabel]
             .forEach(self.addSubview(_:))
         
         [self.startTimeButton, self.endTimeButton, self.restTimeButton]
@@ -88,10 +92,17 @@ final class EditUnitView: UIView {
             make.height.equalTo(Metric.size)
         }
         
-        self.runTimeLabel.snp.makeConstraints { make in
+        self.runTimeInfoLabel.snp.makeConstraints { make in
             make.top.equalTo(self.dateStackView.snp.bottom).offset(8.0)
-            make.leading.trailing.equalTo(self.dateStackView)
+            make.leading.equalTo(self.dateStackView)
             make.bottom.equalToSuperview()
+        }
+        self.runTimeInfoLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        
+        self.runTimeLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(self.runTimeInfoLabel)
+            make.leading.equalTo(self.runTimeInfoLabel.snp.trailing).offset(8.0)
+            make.trailing.equalTo(self.dateStackView)
         }
     }
     

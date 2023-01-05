@@ -62,6 +62,18 @@ final class PickerView: BaseView {
     
     // MARK: - Interface
     
+    func setData() {
+        let date = Date()
+        let hour = date.hourInt()
+        let min = date.minuteInt()
+        
+        self.selectHour = hour
+        self.selectMin = min
+        
+        self.pickerView.selectRow(hour, inComponent: 0, animated: true)
+        self.pickerView.selectRow(min, inComponent: 1, animated: true)
+    }
+    
     
     
     // MARK: - UI
@@ -115,8 +127,6 @@ extension PickerView: UIPickerViewDataSource {
         default: fatalError()
         }
     }
-    
-    
 }
 
 
@@ -125,7 +135,7 @@ extension PickerView: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch component {
-        case 0: return self.hourList[row] + " 시간"
+        case 0: return self.hourList[row] + " 시"
         case 1: return self.minList[row] + " 분"
         default: fatalError()
         }

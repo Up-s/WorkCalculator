@@ -14,10 +14,12 @@ import UPsKit
 final class EditViewModel: BaseViewModel {
     
     struct Input {
-        let unitViewModelList = BehaviorRelay<[EditUnitViewModel]>(value: [])
+        let unitViewModels = BehaviorRelay<[EditUnitViewModel]>(value: [])
+        let resetDidTap = PublishRelay<Void>()
     }
     
     struct Output {
+        let sumRunTime = BehaviorRelay<Int>(value: 0)
     }
     
     // MARK: - Property
@@ -27,14 +29,37 @@ final class EditViewModel: BaseViewModel {
     
     
     
-    
     // MARK: - Interface
     
     init() {
         super.init()
         
+        self.input.unitViewModels
+            .filter { !$0.isEmpty }
+            .bind { [weak self] array in
+                guard let self = self else { return }
+                let runTimes = array.map { $0.runTime }
+                
+                Observable
+                    .combineLatest(runTimes) { $0.reduce(0, +) }
+                    .bind(to: self.output.sumRunTime)
+                    .disposed(by: self.disposeBag)
+            }
+            .disposed(by: self.disposeBag)
         
-        
-        
+        self.input.resetDidTap
+            .bind { [weak self] in
+                let actions: [UPsAlertActionProtocol] = [
+                    UPsAlertAction(title: "리셋") { _ in
+                        UserDefaultsManager.resetTimeBlock()
+                        let scene = Scene.splash
+                        self?.coordinator.transition(scene: scene, style: .root)
+                    },
+                    UPsAlertCancelAction()
+                ]
+                
+                self?.coordinator.alert(title: "리셋 하시겠습니까?", actions: actions)
+            }
+            .disposed(by: self.disposeBag)
     }
 }

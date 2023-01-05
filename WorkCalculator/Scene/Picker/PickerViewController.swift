@@ -51,6 +51,15 @@ final class PickerViewController: BaseViewController {
     }
     
     private func bindViewModel() {
+        self.rx.viewDidAppear
+            .compactMap { $0 }
+            .withLatestFrom(self.viewModel.output.state)
+            .filter { $0 == .start || $0 == .end }
+            .bind { [weak self] _ in
+                self?.rootView.setData()
+            }
+            .disposed(by: self.disposeBag)
+        
         self.rootView.cancelButton.rx.tap
             .bind(to: self.viewModel.input.cancelDidTap)
             .disposed(by: self.disposeBag)

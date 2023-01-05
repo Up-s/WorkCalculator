@@ -20,6 +20,7 @@ final class PickerViewModel: BaseViewModel {
     
     struct Output {
         let title = BehaviorRelay<String?>(value: nil)
+        let state = BehaviorRelay<DateManager.State?>(value: nil)
     }
     
     // MARK: - Property
@@ -38,6 +39,10 @@ final class PickerViewModel: BaseViewModel {
         
         Observable.just(day.title + "요일 " + state.title)
             .bind(to: self.output.title)
+            .disposed(by: self.disposeBag)
+        
+        Observable.just(state)
+            .bind(to: self.output.state)
             .disposed(by: self.disposeBag)
         
         self.input.cancelDidTap

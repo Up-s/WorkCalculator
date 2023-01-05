@@ -43,10 +43,19 @@ final class EditViewController: BaseViewController {
     
     private func bindViewModel() {
         Observable.just(self.rootView.unitViewModels)
-            .bind(to: self.viewModel.input.unitViewModelList)
+            .bind(to: self.viewModel.input.unitViewModels)
+            .disposed(by: self.disposeBag)
+        
+        self.rootView.resetButton.rx.tap
+            .bind(to: self.viewModel.input.resetDidTap)
             .disposed(by: self.disposeBag)
         
         
         
+        self.viewModel.output.sumRunTime
+            .bind { [weak self] in
+                self?.rootView.setData($0)
+            }
+            .disposed(by: self.disposeBag)
     }
 }

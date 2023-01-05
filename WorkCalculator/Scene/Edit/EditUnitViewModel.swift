@@ -23,7 +23,7 @@ final class EditUnitViewModel: BaseViewModel {
         let startTime = BehaviorRelay<String>(value: "00:00")
         let endTime = BehaviorRelay<String>(value: "00:00")
         let restTime = BehaviorRelay<String>(value: "00:00")
-        let runTime = BehaviorRelay<String>(value: "00:00")
+        let runTime = BehaviorRelay<String>(value: "0시간 00분")
     }
     
     // MARK: - Property
@@ -32,10 +32,14 @@ final class EditUnitViewModel: BaseViewModel {
     let output = Output()
     
     let day: DateManager.Day
+    private let userDefault = UserDefaults.standard
+    private let encoder = PropertyListEncoder()
+    private let decoder = PropertyListDecoder()
     
     let startTimeBlock = BehaviorRelay<TimeBlockModel?>(value: nil)
     let endTimeBlock = BehaviorRelay<TimeBlockModel?>(value: nil)
     let restTimeBlock = BehaviorRelay<TimeBlockModel?>(value: nil)
+    let runTime = BehaviorRelay<Int>(value: 0)
     
     
     
@@ -45,6 +49,36 @@ final class EditUnitViewModel: BaseViewModel {
         self.day = day
         
         super.init()
+        
+        Observable.just(day.startKey.rawValue)
+            .map { [weak self] key -> TimeBlockModel? in
+                guard
+                    let self = self,
+                    let data = self.userDefault.object(forKey: key) as? Data,
+                    let dataModel = try? self.decoder.decode(TimeBlockModel.self, from: data)
+                else { return nil }
+                return dataModel
+            }
+            .bind(to: self.startTimeBlock)
+            .disposed(by: self.disposeBag)
+        
+        self.startTimeBlock
+            .compactMap { $0?.intervalString }
+            .bind(to: self.output.startTime)
+            .disposed(by: self.disposeBag)
+        
+        self.startTimeBlock
+            .compactMap { $0 }
+            .bind { [weak self] timeBlock in
+                let key = day.startKey.rawValue
+                guard
+                    let self = self,
+                    let data = try? self.encoder.encode(timeBlock)
+                else { return }
+                self.userDefault.set(data, forKey: key)
+                self.userDefault.synchronize()
+            }
+            .disposed(by: self.disposeBag)
         
         self.input.startDidTap
             .bind { [weak self] in
@@ -57,16 +91,40 @@ final class EditUnitViewModel: BaseViewModel {
                 viewModel.timeBlock
                     .bind(to: self.startTimeBlock)
                     .disposed(by: viewModel.disposeBag)
-                
             }
             .disposed(by: self.disposeBag)
         
-        self.startTimeBlock
-            .compactMap { $0?.intervalString }
-            .bind(to: self.output.startTime)
+        
+        
+        Observable.just(day.endKey.rawValue)
+            .map { [weak self] key -> TimeBlockModel? in
+                guard
+                    let self = self,
+                    let data = self.userDefault.object(forKey: key) as? Data,
+                    let dataModel = try? self.decoder.decode(TimeBlockModel.self, from: data)
+                else { return nil }
+                return dataModel
+            }
+            .bind(to: self.endTimeBlock)
             .disposed(by: self.disposeBag)
         
+        self.endTimeBlock
+            .compactMap { $0?.intervalString }
+            .bind(to: self.output.endTime)
+            .disposed(by: self.disposeBag)
         
+        self.endTimeBlock
+            .compactMap { $0 }
+            .bind { [weak self] timeBlock in
+                let key = day.endKey.rawValue
+                guard
+                    let self = self,
+                    let data = try? self.encoder.encode(timeBlock)
+                else { return }
+                self.userDefault.set(data, forKey: key)
+                self.userDefault.synchronize()
+            }
+            .disposed(by: self.disposeBag)
         
         self.input.endDidTap
             .withLatestFrom(self.startTimeBlock) { _, start -> Bool in
@@ -92,16 +150,40 @@ final class EditUnitViewModel: BaseViewModel {
                 viewModel.timeBlock
                     .bind(to: self.endTimeBlock)
                     .disposed(by: viewModel.disposeBag)
-                
             }
             .disposed(by: self.disposeBag)
         
-        self.endTimeBlock
-            .compactMap { $0?.intervalString }
-            .bind(to: self.output.endTime)
+        
+        
+        Observable.just(day.restKey.rawValue)
+            .map { [weak self] key -> TimeBlockModel? in
+                guard
+                    let self = self,
+                    let data = self.userDefault.object(forKey: key) as? Data,
+                    let dataModel = try? self.decoder.decode(TimeBlockModel.self, from: data)
+                else { return nil }
+                return dataModel
+            }
+            .bind(to: self.restTimeBlock)
             .disposed(by: self.disposeBag)
         
+        self.restTimeBlock
+            .compactMap { $0?.intervalString }
+            .bind(to: self.output.restTime)
+            .disposed(by: self.disposeBag)
         
+        self.restTimeBlock
+            .compactMap { $0 }
+            .bind { [weak self] timeBlock in
+                let key = day.restKey.rawValue
+                guard
+                    let self = self,
+                    let data = try? self.encoder.encode(timeBlock)
+                else { return }
+                self.userDefault.set(data, forKey: key)
+                self.userDefault.synchronize()
+            }
+            .disposed(by: self.disposeBag)
         
         self.input.restDidTap
             .withLatestFrom(self.startTimeBlock) { _, start -> Bool in
@@ -127,13 +209,7 @@ final class EditUnitViewModel: BaseViewModel {
                 viewModel.timeBlock
                     .bind(to: self.restTimeBlock)
                     .disposed(by: viewModel.disposeBag)
-                
             }
-            .disposed(by: self.disposeBag)
-        
-        self.restTimeBlock
-            .compactMap { $0?.intervalString }
-            .bind(to: self.output.restTime)
             .disposed(by: self.disposeBag)
         
         
@@ -143,19 +219,22 @@ final class EditUnitViewModel: BaseViewModel {
                 self.startTimeBlock.asObservable(),
                 self.endTimeBlock.asObservable(),
                 self.restTimeBlock.asObservable()
-            ) { inStartBlock, inEndBlock, inRestBlock -> String? in
+            ) { inStartBlock, inEndBlock, inRestBlock -> Int? in
                 guard
-                    let startBlock = inStartBlock,
-                    let endBlock = inEndBlock
+                    let startBlock = inStartBlock?.interval,
+                    let endBlock = inEndBlock?.interval
                 else { return nil }
                 
                 let restInterval = inRestBlock?.interval ?? 0
                 
-                let sum = endBlock.interval - startBlock.interval - restInterval
-                let sumString = String(format: "%d시간 %02d분", (sum / 60), (sum % 60))
-                return sumString
+                return endBlock - startBlock - restInterval
             }
             .compactMap { $0 }
+            .bind(to: self.runTime)
+            .disposed(by: self.disposeBag)
+        
+        self.runTime
+            .map { String(format: "%d시간 %02d분", ($0 / 60), ($0 % 60)) }
             .bind(to: self.output.runTime)
             .disposed(by: self.disposeBag)
     }
