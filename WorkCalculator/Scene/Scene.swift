@@ -11,7 +11,8 @@ import UPsKit
 enum Scene: SceneProtocol {
     
     case splash
-    case main
+    case edit
+    case picker(PickerViewModel)
     
     
     var target: UIViewController {
@@ -19,8 +20,11 @@ enum Scene: SceneProtocol {
         case .splash:
             return SplashViewController()
             
-        case .main:
-            return ViewController()
+        case .edit:
+            return EditViewController()
+            
+        case .picker(let viewModel):
+            return PickerViewController(viewModel)
             
         }
     }
