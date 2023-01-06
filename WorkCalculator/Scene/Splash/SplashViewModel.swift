@@ -34,7 +34,7 @@ final class SplashViewModel: BaseViewModel {
         super.init()
         
         self.input.viewDidAppear
-            .delay(.seconds(5), scheduler: MainScheduler.instance)
+            .delay(.seconds(2), scheduler: MainScheduler.instance)
             .bind { [weak self] in
                 self?.coordinator.transition(scene: Scene.edit, style: .root)
             }
