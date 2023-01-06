@@ -14,7 +14,7 @@ import UPsKit
 final class EditViewModel: BaseViewModel {
     
     struct Input {
-        let unitViewModels = BehaviorRelay<[EditUnitViewModel]>(value: [])
+        let timeBlockViewModels = BehaviorRelay<[EditTimeBlockViewModel]>(value: [])
         let resetDidTap = PublishRelay<Void>()
     }
     
@@ -34,7 +34,7 @@ final class EditViewModel: BaseViewModel {
     init() {
         super.init()
         
-        self.input.unitViewModels
+        self.input.timeBlockViewModels
             .filter { !$0.isEmpty }
             .bind { [weak self] array in
                 guard let self = self else { return }

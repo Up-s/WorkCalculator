@@ -19,8 +19,8 @@
 		BD470D6A2966CA1900404AB4 /* EditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D692966CA1900404AB4 /* EditViewModel.swift */; };
 		BD470D6C2966CA6500404AB4 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D6B2966CA6500404AB4 /* SplashView.swift */; };
 		BD470D6E2966CA6C00404AB4 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D6D2966CA6C00404AB4 /* SplashViewModel.swift */; };
-		BD470D702966CC1700404AB4 /* EidtUnitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D6F2966CC1700404AB4 /* EidtUnitView.swift */; };
-		BD470D722966D42700404AB4 /* EditUnitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D712966D42700404AB4 /* EditUnitViewModel.swift */; };
+		BD470D702966CC1700404AB4 /* EditTimeBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D6F2966CC1700404AB4 /* EditTimeBlockView.swift */; };
+		BD470D722966D42700404AB4 /* EditTimeBlockViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D712966D42700404AB4 /* EditTimeBlockViewModel.swift */; };
 		BD470D792966DDD600404AB4 /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D782966DDD600404AB4 /* DateManager.swift */; };
 		BD470D832966EE1800404AB4 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D822966EE1800404AB4 /* PickerView.swift */; };
 		BD470D852966EE1C00404AB4 /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D842966EE1C00404AB4 /* PickerViewController.swift */; };
@@ -47,8 +47,8 @@
 		BD470D692966CA1900404AB4 /* EditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewModel.swift; sourceTree = "<group>"; };
 		BD470D6B2966CA6500404AB4 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		BD470D6D2966CA6C00404AB4 /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
-		BD470D6F2966CC1700404AB4 /* EidtUnitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EidtUnitView.swift; sourceTree = "<group>"; };
-		BD470D712966D42700404AB4 /* EditUnitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUnitViewModel.swift; sourceTree = "<group>"; };
+		BD470D6F2966CC1700404AB4 /* EditTimeBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTimeBlockView.swift; sourceTree = "<group>"; };
+		BD470D712966D42700404AB4 /* EditTimeBlockViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTimeBlockViewModel.swift; sourceTree = "<group>"; };
 		BD470D782966DDD600404AB4 /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		BD470D822966EE1800404AB4 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		BD470D842966EE1C00404AB4 /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
@@ -175,11 +175,11 @@
 		BD470D642966C9F000404AB4 /* Edit */ = {
 			isa = PBXGroup;
 			children = (
-				BD470D6F2966CC1700404AB4 /* EidtUnitView.swift */,
-				BD470D712966D42700404AB4 /* EditUnitViewModel.swift */,
+				BD470D6F2966CC1700404AB4 /* EditTimeBlockView.swift */,
 				BD9A16C6296725E70093FB1C /* EditSumUnitView.swift */,
 				BD470D652966CA1000404AB4 /* EditView.swift */,
 				BD470D672966CA1500404AB4 /* EditViewController.swift */,
+				BD470D712966D42700404AB4 /* EditTimeBlockViewModel.swift */,
 				BD470D692966CA1900404AB4 /* EditViewModel.swift */,
 			);
 			path = Edit;
@@ -310,7 +310,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BD470D722966D42700404AB4 /* EditUnitViewModel.swift in Sources */,
+				BD470D722966D42700404AB4 /* EditTimeBlockViewModel.swift in Sources */,
 				BD470D792966DDD600404AB4 /* DateManager.swift in Sources */,
 				BD470D6A2966CA1900404AB4 /* EditViewModel.swift in Sources */,
 				BD470D562966C74400404AB4 /* Scene.swift in Sources */,
@@ -322,7 +322,7 @@
 				BD470D662966CA1000404AB4 /* EditView.swift in Sources */,
 				BD470D5E2966C8DB00404AB4 /* FirebaseManager.swift in Sources */,
 				BD470D6E2966CA6C00404AB4 /* SplashViewModel.swift in Sources */,
-				BD470D702966CC1700404AB4 /* EidtUnitView.swift in Sources */,
+				BD470D702966CC1700404AB4 /* EditTimeBlockView.swift in Sources */,
 				BD470D402966C4CE00404AB4 /* AppDelegate.swift in Sources */,
 				BD470D622966C98A00404AB4 /* TodayModel.swift in Sources */,
 				BD470D682966CA1500404AB4 /* EditViewController.swift in Sources */,

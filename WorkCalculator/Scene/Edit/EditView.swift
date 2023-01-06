@@ -25,8 +25,8 @@ final class EditView: BaseView {
         view.font = .boldSystemFont(ofSize: 40.0)
     }
     
-    var unitViews: [EditUnitView] = []
-    var unitViewModels: [EditUnitViewModel] = []
+    var timeBlockViews: [EditTimeBlockView] = []
+    var timeBlockViewModels: [EditTimeBlockViewModel] = []
     
     private let sumUnitStackView = UPsStackView(axis: .horizontal, distribution: .fillEqually, spacing: 16.0)
     let totalSumUnitView = EditSumUnitView().then { view in
@@ -95,41 +95,41 @@ final class EditView: BaseView {
     private func createUnitView() {
         let days: [DateManager.Day] = [.mon, .tue, .wed, .thu, .fri]
         days.forEach { day in
-            let unitView = EditUnitView(day)
-            let unitViewModel = EditUnitViewModel(day)
+            let timeBlockView = EditTimeBlockView(day)
+            let timeBlockViewModel = EditTimeBlockViewModel(day)
             
-            unitView.startTimeButton.rx.tap
-                .bind(to: unitViewModel.input.startDidTap)
+            timeBlockView.startTimeButton.rx.tap
+                .bind(to: timeBlockViewModel.input.startDidTap)
                 .disposed(by: self.disposeBag)
             
-            unitView.endTimeButton.rx.tap
-                .bind(to: unitViewModel.input.endDidTap)
+            timeBlockView.endTimeButton.rx.tap
+                .bind(to: timeBlockViewModel.input.endDidTap)
                 .disposed(by: self.disposeBag)
             
-            unitView.restTimeButton.rx.tap
-                .bind(to: unitViewModel.input.restDidTap)
-                .disposed(by: self.disposeBag)
-            
-            
-            unitViewModel.output.startTime
-                .bind(to: unitView.startTimeButton.rx.title())
-                .disposed(by: self.disposeBag)
-            
-            unitViewModel.output.endTime
-                .bind(to: unitView.endTimeButton.rx.title())
-                .disposed(by: self.disposeBag)
-            
-            unitViewModel.output.restTime
-                .bind(to: unitView.restTimeButton.rx.title())
-                .disposed(by: self.disposeBag)
-            
-            unitViewModel.output.runTime
-                .bind(to: unitView.runTimeLabel.rx.text)
+            timeBlockView.restTimeButton.rx.tap
+                .bind(to: timeBlockViewModel.input.restDidTap)
                 .disposed(by: self.disposeBag)
             
             
-            self.unitViews.append(unitView)
-            self.unitViewModels.append(unitViewModel)
+            timeBlockViewModel.output.startTime
+                .bind(to: timeBlockView.startTimeButton.rx.title())
+                .disposed(by: self.disposeBag)
+            
+            timeBlockViewModel.output.endTime
+                .bind(to: timeBlockView.endTimeButton.rx.title())
+                .disposed(by: self.disposeBag)
+            
+            timeBlockViewModel.output.restTime
+                .bind(to: timeBlockView.restTimeButton.rx.title())
+                .disposed(by: self.disposeBag)
+            
+            timeBlockViewModel.output.runTime
+                .bind(to: timeBlockView.runTimeLabel.rx.text)
+                .disposed(by: self.disposeBag)
+            
+            
+            self.timeBlockViews.append(timeBlockView)
+            self.timeBlockViewModels.append(timeBlockViewModel)
         }
     }
     
@@ -145,7 +145,7 @@ final class EditView: BaseView {
         [self.titleLabel]
             .forEach(self.contentsStackView.addArrangedSubview(_:))
         
-        self.unitViews
+        self.timeBlockViews
             .forEach(self.contentsStackView.addArrangedSubview(_:))
         
         [self.sumUnitStackView, self.resetButton]
