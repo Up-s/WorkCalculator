@@ -99,8 +99,8 @@ final class PickerView: BaseView {
         let guide = self.safeAreaLayoutGuide
         
         self.contentsStackView.snp.makeConstraints { make in
-            make.centerY.equalTo(guide)
-            make.leading.trailing.equalToSuperview().inset(24.0)
+            make.center.equalTo(guide)
+            make.width.equalTo(240.0)
         }
         
         self.pickerView.snp.makeConstraints { make in

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B412157936F7C192E92E4B2A /* Pods_WorkCalculator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD3D56EF106A0A1326EF920F /* Pods_WorkCalculator.framework */; };
 		BD470D402966C4CE00404AB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D3F2966C4CE00404AB4 /* AppDelegate.swift */; };
 		BD470D492966C4CF00404AB4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD470D482966C4CF00404AB4 /* Assets.xcassets */; };
 		BD470D542966C66E00404AB4 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D532966C66E00404AB4 /* SplashViewController.swift */; };
@@ -29,10 +28,10 @@
 		BD470D892966F80F00404AB4 /* TimeBlockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D882966F80F00404AB4 /* TimeBlockModel.swift */; };
 		BD9A16C7296725E70093FB1C /* EditSumUnitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9A16C6296725E70093FB1C /* EditSumUnitView.swift */; };
 		BD9A16C9296736430093FB1C /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9A16C8296736430093FB1C /* UserDefaultsManager.swift */; };
+		FFEE75A1C310A619BF24BA78 /* Pods_WorkCalculator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF7D2041780639BA852C6127 /* Pods_WorkCalculator.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7C1EE0EB68718F63657B4F93 /* Pods-WorkCalculator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkCalculator.release.xcconfig"; path = "Target Support Files/Pods-WorkCalculator/Pods-WorkCalculator.release.xcconfig"; sourceTree = "<group>"; };
 		BD470D3C2966C4CE00404AB4 /* WorkCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD470D3F2966C4CE00404AB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BD470D482966C4CF00404AB4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -56,8 +55,9 @@
 		BD470D882966F80F00404AB4 /* TimeBlockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBlockModel.swift; sourceTree = "<group>"; };
 		BD9A16C6296725E70093FB1C /* EditSumUnitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSumUnitView.swift; sourceTree = "<group>"; };
 		BD9A16C8296736430093FB1C /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
-		DD3D56EF106A0A1326EF920F /* Pods_WorkCalculator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WorkCalculator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F47CB2F4618F1E637D6BE650 /* Pods-WorkCalculator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkCalculator.debug.xcconfig"; path = "Target Support Files/Pods-WorkCalculator/Pods-WorkCalculator.debug.xcconfig"; sourceTree = "<group>"; };
+		BF7D2041780639BA852C6127 /* Pods_WorkCalculator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WorkCalculator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C50E4420C95A8C0349035577 /* Pods-WorkCalculator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkCalculator.debug.xcconfig"; path = "Target Support Files/Pods-WorkCalculator/Pods-WorkCalculator.debug.xcconfig"; sourceTree = "<group>"; };
+		F104DBC49D5D8CFB7390A31B /* Pods-WorkCalculator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkCalculator.release.xcconfig"; path = "Target Support Files/Pods-WorkCalculator/Pods-WorkCalculator.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,7 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B412157936F7C192E92E4B2A /* Pods_WorkCalculator.framework in Frameworks */,
+				FFEE75A1C310A619BF24BA78 /* Pods_WorkCalculator.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,16 +75,16 @@
 		98DE9976053F8BFF538EBBB7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				F47CB2F4618F1E637D6BE650 /* Pods-WorkCalculator.debug.xcconfig */,
-				7C1EE0EB68718F63657B4F93 /* Pods-WorkCalculator.release.xcconfig */,
+				C50E4420C95A8C0349035577 /* Pods-WorkCalculator.debug.xcconfig */,
+				F104DBC49D5D8CFB7390A31B /* Pods-WorkCalculator.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		9B88B836B949B15E96E881C5 /* Frameworks */ = {
+		B1F236BC17C4848485E410D4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DD3D56EF106A0A1326EF920F /* Pods_WorkCalculator.framework */,
+				BF7D2041780639BA852C6127 /* Pods_WorkCalculator.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -95,7 +95,7 @@
 				BD470D3E2966C4CE00404AB4 /* WorkCalculator */,
 				BD470D3D2966C4CE00404AB4 /* Products */,
 				98DE9976053F8BFF538EBBB7 /* Pods */,
-				9B88B836B949B15E96E881C5 /* Frameworks */,
+				B1F236BC17C4848485E410D4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -199,11 +199,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BD470D502966C4CF00404AB4 /* Build configuration list for PBXNativeTarget "WorkCalculator" */;
 			buildPhases = (
-				FCBDC455DCEEE2199E31F861 /* [CP] Check Pods Manifest.lock */,
+				71A52DC18E4F55BEC83475DE /* [CP] Check Pods Manifest.lock */,
 				BD470D382966C4CE00404AB4 /* Sources */,
 				BD470D392966C4CE00404AB4 /* Frameworks */,
 				BD470D3A2966C4CE00404AB4 /* Resources */,
-				54D2E4CE5A196DB09F8F7CC4 /* [CP] Embed Pods Frameworks */,
+				F8DFA78D9339D263F8B99C50 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -260,24 +260,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		54D2E4CE5A196DB09F8F7CC4 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-WorkCalculator/Pods-WorkCalculator-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-WorkCalculator/Pods-WorkCalculator-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WorkCalculator/Pods-WorkCalculator-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FCBDC455DCEEE2199E31F861 /* [CP] Check Pods Manifest.lock */ = {
+		71A52DC18E4F55BEC83475DE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -297,6 +280,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F8DFA78D9339D263F8B99C50 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WorkCalculator/Pods-WorkCalculator-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WorkCalculator/Pods-WorkCalculator-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WorkCalculator/Pods-WorkCalculator-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -447,7 +447,7 @@
 		};
 		BD470D512966C4CF00404AB4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F47CB2F4618F1E637D6BE650 /* Pods-WorkCalculator.debug.xcconfig */;
+			baseConfigurationReference = C50E4420C95A8C0349035577 /* Pods-WorkCalculator.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -456,6 +456,7 @@
 				DEVELOPMENT_TEAM = ZLN97H98PA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WorkCalculator/Support/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "칼퇴 계산기";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = SplashViewController;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -476,7 +477,7 @@
 		};
 		BD470D522966C4CF00404AB4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7C1EE0EB68718F63657B4F93 /* Pods-WorkCalculator.release.xcconfig */;
+			baseConfigurationReference = F104DBC49D5D8CFB7390A31B /* Pods-WorkCalculator.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -485,6 +486,7 @@
 				DEVELOPMENT_TEAM = ZLN97H98PA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WorkCalculator/Support/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "칼퇴 계산기";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = SplashViewController;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -495,6 +497,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.QEDStudio.WorkCalculator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

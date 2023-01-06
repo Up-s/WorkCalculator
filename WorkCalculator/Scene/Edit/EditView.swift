@@ -38,7 +38,7 @@ final class EditView: BaseView {
     
     let resetButton = UIButton().then { view in
         view.setTitle("리셋", for: .normal)
-        view.setTitleColor(.light, for: .normal)
+        view.setTitleColor(.white, for: .normal)
         view.backgroundColor = .systemBlue
         view.titleLabel?.font = .boldSystemFont(ofSize: 20.0)
     }
