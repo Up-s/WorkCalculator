@@ -16,6 +16,7 @@ final class EditViewModel: BaseViewModel {
     struct Input {
         let timeBlockViewModels = BehaviorRelay<[EditTimeBlockViewModel]>(value: [])
         let resetDidTap = PublishRelay<Void>()
+        let settingDidTap = PublishRelay<Void>()
     }
     
     struct Output {
@@ -59,6 +60,13 @@ final class EditViewModel: BaseViewModel {
                 ]
                 
                 self?.coordinator.alert(title: "리셋 하시겠습니까?", actions: actions)
+            }
+            .disposed(by: self.disposeBag)
+        
+        self.input.settingDidTap
+            .bind { [weak self] in
+                let scene = Scene.setting
+                self?.coordinator.transition(scene: scene, style: .modal(.fullScreen))
             }
             .disposed(by: self.disposeBag)
     }

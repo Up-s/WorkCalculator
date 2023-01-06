@@ -25,6 +25,7 @@ final class SplashViewModel: BaseViewModel {
     let input = Input()
     let output = Output()
     
+    private let createProvider = PublishRelay<Void>()
     
     
     
@@ -35,9 +36,19 @@ final class SplashViewModel: BaseViewModel {
         
         self.input.viewDidAppear
             .delay(.seconds(2), scheduler: MainScheduler.instance)
-            .bind { [weak self] in
-                self?.coordinator.transition(scene: Scene.edit, style: .root)
+            .flatMap {
+                UserDefaultsManager.firebaseID == nil ?
+                    FirebaseProvider.create() :
+                    FirebaseProvider.getSettingData()
             }
+            .subscribe(
+                onNext: { [weak self] in
+                    self?.coordinator.transition(scene: Scene.edit, style: .root)
+                },
+                onError: { [weak self] error in
+                    self?.debugLog(#function, #line, error)
+                }
+            )
             .disposed(by: self.disposeBag)
     }
 }

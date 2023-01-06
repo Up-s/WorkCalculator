@@ -11,6 +11,7 @@ final class UserDefaultsManager {
     
     enum Key: String, CaseIterable {
         case firebaseID
+        case inputType
         
         case sunStartTimeBlock
         case sunEndTimeBlock
@@ -45,7 +46,7 @@ final class UserDefaultsManager {
     
     class func resetTimeBlock() {
         Key.allCases
-            .filter { $0 != .firebaseID }
+            .filter { $0 != .firebaseID || $0 != .inputType }
             .forEach {
                 self.userDefault.removeObject(forKey: $0.rawValue)
             }
@@ -60,6 +61,9 @@ final class UserDefaultsManager {
         set { self.userDefault.set(newValue, forKey: Key.firebaseID.rawValue) }
     }
     
-    
+    static var inputType: Int {
+        get { self.userDefault.integer(forKey: Key.inputType.rawValue) }
+        set { self.userDefault.set(newValue, forKey: Key.inputType.rawValue) }
+    }
     
 }

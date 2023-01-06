@@ -13,6 +13,7 @@ enum Scene: SceneProtocol {
     case splash
     case edit
     case picker(PickerViewModel)
+    case setting
     
     
     var target: UIViewController {
@@ -26,6 +27,8 @@ enum Scene: SceneProtocol {
         case .picker(let viewModel):
             return PickerViewController(viewModel)
             
+        case .setting:
+            return SettingViewController()
         }
     }
 }

@@ -39,8 +39,15 @@ final class EditView: BaseView {
     let resetButton = UIButton().then { view in
         view.setTitle("리셋", for: .normal)
         view.setTitleColor(.white, for: .normal)
-        view.backgroundColor = .systemBlue
         view.titleLabel?.font = .boldSystemFont(ofSize: 20.0)
+        view.backgroundColor = .systemBlue
+    }
+    
+    let settingButton = UIButton().then { view in
+        view.setTitle("설정", for: .normal)
+        view.setTitleColor(.white, for: .normal)
+        view.titleLabel?.font = .boldSystemFont(ofSize: 20.0)
+        view.backgroundColor = .systemGreen
     }
     
     private let disposeBag = DisposeBag()
@@ -148,7 +155,7 @@ final class EditView: BaseView {
         self.timeBlockViews
             .forEach(self.contentsStackView.addArrangedSubview(_:))
         
-        [self.sumUnitStackView, self.resetButton]
+        [self.sumUnitStackView, self.resetButton, settingButton]
             .forEach(self.contentsStackView.addArrangedSubview(_:))
         
         [self.totalSumUnitView, self.remainedSumUnitView]
@@ -167,8 +174,10 @@ final class EditView: BaseView {
             make.edges.equalToSuperview().inset(24.0)
         }
         
-        self.resetButton.snp.makeConstraints { make in
-            make.height.equalTo(48.0)
+        [self.resetButton, self.settingButton].forEach { view in
+            view.snp.makeConstraints { make in
+                make.height.equalTo(48.0)
+            }
         }
     }
 }
