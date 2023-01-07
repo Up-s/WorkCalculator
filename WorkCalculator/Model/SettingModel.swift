@@ -16,6 +16,7 @@ struct SettingModel: Codable {
         weeks: [Int] = [2, 3, 4, 5, 6],
         workBaseHour: Int = 40
     ) {
+        self.weeks = weeks
         self.workBaseHour = workBaseHour
     }
 }
