@@ -9,9 +9,13 @@ import Foundation
 
 struct SettingModel: Codable {
     
+    var weeks: [Int]
     var workBaseHour: Int
     
-    init(workBaseHour: Int = 40) {
+    init(
+        weeks: [Int] = [2, 3, 4, 5, 6],
+        workBaseHour: Int = 40
+    ) {
         self.workBaseHour = workBaseHour
     }
 }

@@ -25,6 +25,7 @@
 		BD470D852966EE1C00404AB4 /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D842966EE1C00404AB4 /* PickerViewController.swift */; };
 		BD470D872966EE2100404AB4 /* PickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D862966EE2100404AB4 /* PickerViewModel.swift */; };
 		BD470D892966F80F00404AB4 /* TimeBlockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D882966F80F00404AB4 /* TimeBlockModel.swift */; };
+		BD7401752969552800E227EE /* SettingWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7401742969552800E227EE /* SettingWeekView.swift */; };
 		BD7831372968679200907452 /* FirebaseRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7831362968679200907452 /* FirebaseRoot.swift */; };
 		BD783139296867AA00907452 /* FirebaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD783138296867AA00907452 /* FirebaseError.swift */; };
 		BD78313B2968684000907452 /* FirebaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD78313A2968684000907452 /* FirebaseProvider.swift */; };
@@ -65,6 +66,7 @@
 		BD470D842966EE1C00404AB4 /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
 		BD470D862966EE2100404AB4 /* PickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewModel.swift; sourceTree = "<group>"; };
 		BD470D882966F80F00404AB4 /* TimeBlockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBlockModel.swift; sourceTree = "<group>"; };
+		BD7401742969552800E227EE /* SettingWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingWeekView.swift; sourceTree = "<group>"; };
 		BD7831362968679200907452 /* FirebaseRoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRoot.swift; sourceTree = "<group>"; };
 		BD783138296867AA00907452 /* FirebaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseError.swift; sourceTree = "<group>"; };
 		BD78313A2968684000907452 /* FirebaseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseProvider.swift; sourceTree = "<group>"; };
@@ -228,8 +230,9 @@
 			children = (
 				BD78314F2968876700907452 /* SettingInfoLabel.swift */,
 				BD7831472968773C00907452 /* SettingIDView.swift */,
-				BD783149296878B700907452 /* SettingInputTypeView.swift */,
+				BD7401742969552800E227EE /* SettingWeekView.swift */,
 				BD78314D2968859B00907452 /* SettingHourSliderView.swift */,
+				BD783149296878B700907452 /* SettingInputTypeView.swift */,
 				BD7831412968764B00907452 /* SettingView.swift */,
 				BD7831432968765000907452 /* SettingViewController.swift */,
 				BD7831452968765400907452 /* SettingViewModel.swift */,
@@ -383,6 +386,7 @@
 				BD470D6E2966CA6C00404AB4 /* SplashViewModel.swift in Sources */,
 				BD470D702966CC1700404AB4 /* EditTimeBlockView.swift in Sources */,
 				BD470D402966C4CE00404AB4 /* AppDelegate.swift in Sources */,
+				BD7401752969552800E227EE /* SettingWeekView.swift in Sources */,
 				BD7831372968679200907452 /* FirebaseRoot.swift in Sources */,
 				BD470D622966C98A00404AB4 /* TodayModel.swift in Sources */,
 				BD470D682966CA1500404AB4 /* EditViewController.swift in Sources */,

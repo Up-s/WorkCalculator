@@ -21,8 +21,8 @@ final class SettingView: BaseView, NavigationProtocol {
     private let contentsScrollView = UIScrollView()
     private let contentsStackView = UPsStackView(axis: .vertical, spacing: 16.0)
     let idView = SettingIDView()
-    let inputTypeView = SettingInputTypeView()
     let hourView = SettingHourSliderView()
+    let inputTypeView = SettingInputTypeView()
     
     
     

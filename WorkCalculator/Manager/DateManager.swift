@@ -18,7 +18,7 @@ class DateManager {
         case fri
         case sat
         
-        var title: String {
+        var ko: String {
             switch self {
             case .sun: return "일"
             case .mon: return "월"

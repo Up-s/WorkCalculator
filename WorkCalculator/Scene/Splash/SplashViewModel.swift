@@ -51,24 +51,17 @@ final class SplashViewModel: BaseViewModel {
             )
             .disposed(by: self.disposeBag)
         
+        
+        
 //        var calendar = Calendar(identifier: .gregorian)
 //        calendar.locale = Locale(identifier: "ko_KR")
-//        let tempDateComp = DateComponents(year: 2025, month: 1, day: 8)
-//        let date = calendar.date(from: tempDateComp)!
-//        let year = date.yearInt()
-//        let month = date.monthInt()
+//
+//        let date = Date()
 //        let weekdayOrdinal = date.weekdayOrdinalInt()
-//        
+//
 //        print("\n-----------------------------", weekdayOrdinal)
-//        
+//
 //        DateManager.Day.allCases
 //            .map { $0.weekdayInt }
-//            .map {
-//                DateComponents(calendar: calendar, year: year, month: month, weekday: $0, weekdayOrdinal: weekdayOrdinal)
-//            }
-//            .compactMap { $0.date }
-//            .forEach {
-//                print("\n-- [ \($0.toString(.yyyy_MM_dd)) ] --")
-//            }
     }
 }
