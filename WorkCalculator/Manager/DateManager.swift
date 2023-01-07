@@ -30,7 +30,7 @@ class DateManager {
             }
         }
         
-        var row: Int {
+        var weekdayInt: Int {
             switch self {
             case .sun: return 1
             case .mon: return 2
