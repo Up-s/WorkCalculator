@@ -31,63 +31,42 @@ final class EditTimeBlockViewModel: BaseViewModel {
     let input = Input()
     let output = Output()
     
-    let day: DateManager.Day
     private let userDefault = UserDefaults.standard
     private let encoder = PropertyListEncoder()
     private let decoder = PropertyListDecoder()
     
-    let startTimeBlock = BehaviorRelay<TimeBlockModel?>(value: nil)
-    let endTimeBlock = BehaviorRelay<TimeBlockModel?>(value: nil)
-    let restTimeBlock = BehaviorRelay<TimeBlockModel?>(value: nil)
+    let startTimeBlock: BehaviorRelay<TimeBlockModel>
+    let endTimeBlock: BehaviorRelay<TimeBlockModel>
+    let restTimeBlock: BehaviorRelay<TimeBlockModel>
     let runTime = BehaviorRelay<Int>(value: 0)
     
     
     
     // MARK: - Interface
     
-    init(_ day: DateManager.Day) {
-        self.day = day
+    init(_ timeBlock: [TimeBlockModel]) {
+        self.startTimeBlock = BehaviorRelay<TimeBlockModel>(value: timeBlock[0])
+        self.endTimeBlock = BehaviorRelay<TimeBlockModel>(value: timeBlock[1])
+        self.restTimeBlock = BehaviorRelay<TimeBlockModel>(value: timeBlock[2])
         
         super.init()
         
-        Observable.just(day.startKey.rawValue)
-            .map { [weak self] key -> TimeBlockModel? in
-                guard
-                    let self = self,
-                    let data = self.userDefault.object(forKey: key) as? Data,
-                    let dataModel = try? self.decoder.decode(TimeBlockModel.self, from: data)
-                else { return nil }
-                return dataModel
-            }
-            .bind(to: self.startTimeBlock)
-            .disposed(by: self.disposeBag)
+        
         
         self.startTimeBlock
-            .compactMap { $0?.intervalString }
+            .map { $0.intervalString }
             .bind(to: self.output.startTime)
             .disposed(by: self.disposeBag)
         
-        self.startTimeBlock
-            .compactMap { $0 }
-            .bind { [weak self] timeBlock in
-                let key = day.startKey.rawValue
-                guard
-                    let self = self,
-                    let data = try? self.encoder.encode(timeBlock)
-                else { return }
-                self.userDefault.set(data, forKey: key)
-                self.userDefault.synchronize()
-            }
-            .disposed(by: self.disposeBag)
-        
         self.input.startDidTap
-            .bind { [weak self] in
+            .withLatestFrom(self.startTimeBlock)
+            .bind { [weak self] block in
                 guard let self = self else { return }
                 
-                let viewModel = PickerViewModel(self.day, .start)
+                let viewModel = PickerViewModel(block)
                 let scene: Scene = .picker(viewModel)
                 self.coordinator.transition(scene: scene, style: .modal(.overFullScreen), animated: false)
-                
+
                 viewModel.timeBlock
                     .bind(to: self.startTimeBlock)
                     .disposed(by: viewModel.disposeBag)
@@ -96,57 +75,20 @@ final class EditTimeBlockViewModel: BaseViewModel {
         
         
         
-        Observable.just(day.endKey.rawValue)
-            .map { [weak self] key -> TimeBlockModel? in
-                guard
-                    let self = self,
-                    let data = self.userDefault.object(forKey: key) as? Data,
-                    let dataModel = try? self.decoder.decode(TimeBlockModel.self, from: data)
-                else { return nil }
-                return dataModel
-            }
-            .bind(to: self.endTimeBlock)
-            .disposed(by: self.disposeBag)
-        
         self.endTimeBlock
-            .compactMap { $0?.intervalString }
+            .map { $0.intervalString }
             .bind(to: self.output.endTime)
             .disposed(by: self.disposeBag)
         
-        self.endTimeBlock
-            .compactMap { $0 }
-            .bind { [weak self] timeBlock in
-                let key = day.endKey.rawValue
-                guard
-                    let self = self,
-                    let data = try? self.encoder.encode(timeBlock)
-                else { return }
-                self.userDefault.set(data, forKey: key)
-                self.userDefault.synchronize()
-            }
-            .disposed(by: self.disposeBag)
-        
         self.input.endDidTap
-            .withLatestFrom(self.startTimeBlock) { _, start -> Bool in
-                if start == nil {
-                    
-                    self.coordinator.alert(
-                        title: "출근 시간을 먼저 설정해 주세요",
-                        actions: [UPsAlertCancelAction()]
-                    )
-                }
-                
-                return start != nil
-            }
-            .filter { $0 }
-            .map { _ in }
-            .bind { [weak self] in
+            .withLatestFrom(self.endTimeBlock)
+            .bind { [weak self] block in
                 guard let self = self else { return }
                 
-                let viewModel = PickerViewModel(self.day, .end)
+                let viewModel = PickerViewModel(block)
                 let scene: Scene = .picker(viewModel)
                 self.coordinator.transition(scene: scene, style: .modal(.overFullScreen), animated: false)
-                
+
                 viewModel.timeBlock
                     .bind(to: self.endTimeBlock)
                     .disposed(by: viewModel.disposeBag)
@@ -155,54 +97,17 @@ final class EditTimeBlockViewModel: BaseViewModel {
         
         
         
-        Observable.just(day.restKey.rawValue)
-            .map { [weak self] key -> TimeBlockModel? in
-                guard
-                    let self = self,
-                    let data = self.userDefault.object(forKey: key) as? Data,
-                    let dataModel = try? self.decoder.decode(TimeBlockModel.self, from: data)
-                else { return nil }
-                return dataModel
-            }
-            .bind(to: self.restTimeBlock)
-            .disposed(by: self.disposeBag)
-        
         self.restTimeBlock
-            .compactMap { $0?.intervalString }
+            .map { $0.intervalString }
             .bind(to: self.output.restTime)
             .disposed(by: self.disposeBag)
         
-        self.restTimeBlock
-            .compactMap { $0 }
-            .bind { [weak self] timeBlock in
-                let key = day.restKey.rawValue
-                guard
-                    let self = self,
-                    let data = try? self.encoder.encode(timeBlock)
-                else { return }
-                self.userDefault.set(data, forKey: key)
-                self.userDefault.synchronize()
-            }
-            .disposed(by: self.disposeBag)
-        
         self.input.restDidTap
-            .withLatestFrom(self.startTimeBlock) { _, start -> Bool in
-                if start == nil {
-                    
-                    self.coordinator.alert(
-                        title: "출근 시간을 먼저 설정해 주세요",
-                        actions: [UPsAlertCancelAction()]
-                    )
-                }
-                
-                return start != nil
-            }
-            .filter { $0 }
-            .map { _ in }
-            .bind { [weak self] in
+            .withLatestFrom(self.restTimeBlock)
+            .bind { [weak self] block in
                 guard let self = self else { return }
                 
-                let viewModel = PickerViewModel(self.day, .rest)
+                let viewModel = PickerViewModel(block)
                 let scene: Scene = .picker(viewModel)
                 self.coordinator.transition(scene: scene, style: .modal(.overFullScreen), animated: false)
                 
@@ -219,17 +124,12 @@ final class EditTimeBlockViewModel: BaseViewModel {
                 self.startTimeBlock.asObservable(),
                 self.endTimeBlock.asObservable(),
                 self.restTimeBlock.asObservable()
-            ) { inStartBlock, inEndBlock, inRestBlock -> Int? in
-                guard
-                    let startBlock = inStartBlock?.interval,
-                    let endBlock = inEndBlock?.interval
-                else { return nil }
-                
-                let restInterval = inRestBlock?.interval ?? 0
-                
+            ) { inStartBlock, inEndBlock, inRestBlock -> Int in
+                let startBlock = inStartBlock.interval
+                let endBlock = inEndBlock.interval
+                let restInterval = inRestBlock.interval
                 return endBlock - startBlock - restInterval
             }
-            .compactMap { $0 }
             .bind(to: self.runTime)
             .disposed(by: self.disposeBag)
         

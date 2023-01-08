@@ -100,44 +100,44 @@ final class EditView: BaseView {
     // MARK: - UI
     
     private func createUnitView() {
-        let days: [DateManager.Day] = [.mon, .tue, .wed, .thu, .fri]
-        days.forEach { day in
-            let timeBlockView = EditTimeBlockView(day)
-            let timeBlockViewModel = EditTimeBlockViewModel(day)
-            
-            timeBlockView.startTimeButton.rx.tap
-                .bind(to: timeBlockViewModel.input.startDidTap)
-                .disposed(by: self.disposeBag)
-            
-            timeBlockView.endTimeButton.rx.tap
-                .bind(to: timeBlockViewModel.input.endDidTap)
-                .disposed(by: self.disposeBag)
-            
-            timeBlockView.restTimeButton.rx.tap
-                .bind(to: timeBlockViewModel.input.restDidTap)
-                .disposed(by: self.disposeBag)
-            
-            
-            timeBlockViewModel.output.startTime
-                .bind(to: timeBlockView.startTimeButton.rx.title())
-                .disposed(by: self.disposeBag)
-            
-            timeBlockViewModel.output.endTime
-                .bind(to: timeBlockView.endTimeButton.rx.title())
-                .disposed(by: self.disposeBag)
-            
-            timeBlockViewModel.output.restTime
-                .bind(to: timeBlockView.restTimeButton.rx.title())
-                .disposed(by: self.disposeBag)
-            
-            timeBlockViewModel.output.runTime
-                .bind(to: timeBlockView.runTimeLabel.rx.text)
-                .disposed(by: self.disposeBag)
-            
-            
-            self.timeBlockViews.append(timeBlockView)
-            self.timeBlockViewModels.append(timeBlockViewModel)
-        }
+//        let days: [DateManager.Day] = [.mon, .tue, .wed, .thu, .fri]
+//        days.forEach { day in
+//            let timeBlockView = EditTimeBlockView(day)
+//            let timeBlockViewModel = EditTimeBlockViewModel(day)
+//
+//            timeBlockView.startTimeButton.rx.tap
+//                .bind(to: timeBlockViewModel.input.startDidTap)
+//                .disposed(by: self.disposeBag)
+//
+//            timeBlockView.endTimeButton.rx.tap
+//                .bind(to: timeBlockViewModel.input.endDidTap)
+//                .disposed(by: self.disposeBag)
+//
+//            timeBlockView.restTimeButton.rx.tap
+//                .bind(to: timeBlockViewModel.input.restDidTap)
+//                .disposed(by: self.disposeBag)
+//
+//
+//            timeBlockViewModel.output.startTime
+//                .bind(to: timeBlockView.startTimeButton.rx.title())
+//                .disposed(by: self.disposeBag)
+//
+//            timeBlockViewModel.output.endTime
+//                .bind(to: timeBlockView.endTimeButton.rx.title())
+//                .disposed(by: self.disposeBag)
+//
+//            timeBlockViewModel.output.restTime
+//                .bind(to: timeBlockView.restTimeButton.rx.title())
+//                .disposed(by: self.disposeBag)
+//
+//            timeBlockViewModel.output.runTime
+//                .bind(to: timeBlockView.runTimeLabel.rx.text)
+//                .disposed(by: self.disposeBag)
+//
+//
+//            self.timeBlockViews.append(timeBlockView)
+//            self.timeBlockViewModels.append(timeBlockViewModel)
+//        }
     }
     
     private func setAttribute() {

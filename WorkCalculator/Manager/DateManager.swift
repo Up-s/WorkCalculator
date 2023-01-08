@@ -18,6 +18,19 @@ class DateManager {
         case fri
         case sat
         
+        init(_ int: Int) {
+            switch int {
+            case 1: self = .sun
+            case 2: self = .mon
+            case 3: self = .tue
+            case 4: self = .wed
+            case 5: self = .thu
+            case 6: self = .fri
+            case 7: self = .sat
+            default: fatalError()
+            }
+        }
+        
         var ko: String {
             switch self {
             case .sun: return "일"
@@ -79,12 +92,12 @@ class DateManager {
         }
     }
     
-    enum State: Codable, CaseIterable {
+    enum State: String, Codable, CaseIterable {
         case start
         case end
         case rest
         
-        var title: String {
+        var ko: String {
             switch self {
             case .start:  return "출근"
             case .end: return "퇴근"
