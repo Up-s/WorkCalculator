@@ -14,15 +14,13 @@ import UPsKit
 final class SettingViewModel: BaseViewModel {
     
     struct Input {
-        let inputType = BehaviorRelay<Int?>(value: nil)
         let baseHour = BehaviorRelay<Int?>(value: nil)
-        let baseHourService = BehaviorRelay<Int?>(value: nil)
+        let inputType = BehaviorRelay<Int?>(value: nil)
     }
     
     struct Output {
-        let settingData = BehaviorRelay<SettingModel?>(value: nil)
-        let inputType = BehaviorRelay<Int?>(value: nil)
         let baseHour = BehaviorRelay<String?>(value: nil)
+        let inputType = BehaviorRelay<Int?>(value: nil)
     }
     
     
@@ -39,23 +37,6 @@ final class SettingViewModel: BaseViewModel {
     init() {
         super.init()
         
-        Observable.just(AppManager.shared.settingData)
-            .bind(to: self.output.settingData)
-            .disposed(by: self.disposeBag)
-        
-        Observable.just(UserDefaultsManager.inputType)
-            .bind(to: self.output.inputType)
-            .disposed(by: self.disposeBag)
-        
-        
-        
-        self.input.inputType
-            .compactMap { $0 }
-            .bind {
-                UserDefaultsManager.inputType = $0
-            }
-            .disposed(by: self.disposeBag)
-        
         self.input.baseHour
             .compactMap { $0 }
             .bind { [weak self] hour in
@@ -66,8 +47,10 @@ final class SettingViewModel: BaseViewModel {
             }
             .disposed(by: self.disposeBag)
         
-        self.input.baseHourService
+        self.input.baseHour
+            .compactMap { $0 }
             .map { _ in }
+            .debounce(.seconds(2), scheduler: MainScheduler.instance)
             .flatMap { FirebaseProvider.setSettingData() }
             .subscribe(
                 onError: { [weak self] error in
@@ -76,5 +59,13 @@ final class SettingViewModel: BaseViewModel {
                 }
             )
             .disposed(by: self.disposeBag)
+        
+        self.input.inputType
+            .compactMap { $0 }
+            .bind {
+                UserDefaultsManager.inputType = $0
+            }
+            .disposed(by: self.disposeBag)
+        
     }
 }

@@ -46,29 +46,22 @@ final class SettingViewController: BaseViewController {
             .bind(to: self.viewModel.base.dismissDidTap)
             .disposed(by: self.disposeBag)
         
-        self.rootView.inputTypeView.segmentedControl.rx.selectedSegmentIndex
-            .filter { $0 != -1 }
-            .bind(to: self.viewModel.input.inputType)
-            .disposed(by: self.disposeBag)
-        
         self.rootView.hourView.hourSlider.rx.value
             .skip(1)
             .map { Int($0) }
             .bind(to: self.viewModel.input.baseHour)
             .disposed(by: self.disposeBag)
         
-        self.rootView.hourView.hourSlider.rx.value
-            .skip(1)
-            .map { Int($0) }
-            .debounce(.seconds(2), scheduler: MainScheduler.instance)
-            .bind(to: self.viewModel.input.baseHourService)
+        self.rootView.inputTypeView.segmentedControl.rx.selectedSegmentIndex
+            .filter { $0 != -1 }
+            .bind(to: self.viewModel.input.inputType)
             .disposed(by: self.disposeBag)
         
         
         
-        self.viewModel.output.settingData
+        self.viewModel.output.baseHour
             .compactMap { $0 }
-            .bind(to: self.rootView.setSettingData)
+            .bind(to: self.rootView.hourView.hourLabel.rx.text)
             .disposed(by: self.disposeBag)
         
         self.viewModel.output.inputType
@@ -76,9 +69,5 @@ final class SettingViewController: BaseViewController {
             .bind(to: self.rootView.inputTypeView.segmentedControl.rx.selectedSegmentIndex)
             .disposed(by: self.disposeBag)
         
-        self.viewModel.output.baseHour
-            .compactMap { $0 }
-            .bind(to: self.rootView.hourView.hourLabel.rx.text)
-            .disposed(by: self.disposeBag)
     }
 }

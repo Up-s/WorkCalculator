@@ -25,7 +25,6 @@
 		BD470D852966EE1C00404AB4 /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D842966EE1C00404AB4 /* PickerViewController.swift */; };
 		BD470D872966EE2100404AB4 /* PickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D862966EE2100404AB4 /* PickerViewModel.swift */; };
 		BD470D892966F80F00404AB4 /* TimeBlockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D882966F80F00404AB4 /* TimeBlockModel.swift */; };
-		BD7401752969552800E227EE /* SettingWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7401742969552800E227EE /* SettingWeekView.swift */; };
 		BD7831372968679200907452 /* FirebaseRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7831362968679200907452 /* FirebaseRoot.swift */; };
 		BD783139296867AA00907452 /* FirebaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD783138296867AA00907452 /* FirebaseError.swift */; };
 		BD78313B2968684000907452 /* FirebaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD78313A2968684000907452 /* FirebaseProvider.swift */; };
@@ -39,6 +38,9 @@
 		BD78314C2968825100907452 /* InputType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD78314B2968825100907452 /* InputType.swift */; };
 		BD78314E2968859B00907452 /* SettingHourSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD78314D2968859B00907452 /* SettingHourSliderView.swift */; };
 		BD7831502968876700907452 /* SettingInfoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD78314F2968876700907452 /* SettingInfoLabel.swift */; };
+		BD783153296ADA2700907452 /* NumberPadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD783152296ADA2700907452 /* NumberPadView.swift */; };
+		BD783155296ADA2C00907452 /* NumberPadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD783154296ADA2C00907452 /* NumberPadViewController.swift */; };
+		BD783157296ADA3200907452 /* NumberPadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD783156296ADA3200907452 /* NumberPadViewModel.swift */; };
 		BD9A16C7296725E70093FB1C /* EditSumUnitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9A16C6296725E70093FB1C /* EditSumUnitView.swift */; };
 		BD9A16C9296736430093FB1C /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9A16C8296736430093FB1C /* UserDefaultsManager.swift */; };
 		BDE6D02B2967DC1D00F79CB6 /* SplashViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDE6D02A2967DC1D00F79CB6 /* SplashViewController.storyboard */; };
@@ -66,7 +68,6 @@
 		BD470D842966EE1C00404AB4 /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
 		BD470D862966EE2100404AB4 /* PickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewModel.swift; sourceTree = "<group>"; };
 		BD470D882966F80F00404AB4 /* TimeBlockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBlockModel.swift; sourceTree = "<group>"; };
-		BD7401742969552800E227EE /* SettingWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingWeekView.swift; sourceTree = "<group>"; };
 		BD7831362968679200907452 /* FirebaseRoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRoot.swift; sourceTree = "<group>"; };
 		BD783138296867AA00907452 /* FirebaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseError.swift; sourceTree = "<group>"; };
 		BD78313A2968684000907452 /* FirebaseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseProvider.swift; sourceTree = "<group>"; };
@@ -80,6 +81,9 @@
 		BD78314B2968825100907452 /* InputType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputType.swift; sourceTree = "<group>"; };
 		BD78314D2968859B00907452 /* SettingHourSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingHourSliderView.swift; sourceTree = "<group>"; };
 		BD78314F2968876700907452 /* SettingInfoLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingInfoLabel.swift; sourceTree = "<group>"; };
+		BD783152296ADA2700907452 /* NumberPadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPadView.swift; sourceTree = "<group>"; };
+		BD783154296ADA2C00907452 /* NumberPadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPadViewController.swift; sourceTree = "<group>"; };
+		BD783156296ADA3200907452 /* NumberPadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPadViewModel.swift; sourceTree = "<group>"; };
 		BD9A16C6296725E70093FB1C /* EditSumUnitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSumUnitView.swift; sourceTree = "<group>"; };
 		BD9A16C8296736430093FB1C /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		BDE6D02A2967DC1D00F79CB6 /* SplashViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SplashViewController.storyboard; sourceTree = "<group>"; };
@@ -177,6 +181,7 @@
 				BD470D632966C9EA00404AB4 /* Splash */,
 				BD470D642966C9F000404AB4 /* Edit */,
 				BD470D812966EDF900404AB4 /* Picker */,
+				BD783151296ADA1100907452 /* NumberPad */,
 				BD7831402968763D00907452 /* Setting */,
 			);
 			path = Scene;
@@ -230,7 +235,6 @@
 			children = (
 				BD78314F2968876700907452 /* SettingInfoLabel.swift */,
 				BD7831472968773C00907452 /* SettingIDView.swift */,
-				BD7401742969552800E227EE /* SettingWeekView.swift */,
 				BD78314D2968859B00907452 /* SettingHourSliderView.swift */,
 				BD783149296878B700907452 /* SettingInputTypeView.swift */,
 				BD7831412968764B00907452 /* SettingView.swift */,
@@ -238,6 +242,16 @@
 				BD7831452968765400907452 /* SettingViewModel.swift */,
 			);
 			path = Setting;
+			sourceTree = "<group>";
+		};
+		BD783151296ADA1100907452 /* NumberPad */ = {
+			isa = PBXGroup;
+			children = (
+				BD783152296ADA2700907452 /* NumberPadView.swift */,
+				BD783154296ADA2C00907452 /* NumberPadViewController.swift */,
+				BD783156296ADA3200907452 /* NumberPadViewModel.swift */,
+			);
+			path = NumberPad;
 			sourceTree = "<group>";
 		};
 		BD8F87812968665E0086F6C1 /* Fiebase */ = {
@@ -371,7 +385,9 @@
 				BD470D792966DDD600404AB4 /* DateManager.swift in Sources */,
 				BD7831462968765400907452 /* SettingViewModel.swift in Sources */,
 				BD470D6A2966CA1900404AB4 /* EditViewModel.swift in Sources */,
+				BD783155296ADA2C00907452 /* NumberPadViewController.swift in Sources */,
 				BD470D562966C74400404AB4 /* Scene.swift in Sources */,
+				BD783153296ADA2700907452 /* NumberPadView.swift in Sources */,
 				BD470D832966EE1800404AB4 /* PickerView.swift in Sources */,
 				BD9A16C9296736430093FB1C /* UserDefaultsManager.swift in Sources */,
 				BD470D542966C66E00404AB4 /* SplashViewController.swift in Sources */,
@@ -386,7 +402,6 @@
 				BD470D6E2966CA6C00404AB4 /* SplashViewModel.swift in Sources */,
 				BD470D702966CC1700404AB4 /* EditTimeBlockView.swift in Sources */,
 				BD470D402966C4CE00404AB4 /* AppDelegate.swift in Sources */,
-				BD7401752969552800E227EE /* SettingWeekView.swift in Sources */,
 				BD7831372968679200907452 /* FirebaseRoot.swift in Sources */,
 				BD470D622966C98A00404AB4 /* TodayModel.swift in Sources */,
 				BD470D682966CA1500404AB4 /* EditViewController.swift in Sources */,
@@ -397,6 +412,7 @@
 				BD470D852966EE1C00404AB4 /* PickerViewController.swift in Sources */,
 				BD78314C2968825100907452 /* InputType.swift in Sources */,
 				BD7831502968876700907452 /* SettingInfoLabel.swift in Sources */,
+				BD783157296ADA3200907452 /* NumberPadViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

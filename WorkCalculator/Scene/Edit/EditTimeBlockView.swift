@@ -15,6 +15,10 @@ final class EditTimeBlockView: UIView {
     
     // MARK: - Property
     
+    let dateLalbel = UILabel().then { view in
+        view.textColor = .gray900
+        view.font = .boldSystemFont(ofSize: 16.0)
+    }
     let dayLabel = UILabel().then { view in
         view.backgroundColor = .gray200
         view.textAlignment = .center
@@ -63,7 +67,7 @@ final class EditTimeBlockView: UIView {
     // MARK: - UI
     
     private func setAttribute() {
-        self.dayLabel.text = day.title
+        self.dayLabel.text = day.ko
         
         [self.startTimeButton, self.endTimeButton, self.restTimeButton].forEach {
             $0.setTitle("00:00", for: .normal)
@@ -71,6 +75,7 @@ final class EditTimeBlockView: UIView {
             $0.titleLabel?.font = .boldSystemFont(ofSize: 20.0)
             $0.backgroundColor = .gray200
         }
+        
         
         
         [self.dayLabel, self.dateStackView, self.runTimeInfoLabel, self.runTimeLabel]

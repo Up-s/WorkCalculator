@@ -37,7 +37,7 @@ final class PickerViewModel: BaseViewModel {
     init(_ day: DateManager.Day, _ state: DateManager.State) {
         super.init()
         
-        Observable.just(day.title + "요일 " + state.title)
+        Observable.just(day.ko + "요일 " + state.title)
             .bind(to: self.output.title)
             .disposed(by: self.disposeBag)
         

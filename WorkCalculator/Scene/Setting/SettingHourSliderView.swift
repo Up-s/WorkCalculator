@@ -56,6 +56,12 @@ final class SettingHourSliderView: UIView {
     // MARK: - UI
     
     private func setAttribute() {
+        let hour = AppManager.shared.settingData?.workBaseHour ?? 0
+        self.hourLabel.text = String(hour) + "시간"
+        self.hourSlider.value = Float(hour)
+        
+        
+        
         self.addSubview(self.contentsStackView)
         
         [self.titleLabel, self.hourStackView]

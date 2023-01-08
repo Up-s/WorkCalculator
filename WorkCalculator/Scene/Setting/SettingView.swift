@@ -46,13 +46,6 @@ final class SettingView: BaseView, NavigationProtocol {
     
     // MARK: - Interface
     
-    var setSettingData: Binder<SettingModel> {
-        Binder(self) { view, data in
-            view.hourView.hourSlider.value = Float(data.workBaseHour)
-            view.hourView.hourLabel.text = String(data.workBaseHour) + "시간"
-        }
-    }
-    
     
     
     // MARK: - UI
@@ -67,7 +60,7 @@ final class SettingView: BaseView, NavigationProtocol {
         
         self.contentsScrollView.addSubview(self.contentsStackView)
         
-        [self.idView, self.inputTypeView, self.hourView]
+        [self.idView, self.hourView, self.inputTypeView]
             .forEach(self.contentsStackView.addArrangedSubview(_:))
     }
     

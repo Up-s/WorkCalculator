@@ -49,6 +49,10 @@ final class SettingInputTypeView: UIView {
     // MARK: - UI
     
     private func setAttribute() {
+        self.segmentedControl.selectedSegmentIndex = UserDefaultsManager.inputType
+        
+        
+        
         self.addSubview(self.contentsStackView)
         
         [self.titleLabel, self.segmentedControl]

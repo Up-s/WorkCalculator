@@ -1,8 +1,8 @@
 //
-//  SettingWeekView.swift
+//  NumberPadView.swift
 //  WorkCalculator
 //
-//  Created by UPs on 2023/01/07.
+//  Created by YouUp Lee on 2023/01/08.
 //
 
 import UIKit
@@ -11,18 +11,9 @@ import SnapKit
 import Then
 import UPsKit
 
-final class SettingWeekView: UIView {
+final class NumberPadView: BaseView {
     
     // MARK: - Property
-    
-    
-    private let contentsStackView = UPsStackView(axis: .vertical, spacing: 8.0)
-    private let titleLabel = SettingInfoLabel().then { view in
-        view.text = "근무 요일"
-    }
-    let segmentedControl = UISegmentedControl(items: DateManager.Day.allCases.map { $0.ko }).then { view in
-        view.isMultipleTouchEnabled = true
-    }
     
     
     

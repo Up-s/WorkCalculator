@@ -29,6 +29,8 @@ final class FirebaseProvider {
                             observer.onError(error)
                             
                         } else {
+                            AppManager.shared.settingData = setting
+                            
                             observer.onNext(())
                             observer.onCompleted()
                         }
