@@ -51,16 +51,6 @@ final class PickerViewModel: BaseViewModel {
             }
             .disposed(by: self.disposeBag)
         
-//        self.input.okDidTap
-//            .bind { [weak self] (hour, min) in
-//                var editTimeBlock = timeBlock
-//                editTimeBlock.hour = hour
-//                editTimeBlock.min = min
-//                self?.timeBlock.accept(editTimeBlock)
-//                self?.coordinator.dismiss(animated: false)
-//            }
-//            .disposed(by: self.disposeBag)
-        
         self.input.okDidTap
             .map { (hour, min) -> TimeBlockModel in
                 var editTimeBlock = timeBlock
