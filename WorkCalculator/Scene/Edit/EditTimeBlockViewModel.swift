@@ -126,12 +126,16 @@ final class EditTimeBlockViewModel: BaseViewModel {
                 self.startTimeBlock.asObservable(),
                 self.endTimeBlock.asObservable(),
                 self.restTimeBlock.asObservable()
-            ) { inStartBlock, inEndBlock, inRestBlock -> Int in
+            ) { inStartBlock, inEndBlock, inRestBlock -> Int? in
                 let startBlock = inStartBlock.interval
                 let endBlock = inEndBlock.interval
                 let restInterval = inRestBlock.interval
+                
+                guard endBlock != 0 else { return nil }
+                
                 return endBlock - startBlock - restInterval
             }
+            .compactMap { $0 }
             .bind(to: self.runTime)
             .disposed(by: self.disposeBag)
         
