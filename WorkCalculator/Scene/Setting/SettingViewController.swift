@@ -46,6 +46,14 @@ final class SettingViewController: BaseViewController {
             .bind(to: self.viewModel.base.dismissDidTap)
             .disposed(by: self.disposeBag)
         
+        self.rootView.idView.copyButton.rx.tap
+            .bind(to: self.viewModel.input.copyDidTap)
+            .disposed(by: self.disposeBag)
+        
+        self.rootView.idView.shareButton.rx.tap
+            .bind(to: self.viewModel.input.shareDidTap)
+            .disposed(by: self.disposeBag)
+        
         self.rootView.daysView.daysTableView.rx.modelSelected(DateManager.Day.self)
             .bind(to: self.viewModel.input.selectDay)
             .disposed(by: self.disposeBag)

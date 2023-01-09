@@ -49,6 +49,43 @@ final class FirebaseProvider {
         }
     }
     
+    class func share(_ id: String?) -> Observable<Void> {
+        Observable<Void>.create { observer -> Disposable in
+            
+            guard let id = id else {
+                observer.onError(FirebaseError.emptyData)
+                return Disposables.create()
+            }
+            
+            Firestore
+                .firestore()
+                .collection(FirebaseRoot.data)
+                .document(id)
+                .getDocument { snapshot, error in
+                    if let error = error {
+                        observer.onError(error)
+                        
+                    } else {
+                        guard
+                            let data = snapshot?.data(),
+                            let settingData = try? FirebaseDecoder().decode(SettingModel.self, from: data)
+                        else {
+                            observer.onError(FirebaseError.emptyData)
+                            return
+                        }
+                        
+                        UserDefaultsManager.firebaseID = id
+                        AppManager.shared.settingData = settingData
+                        
+                        observer.onNext(())
+                        observer.onCompleted()
+                    }
+                }
+            
+            return Disposables.create()
+        }
+    }
+    
     
     
     class func getSettingData() -> Observable<Void> {
