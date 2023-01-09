@@ -42,8 +42,8 @@ final class EditViewController: BaseViewController {
     }
     
     private func bindViewModel() {
-        self.rootView.resetButton.rx.tap
-            .bind(to: self.viewModel.input.resetDidTap)
+        self.rootView.refreshButton.rx.tap
+            .bind(to: self.viewModel.input.refreshDidTap)
             .disposed(by: self.disposeBag)
         
         self.rootView.settingButton.rx.tap

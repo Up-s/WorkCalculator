@@ -35,8 +35,8 @@ final class EditView: BaseView {
     let remainedSumUnitView = EditSumUnitView().then { view in
         view.titleLabel.text = "남은 근무시간"
     }
-    let resetButton = UIButton().then { view in
-        view.setTitle("리셋", for: .normal)
+    let refreshButton = UIButton().then { view in
+        view.setTitle("갱신", for: .normal)
         view.setTitleColor(.white, for: .normal)
         view.titleLabel?.font = .boldSystemFont(ofSize: 20.0)
         view.backgroundColor = .systemBlue
@@ -159,7 +159,7 @@ final class EditView: BaseView {
         [self.titleLabel]
             .forEach(self.contentsStackView.addArrangedSubview(_:))
         
-        [self.sumUnitStackView, self.resetButton, settingButton]
+        [self.sumUnitStackView, self.refreshButton, settingButton]
             .forEach(self.contentsStackView.addArrangedSubview(_:))
         
         [self.totalSumUnitView, self.remainedSumUnitView]
@@ -178,7 +178,7 @@ final class EditView: BaseView {
             make.edges.equalToSuperview().inset(24.0)
         }
         
-        [self.resetButton, self.settingButton].forEach { view in
+        [self.refreshButton, self.settingButton].forEach { view in
             view.snp.makeConstraints { make in
                 make.height.equalTo(48.0)
             }

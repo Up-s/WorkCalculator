@@ -14,7 +14,7 @@ import UPsKit
 final class EditViewModel: BaseViewModel {
     
     struct Input {
-        let resetDidTap = PublishRelay<Void>()
+        let refreshDidTap = PublishRelay<Void>()
         let settingDidTap = PublishRelay<Void>()
     }
     
@@ -58,18 +58,11 @@ final class EditViewModel: BaseViewModel {
             }
             .disposed(by: self.disposeBag)
         
-        self.input.resetDidTap
+        self.input.refreshDidTap
+            .throttle(.seconds(2), scheduler: MainScheduler.instance)
             .bind { [weak self] in
-                let actions: [UPsAlertActionProtocol] = [
-                    UPsAlertAction(title: "리셋") { _ in
-                        UserDefaultsManager.resetTimeBlock()
-                        let scene = Scene.splash
-                        self?.coordinator.transition(scene: scene, style: .root)
-                    },
-                    UPsAlertCancelAction()
-                ]
-                
-                self?.coordinator.alert(title: "리셋 하시겠습니까?", actions: actions)
+                let scene = Scene.splash
+                self?.coordinator.transition(scene: scene, style: .root)
             }
             .disposed(by: self.disposeBag)
         
