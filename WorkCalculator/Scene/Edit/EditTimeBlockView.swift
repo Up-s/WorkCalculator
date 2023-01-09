@@ -1,5 +1,5 @@
 //
-//  EidtUnitView.swift
+//  EditTimeBlockView.swift
 //  WorkCalculator
 //
 //  Created by YouUp Lee on 2023/01/05.
@@ -11,7 +11,7 @@ import SnapKit
 import Then
 import UPsKit
 
-final class EditUnitView: UIView {
+final class EditTimeBlockView: UIView {
     
     // MARK: - Property
     

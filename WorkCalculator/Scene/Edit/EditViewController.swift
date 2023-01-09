@@ -42,8 +42,8 @@ final class EditViewController: BaseViewController {
     }
     
     private func bindViewModel() {
-        Observable.just(self.rootView.unitViewModels)
-            .bind(to: self.viewModel.input.unitViewModels)
+        Observable.just(self.rootView.timeBlockViewModels)
+            .bind(to: self.viewModel.input.timeBlockViewModels)
             .disposed(by: self.disposeBag)
         
         self.rootView.resetButton.rx.tap

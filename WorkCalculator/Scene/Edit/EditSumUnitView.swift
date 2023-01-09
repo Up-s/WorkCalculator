@@ -26,7 +26,6 @@ final class EditSumUnitView: UIView {
     
     
     
-    
     // MARK: - Life Cycle
     
     init() {
