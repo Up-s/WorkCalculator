@@ -46,6 +46,10 @@ final class SettingViewController: BaseViewController {
             .bind(to: self.viewModel.base.dismissDidTap)
             .disposed(by: self.disposeBag)
         
+        self.rootView.daysView.daysTableView.rx.modelSelected(DateManager.Day.self)
+            .bind(to: self.viewModel.input.selectDay)
+            .disposed(by: self.disposeBag)
+        
         self.rootView.hourView.hourSlider.rx.value
             .skip(1)
             .map { Int($0) }
@@ -57,7 +61,35 @@ final class SettingViewController: BaseViewController {
             .bind(to: self.viewModel.input.inputType)
             .disposed(by: self.disposeBag)
         
+        self.rootView.saveButton.rx.tap
+            .throttle(.seconds(2), scheduler: MainScheduler.instance)
+            .bind(to: self.viewModel.input.saveDidTap)
+            .disposed(by: self.disposeBag)
         
+        
+        
+        self.viewModel.output.selectDays
+            .map { _ in }
+            .bind(to: self.rootView.daysView.daysTableView.rx.reload)
+            .disposed(by: self.disposeBag)
+        
+        self.viewModel.output.allDays
+            .bind(to: self.rootView.daysView.daysTableView.rx.items) { [weak self] (tableView: UITableView, index: Int, element: DateManager.Day) -> UITableViewCell in
+                guard
+                    let self = self,
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
+                else { return UITableViewCell() }
+                
+                cell.backgroundColor = .clear
+                cell.textLabel?.text = element.ko
+                cell.selectionStyle = .none
+                
+                let isSelect = self.viewModel.output.selectDays.value.contains(element)
+                cell.accessoryType = isSelect ? .checkmark : .none
+                
+                return cell
+            }
+            .disposed(by: self.disposeBag)
         
         self.viewModel.output.baseHour
             .compactMap { $0 }

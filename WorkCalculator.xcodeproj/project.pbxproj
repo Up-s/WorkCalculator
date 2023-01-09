@@ -41,6 +41,7 @@
 		BD783153296ADA2700907452 /* NumberPadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD783152296ADA2700907452 /* NumberPadView.swift */; };
 		BD783155296ADA2C00907452 /* NumberPadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD783154296ADA2C00907452 /* NumberPadViewController.swift */; };
 		BD783157296ADA3200907452 /* NumberPadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD783156296ADA3200907452 /* NumberPadViewModel.swift */; };
+		BD9962FE296C389000601874 /* SettingDaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9962FD296C389000601874 /* SettingDaysView.swift */; };
 		BD9A16C7296725E70093FB1C /* EditSumUnitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9A16C6296725E70093FB1C /* EditSumUnitView.swift */; };
 		BD9A16C9296736430093FB1C /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9A16C8296736430093FB1C /* UserDefaultsManager.swift */; };
 		BDE6D02B2967DC1D00F79CB6 /* SplashViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDE6D02A2967DC1D00F79CB6 /* SplashViewController.storyboard */; };
@@ -84,6 +85,7 @@
 		BD783152296ADA2700907452 /* NumberPadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPadView.swift; sourceTree = "<group>"; };
 		BD783154296ADA2C00907452 /* NumberPadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPadViewController.swift; sourceTree = "<group>"; };
 		BD783156296ADA3200907452 /* NumberPadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPadViewModel.swift; sourceTree = "<group>"; };
+		BD9962FD296C389000601874 /* SettingDaysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDaysView.swift; sourceTree = "<group>"; };
 		BD9A16C6296725E70093FB1C /* EditSumUnitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSumUnitView.swift; sourceTree = "<group>"; };
 		BD9A16C8296736430093FB1C /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		BDE6D02A2967DC1D00F79CB6 /* SplashViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SplashViewController.storyboard; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 			children = (
 				BD78314F2968876700907452 /* SettingInfoLabel.swift */,
 				BD7831472968773C00907452 /* SettingIDView.swift */,
+				BD9962FD296C389000601874 /* SettingDaysView.swift */,
 				BD78314D2968859B00907452 /* SettingHourSliderView.swift */,
 				BD783149296878B700907452 /* SettingInputTypeView.swift */,
 				BD7831412968764B00907452 /* SettingView.swift */,
@@ -388,6 +391,7 @@
 				BD783155296ADA2C00907452 /* NumberPadViewController.swift in Sources */,
 				BD470D562966C74400404AB4 /* Scene.swift in Sources */,
 				BD783153296ADA2700907452 /* NumberPadView.swift in Sources */,
+				BD9962FE296C389000601874 /* SettingDaysView.swift in Sources */,
 				BD470D832966EE1800404AB4 /* PickerView.swift in Sources */,
 				BD9A16C9296736430093FB1C /* UserDefaultsManager.swift in Sources */,
 				BD470D542966C66E00404AB4 /* SplashViewController.swift in Sources */,

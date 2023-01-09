@@ -35,7 +35,6 @@ final class SplashViewModel: BaseViewModel {
         super.init()
         
         self.input.viewDidAppear
-            .delay(.seconds(2), scheduler: MainScheduler.instance)
             .flatMap {
                 UserDefaultsManager.firebaseID == nil ?
                     FirebaseProvider.create() :

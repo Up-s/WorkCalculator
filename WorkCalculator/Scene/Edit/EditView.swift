@@ -35,14 +35,12 @@ final class EditView: BaseView {
     let remainedSumUnitView = EditSumUnitView().then { view in
         view.titleLabel.text = "남은 근무시간"
     }
-    
     let resetButton = UIButton().then { view in
         view.setTitle("리셋", for: .normal)
         view.setTitleColor(.white, for: .normal)
         view.titleLabel?.font = .boldSystemFont(ofSize: 20.0)
         view.backgroundColor = .systemBlue
     }
-    
     let settingButton = UIButton().then { view in
         view.setTitle("설정", for: .normal)
         view.setTitleColor(.white, for: .normal)
@@ -100,8 +98,13 @@ final class EditView: BaseView {
     
     func createUnitView(_ blockViewModels: [EditTimeBlockViewModel]) {
         blockViewModels
-            .map { timeBlockViewModel -> EditTimeBlockView in
-                let timeBlockView = EditTimeBlockView(timeBlockViewModel.weekday)
+            .compactMap { timeBlockViewModel -> EditTimeBlockView? in
+                let weekday = timeBlockViewModel.weekday
+                
+                let isSelect = AppManager.shared.settingData?.days.contains(weekday) ?? false
+                guard isSelect else { return nil }
+                
+                let timeBlockView = EditTimeBlockView(weekday)
                 
                 timeBlockView.startTimeButton.rx.tap
                     .bind(to: timeBlockViewModel.input.startDidTap)

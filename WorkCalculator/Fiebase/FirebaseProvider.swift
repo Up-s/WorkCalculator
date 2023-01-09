@@ -17,7 +17,9 @@ final class FirebaseProvider {
     class func create() -> Observable<Void> {
         Observable<Void>.create { observer -> Disposable in
             
-            let setting = SettingModel()
+            let setting = SettingModel(
+                days: [.mon, .tue, .wed, .thu, .fri]
+            )
             
             if let data = try? FirebaseEncoder().encode(setting) as? [String: Any] {
                 

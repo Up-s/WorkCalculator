@@ -19,10 +19,17 @@ final class SettingView: BaseView, NavigationProtocol {
     var naviView: BaseNavigationView
     
     private let contentsScrollView = UIScrollView()
-    private let contentsStackView = UPsStackView(axis: .vertical, spacing: 16.0)
+    private let contentsStackView = UPsStackView(axis: .vertical, spacing: 40.0)
     let idView = SettingIDView()
+    let daysView = SettingDaysView()
     let hourView = SettingHourSliderView()
     let inputTypeView = SettingInputTypeView()
+    let saveButton = UIButton().then { view in
+        view.setTitle("저장", for: .normal)
+        view.setTitleColor(.white, for: .normal)
+        view.titleLabel?.font = .boldSystemFont(ofSize: 20.0)
+        view.backgroundColor = .systemBlue
+    }
     
     
     
@@ -60,7 +67,7 @@ final class SettingView: BaseView, NavigationProtocol {
         
         self.contentsScrollView.addSubview(self.contentsStackView)
         
-        [self.idView, self.hourView, self.inputTypeView]
+        [self.idView, self.daysView, self.hourView, self.inputTypeView, saveButton]
             .forEach(self.contentsStackView.addArrangedSubview(_:))
     }
     
@@ -73,8 +80,12 @@ final class SettingView: BaseView, NavigationProtocol {
         }
         
         self.contentsStackView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-            make.width.equalToSuperview()
+            make.centerX.equalToSuperview()
+            make.edges.equalToSuperview().inset(24.0)
+        }
+        
+        self.saveButton.snp.makeConstraints { make in
+            make.height.equalTo(48.0)
         }
     }
 }
