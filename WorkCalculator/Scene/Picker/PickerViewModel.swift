@@ -34,14 +34,14 @@ final class PickerViewModel: BaseViewModel {
     
     // MARK: - Interface
     
-    init(_ day: DateManager.Day, _ state: DateManager.State) {
+    init(_ timeBlock: TimeBlockModel) {
         super.init()
         
-        Observable.just(day.title + "요일 " + state.title)
+        Observable.just(timeBlock.info)
             .bind(to: self.output.title)
             .disposed(by: self.disposeBag)
         
-        Observable.just(state)
+        Observable.just(timeBlock.state)
             .bind(to: self.output.state)
             .disposed(by: self.disposeBag)
         
@@ -53,8 +53,10 @@ final class PickerViewModel: BaseViewModel {
         
         self.input.okDidTap
             .bind { [weak self] (hour, min) in
-                let timeBlock = TimeBlockModel(day: day, state: state, hour: hour, min: min)
-                self?.timeBlock.accept(timeBlock)
+                var editTimeBlock = timeBlock
+                editTimeBlock.hour = hour
+                editTimeBlock.min = min
+                self?.timeBlock.accept(editTimeBlock)
                 self?.coordinator.dismiss(animated: false)
             }
             .disposed(by: self.disposeBag)

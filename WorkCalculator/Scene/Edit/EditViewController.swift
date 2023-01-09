@@ -50,6 +50,10 @@ final class EditViewController: BaseViewController {
             .bind(to: self.viewModel.input.resetDidTap)
             .disposed(by: self.disposeBag)
         
+        self.rootView.settingButton.rx.tap
+            .bind(to: self.viewModel.input.settingDidTap)
+            .disposed(by: self.disposeBag)
+        
         
         
         self.viewModel.output.sumRunTime

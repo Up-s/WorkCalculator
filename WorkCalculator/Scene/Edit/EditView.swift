@@ -39,8 +39,15 @@ final class EditView: BaseView {
     let resetButton = UIButton().then { view in
         view.setTitle("리셋", for: .normal)
         view.setTitleColor(.white, for: .normal)
-        view.backgroundColor = .systemBlue
         view.titleLabel?.font = .boldSystemFont(ofSize: 20.0)
+        view.backgroundColor = .systemBlue
+    }
+    
+    let settingButton = UIButton().then { view in
+        view.setTitle("설정", for: .normal)
+        view.setTitleColor(.white, for: .normal)
+        view.titleLabel?.font = .boldSystemFont(ofSize: 20.0)
+        view.backgroundColor = .systemGreen
     }
     
     private let disposeBag = DisposeBag()
@@ -93,44 +100,44 @@ final class EditView: BaseView {
     // MARK: - UI
     
     private func createUnitView() {
-        let days: [DateManager.Day] = [.mon, .tue, .wed, .thu, .fri]
-        days.forEach { day in
-            let timeBlockView = EditTimeBlockView(day)
-            let timeBlockViewModel = EditTimeBlockViewModel(day)
-            
-            timeBlockView.startTimeButton.rx.tap
-                .bind(to: timeBlockViewModel.input.startDidTap)
-                .disposed(by: self.disposeBag)
-            
-            timeBlockView.endTimeButton.rx.tap
-                .bind(to: timeBlockViewModel.input.endDidTap)
-                .disposed(by: self.disposeBag)
-            
-            timeBlockView.restTimeButton.rx.tap
-                .bind(to: timeBlockViewModel.input.restDidTap)
-                .disposed(by: self.disposeBag)
-            
-            
-            timeBlockViewModel.output.startTime
-                .bind(to: timeBlockView.startTimeButton.rx.title())
-                .disposed(by: self.disposeBag)
-            
-            timeBlockViewModel.output.endTime
-                .bind(to: timeBlockView.endTimeButton.rx.title())
-                .disposed(by: self.disposeBag)
-            
-            timeBlockViewModel.output.restTime
-                .bind(to: timeBlockView.restTimeButton.rx.title())
-                .disposed(by: self.disposeBag)
-            
-            timeBlockViewModel.output.runTime
-                .bind(to: timeBlockView.runTimeLabel.rx.text)
-                .disposed(by: self.disposeBag)
-            
-            
-            self.timeBlockViews.append(timeBlockView)
-            self.timeBlockViewModels.append(timeBlockViewModel)
-        }
+//        let days: [DateManager.Day] = [.mon, .tue, .wed, .thu, .fri]
+//        days.forEach { day in
+//            let timeBlockView = EditTimeBlockView(day)
+//            let timeBlockViewModel = EditTimeBlockViewModel(day)
+//
+//            timeBlockView.startTimeButton.rx.tap
+//                .bind(to: timeBlockViewModel.input.startDidTap)
+//                .disposed(by: self.disposeBag)
+//
+//            timeBlockView.endTimeButton.rx.tap
+//                .bind(to: timeBlockViewModel.input.endDidTap)
+//                .disposed(by: self.disposeBag)
+//
+//            timeBlockView.restTimeButton.rx.tap
+//                .bind(to: timeBlockViewModel.input.restDidTap)
+//                .disposed(by: self.disposeBag)
+//
+//
+//            timeBlockViewModel.output.startTime
+//                .bind(to: timeBlockView.startTimeButton.rx.title())
+//                .disposed(by: self.disposeBag)
+//
+//            timeBlockViewModel.output.endTime
+//                .bind(to: timeBlockView.endTimeButton.rx.title())
+//                .disposed(by: self.disposeBag)
+//
+//            timeBlockViewModel.output.restTime
+//                .bind(to: timeBlockView.restTimeButton.rx.title())
+//                .disposed(by: self.disposeBag)
+//
+//            timeBlockViewModel.output.runTime
+//                .bind(to: timeBlockView.runTimeLabel.rx.text)
+//                .disposed(by: self.disposeBag)
+//
+//
+//            self.timeBlockViews.append(timeBlockView)
+//            self.timeBlockViewModels.append(timeBlockViewModel)
+//        }
     }
     
     private func setAttribute() {
@@ -148,7 +155,7 @@ final class EditView: BaseView {
         self.timeBlockViews
             .forEach(self.contentsStackView.addArrangedSubview(_:))
         
-        [self.sumUnitStackView, self.resetButton]
+        [self.sumUnitStackView, self.resetButton, settingButton]
             .forEach(self.contentsStackView.addArrangedSubview(_:))
         
         [self.totalSumUnitView, self.remainedSumUnitView]
@@ -167,8 +174,10 @@ final class EditView: BaseView {
             make.edges.equalToSuperview().inset(24.0)
         }
         
-        self.resetButton.snp.makeConstraints { make in
-            make.height.equalTo(48.0)
+        [self.resetButton, self.settingButton].forEach { view in
+            view.snp.makeConstraints { make in
+                make.height.equalTo(48.0)
+            }
         }
     }
 }

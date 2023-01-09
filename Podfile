@@ -6,7 +6,9 @@ target 'WorkCalculator' do
   use_frameworks!
 
   # Pods for WorkCalculator
-
+  
+  pod 'CodableFirebase'
+  
   pod 'Firebase/Analytics', '~> 9'
   pod 'Firebase/Auth', '~> 9'
   pod 'Firebase/Core', '~> 9'
