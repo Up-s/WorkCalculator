@@ -73,8 +73,7 @@ final class SettingHourSliderView: UIView {
     
     private func setConstraint() {
         self.contentsStackView.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview().inset(16.0)
-            make.leading.trailing.equalToSuperview().inset(24.0)
+            make.edges.equalToSuperview()
         }
         
         self.hourStackView.snp.makeConstraints { make in

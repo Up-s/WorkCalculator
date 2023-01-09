@@ -13,5 +13,5 @@ final class AppManager {
     private init () {}
     
     var settingData: SettingModel?
-    
+    var timeBlocks: [[TimeBlockModel]] = []
 }

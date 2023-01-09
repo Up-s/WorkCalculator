@@ -52,7 +52,7 @@ extension TimeBlockModel {
     }
     
     var firebaseKey: String {
-        "\(self.year)_\(self.month)_\(self.day)_\(self.state.rawValue)"
+        "\(self.year)_\(self.month)_\(self.day)_\(self.state.en)"
     }
     
     var groupKey: String {
@@ -60,8 +60,7 @@ extension TimeBlockModel {
     }
     
     var date: Date {
-        let tempDay = Calendar.current.dateComponents([.year, .month, .day], from: Date())
-        let dateComponents = DateComponents(year: tempDay.year, month: tempDay.month, day: tempDay.day, hour: 0, minute: 0)
+        let dateComponents = DateComponents(year: self.year, month: self.month, day: self.day, hour: 0, minute: 0)
         var calendar = Calendar(identifier: .gregorian)
         calendar.locale = Locale(identifier: "ko_KR")
         return calendar.date(from: dateComponents) ?? Date()

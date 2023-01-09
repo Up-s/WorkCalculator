@@ -52,13 +52,24 @@ final class PickerViewModel: BaseViewModel {
             .disposed(by: self.disposeBag)
         
         self.input.okDidTap
-            .bind { [weak self] (hour, min) in
+            .map { (hour, min) -> TimeBlockModel in
                 var editTimeBlock = timeBlock
                 editTimeBlock.hour = hour
                 editTimeBlock.min = min
-                self?.timeBlock.accept(editTimeBlock)
-                self?.coordinator.dismiss(animated: false)
+                return editTimeBlock
             }
+            .flatMap { editTimeBlock in
+                FirebaseProvider.setTimeBlock(editTimeBlock)
+            }
+            .subscribe(
+                onNext: { [weak self] editTimeBlock in
+                    self?.timeBlock.accept(editTimeBlock)
+                    self?.coordinator.dismiss(animated: false)
+                },
+                onError: { [weak self] error in
+                    self?.debugLog(#function, #line, error)
+                }
+            )
             .disposed(by: self.disposeBag)
     }
 }

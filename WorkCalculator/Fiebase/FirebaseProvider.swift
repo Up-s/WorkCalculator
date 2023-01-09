@@ -17,7 +17,9 @@ final class FirebaseProvider {
     class func create() -> Observable<Void> {
         Observable<Void>.create { observer -> Disposable in
             
-            let setting = SettingModel()
+            let setting = SettingModel(
+                days: [.mon, .tue, .wed, .thu, .fri]
+            )
             
             if let data = try? FirebaseEncoder().encode(setting) as? [String: Any] {
                 
@@ -42,6 +44,43 @@ final class FirebaseProvider {
             } else {
                 observer.onError(FirebaseError.parsingError)
             }
+            
+            return Disposables.create()
+        }
+    }
+    
+    class func share(_ id: String?) -> Observable<Void> {
+        Observable<Void>.create { observer -> Disposable in
+            
+            guard let id = id else {
+                observer.onError(FirebaseError.emptyData)
+                return Disposables.create()
+            }
+            
+            Firestore
+                .firestore()
+                .collection(FirebaseRoot.data)
+                .document(id)
+                .getDocument { snapshot, error in
+                    if let error = error {
+                        observer.onError(error)
+                        
+                    } else {
+                        guard
+                            let data = snapshot?.data(),
+                            let settingData = try? FirebaseDecoder().decode(SettingModel.self, from: data)
+                        else {
+                            observer.onError(FirebaseError.emptyData)
+                            return
+                        }
+                        
+                        UserDefaultsManager.firebaseID = id
+                        AppManager.shared.settingData = settingData
+                        
+                        observer.onNext(())
+                        observer.onCompleted()
+                    }
+                }
             
             return Disposables.create()
         }
@@ -115,6 +154,7 @@ final class FirebaseProvider {
     }
     
     
+    
     class func getTimeBlock(_ block: TimeBlockModel) -> Observable<TimeBlockModel> {
         Observable<TimeBlockModel>.create { observer -> Disposable in
             
@@ -124,8 +164,8 @@ final class FirebaseProvider {
                 .firestore()
                 .collection(FirebaseRoot.data)
                 .document(documentID)
-//                .collection(FirebaseRoot.timeBlock)
-//                .document(block.firebaseKey)
+                .collection(FirebaseRoot.timeBlock)
+                .document(block.firebaseKey)
                 .getDocument { snapshot, error in
                     if let error = error {
                         observer.onError(error)
@@ -150,14 +190,16 @@ final class FirebaseProvider {
                                 return
                             }
                             observer.onNext(temp)
+                            observer.onCompleted()
                         }
-                        observer.onCompleted()
                     }
                 }
             
             return Disposables.create()
         }
     }
+    
+    
     
     class func createTimeBlock(_ block: TimeBlockModel, completion: @escaping (Result<Void, Error>) -> Void) {
         
@@ -179,4 +221,32 @@ final class FirebaseProvider {
                 }
             }
     }
+    
+    
+    class func setTimeBlock(_ block: TimeBlockModel) -> Observable<TimeBlockModel> {
+        Observable<TimeBlockModel>.create { observer -> Disposable in
+            
+            let documentID = UserDefaultsManager.firebaseID!
+            let data = try! FirebaseEncoder().encode(block) as! [String: Any]
+            
+            Firestore
+                .firestore()
+                .collection(FirebaseRoot.data)
+                .document(documentID)
+                .collection(FirebaseRoot.timeBlock)
+                .document(block.firebaseKey)
+                .setData(data) { error in
+                    if let error = error {
+                        observer.onError(error)
+                        
+                    } else {
+                        observer.onNext(block)
+                        observer.onCompleted()
+                    }
+                }
+            
+            return Disposables.create()
+        }
+    }
+    
 }

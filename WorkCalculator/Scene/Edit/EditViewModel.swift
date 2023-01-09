@@ -14,8 +14,7 @@ import UPsKit
 final class EditViewModel: BaseViewModel {
     
     struct Input {
-        let timeBlockViewModels = BehaviorRelay<[EditTimeBlockViewModel]>(value: [])
-        let resetDidTap = PublishRelay<Void>()
+        let refreshDidTap = PublishRelay<Void>()
         let settingDidTap = PublishRelay<Void>()
     }
     
@@ -28,6 +27,8 @@ final class EditViewModel: BaseViewModel {
     let input = Input()
     let output = Output()
     
+    let timeBlockViewModels = BehaviorRelay<[EditTimeBlockViewModel]>(value: [])
+    
     
     
     // MARK: - Interface
@@ -35,7 +36,16 @@ final class EditViewModel: BaseViewModel {
     init() {
         super.init()
         
-        self.input.timeBlockViewModels
+        Observable.from(AppManager.shared.timeBlocks)
+            .map { blocks in
+                EditTimeBlockViewModel(blocks)
+            }
+            .toArray()
+            .asObservable()
+            .bind(to: self.timeBlockViewModels)
+            .disposed(by: self.disposeBag)
+        
+        self.timeBlockViewModels
             .filter { !$0.isEmpty }
             .bind { [weak self] array in
                 guard let self = self else { return }
@@ -48,18 +58,11 @@ final class EditViewModel: BaseViewModel {
             }
             .disposed(by: self.disposeBag)
         
-        self.input.resetDidTap
+        self.input.refreshDidTap
+            .throttle(.seconds(2), scheduler: MainScheduler.instance)
             .bind { [weak self] in
-                let actions: [UPsAlertActionProtocol] = [
-                    UPsAlertAction(title: "리셋") { _ in
-                        UserDefaultsManager.resetTimeBlock()
-                        let scene = Scene.splash
-                        self?.coordinator.transition(scene: scene, style: .root)
-                    },
-                    UPsAlertCancelAction()
-                ]
-                
-                self?.coordinator.alert(title: "리셋 하시겠습니까?", actions: actions)
+                let scene = Scene.splash
+                self?.coordinator.transition(scene: scene, style: .root)
             }
             .disposed(by: self.disposeBag)
         
