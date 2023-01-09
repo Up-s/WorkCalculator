@@ -124,9 +124,10 @@ final class FirebaseProvider {
                 .firestore()
                 .collection(FirebaseRoot.data)
                 .document(documentID)
-//                .collection(FirebaseRoot.timeBlock)
-//                .document(block.firebaseKey)
+                .collection(FirebaseRoot.timeBlock)
+                .document(block.firebaseKey)
                 .getDocument { snapshot, error in
+                    
                     if let error = error {
                         observer.onError(error)
                         
@@ -150,8 +151,8 @@ final class FirebaseProvider {
                                 return
                             }
                             observer.onNext(temp)
+                            observer.onCompleted()
                         }
-                        observer.onCompleted()
                     }
                 }
             

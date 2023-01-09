@@ -14,7 +14,6 @@ import UPsKit
 final class EditViewModel: BaseViewModel {
     
     struct Input {
-        let timeBlockViewModels = BehaviorRelay<[EditTimeBlockViewModel]>(value: [])
         let resetDidTap = PublishRelay<Void>()
         let settingDidTap = PublishRelay<Void>()
     }
@@ -28,6 +27,8 @@ final class EditViewModel: BaseViewModel {
     let input = Input()
     let output = Output()
     
+    let timeBlockViewModels = BehaviorRelay<[EditTimeBlockViewModel]>(value: [])
+    
     
     
     // MARK: - Interface
@@ -35,7 +36,16 @@ final class EditViewModel: BaseViewModel {
     init() {
         super.init()
         
-        self.input.timeBlockViewModels
+        Observable.from(AppManager.shared.timeBlocks)
+            .map { blocks in
+                EditTimeBlockViewModel(blocks)
+            }
+            .toArray()
+            .asObservable()
+            .bind(to: self.timeBlockViewModels)
+            .disposed(by: self.disposeBag)
+        
+        self.timeBlockViewModels
             .filter { !$0.isEmpty }
             .bind { [weak self] array in
                 guard let self = self else { return }

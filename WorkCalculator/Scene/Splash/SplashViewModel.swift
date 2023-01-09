@@ -41,54 +41,40 @@ final class SplashViewModel: BaseViewModel {
                     FirebaseProvider.create() :
                     FirebaseProvider.getSettingData()
             }
-            .subscribe(
-                onNext: { [weak self] in
-//                    self?.coordinator.transition(scene: Scene.edit, style: .root)
-                    
-                    let blocks = self!.createTimeBlock()
-                    self?.timeBlockProvider.accept(blocks)
-                },
-                onError: { [weak self] error in
-                    self?.debugLog(#function, #line, error)
-                }
-            )
-            .disposed(by: self.disposeBag)
-        
-        
-        self.timeBlockProvider
+            .catch { [weak self] error in
+                self?.debugLog(#function, #line, error)
+                return FirebaseProvider.create()
+            }
+            .compactMap { [weak self] _ -> [TimeBlockModel]? in
+                guard let self = self else { return nil }
+                let blocks = self.createTimeBlock()
+                return blocks
+            }
             .flatMap { blocks in
-                print("\n-----------------------------")
-                return Observable.from(blocks)
+                Observable.from(blocks)
                     .flatMap { block in
                         FirebaseProvider.getTimeBlock(block)
                     }
+                    .groupBy { $0.groupKey }
+                    .flatMap { $0.toArray() }
+                    .toArray()
+                    .map { temp in
+                        temp.sorted { $0[0].date < $1[0].date }
+                    }
+                    .map { temp in
+                        temp.map { block in
+                            block.sorted { $0.state.index < $1.state.index }
+                        }
+                    }
+                    .asObservable()
             }
-            .groupBy { $0.groupKey }
-            .flatMap { $0.toArray() }
-            .toArray()
-            .map { temp in
-                temp.sorted { $0[0].date < $1[0].date }
+            .bind { [weak self] blocks in
+                AppManager.shared.timeBlocks = blocks
+                
+                let scene = Scene.edit
+                self?.coordinator.transition(scene: scene, style: .root)
             }
-            .asObservable()
-            .bind(to: self.temp)
             .disposed(by: self.disposeBag)
-        
-        self.temp
-            .bind {
-                print("\n-----------------------------", $0)
-            }
-            .disposed(by: self.disposeBag)
-        
-        
-//        let blocks = self.createTimeBlock()
-//
-//        Observable.from(blocks)
-//            .flatMap { block in
-//                FirebaseProvider.getTimeBlock(block)
-//            }
-//            .toArray()
-            
-        
     }
     
     private func createTimeBlock() -> [TimeBlockModel] {

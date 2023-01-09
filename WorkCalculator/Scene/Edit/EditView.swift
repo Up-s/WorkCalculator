@@ -59,7 +59,6 @@ final class EditView: BaseView {
     override init() {
         super.init()
         
-        self.createUnitView()
         self.setAttribute()
         self.setConstraint()
     }
@@ -99,46 +98,51 @@ final class EditView: BaseView {
     
     // MARK: - UI
     
-    private func createUnitView() {
-//        let days: [DateManager.Day] = [.mon, .tue, .wed, .thu, .fri]
-//        days.forEach { day in
-//            let timeBlockView = EditTimeBlockView(day)
-//            let timeBlockViewModel = EditTimeBlockViewModel(day)
-//
-//            timeBlockView.startTimeButton.rx.tap
-//                .bind(to: timeBlockViewModel.input.startDidTap)
-//                .disposed(by: self.disposeBag)
-//
-//            timeBlockView.endTimeButton.rx.tap
-//                .bind(to: timeBlockViewModel.input.endDidTap)
-//                .disposed(by: self.disposeBag)
-//
-//            timeBlockView.restTimeButton.rx.tap
-//                .bind(to: timeBlockViewModel.input.restDidTap)
-//                .disposed(by: self.disposeBag)
-//
-//
-//            timeBlockViewModel.output.startTime
-//                .bind(to: timeBlockView.startTimeButton.rx.title())
-//                .disposed(by: self.disposeBag)
-//
-//            timeBlockViewModel.output.endTime
-//                .bind(to: timeBlockView.endTimeButton.rx.title())
-//                .disposed(by: self.disposeBag)
-//
-//            timeBlockViewModel.output.restTime
-//                .bind(to: timeBlockView.restTimeButton.rx.title())
-//                .disposed(by: self.disposeBag)
-//
-//            timeBlockViewModel.output.runTime
-//                .bind(to: timeBlockView.runTimeLabel.rx.text)
-//                .disposed(by: self.disposeBag)
-//
-//
-//            self.timeBlockViews.append(timeBlockView)
-//            self.timeBlockViewModels.append(timeBlockViewModel)
-//        }
+    func createUnitView(_ blockViewModels: [EditTimeBlockViewModel]) {
+        blockViewModels
+            .map { timeBlockViewModel -> EditTimeBlockView in
+                let timeBlockView = EditTimeBlockView(timeBlockViewModel.weekday)
+                
+                timeBlockView.startTimeButton.rx.tap
+                    .bind(to: timeBlockViewModel.input.startDidTap)
+                    .disposed(by: self.disposeBag)
+                
+                timeBlockView.endTimeButton.rx.tap
+                    .bind(to: timeBlockViewModel.input.endDidTap)
+                    .disposed(by: self.disposeBag)
+                
+                timeBlockView.restTimeButton.rx.tap
+                    .bind(to: timeBlockViewModel.input.restDidTap)
+                    .disposed(by: self.disposeBag)
+                
+                
+                timeBlockViewModel.output.startTime
+                    .bind(to: timeBlockView.startTimeButton.rx.title())
+                    .disposed(by: self.disposeBag)
+                
+                timeBlockViewModel.output.endTime
+                    .bind(to: timeBlockView.endTimeButton.rx.title())
+                    .disposed(by: self.disposeBag)
+                
+                timeBlockViewModel.output.restTime
+                    .bind(to: timeBlockView.restTimeButton.rx.title())
+                    .disposed(by: self.disposeBag)
+                
+                timeBlockViewModel.output.runTime
+                    .bind(to: timeBlockView.runTimeLabel.rx.text)
+                    .disposed(by: self.disposeBag)
+                
+                return timeBlockView
+            }
+            .enumerated()
+            .forEach { index, view in
+                self.contentsStackView.insertArrangedSubview(view, at: index + 1)
+            }
     }
+    
+    
+    
+    
     
     private func setAttribute() {
         self.backgroundColor = .light
@@ -150,9 +154,6 @@ final class EditView: BaseView {
         self.contentsScrollView.addSubview(self.contentsStackView)
         
         [self.titleLabel]
-            .forEach(self.contentsStackView.addArrangedSubview(_:))
-        
-        self.timeBlockViews
             .forEach(self.contentsStackView.addArrangedSubview(_:))
         
         [self.sumUnitStackView, self.resetButton, settingButton]

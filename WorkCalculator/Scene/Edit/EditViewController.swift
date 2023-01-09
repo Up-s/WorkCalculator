@@ -42,10 +42,6 @@ final class EditViewController: BaseViewController {
     }
     
     private func bindViewModel() {
-        Observable.just(self.rootView.timeBlockViewModels)
-            .bind(to: self.viewModel.input.timeBlockViewModels)
-            .disposed(by: self.disposeBag)
-        
         self.rootView.resetButton.rx.tap
             .bind(to: self.viewModel.input.resetDidTap)
             .disposed(by: self.disposeBag)
@@ -55,6 +51,12 @@ final class EditViewController: BaseViewController {
             .disposed(by: self.disposeBag)
         
         
+        
+        self.viewModel.timeBlockViewModels
+            .bind { [weak self] viewModels in
+                self?.rootView.createUnitView(viewModels)
+            }
+            .disposed(by: self.disposeBag)
         
         self.viewModel.output.sumRunTime
             .bind { [weak self] in

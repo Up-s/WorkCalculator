@@ -92,7 +92,7 @@ class DateManager {
         }
     }
     
-    enum State: String, Codable, CaseIterable {
+    enum State: Codable, CaseIterable {
         case start
         case end
         case rest
@@ -102,6 +102,22 @@ class DateManager {
             case .start:  return "출근"
             case .end: return "퇴근"
             case .rest: return "휴식"
+            }
+        }
+        
+        var en: String {
+            switch self {
+            case .start:  return "start"
+            case .end: return "end"
+            case .rest: return "rest"
+            }
+        }
+        
+        var index: Int {
+            switch self {
+            case .start:  return 0
+            case .end: return 1
+            case .rest: return 2
             }
         }
     }
