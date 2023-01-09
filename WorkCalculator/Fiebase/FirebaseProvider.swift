@@ -115,6 +115,7 @@ final class FirebaseProvider {
     }
     
     
+    
     class func getTimeBlock(_ block: TimeBlockModel) -> Observable<TimeBlockModel> {
         Observable<TimeBlockModel>.create { observer -> Disposable in
             
@@ -127,7 +128,6 @@ final class FirebaseProvider {
                 .collection(FirebaseRoot.timeBlock)
                 .document(block.firebaseKey)
                 .getDocument { snapshot, error in
-                    
                     if let error = error {
                         observer.onError(error)
                         
@@ -160,6 +160,8 @@ final class FirebaseProvider {
         }
     }
     
+    
+    
     class func createTimeBlock(_ block: TimeBlockModel, completion: @escaping (Result<Void, Error>) -> Void) {
         
         let documentID = UserDefaultsManager.firebaseID!
@@ -180,4 +182,32 @@ final class FirebaseProvider {
                 }
             }
     }
+    
+    
+    class func setTimeBlock(_ block: TimeBlockModel) -> Observable<TimeBlockModel> {
+        Observable<TimeBlockModel>.create { observer -> Disposable in
+            
+            let documentID = UserDefaultsManager.firebaseID!
+            let data = try! FirebaseEncoder().encode(block) as! [String: Any]
+            
+            Firestore
+                .firestore()
+                .collection(FirebaseRoot.data)
+                .document(documentID)
+                .collection(FirebaseRoot.timeBlock)
+                .document(block.firebaseKey)
+                .setData(data) { error in
+                    if let error = error {
+                        observer.onError(error)
+                        
+                    } else {
+                        observer.onNext(block)
+                        observer.onCompleted()
+                    }
+                }
+            
+            return Disposables.create()
+        }
+    }
+    
 }
