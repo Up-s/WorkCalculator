@@ -65,6 +65,39 @@ extension TimeBlockModel {
         calendar.locale = Locale(identifier: "ko_KR")
         return calendar.date(from: dateComponents) ?? Date()
     }
+    
+    static var create: [TimeBlockModel] {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.locale = Locale(identifier: "ko_KR")
+        let today = Date()
+        let weekday = today.weekdayInt()
+        let blocks = DateManager.Day.allCases
+            .filter {
+                AppManager.shared.settingData?.days.contains($0) ?? false
+            }
+            .map { inDay -> Date in
+                let tempWeekday = inDay.weekdayInt - weekday
+                let tempTimeInterval = TimeInterval(tempWeekday * 24 * 60 * 60)
+                let tempDay = today + tempTimeInterval
+                return tempDay
+            }
+            .flatMap { inDate -> [TimeBlockModel] in
+                let inBlocks = DateManager.State.allCases
+                    .map { inState -> TimeBlockModel in
+                        return TimeBlockModel(
+                            state: inState,
+                            weekday: DateManager.Day(inDate.weekdayInt()),
+                            year: inDate.yearInt(),
+                            month: inDate.monthInt(),
+                            day: inDate.dayInt(),
+                            hour: 0,
+                            min: 0
+                        )
+                    }
+                return inBlocks
+            }
+        return blocks
+    }
 }
 
 

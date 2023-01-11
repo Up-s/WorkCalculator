@@ -41,6 +41,7 @@ final class EditTimeBlockViewModel: BaseViewModel {
     let restTimeBlock: BehaviorRelay<TimeBlockModel>
     let runTime = BehaviorRelay<Int>(value: 0)
     private let presentTimeBlock = PublishRelay<TimeBlockModel>()
+    private let callbackTimeBlock = PublishRelay<TimeBlockModel>()
     
     
     
@@ -67,7 +68,7 @@ final class EditTimeBlockViewModel: BaseViewModel {
                     scene = .picker(viewModel)
                     
                     viewModel.timeBlock
-                        .bind(to: self.startTimeBlock)
+                        .bind(to: self.callbackTimeBlock)
                         .disposed(by: viewModel.disposeBag)
                     
                 case 1:
@@ -75,7 +76,7 @@ final class EditTimeBlockViewModel: BaseViewModel {
                     scene = .numberPad(viewModel)
                     
                     viewModel.timeBlock
-                        .bind(to: self.startTimeBlock)
+                        .bind(to: self.callbackTimeBlock)
                         .disposed(by: viewModel.disposeBag)
                     
                 default:
@@ -83,6 +84,21 @@ final class EditTimeBlockViewModel: BaseViewModel {
                 }
                 
                 self.coordinator.transition(scene: scene, style: .modal(.overFullScreen), animated: false)
+            }
+            .disposed(by: self.disposeBag)
+        
+        self.callbackTimeBlock
+            .bind { block in
+                switch block.state {
+                case .start:
+                    self.startTimeBlock.accept(block)
+                    
+                case .end:
+                    self.endTimeBlock.accept(block)
+                    
+                case .rest:
+                    self.restTimeBlock.accept(block)
+                }
             }
             .disposed(by: self.disposeBag)
         
@@ -129,16 +145,19 @@ final class EditTimeBlockViewModel: BaseViewModel {
                 self.startTimeBlock.asObservable(),
                 self.endTimeBlock.asObservable(),
                 self.restTimeBlock.asObservable()
-            ) { inStartBlock, inEndBlock, inRestBlock -> Int? in
+            ) { inStartBlock, inEndBlock, inRestBlock -> Int in
                 let startBlock = inStartBlock.interval
                 let endBlock = inEndBlock.interval
                 let restInterval = inRestBlock.interval
                 
-                guard endBlock != 0 else { return nil }
-                
-                return endBlock - startBlock - restInterval
+                switch endBlock == 0 {
+                case true:
+                    return 0
+                    
+                case false:
+                    return endBlock - startBlock - restInterval
+                }
             }
-            .compactMap { $0 }
             .bind(to: self.runTime)
             .disposed(by: self.disposeBag)
         

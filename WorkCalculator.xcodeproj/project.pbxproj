@@ -27,6 +27,10 @@
 		BD470D892966F80F00404AB4 /* TimeBlockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D882966F80F00404AB4 /* TimeBlockModel.swift */; };
 		BD6E36CE296E86460077E8DB /* NumberPadCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6E36CD296E86460077E8DB /* NumberPadCollectionViewCell.swift */; };
 		BD6E36D0296E94D40077E8DB /* InputButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6E36CF296E94D40077E8DB /* InputButtonView.swift */; };
+		BD6E36D3296ECFBB0077E8DB /* UpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6E36D2296ECFBB0077E8DB /* UpdateView.swift */; };
+		BD6E36D5296ECFC20077E8DB /* UpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6E36D4296ECFC20077E8DB /* UpdateViewController.swift */; };
+		BD6E36D7296ECFC90077E8DB /* UpdateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6E36D6296ECFC90077E8DB /* UpdateViewModel.swift */; };
+		BD6E36DA296EE6EC0077E8DB /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6E36D9296EE6EC0077E8DB /* ProgressView.swift */; };
 		BD7831372968679200907452 /* FirebaseRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7831362968679200907452 /* FirebaseRoot.swift */; };
 		BD783139296867AA00907452 /* FirebaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD783138296867AA00907452 /* FirebaseError.swift */; };
 		BD78313B2968684000907452 /* FirebaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD78313A2968684000907452 /* FirebaseProvider.swift */; };
@@ -73,6 +77,10 @@
 		BD470D882966F80F00404AB4 /* TimeBlockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBlockModel.swift; sourceTree = "<group>"; };
 		BD6E36CD296E86460077E8DB /* NumberPadCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPadCollectionViewCell.swift; sourceTree = "<group>"; };
 		BD6E36CF296E94D40077E8DB /* InputButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputButtonView.swift; sourceTree = "<group>"; };
+		BD6E36D2296ECFBB0077E8DB /* UpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateView.swift; sourceTree = "<group>"; };
+		BD6E36D4296ECFC20077E8DB /* UpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewController.swift; sourceTree = "<group>"; };
+		BD6E36D6296ECFC90077E8DB /* UpdateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewModel.swift; sourceTree = "<group>"; };
+		BD6E36D9296EE6EC0077E8DB /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		BD7831362968679200907452 /* FirebaseRoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRoot.swift; sourceTree = "<group>"; };
 		BD783138296867AA00907452 /* FirebaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseError.swift; sourceTree = "<group>"; };
 		BD78313A2968684000907452 /* FirebaseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseProvider.swift; sourceTree = "<group>"; };
@@ -148,6 +156,7 @@
 		BD470D3E2966C4CE00404AB4 /* WorkCalculator */ = {
 			isa = PBXGroup;
 			children = (
+				BD6E36DB296EE7000077E8DB /* View */,
 				BD470D5B2966C8C900404AB4 /* Scene */,
 				BD8F87812968665E0086F6C1 /* Fiebase */,
 				BD470D5C2966C8D100404AB4 /* Manager */,
@@ -189,6 +198,7 @@
 				BD470D812966EDF900404AB4 /* Picker */,
 				BD783151296ADA1100907452 /* NumberPad */,
 				BD7831402968763D00907452 /* Setting */,
+				BD6E36D1296ECF980077E8DB /* Update */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -232,9 +242,27 @@
 				BD470D822966EE1800404AB4 /* PickerView.swift */,
 				BD470D842966EE1C00404AB4 /* PickerViewController.swift */,
 				BD470D862966EE2100404AB4 /* PickerViewModel.swift */,
-				BD6E36CF296E94D40077E8DB /* InputButtonView.swift */,
 			);
 			path = Picker;
+			sourceTree = "<group>";
+		};
+		BD6E36D1296ECF980077E8DB /* Update */ = {
+			isa = PBXGroup;
+			children = (
+				BD6E36D2296ECFBB0077E8DB /* UpdateView.swift */,
+				BD6E36D4296ECFC20077E8DB /* UpdateViewController.swift */,
+				BD6E36D6296ECFC90077E8DB /* UpdateViewModel.swift */,
+			);
+			path = Update;
+			sourceTree = "<group>";
+		};
+		BD6E36DB296EE7000077E8DB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BD6E36D9296EE6EC0077E8DB /* ProgressView.swift */,
+				BD6E36CF296E94D40077E8DB /* InputButtonView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		BD7831402968763D00907452 /* Setting */ = {
@@ -395,6 +423,7 @@
 				BD470D792966DDD600404AB4 /* DateManager.swift in Sources */,
 				BD7831462968765400907452 /* SettingViewModel.swift in Sources */,
 				BD470D6A2966CA1900404AB4 /* EditViewModel.swift in Sources */,
+				BD6E36D7296ECFC90077E8DB /* UpdateViewModel.swift in Sources */,
 				BD783155296ADA2C00907452 /* NumberPadViewController.swift in Sources */,
 				BD470D562966C74400404AB4 /* Scene.swift in Sources */,
 				BD783153296ADA2700907452 /* NumberPadView.swift in Sources */,
@@ -402,6 +431,7 @@
 				BD470D832966EE1800404AB4 /* PickerView.swift in Sources */,
 				BD9A16C9296736430093FB1C /* UserDefaultsManager.swift in Sources */,
 				BD470D542966C66E00404AB4 /* SplashViewController.swift in Sources */,
+				BD6E36DA296EE6EC0077E8DB /* ProgressView.swift in Sources */,
 				BD78313F296871CB00907452 /* AppManager.swift in Sources */,
 				BD6E36D0296E94D40077E8DB /* InputButtonView.swift in Sources */,
 				BD78313B2968684000907452 /* FirebaseProvider.swift in Sources */,
@@ -415,6 +445,7 @@
 				BD470D702966CC1700404AB4 /* EditTimeBlockView.swift in Sources */,
 				BD470D402966C4CE00404AB4 /* AppDelegate.swift in Sources */,
 				BD7831372968679200907452 /* FirebaseRoot.swift in Sources */,
+				BD6E36D3296ECFBB0077E8DB /* UpdateView.swift in Sources */,
 				BD470D622966C98A00404AB4 /* TodayModel.swift in Sources */,
 				BD470D682966CA1500404AB4 /* EditViewController.swift in Sources */,
 				BD470D6C2966CA6500404AB4 /* SplashView.swift in Sources */,
@@ -422,6 +453,7 @@
 				BD9A16C7296725E70093FB1C /* EditSumUnitView.swift in Sources */,
 				BD78314A296878B700907452 /* SettingInputTypeView.swift in Sources */,
 				BD470D852966EE1C00404AB4 /* PickerViewController.swift in Sources */,
+				BD6E36D5296ECFC20077E8DB /* UpdateViewController.swift in Sources */,
 				BD78314C2968825100907452 /* InputType.swift in Sources */,
 				BD7831502968876700907452 /* SettingInfoLabel.swift in Sources */,
 				BD783157296ADA3200907452 /* NumberPadViewModel.swift in Sources */,
@@ -552,7 +584,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = ZLN97H98PA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WorkCalculator/Support/Info.plist;
@@ -583,7 +615,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = ZLN97H98PA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WorkCalculator/Support/Info.plist;

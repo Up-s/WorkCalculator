@@ -14,7 +14,7 @@ struct SettingModel: Codable {
     var inputType: Int
     
     init(
-        days: [DateManager.Day],
+        days: [DateManager.Day] = [.mon, .tue, .wed, .thu, .fri],
         workBaseHour: Int = 40,
         inputType: Int = 0
     ) {

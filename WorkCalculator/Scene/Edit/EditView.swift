@@ -70,7 +70,7 @@ final class EditView: BaseView {
     // MARK: - Interface
     
     func setData(_ sumRunTime: Int) {
-        let max = 40 * 60
+        let max = (AppManager.shared.settingData?.workBaseHour ?? 40) * 60
         
         let sumRunTimeHour = sumRunTime / 60
         let sumRunTimeMin = sumRunTime % 60

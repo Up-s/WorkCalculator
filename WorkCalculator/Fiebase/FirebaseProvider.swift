@@ -17,9 +17,7 @@ final class FirebaseProvider {
     class func create() -> Observable<Void> {
         Observable<Void>.create { observer -> Disposable in
             
-            let setting = SettingModel(
-                days: [.mon, .tue, .wed, .thu, .fri]
-            )
+            let setting = SettingModel()
             
             if let data = try? FirebaseEncoder().encode(setting) as? [String: Any] {
                 
@@ -49,7 +47,7 @@ final class FirebaseProvider {
         }
     }
     
-    class func share(_ id: String?) -> Observable<Void> {
+    class func shareID(_ id: String?) -> Observable<Void> {
         Observable<Void>.create { observer -> Disposable in
             
             guard let id = id else {
@@ -123,23 +121,24 @@ final class FirebaseProvider {
     
     
     
-    class func setSettingData() -> Observable<Void> {
+    class func setSettingData(_ data: SettingModel) -> Observable<Void> {
         Observable<Void>.create { observer -> Disposable in
             
             let documentID = UserDefaultsManager.firebaseID!
-            let settingData = AppManager.shared.settingData!
             
-            if let data = try? FirebaseEncoder().encode(settingData) as? [String: Any] {
+            if let encoderData = try? FirebaseEncoder().encode(data) as? [String: Any] {
                 
                 Firestore
                     .firestore()
                     .collection(FirebaseRoot.data)
                     .document(documentID)
-                    .setData(data) { error in
+                    .setData(encoderData) { error in
                         if let error = error {
                             observer.onError(error)
                             
                         } else {
+                            AppManager.shared.settingData = data
+                            
                             observer.onNext(())
                             observer.onCompleted()
                         }

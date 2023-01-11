@@ -37,7 +37,8 @@ final class SettingViewModel: BaseViewModel {
     let output = Output()
     
     private let shareAlert = PublishRelay<Void>()
-    private let share = PublishRelay<String?>()
+    private let shareID = PublishRelay<String?>()
+    private var settingData = AppManager.shared.settingData ?? SettingModel()
     
     
     
@@ -83,25 +84,21 @@ final class SettingViewModel: BaseViewModel {
                     actionTitle: "공유하기",
                     cancel: "닫기",
                     handler: { id in
-                        self?.share.accept(id)
+                        self?.shareID.accept(id)
                     }
                 )
             }
             .disposed(by: self.disposeBag)
         
-        self.share
-            .flatMap { id in
-                FirebaseProvider.share(id)
+        self.shareID
+            .compactMap { $0 }
+            .bind { [weak self] id in
+                guard let self = self else { return }
+                let inType = UpdateType.share(id)
+                let viewModel = UpdateViewModel(inType)
+                let scene = Scene.update(viewModel)
+                self.coordinator.transition(scene: scene, style: .root)
             }
-            .subscribe(
-                onNext: { [weak self] in
-                    let scene = Scene.splash
-                    self?.coordinator.transition(scene: scene, style: .root)
-                },
-                onError: { [weak self] error in
-                    self?.debugLog(#function, #line, error)
-                }
-            )
             .disposed(by: self.disposeBag)
         
         self.input.selectDay
@@ -121,15 +118,15 @@ final class SettingViewModel: BaseViewModel {
             .disposed(by: self.disposeBag)
         
         self.output.selectDays
-            .bind { days in
-                AppManager.shared.settingData?.days = days
+            .bind { [weak self] days in
+                self?.settingData.days = days
             }
             .disposed(by: self.disposeBag)
         
         self.input.baseHour
             .compactMap { $0 }
             .bind { [weak self] hour in
-                AppManager.shared.settingData?.workBaseHour = hour
+                self?.settingData.workBaseHour = hour
                 
                 let text = String(hour) + "시간"
                 self?.output.baseHour.accept(text)
@@ -138,24 +135,19 @@ final class SettingViewModel: BaseViewModel {
         
         self.input.inputType
             .compactMap { $0 }
-            .bind {
-                AppManager.shared.settingData?.inputType = $0
+            .bind { [weak self] in
+                self?.settingData.inputType = $0
             }
             .disposed(by: self.disposeBag)
         
         self.input.saveDidTap
-            .flatMap {
-                FirebaseProvider.setSettingData()
+            .bind { [weak self] in
+                guard let self = self else { return }
+                let inType = UpdateType.setting(self.settingData)
+                let viewModel = UpdateViewModel(inType)
+                let scene = Scene.update(viewModel)
+                self.coordinator.transition(scene: scene, style: .root)
             }
-            .subscribe(
-                onNext: { [weak self] in
-                    let scene = Scene.splash
-                    self?.coordinator.transition(scene: scene, style: .root)
-                },
-                onError: { [weak self] error in
-                    self?.debugLog(#function, #line, error)
-                }
-            )
             .disposed(by: self.disposeBag)
     }
 }
