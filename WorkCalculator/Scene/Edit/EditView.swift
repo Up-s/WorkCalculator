@@ -92,10 +92,6 @@ final class EditView: BaseView {
         self.remainedSumUnitView.subLabel.text = remainedText
     }
     
-    
-    
-    // MARK: - UI
-    
     func createUnitView(_ blockViewModels: [EditTimeBlockViewModel]) {
         blockViewModels
             .compactMap { timeBlockViewModel -> EditTimeBlockView? in
@@ -145,7 +141,7 @@ final class EditView: BaseView {
     
     
     
-    
+    // MARK: - UI
     
     private func setAttribute() {
         self.backgroundColor = .light
