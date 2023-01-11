@@ -76,7 +76,6 @@ final class SettingViewModel: BaseViewModel {
             .disposed(by: self.disposeBag)
         
         self.shareAlert
-            .delay(.seconds(1), scheduler: MainScheduler.instance)
             .bind { [weak self] in
                 self?.coordinator.alertTextField(
                     title: "공유하기",
@@ -84,6 +83,12 @@ final class SettingViewModel: BaseViewModel {
                     actionTitle: "공유하기",
                     cancel: "닫기",
                     handler: { id in
+                        let currentID = UserDefaultsManager.firebaseID
+                        guard currentID != id else {
+                            self?.coordinator.toast("공유할 아이디를 입력해 주세요")
+                            return
+                        }
+                        
                         self?.shareID.accept(id)
                     }
                 )

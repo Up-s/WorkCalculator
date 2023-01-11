@@ -47,6 +47,8 @@ final class FirebaseProvider {
         }
     }
     
+    
+    
     class func shareID(_ id: String?) -> Observable<Void> {
         Observable<Void>.create { observer -> Disposable in
             
@@ -71,6 +73,14 @@ final class FirebaseProvider {
                             observer.onError(FirebaseError.emptyData)
                             return
                         }
+                        
+                        let removeID = UserDefaultsManager.firebaseID!
+                        
+                        Firestore
+                            .firestore()
+                            .collection(FirebaseRoot.data)
+                            .document(removeID)
+                            .delete()
                         
                         UserDefaultsManager.firebaseID = id
                         AppManager.shared.settingData = settingData
@@ -239,6 +249,13 @@ final class FirebaseProvider {
                         observer.onError(error)
                         
                     } else {
+                        
+                        Firestore
+                            .firestore()
+                            .collection(FirebaseRoot.data)
+                            .document(documentID)
+                            .updateData(["latestBlockDate": Date()])
+                        
                         observer.onNext(block)
                         observer.onCompleted()
                     }
@@ -247,5 +264,4 @@ final class FirebaseProvider {
             return Disposables.create()
         }
     }
-    
 }
