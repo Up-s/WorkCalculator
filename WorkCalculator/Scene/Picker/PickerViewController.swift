@@ -60,11 +60,11 @@ final class PickerViewController: BaseViewController {
             }
             .disposed(by: self.disposeBag)
         
-        self.rootView.cancelButton.rx.tap
+        self.rootView.inputButtonView.cancelButton.rx.tap
             .bind(to: self.viewModel.input.cancelDidTap)
             .disposed(by: self.disposeBag)
         
-        self.rootView.okButton.rx.tap
+        self.rootView.inputButtonView.okButton.rx.tap
             .map { [weak self] in
                 let hour = self?.rootView.selectHour ?? 0
                 let min = self?.rootView.selectMin ?? 0

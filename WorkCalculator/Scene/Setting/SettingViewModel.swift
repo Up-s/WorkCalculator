@@ -104,7 +104,6 @@ final class SettingViewModel: BaseViewModel {
             )
             .disposed(by: self.disposeBag)
         
-        
         self.input.selectDay
             .withLatestFrom(self.output.selectDays) { item, days in
                 var tempDays = days
@@ -140,7 +139,7 @@ final class SettingViewModel: BaseViewModel {
         self.input.inputType
             .compactMap { $0 }
             .bind {
-                UserDefaultsManager.inputType = $0
+                AppManager.shared.settingData?.inputType = $0
             }
             .disposed(by: self.disposeBag)
         

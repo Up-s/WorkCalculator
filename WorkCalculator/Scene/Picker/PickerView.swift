@@ -15,7 +15,8 @@ final class PickerView: BaseView {
     
     // MARK: - Property
     
-    private let contentsStackView = UPsStackView(axis: .vertical, margin: UIEdgeInsets(all: 16.0)).then { view in
+    private let contentsView = UIView()
+    private let infoStackView = UPsStackView(axis: .vertical, margin: UIEdgeInsets(all: 16.0)).then { view in
         view.backgroundColor = .light
         view.layer.cornerRadius = 8.0
         view.layer.masksToBounds = true
@@ -26,17 +27,7 @@ final class PickerView: BaseView {
         view.font = .boldSystemFont(ofSize: 30.0)
     }
     let pickerView = UIPickerView()
-    private let buttonStackView = UPsStackView(axis: .horizontal, distribution: .fillEqually, spacing: 8.0)
-    let cancelButton = UIButton().then { view in
-        view.setTitle("취소", for: .normal)
-        view.setTitleColor(.gray600, for: .normal)
-        view.titleLabel?.font = .boldSystemFont(ofSize: 20.0)
-    }
-    let okButton = UIButton().then { view in
-        view.setTitle("선택", for: .normal)
-        view.setTitleColor(.gray900, for: .normal)
-        view.titleLabel?.font = .boldSystemFont(ofSize: 20.0)
-    }
+    let inputButtonView = InputButtonView()
     
     private let hourList: [String] = { (0...23).map { String($0) } }()
     private let minList: [String] = { (0...59).map { String($0) } }()
@@ -79,36 +70,41 @@ final class PickerView: BaseView {
     // MARK: - UI
     
     private func setAttribute() {
-        self.backgroundColor = .black.withAlphaComponent(0.4)
+        self.backgroundColor = .dark.withAlphaComponent(0.4)
         
         self.pickerView.dataSource = self
         self.pickerView.delegate = self
         
         
         
-        self.addSubview(self.contentsStackView)
+        self.addSubview(self.contentsView)
         
-        [self.titleLabel, self.pickerView, self.buttonStackView]
-            .forEach(self.contentsStackView.addArrangedSubview(_:))
+        [self.infoStackView, self.inputButtonView]
+            .forEach(self.contentsView.addSubview(_:))
         
-        [self.cancelButton, self.okButton]
-            .forEach(self.buttonStackView.addArrangedSubview(_:))
+        [self.titleLabel, self.pickerView]
+            .forEach(self.infoStackView.addArrangedSubview(_:))
     }
     
     private func setConstraint() {
         let guide = self.safeAreaLayoutGuide
         
-        self.contentsStackView.snp.makeConstraints { make in
+        self.contentsView.snp.makeConstraints { make in
             make.center.equalTo(guide)
-            make.width.equalTo(240.0)
+            make.width.equalTo(280.0)
+        }
+        
+        self.infoStackView.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview()
+        }
+        
+        self.inputButtonView.snp.makeConstraints { make in
+            make.top.equalTo(self.infoStackView.snp.bottom).offset(16.0)
+            make.leading.trailing.bottom.equalToSuperview()
         }
         
         self.pickerView.snp.makeConstraints { make in
             make.height.equalTo(240.0)
-        }
-        
-        self.buttonStackView.snp.makeConstraints { make in
-            make.height.equalTo(48.0)
         }
     }
 }

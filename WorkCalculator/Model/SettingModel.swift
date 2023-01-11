@@ -11,12 +11,15 @@ struct SettingModel: Codable {
     
     var days: [DateManager.Day]
     var workBaseHour: Int
+    var inputType: Int
     
     init(
         days: [DateManager.Day],
-        workBaseHour: Int = 40
+        workBaseHour: Int = 40,
+        inputType: Int = 0
     ) {
         self.days = days
         self.workBaseHour = workBaseHour
+        self.inputType = inputType
     }
 }

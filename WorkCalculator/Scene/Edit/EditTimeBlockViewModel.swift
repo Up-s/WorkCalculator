@@ -40,6 +40,7 @@ final class EditTimeBlockViewModel: BaseViewModel {
     let endTimeBlock: BehaviorRelay<TimeBlockModel>
     let restTimeBlock: BehaviorRelay<TimeBlockModel>
     let runTime = BehaviorRelay<Int>(value: 0)
+    private let presentTimeBlock = PublishRelay<TimeBlockModel>()
     
     
     
@@ -53,6 +54,38 @@ final class EditTimeBlockViewModel: BaseViewModel {
         
         super.init()
         
+        self.presentTimeBlock
+            .bind { [weak self] block in
+                guard let self = self else { return }
+                
+                let scene: Scene
+                
+                let inputType: Int = AppManager.shared.settingData?.inputType ?? 0
+                switch inputType {
+                case 0:
+                    let viewModel = PickerViewModel(block)
+                    scene = .picker(viewModel)
+                    
+                    viewModel.timeBlock
+                        .bind(to: self.startTimeBlock)
+                        .disposed(by: viewModel.disposeBag)
+                    
+                case 1:
+                    let viewModel = NumberPadViewModel(block)
+                    scene = .numberPad(viewModel)
+                    
+                    viewModel.timeBlock
+                        .bind(to: self.startTimeBlock)
+                        .disposed(by: viewModel.disposeBag)
+                    
+                default:
+                    fatalError()
+                }
+                
+                self.coordinator.transition(scene: scene, style: .modal(.overFullScreen), animated: false)
+            }
+            .disposed(by: self.disposeBag)
+        
         
         
         self.startTimeBlock
@@ -62,17 +95,7 @@ final class EditTimeBlockViewModel: BaseViewModel {
         
         self.input.startDidTap
             .withLatestFrom(self.startTimeBlock)
-            .bind { [weak self] block in
-                guard let self = self else { return }
-                
-                let viewModel = PickerViewModel(block)
-                let scene: Scene = .picker(viewModel)
-                self.coordinator.transition(scene: scene, style: .modal(.overFullScreen), animated: false)
-
-                viewModel.timeBlock
-                    .bind(to: self.startTimeBlock)
-                    .disposed(by: viewModel.disposeBag)
-            }
+            .bind(to: self.presentTimeBlock)
             .disposed(by: self.disposeBag)
         
         
@@ -84,17 +107,7 @@ final class EditTimeBlockViewModel: BaseViewModel {
         
         self.input.endDidTap
             .withLatestFrom(self.endTimeBlock)
-            .bind { [weak self] block in
-                guard let self = self else { return }
-                
-                let viewModel = PickerViewModel(block)
-                let scene: Scene = .picker(viewModel)
-                self.coordinator.transition(scene: scene, style: .modal(.overFullScreen), animated: false)
-
-                viewModel.timeBlock
-                    .bind(to: self.endTimeBlock)
-                    .disposed(by: viewModel.disposeBag)
-            }
+            .bind(to: self.presentTimeBlock)
             .disposed(by: self.disposeBag)
         
         
@@ -106,17 +119,7 @@ final class EditTimeBlockViewModel: BaseViewModel {
         
         self.input.restDidTap
             .withLatestFrom(self.restTimeBlock)
-            .bind { [weak self] block in
-                guard let self = self else { return }
-                
-                let viewModel = PickerViewModel(block)
-                let scene: Scene = .picker(viewModel)
-                self.coordinator.transition(scene: scene, style: .modal(.overFullScreen), animated: false)
-                
-                viewModel.timeBlock
-                    .bind(to: self.restTimeBlock)
-                    .disposed(by: viewModel.disposeBag)
-            }
+            .bind(to: self.presentTimeBlock)
             .disposed(by: self.disposeBag)
         
         

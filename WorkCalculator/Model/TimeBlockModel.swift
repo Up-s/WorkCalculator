@@ -44,7 +44,7 @@ extension TimeBlockModel {
     }
     
     var intervalString: String {
-        String(format: "%d:%02d", self.hour, self.min)
+        String(format: "%02d:%02d", self.hour, self.min)
     }
     
     var info: String {
