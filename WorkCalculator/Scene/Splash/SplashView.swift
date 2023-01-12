@@ -21,6 +21,11 @@ final class SplashView: BaseView {
         view.textColor = .gray900
         view.font = .boldSystemFont(ofSize: 40.0)
     }
+    private let debugLabel = UILabel().then { view in
+        view.text = "디버그"
+        view.textColor = .red
+        view.font = .boldSystemFont(ofSize: 20)
+    }
     
     
     
@@ -49,6 +54,10 @@ final class SplashView: BaseView {
         self.backgroundColor = .gray100
         
         self.addSubview(self.titleLabel)
+        
+        #if DEBUG
+        self.addSubview(self.debugLabel)
+        #endif
     }
     
     private func setConstraint() {
@@ -58,5 +67,13 @@ final class SplashView: BaseView {
             make.centerY.equalToSuperview()
             make.leading.trailing.equalTo(guide)
         }
+        
+        
+        #if DEBUG
+        self.debugLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(self.titleLabel.snp.bottom).offset(16.0)
+        }
+        #endif
     }
 }
