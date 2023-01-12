@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BD13E963297072C800A7EE31 /* GoogleService-Info-Debug.plist in Resources */ = {isa = PBXBuildFile; fileRef = BD13E962297072C800A7EE31 /* GoogleService-Info-Debug.plist */; };
 		BD470D402966C4CE00404AB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D3F2966C4CE00404AB4 /* AppDelegate.swift */; };
 		BD470D492966C4CF00404AB4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD470D482966C4CF00404AB4 /* Assets.xcassets */; };
 		BD470D542966C66E00404AB4 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D532966C66E00404AB4 /* SplashViewController.swift */; };
 		BD470D562966C74400404AB4 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D552966C74400404AB4 /* Scene.swift */; };
-		BD470D582966C88E00404AB4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BD470D572966C88E00404AB4 /* GoogleService-Info.plist */; };
+		BD470D582966C88E00404AB4 /* GoogleService-Info-Release.plist in Resources */ = {isa = PBXBuildFile; fileRef = BD470D572966C88E00404AB4 /* GoogleService-Info-Release.plist */; };
 		BD470D622966C98A00404AB4 /* TodayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D612966C98A00404AB4 /* TodayModel.swift */; };
 		BD470D662966CA1000404AB4 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D652966CA1000404AB4 /* EditView.swift */; };
 		BD470D682966CA1500404AB4 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D672966CA1500404AB4 /* EditViewController.swift */; };
@@ -56,13 +57,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BD13E962297072C800A7EE31 /* GoogleService-Info-Debug.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Debug.plist"; sourceTree = "<group>"; };
 		BD470D3C2966C4CE00404AB4 /* WorkCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD470D3F2966C4CE00404AB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BD470D482966C4CF00404AB4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BD470D4D2966C4CF00404AB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BD470D532966C66E00404AB4 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		BD470D552966C74400404AB4 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
-		BD470D572966C88E00404AB4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		BD470D572966C88E00404AB4 /* GoogleService-Info-Release.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Release.plist"; sourceTree = "<group>"; };
 		BD470D612966C98A00404AB4 /* TodayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayModel.swift; sourceTree = "<group>"; };
 		BD470D652966CA1000404AB4 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 		BD470D672966CA1500404AB4 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
@@ -137,6 +139,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		BD13E95D29706FEE00A7EE31 /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				BD13E962297072C800A7EE31 /* GoogleService-Info-Debug.plist */,
+			);
+			path = Debug;
+			sourceTree = "<group>";
+		};
+		BD13E95E29706FF300A7EE31 /* Release */ = {
+			isa = PBXGroup;
+			children = (
+				BD470D572966C88E00404AB4 /* GoogleService-Info-Release.plist */,
+			);
+			path = Release;
+			sourceTree = "<group>";
+		};
 		BD470D332966C4CE00404AB4 = {
 			isa = PBXGroup;
 			children = (
@@ -171,7 +189,6 @@
 		BD470D592966C8B300404AB4 /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				BD470D572966C88E00404AB4 /* GoogleService-Info.plist */,
 				BD470D482966C4CF00404AB4 /* Assets.xcassets */,
 				BD470D4D2966C4CF00404AB4 /* Info.plist */,
 				BDE6D02A2967DC1D00F79CB6 /* SplashViewController.storyboard */,
@@ -297,6 +314,8 @@
 		BD8F87812968665E0086F6C1 /* Fiebase */ = {
 			isa = PBXGroup;
 			children = (
+				BD13E95E29706FF300A7EE31 /* Release */,
+				BD13E95D29706FEE00A7EE31 /* Debug */,
 				BD7831362968679200907452 /* FirebaseRoot.swift */,
 				BD783138296867AA00907452 /* FirebaseError.swift */,
 				BD78313A2968684000907452 /* FirebaseProvider.swift */,
@@ -316,6 +335,7 @@
 				BD470D392966C4CE00404AB4 /* Frameworks */,
 				BD470D3A2966C4CE00404AB4 /* Resources */,
 				F8DFA78D9339D263F8B99C50 /* [CP] Embed Pods Frameworks */,
+				BD13E9612970702C00A7EE31 /* Setup Firebase Run Script */,
 			);
 			buildRules = (
 			);
@@ -366,7 +386,8 @@
 			files = (
 				BD470D492966C4CF00404AB4 /* Assets.xcassets in Resources */,
 				BDE6D02B2967DC1D00F79CB6 /* SplashViewController.storyboard in Resources */,
-				BD470D582966C88E00404AB4 /* GoogleService-Info.plist in Resources */,
+				BD470D582966C88E00404AB4 /* GoogleService-Info-Release.plist in Resources */,
+				BD13E963297072C800A7EE31 /* GoogleService-Info-Debug.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,6 +415,24 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		BD13E9612970702C00A7EE31 /* Setup Firebase Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Setup Firebase Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "case \"${CONFIGURATION}\" in \n\"Debug\" ) \ncp -r \"$SRCROOT/${PRODUCT_NAME}/Firebase/Debug/GoogleService-Info-Debug.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\" ;; \n\"Release\" ) \ncp -r \"$SRCROOT/${PRODUCT_NAME}/Firebase/Release/GoogleService-Info-Release.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\" ;; *) ;; \nesac\n";
 		};
 		F8DFA78D9339D263F8B99C50 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -592,7 +631,7 @@
 				DEVELOPMENT_TEAM = ZLN97H98PA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WorkCalculator/Support/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "칼퇴 계산기";
+				INFOPLIST_KEY_CFBundleDisplayName = "디버그_칼퇴 계산기";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = SplashViewController;
 				INFOPLIST_KEY_UIMainStoryboardFile = SplashViewController;
@@ -604,6 +643,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.QEDStudio.WorkCalculatorDebug;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
