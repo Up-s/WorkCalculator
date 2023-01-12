@@ -6,7 +6,9 @@ target 'WorkCalculator' do
   use_frameworks!
 
   # Pods for WorkCalculator
-
+  
+  pod 'CodableFirebase'
+  
   pod 'Firebase/Analytics', '~> 9'
   pod 'Firebase/Auth', '~> 9'
   pod 'Firebase/Core', '~> 9'
@@ -23,6 +25,7 @@ post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
       config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '15.0'
+      config.build_settings["ONLY_ACTIVE_ARCH"] = "NO"
     end
   end
 end
