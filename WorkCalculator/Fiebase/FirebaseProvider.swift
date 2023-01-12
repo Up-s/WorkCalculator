@@ -49,10 +49,10 @@ final class FirebaseProvider {
     
     
     
-    class func shareID(_ id: String?) -> Observable<Void> {
+    class func shareID(_ shareID: String?) -> Observable<Void> {
         Observable<Void>.create { observer -> Disposable in
             
-            guard let id = id else {
+            guard let shareID = shareID else {
                 observer.onError(FirebaseError.emptyData)
                 return Disposables.create()
             }
@@ -60,7 +60,7 @@ final class FirebaseProvider {
             Firestore
                 .firestore()
                 .collection(FirebaseRoot.data)
-                .document(id)
+                .document(shareID)
                 .getDocument { snapshot, error in
                     if let error = error {
                         observer.onError(error)
@@ -74,15 +74,15 @@ final class FirebaseProvider {
                             return
                         }
                         
-                        let removeID = UserDefaultsManager.firebaseID!
+                        let currentID = UserDefaultsManager.firebaseID!
                         
                         Firestore
                             .firestore()
                             .collection(FirebaseRoot.data)
-                            .document(removeID)
+                            .document(currentID)
                             .delete()
                         
-                        UserDefaultsManager.firebaseID = id
+                        UserDefaultsManager.firebaseID = shareID
                         AppManager.shared.settingData = settingData
                         
                         observer.onNext(())
@@ -250,11 +250,14 @@ final class FirebaseProvider {
                         
                     } else {
                         
+                        let update = UpdateDateModel()
+                        let updateData = try! FirebaseEncoder().encode(update) as! [String: Any]
+                        
                         Firestore
                             .firestore()
                             .collection(FirebaseRoot.data)
                             .document(documentID)
-                            .updateData(["latestBlockDate": Date()])
+                            .updateData(updateData)
                         
                         observer.onNext(block)
                         observer.onCompleted()

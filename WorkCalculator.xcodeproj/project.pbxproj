@@ -31,6 +31,7 @@
 		BD6E36D5296ECFC20077E8DB /* UpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6E36D4296ECFC20077E8DB /* UpdateViewController.swift */; };
 		BD6E36D7296ECFC90077E8DB /* UpdateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6E36D6296ECFC90077E8DB /* UpdateViewModel.swift */; };
 		BD6E36DA296EE6EC0077E8DB /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6E36D9296EE6EC0077E8DB /* ProgressView.swift */; };
+		BD6E36DD296FF0740077E8DB /* UpdateDateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6E36DC296FF0740077E8DB /* UpdateDateModel.swift */; };
 		BD7831372968679200907452 /* FirebaseRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7831362968679200907452 /* FirebaseRoot.swift */; };
 		BD783139296867AA00907452 /* FirebaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD783138296867AA00907452 /* FirebaseError.swift */; };
 		BD78313B2968684000907452 /* FirebaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD78313A2968684000907452 /* FirebaseProvider.swift */; };
@@ -81,6 +82,7 @@
 		BD6E36D4296ECFC20077E8DB /* UpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewController.swift; sourceTree = "<group>"; };
 		BD6E36D6296ECFC90077E8DB /* UpdateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewModel.swift; sourceTree = "<group>"; };
 		BD6E36D9296EE6EC0077E8DB /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		BD6E36DC296FF0740077E8DB /* UpdateDateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateDateModel.swift; sourceTree = "<group>"; };
 		BD7831362968679200907452 /* FirebaseRoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRoot.swift; sourceTree = "<group>"; };
 		BD783138296867AA00907452 /* FirebaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseError.swift; sourceTree = "<group>"; };
 		BD78313A2968684000907452 /* FirebaseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseProvider.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				BD470D882966F80F00404AB4 /* TimeBlockModel.swift */,
 				BD78313C29686BD800907452 /* SettingModel.swift */,
 				BD78314B2968825100907452 /* InputType.swift */,
+				BD6E36DC296FF0740077E8DB /* UpdateDateModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -442,6 +445,7 @@
 				BD7831482968773C00907452 /* SettingIDView.swift in Sources */,
 				BD470D662966CA1000404AB4 /* EditView.swift in Sources */,
 				BD470D6E2966CA6C00404AB4 /* SplashViewModel.swift in Sources */,
+				BD6E36DD296FF0740077E8DB /* UpdateDateModel.swift in Sources */,
 				BD470D702966CC1700404AB4 /* EditTimeBlockView.swift in Sources */,
 				BD470D402966C4CE00404AB4 /* AppDelegate.swift in Sources */,
 				BD7831372968679200907452 /* FirebaseRoot.swift in Sources */,
@@ -584,7 +588,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = ZLN97H98PA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WorkCalculator/Support/Info.plist;
@@ -615,7 +619,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = ZLN97H98PA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WorkCalculator/Support/Info.plist;

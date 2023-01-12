@@ -82,14 +82,14 @@ final class SettingViewModel: BaseViewModel {
                     message: "공유 아이디를 입력해 주세요",
                     actionTitle: "공유하기",
                     cancel: "닫기",
-                    handler: { id in
+                    handler: { shareID in
                         let currentID = UserDefaultsManager.firebaseID
-                        guard currentID != id else {
+                        guard currentID != shareID else {
                             self?.coordinator.toast("공유할 아이디를 입력해 주세요")
                             return
                         }
                         
-                        self?.shareID.accept(id)
+                        self?.shareID.accept(shareID)
                     }
                 )
             }
