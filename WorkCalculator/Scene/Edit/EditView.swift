@@ -17,13 +17,9 @@ final class EditView: BaseView {
     // MARK: - Property
     
     private let contentsScrollView = UIScrollView()
-    private let contentsStackView = UPsStackView(axis: .vertical, spacing: 32.0)
-    private let titleLabel = UILabel().then { view in
-        view.text = "칼퇴 계산기"
-        view.textColor = .gray900
-        view.textAlignment = .center
-        view.font = .boldSystemFont(ofSize: 40.0)
-    }
+    private let contentsStackView = UPsStackView(axis: .vertical, spacing: 24.0)
+    
+    private let infoView = EditInfoView()
     
     var timeBlockViews: [EditTimeBlockView] = []
     var timeBlockViewModels: [EditTimeBlockViewModel] = []
@@ -152,7 +148,7 @@ final class EditView: BaseView {
         
         self.contentsScrollView.addSubview(self.contentsStackView)
         
-        [self.titleLabel]
+        [self.infoView]
             .forEach(self.contentsStackView.addArrangedSubview(_:))
         
         [self.sumUnitStackView, self.refreshButton, settingButton]

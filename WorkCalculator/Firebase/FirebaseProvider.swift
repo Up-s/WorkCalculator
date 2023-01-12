@@ -74,14 +74,6 @@ final class FirebaseProvider {
                             return
                         }
                         
-                        let currentID = UserDefaultsManager.firebaseID!
-                        
-                        Firestore
-                            .firestore()
-                            .collection(FirebaseRoot.data)
-                            .document(currentID)
-                            .delete()
-                        
                         UserDefaultsManager.firebaseID = shareID
                         AppManager.shared.settingData = settingData
                         
