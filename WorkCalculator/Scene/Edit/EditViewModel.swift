@@ -61,7 +61,9 @@ final class EditViewModel: BaseViewModel {
         self.input.refreshDidTap
             .throttle(.seconds(2), scheduler: MainScheduler.instance)
             .bind { [weak self] in
-                let scene = Scene.splash
+                let inTpye = UpdateType.refresh
+                let viewModel = UpdateViewModel(inTpye)
+                let scene = Scene.update(viewModel)
                 self?.coordinator.transition(scene: scene, style: .root)
             }
             .disposed(by: self.disposeBag)

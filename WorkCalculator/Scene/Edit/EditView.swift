@@ -70,7 +70,7 @@ final class EditView: BaseView {
     // MARK: - Interface
     
     func setData(_ sumRunTime: Int) {
-        let max = 40 * 60
+        let max = (AppManager.shared.settingData?.workBaseHour ?? 40) * 60
         
         let sumRunTimeHour = sumRunTime / 60
         let sumRunTimeMin = sumRunTime % 60
@@ -91,10 +91,6 @@ final class EditView: BaseView {
         let remainedText = String(format: "%d시간 %02d분", remainedHour, remainedMin)
         self.remainedSumUnitView.subLabel.text = remainedText
     }
-    
-    
-    
-    // MARK: - UI
     
     func createUnitView(_ blockViewModels: [EditTimeBlockViewModel]) {
         blockViewModels
@@ -145,7 +141,7 @@ final class EditView: BaseView {
     
     
     
-    
+    // MARK: - UI
     
     private func setAttribute() {
         self.backgroundColor = .light

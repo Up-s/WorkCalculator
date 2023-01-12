@@ -17,9 +17,7 @@ final class FirebaseProvider {
     class func create() -> Observable<Void> {
         Observable<Void>.create { observer -> Disposable in
             
-            let setting = SettingModel(
-                days: [.mon, .tue, .wed, .thu, .fri]
-            )
+            let setting = SettingModel()
             
             if let data = try? FirebaseEncoder().encode(setting) as? [String: Any] {
                 
@@ -49,10 +47,12 @@ final class FirebaseProvider {
         }
     }
     
-    class func share(_ id: String?) -> Observable<Void> {
+    
+    
+    class func shareID(_ shareID: String?) -> Observable<Void> {
         Observable<Void>.create { observer -> Disposable in
             
-            guard let id = id else {
+            guard let shareID = shareID else {
                 observer.onError(FirebaseError.emptyData)
                 return Disposables.create()
             }
@@ -60,7 +60,7 @@ final class FirebaseProvider {
             Firestore
                 .firestore()
                 .collection(FirebaseRoot.data)
-                .document(id)
+                .document(shareID)
                 .getDocument { snapshot, error in
                     if let error = error {
                         observer.onError(error)
@@ -74,7 +74,15 @@ final class FirebaseProvider {
                             return
                         }
                         
-                        UserDefaultsManager.firebaseID = id
+                        let currentID = UserDefaultsManager.firebaseID!
+                        
+                        Firestore
+                            .firestore()
+                            .collection(FirebaseRoot.data)
+                            .document(currentID)
+                            .delete()
+                        
+                        UserDefaultsManager.firebaseID = shareID
                         AppManager.shared.settingData = settingData
                         
                         observer.onNext(())
@@ -123,23 +131,24 @@ final class FirebaseProvider {
     
     
     
-    class func setSettingData() -> Observable<Void> {
+    class func setSettingData(_ data: SettingModel) -> Observable<Void> {
         Observable<Void>.create { observer -> Disposable in
             
             let documentID = UserDefaultsManager.firebaseID!
-            let settingData = AppManager.shared.settingData!
             
-            if let data = try? FirebaseEncoder().encode(settingData) as? [String: Any] {
+            if let encoderData = try? FirebaseEncoder().encode(data) as? [String: Any] {
                 
                 Firestore
                     .firestore()
                     .collection(FirebaseRoot.data)
                     .document(documentID)
-                    .setData(data) { error in
+                    .setData(encoderData) { error in
                         if let error = error {
                             observer.onError(error)
                             
                         } else {
+                            AppManager.shared.settingData = data
+                            
                             observer.onNext(())
                             observer.onCompleted()
                         }
@@ -240,6 +249,16 @@ final class FirebaseProvider {
                         observer.onError(error)
                         
                     } else {
+                        
+                        let update = UpdateDateModel()
+                        let updateData = try! FirebaseEncoder().encode(update) as! [String: Any]
+                        
+                        Firestore
+                            .firestore()
+                            .collection(FirebaseRoot.data)
+                            .document(documentID)
+                            .updateData(updateData)
+                        
                         observer.onNext(block)
                         observer.onCompleted()
                     }
@@ -248,5 +267,4 @@ final class FirebaseProvider {
             return Disposables.create()
         }
     }
-    
 }

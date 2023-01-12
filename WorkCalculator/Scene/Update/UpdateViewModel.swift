@@ -1,8 +1,8 @@
 //
-//  SplashViewModel.swift
+//  UpdateViewModel.swift
 //  WorkCalculator
 //
-//  Created by YouUp Lee on 2023/01/05.
+//  Created by YouUp Lee on 2023/01/11.
 //
 
 import Foundation
@@ -11,13 +11,20 @@ import RxCocoa
 import RxSwift
 import UPsKit
 
-final class SplashViewModel: BaseViewModel {
+enum UpdateType {
+    case refresh
+    case share(String)
+    case setting(SettingModel)
+}
+
+final class UpdateViewModel: BaseViewModel {
     
     struct Input {
         let viewDidAppear = PublishRelay<Void>()
     }
     
     struct Output {
+        let progress = PublishRelay<Int>()
     }
     
     // MARK: - Property
@@ -25,24 +32,49 @@ final class SplashViewModel: BaseViewModel {
     let input = Input()
     let output = Output()
     
-    private let timeBlockProvider = PublishRelay<[TimeBlockModel]>()
-    private let temp = BehaviorRelay<[[TimeBlockModel]]>(value: [])
+    let inType: BehaviorRelay<UpdateType>
+    private let timeObserver: Observable<Int>
+    
     
     
     // MARK: - Interface
     
-    init() {
+    init(_ inType: UpdateType) {
+        self.inType = BehaviorRelay<UpdateType>(value: inType)
+        
+        self.timeObserver = Observable<Int>
+            .interval(.milliseconds(10), scheduler: MainScheduler.instance)
+        
         super.init()
         
+        
+        Observable
+            .combineLatest(
+                self.input.viewDidAppear.asObservable(),
+                self.timeObserver.asObservable()
+            ) { _, progress in
+                return progress
+            }
+            .bind(to: self.output.progress)
+            .disposed(by: self.disposeBag)
+        
         self.input.viewDidAppear
+            .delay(.seconds(2), scheduler: MainScheduler.instance)
             .flatMap {
-                UserDefaultsManager.firebaseID == nil ?
-                    FirebaseProvider.create() :
-                    FirebaseProvider.getSettingData()
+                switch inType {
+                case .refresh:
+                    return FirebaseProvider.getSettingData()
+                    
+                case .share(let id):
+                    return FirebaseProvider.shareID(id)
+                    
+                case .setting(let data):
+                    return FirebaseProvider.setSettingData(data)
+                }
             }
             .catch { [weak self] error in
                 self?.debugLog(#function, #line, error)
-                return FirebaseProvider.create()
+                return Observable.empty()
             }
             .map { TimeBlockModel.create }
             .flatMap { blocks in
