@@ -43,7 +43,7 @@ final class UpdateViewModel: BaseViewModel {
         self.inType = BehaviorRelay<UpdateType>(value: inType)
         
         self.timeObserver = Observable<Int>
-            .interval(.milliseconds(10), scheduler: MainScheduler.instance)
+            .interval(.milliseconds(5), scheduler: MainScheduler.instance)
         
         super.init()
         
@@ -59,7 +59,6 @@ final class UpdateViewModel: BaseViewModel {
             .disposed(by: self.disposeBag)
         
         self.input.viewDidAppear
-            .delay(.seconds(2), scheduler: MainScheduler.instance)
             .flatMap {
                 switch inType {
                 case .refresh:
