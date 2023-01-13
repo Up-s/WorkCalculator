@@ -14,7 +14,6 @@
 		BD470D542966C66E00404AB4 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D532966C66E00404AB4 /* SplashViewController.swift */; };
 		BD470D562966C74400404AB4 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D552966C74400404AB4 /* Scene.swift */; };
 		BD470D582966C88E00404AB4 /* GoogleService-Info-Release.plist in Resources */ = {isa = PBXBuildFile; fileRef = BD470D572966C88E00404AB4 /* GoogleService-Info-Release.plist */; };
-		BD470D622966C98A00404AB4 /* TodayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D612966C98A00404AB4 /* TodayModel.swift */; };
 		BD470D662966CA1000404AB4 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D652966CA1000404AB4 /* EditView.swift */; };
 		BD470D682966CA1500404AB4 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D672966CA1500404AB4 /* EditViewController.swift */; };
 		BD470D6A2966CA1900404AB4 /* EditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D692966CA1900404AB4 /* EditViewModel.swift */; };
@@ -69,7 +68,6 @@
 		BD470D532966C66E00404AB4 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		BD470D552966C74400404AB4 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		BD470D572966C88E00404AB4 /* GoogleService-Info-Release.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Release.plist"; sourceTree = "<group>"; };
-		BD470D612966C98A00404AB4 /* TodayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayModel.swift; sourceTree = "<group>"; };
 		BD470D652966CA1000404AB4 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 		BD470D672966CA1500404AB4 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		BD470D692966CA1900404AB4 /* EditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewModel.swift; sourceTree = "<group>"; };
@@ -178,11 +176,11 @@
 		BD470D3E2966C4CE00404AB4 /* WorkCalculator */ = {
 			isa = PBXGroup;
 			children = (
-				BD6E36DB296EE7000077E8DB /* View */,
 				BD470D5B2966C8C900404AB4 /* Scene */,
+				BD6E36DB296EE7000077E8DB /* View */,
 				BD8F87812968665E0086F6C1 /* Firebase */,
-				BD470D5C2966C8D100404AB4 /* Manager */,
 				BD470D5A2966C8BF00404AB4 /* Model */,
+				BD470D5C2966C8D100404AB4 /* Manager */,
 				BD470D592966C8B300404AB4 /* Support */,
 			);
 			path = WorkCalculator;
@@ -201,11 +199,10 @@
 		BD470D5A2966C8BF00404AB4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				BD470D612966C98A00404AB4 /* TodayModel.swift */,
 				BD470D882966F80F00404AB4 /* TimeBlockModel.swift */,
 				BD78313C29686BD800907452 /* SettingModel.swift */,
-				BD78314B2968825100907452 /* InputType.swift */,
 				BD6E36DC296FF0740077E8DB /* UpdateDateModel.swift */,
+				BD78314B2968825100907452 /* InputType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -228,9 +225,9 @@
 		BD470D5C2966C8D100404AB4 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				BD9A16C8296736430093FB1C /* UserDefaultsManager.swift */,
-				BD470D782966DDD600404AB4 /* DateManager.swift */,
 				BD78313E296871CB00907452 /* AppManager.swift */,
+				BD470D782966DDD600404AB4 /* DateManager.swift */,
+				BD9A16C8296736430093FB1C /* UserDefaultsManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -493,7 +490,6 @@
 				BD470D402966C4CE00404AB4 /* AppDelegate.swift in Sources */,
 				BD7831372968679200907452 /* FirebaseRoot.swift in Sources */,
 				BD6E36D3296ECFBB0077E8DB /* UpdateView.swift in Sources */,
-				BD470D622966C98A00404AB4 /* TodayModel.swift in Sources */,
 				BD470D682966CA1500404AB4 /* EditViewController.swift in Sources */,
 				BD470D6C2966CA6500404AB4 /* SplashView.swift in Sources */,
 				BD7831422968764B00907452 /* SettingView.swift in Sources */,
