@@ -15,14 +15,14 @@ final class HistoryView: BaseView, NavigationProtocol {
     
     // MARK: - Property
     
-    var naviView: BaseNavigationView
+    var navigationView: BaseNavigationView
     
     
     
     // MARK: - Life Cycle
     
     override init() {
-        self.naviView = BaseNavigationView(.pop)
+        self.navigationView = BaseNavigationView(.pop)
         
         super.init()
         
@@ -46,7 +46,7 @@ final class HistoryView: BaseView, NavigationProtocol {
     private func setAttribute() {
         self.backgroundColor = .light
         
-        self.naviView.navTitleLabel.text = "이전 기록"
+        self.navigationView.titleLabel.text = "이전 기록"
         
         
     }

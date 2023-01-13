@@ -16,7 +16,7 @@ final class EditView: BaseView, NavigationProtocol {
     
     // MARK: - Property
     
-    var naviView: BaseNavigationView
+    var navigationView: BaseNavigationView
     
     private let contentsScrollView = UIScrollView().then { view in
         view.showsVerticalScrollIndicator = false
@@ -55,7 +55,7 @@ final class EditView: BaseView, NavigationProtocol {
     // MARK: - Life Cycle
     
     override init() {
-      self.naviView = BaseNavigationView(.none(0.0))
+        self.navigationView = BaseNavigationView(.none(0.0))
         
         super.init()
         
@@ -145,10 +145,10 @@ final class EditView: BaseView, NavigationProtocol {
     private func setAttribute() {
         self.backgroundColor = .light
         
-        self.naviView.navTitleLabel.text = "칼퇴 계산기"
+        self.navigationView.titleLabel.text = "칼퇴 계산기"
         
         [self.refreshButton, self.histortButton, self.settingButton].forEach { view in
-            self.naviView.addNavigationRightStackView(view)
+            self.navigationView.addNavigationRightStackView(view)
         }
         
         
@@ -169,7 +169,7 @@ final class EditView: BaseView, NavigationProtocol {
         let guide = self.safeAreaLayoutGuide
         
         self.contentsScrollView.snp.makeConstraints { make in
-            make.top.equalTo(self.naviView.snp.bottom)
+            make.top.equalTo(self.navigationView.snp.bottom)
             make.leading.trailing.bottom.equalTo(guide)
         }
         

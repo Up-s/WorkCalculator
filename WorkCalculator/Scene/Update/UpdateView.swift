@@ -15,7 +15,6 @@ final class UpdateView: BaseView {
     
     // MARK: - Property
     
-    
     var currentProgressView: ProgressView?
     
     
@@ -66,4 +65,3 @@ final class UpdateView: BaseView {
         
     }
 }
-
