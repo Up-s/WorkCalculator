@@ -79,7 +79,7 @@ final class EditViewModel: BaseViewModel {
             .throttle(.seconds(2), scheduler: MainScheduler.instance)
             .bind { [weak self] in
                 let scene = Scene.history
-                self?.coordinator.transition(scene: scene, style: .modal(.fullScreen))
+                self?.coordinator.transition(scene: scene, style: .push)
             }
             .disposed(by: self.disposeBag)
         
@@ -87,7 +87,7 @@ final class EditViewModel: BaseViewModel {
             .throttle(.seconds(2), scheduler: MainScheduler.instance)
             .bind { [weak self] in
                 let scene = Scene.setting
-                self?.coordinator.transition(scene: scene, style: .modal(.fullScreen))
+                self?.coordinator.transition(scene: scene, style: .push)
             }
             .disposed(by: self.disposeBag)
     }

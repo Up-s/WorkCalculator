@@ -43,7 +43,7 @@ final class SettingViewController: BaseViewController {
     
     private func bindViewModel() {
         self.rootView.naviView.leftButton.rx.tap
-            .bind(to: self.viewModel.base.dismissDidTap)
+            .bind(to: self.viewModel.base.backDidTap)
             .disposed(by: self.disposeBag)
         
         self.rootView.idView.copyButton.rx.tap

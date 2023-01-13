@@ -36,7 +36,7 @@ final class SettingView: BaseView, NavigationProtocol {
     // MARK: - Life Cycle
     
     override init() {
-        self.naviView = BaseNavigationView(.dismiss)
+        self.naviView = BaseNavigationView(.pop)
         
         super.init()
         
