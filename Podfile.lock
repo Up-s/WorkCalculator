@@ -843,8 +843,8 @@ DEPENDENCIES:
   - Firebase/Firestore (~> 9)
   - Firebase/Messaging (~> 9)
   - Firebase/Storage (~> 9)
-  - Realm
-  - RealmSwift
+  - Realm (~> 10)
+  - RealmSwift (~> 10)
   - UPsKit
 
 SPEC REPOS:
@@ -924,6 +924,6 @@ SPEC CHECKSUMS:
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
   UPsKit: 13eb3f602a323c04db26800dfd39d74695614c9e
 
-PODFILE CHECKSUM: 85cd36a3e32039d1b0cb4283386616b8d7ad0ac6
+PODFILE CHECKSUM: 9a4a799189b18d8a292d19c9626c98caa5690af6
 
 COCOAPODS: 1.11.3
