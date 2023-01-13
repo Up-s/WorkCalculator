@@ -27,6 +27,7 @@ final class HistoryView: BaseView, NavigationProtocol {
         super.init()
         
         self.setNavigation()
+        self.setAttribute()
         self.setConstraint()
     }
     
@@ -43,6 +44,10 @@ final class HistoryView: BaseView, NavigationProtocol {
     // MARK: - UI
     
     private func setAttribute() {
+        self.backgroundColor = .light
+        
+        self.naviView.navTitleLabel.text = "이전 기록"
+        
         
     }
     

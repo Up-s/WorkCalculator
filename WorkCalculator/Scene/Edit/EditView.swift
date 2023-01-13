@@ -40,11 +40,11 @@ final class EditView: BaseView, NavigationProtocol {
         view.setImage(image, for: .normal)
     }
     let histortButton = UIButton().then { view in
-        let image = UIImage.sfConfiguration(name: "rectangle.stack", color: .systemPurple)
+        let image = UIImage.sfConfiguration(name: "rectangle.stack", color: .systemBlue)
         view.setImage(image, for: .normal)
     }
     let settingButton = UIButton().then { view in
-        let image = UIImage.sfConfiguration(name: "gearshape", color: .systemGreen)
+        let image = UIImage.sfConfiguration(name: "gearshape", color: .systemBlue)
         view.setImage(image, for: .normal)
     }
     
