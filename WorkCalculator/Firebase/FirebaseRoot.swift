@@ -17,6 +17,10 @@ struct FirebaseRoot {
     static let timeBlock = "timeBlock"
 }
 
+struct FirebaseFieldKey {
+    
+    static let deviceList = "deviceList"
+}
 
 extension DocumentReference: DocumentReferenceType {}
 extension GeoPoint: GeoPointType {}

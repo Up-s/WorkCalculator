@@ -33,6 +33,11 @@
 		BD6E36D7296ECFC90077E8DB /* UpdateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6E36D6296ECFC90077E8DB /* UpdateViewModel.swift */; };
 		BD6E36DA296EE6EC0077E8DB /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6E36D9296EE6EC0077E8DB /* ProgressView.swift */; };
 		BD6E36DD296FF0740077E8DB /* UpdateDateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6E36DC296FF0740077E8DB /* UpdateDateModel.swift */; };
+		BD6E36E7297121430077E8DB /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6E36E6297121430077E8DB /* HistoryView.swift */; };
+		BD6E36E9297121470077E8DB /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6E36E8297121470077E8DB /* HistoryViewController.swift */; };
+		BD6E36EB2971214C0077E8DB /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6E36EA2971214C0077E8DB /* HistoryViewModel.swift */; };
+		BD730B11297147CC001E6B4D /* RealmTimeBlockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD730B10297147CC001E6B4D /* RealmTimeBlockModel.swift */; };
+		BD730B1329714B71001E6B4D /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD730B1229714B71001E6B4D /* RealmManager.swift */; };
 		BD7831372968679200907452 /* FirebaseRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7831362968679200907452 /* FirebaseRoot.swift */; };
 		BD783139296867AA00907452 /* FirebaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD783138296867AA00907452 /* FirebaseError.swift */; };
 		BD78313B2968684000907452 /* FirebaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD78313A2968684000907452 /* FirebaseProvider.swift */; };
@@ -87,6 +92,11 @@
 		BD6E36D6296ECFC90077E8DB /* UpdateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewModel.swift; sourceTree = "<group>"; };
 		BD6E36D9296EE6EC0077E8DB /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		BD6E36DC296FF0740077E8DB /* UpdateDateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateDateModel.swift; sourceTree = "<group>"; };
+		BD6E36E6297121430077E8DB /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		BD6E36E8297121470077E8DB /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		BD6E36EA2971214C0077E8DB /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
+		BD730B10297147CC001E6B4D /* RealmTimeBlockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmTimeBlockModel.swift; sourceTree = "<group>"; };
+		BD730B1229714B71001E6B4D /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		BD7831362968679200907452 /* FirebaseRoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRoot.swift; sourceTree = "<group>"; };
 		BD783138296867AA00907452 /* FirebaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseError.swift; sourceTree = "<group>"; };
 		BD78313A2968684000907452 /* FirebaseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseProvider.swift; sourceTree = "<group>"; };
@@ -199,6 +209,7 @@
 		BD470D5A2966C8BF00404AB4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BD730B10297147CC001E6B4D /* RealmTimeBlockModel.swift */,
 				BD470D882966F80F00404AB4 /* TimeBlockModel.swift */,
 				BD78313C29686BD800907452 /* SettingModel.swift */,
 				BD6E36DC296FF0740077E8DB /* UpdateDateModel.swift */,
@@ -216,6 +227,7 @@
 				BD470D642966C9F000404AB4 /* Edit */,
 				BD470D812966EDF900404AB4 /* Picker */,
 				BD783151296ADA1100907452 /* NumberPad */,
+				BD6E36E5297121390077E8DB /* History */,
 				BD7831402968763D00907452 /* Setting */,
 				BD6E36D1296ECF980077E8DB /* Update */,
 			);
@@ -228,6 +240,7 @@
 				BD78313E296871CB00907452 /* AppManager.swift */,
 				BD470D782966DDD600404AB4 /* DateManager.swift */,
 				BD9A16C8296736430093FB1C /* UserDefaultsManager.swift */,
+				BD730B1229714B71001E6B4D /* RealmManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -283,6 +296,16 @@
 				BD6E36CF296E94D40077E8DB /* InputButtonView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		BD6E36E5297121390077E8DB /* History */ = {
+			isa = PBXGroup;
+			children = (
+				BD6E36E6297121430077E8DB /* HistoryView.swift */,
+				BD6E36E8297121470077E8DB /* HistoryViewController.swift */,
+				BD6E36EA2971214C0077E8DB /* HistoryViewModel.swift */,
+			);
+			path = History;
 			sourceTree = "<group>";
 		};
 		BD7831402968763D00907452 /* Setting */ = {
@@ -462,12 +485,14 @@
 				BD78313D29686BD800907452 /* SettingModel.swift in Sources */,
 				BD470D722966D42700404AB4 /* EditTimeBlockViewModel.swift in Sources */,
 				BD6E36CE296E86460077E8DB /* NumberPadCollectionViewCell.swift in Sources */,
+				BD730B1329714B71001E6B4D /* RealmManager.swift in Sources */,
 				BD470D792966DDD600404AB4 /* DateManager.swift in Sources */,
 				BD7831462968765400907452 /* SettingViewModel.swift in Sources */,
 				BD470D6A2966CA1900404AB4 /* EditViewModel.swift in Sources */,
 				BD6E36D7296ECFC90077E8DB /* UpdateViewModel.swift in Sources */,
 				BD783155296ADA2C00907452 /* NumberPadViewController.swift in Sources */,
 				BD470D562966C74400404AB4 /* Scene.swift in Sources */,
+				BD6E36EB2971214C0077E8DB /* HistoryViewModel.swift in Sources */,
 				BD783153296ADA2700907452 /* NumberPadView.swift in Sources */,
 				BD9962FE296C389000601874 /* SettingDaysView.swift in Sources */,
 				BD470D832966EE1800404AB4 /* PickerView.swift in Sources */,
@@ -475,6 +500,7 @@
 				BD0344D929707972001B3010 /* EditInfoView.swift in Sources */,
 				BD470D542966C66E00404AB4 /* SplashViewController.swift in Sources */,
 				BD6E36DA296EE6EC0077E8DB /* ProgressView.swift in Sources */,
+				BD6E36E7297121430077E8DB /* HistoryView.swift in Sources */,
 				BD78313F296871CB00907452 /* AppManager.swift in Sources */,
 				BD6E36D0296E94D40077E8DB /* InputButtonView.swift in Sources */,
 				BD78313B2968684000907452 /* FirebaseProvider.swift in Sources */,
@@ -484,9 +510,11 @@
 				BD783139296867AA00907452 /* FirebaseError.swift in Sources */,
 				BD7831482968773C00907452 /* SettingIDView.swift in Sources */,
 				BD470D662966CA1000404AB4 /* EditView.swift in Sources */,
+				BD6E36E9297121470077E8DB /* HistoryViewController.swift in Sources */,
 				BD470D6E2966CA6C00404AB4 /* SplashViewModel.swift in Sources */,
 				BD6E36DD296FF0740077E8DB /* UpdateDateModel.swift in Sources */,
 				BD470D702966CC1700404AB4 /* EditTimeBlockView.swift in Sources */,
+				BD730B11297147CC001E6B4D /* RealmTimeBlockModel.swift in Sources */,
 				BD470D402966C4CE00404AB4 /* AppDelegate.swift in Sources */,
 				BD7831372968679200907452 /* FirebaseRoot.swift in Sources */,
 				BD6E36D3296ECFBB0077E8DB /* UpdateView.swift in Sources */,

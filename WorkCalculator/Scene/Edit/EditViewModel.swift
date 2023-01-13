@@ -15,6 +15,7 @@ final class EditViewModel: BaseViewModel {
     
     struct Input {
         let refreshDidTap = PublishRelay<Void>()
+        let historyDidTap = PublishRelay<Void>()
         let settingDidTap = PublishRelay<Void>()
     }
     
@@ -37,6 +38,12 @@ final class EditViewModel: BaseViewModel {
         super.init()
         
         Observable.from(AppManager.shared.timeBlocks)
+            .map { blocks in
+                blocks.filter { block in
+                    AppManager.shared.settingData?.days.contains(block.weekday) ?? false
+                }
+            }
+            .filter { !$0.isEmpty }
             .map { blocks in
                 EditTimeBlockViewModel(blocks)
             }
@@ -68,7 +75,16 @@ final class EditViewModel: BaseViewModel {
             }
             .disposed(by: self.disposeBag)
         
+        self.input.historyDidTap
+            .throttle(.seconds(2), scheduler: MainScheduler.instance)
+            .bind { [weak self] in
+                let scene = Scene.history
+                self?.coordinator.transition(scene: scene, style: .modal(.fullScreen))
+            }
+            .disposed(by: self.disposeBag)
+        
         self.input.settingDidTap
+            .throttle(.seconds(2), scheduler: MainScheduler.instance)
             .bind { [weak self] in
                 let scene = Scene.setting
                 self?.coordinator.transition(scene: scene, style: .modal(.fullScreen))

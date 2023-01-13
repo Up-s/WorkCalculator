@@ -46,6 +46,10 @@ final class EditViewController: BaseViewController {
             .bind(to: self.viewModel.input.refreshDidTap)
             .disposed(by: self.disposeBag)
         
+        self.rootView.histortButton.rx.tap
+            .bind(to: self.viewModel.input.historyDidTap)
+            .disposed(by: self.disposeBag)
+        
         self.rootView.settingButton.rx.tap
             .bind(to: self.viewModel.input.settingDidTap)
             .disposed(by: self.disposeBag)

@@ -18,30 +18,25 @@ final class FirebaseProvider {
         Observable<Void>.create { observer -> Disposable in
             
             let setting = SettingModel()
+            let data = try! FirebaseEncoder().encode(setting) as! [String: Any]
             
-            if let data = try? FirebaseEncoder().encode(setting) as? [String: Any] {
-                
-                let documentID = Firestore
-                    .firestore()
-                    .collection(FirebaseRoot.data)
-                    .addDocument(data: data) { error in
-                        if let error = error {
-                            observer.onError(error)
-                            
-                        } else {
-                            AppManager.shared.settingData = setting
-                            
-                            observer.onNext(())
-                            observer.onCompleted()
-                        }
+            let documentID = Firestore
+                .firestore()
+                .collection(FirebaseRoot.data)
+                .addDocument(data: data) { error in
+                    if let error = error {
+                        observer.onError(error)
+                        
+                    } else {
+                        AppManager.shared.settingData = setting
+                        
+                        observer.onNext(())
+                        observer.onCompleted()
                     }
-                    .documentID
-                
-                UserDefaultsManager.firebaseID = documentID
-                
-            } else {
-                observer.onError(FirebaseError.parsingError)
-            }
+                }
+                .documentID
+            
+            UserDefaultsManager.firebaseID = documentID
             
             return Disposables.create()
         }
@@ -127,28 +122,23 @@ final class FirebaseProvider {
         Observable<Void>.create { observer -> Disposable in
             
             let documentID = UserDefaultsManager.firebaseID!
+            let encoderData = try! FirebaseEncoder().encode(data) as! [String: Any]
             
-            if let encoderData = try? FirebaseEncoder().encode(data) as? [String: Any] {
-                
-                Firestore
-                    .firestore()
-                    .collection(FirebaseRoot.data)
-                    .document(documentID)
-                    .setData(encoderData) { error in
-                        if let error = error {
-                            observer.onError(error)
-                            
-                        } else {
-                            AppManager.shared.settingData = data
-                            
-                            observer.onNext(())
-                            observer.onCompleted()
-                        }
+            Firestore
+                .firestore()
+                .collection(FirebaseRoot.data)
+                .document(documentID)
+                .setData(encoderData) { error in
+                    if let error = error {
+                        observer.onError(error)
+                        
+                    } else {
+                        AppManager.shared.settingData = data
+                        
+                        observer.onNext(())
+                        observer.onCompleted()
                     }
-                
-            } else {
-                observer.onError(FirebaseError.parsingError)
-            }
+                }
             
             return Disposables.create()
         }
@@ -186,10 +176,8 @@ final class FirebaseProvider {
                             }
                             
                         case .some(let data):
-                            guard let temp = try? FirebaseDecoder().decode(TimeBlockModel.self, from: data) else {
-                                observer.onError(FirebaseError.parsingError)
-                                return
-                            }
+                            let temp = try! FirebaseDecoder().decode(TimeBlockModel.self, from: data)
+                            
                             observer.onNext(temp)
                             observer.onCompleted()
                         }
@@ -241,7 +229,6 @@ final class FirebaseProvider {
                         observer.onError(error)
                         
                     } else {
-                        
                         let update = UpdateDateModel()
                         let updateData = try! FirebaseEncoder().encode(update) as! [String: Any]
                         
@@ -258,5 +245,66 @@ final class FirebaseProvider {
             
             return Disposables.create()
         }
+    }
+    
+    
+    
+    class func getAllTimeBlock(_ realmData: [TimeBlockModel]) -> Observable<[TimeBlockModel]> {
+        Observable<[TimeBlockModel]>.create { observer -> Disposable in
+            
+            let documentID = UserDefaultsManager.firebaseID!
+            let deviceUUID = UserDefaultsManager.deviceUUID!
+            
+            Firestore
+                .firestore()
+                .collection(FirebaseRoot.data)
+                .document(documentID)
+                .collection(FirebaseRoot.timeBlock)
+                .whereField(FirebaseFieldKey.deviceList, isNotEqualTo: deviceUUID)
+                .getDocuments { snapshot, error in
+                    if let error = error {
+                        observer.onError(error)
+                        
+                    } else {
+                        guard let documents = snapshot?.documents else {
+                            observer.onError(FirebaseError.parsingError)
+                            return
+                        }
+                        
+                        var blocks = documents.compactMap { document in
+                            try? FirebaseDecoder().decode(TimeBlockModel.self, from: document.data())
+                        }
+                        
+                        blocks.forEach { block in
+                            print("\n--------------------------------------------", block.groupKey)
+                            self.setDeviceList(block)
+                        }
+                        
+                        RealmManager.create(blocks: blocks)
+                        
+                        blocks.append(contentsOf: realmData)
+                        
+                        observer.onNext(blocks)
+                        observer.onCompleted()
+                    }
+                }
+            
+            return Disposables.create()
+        }
+    }
+    
+    class func setDeviceList(_ timeBlock: TimeBlockModel) {
+        let documentID = UserDefaultsManager.firebaseID!
+        let deviceUUID = UserDefaultsManager.deviceUUID!
+        var deviceList = timeBlock.deviceList
+        deviceList.append(deviceUUID)
+        
+        Firestore
+            .firestore()
+            .collection(FirebaseRoot.data)
+            .document(documentID)
+            .collection(FirebaseRoot.timeBlock)
+            .document(timeBlock.firebaseKey)
+            .updateData([FirebaseFieldKey.deviceList: deviceList])
     }
 }

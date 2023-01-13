@@ -33,14 +33,14 @@ final class EditView: BaseView {
     }
     let refreshButton = UIButton().then { view in
         view.setTitle("갱신", for: .normal)
-        view.setTitleColor(.white, for: .normal)
-        view.titleLabel?.font = .boldSystemFont(ofSize: 20.0)
         view.backgroundColor = .systemBlue
+    }
+    let histortButton = UIButton().then { view in
+        view.setTitle("이전기록", for: .normal)
+        view.backgroundColor = .systemPurple
     }
     let settingButton = UIButton().then { view in
         view.setTitle("설정", for: .normal)
-        view.setTitleColor(.white, for: .normal)
-        view.titleLabel?.font = .boldSystemFont(ofSize: 20.0)
         view.backgroundColor = .systemGreen
     }
     
@@ -142,6 +142,11 @@ final class EditView: BaseView {
     private func setAttribute() {
         self.backgroundColor = .light
         
+        [self.refreshButton, self.histortButton, self.settingButton].forEach { view in
+            view.setTitleColor(.white, for: .normal)
+            view.titleLabel?.font = .boldSystemFont(ofSize: 20.0)
+        }
+        
         
         
         self.addSubview(self.contentsScrollView)
@@ -151,7 +156,7 @@ final class EditView: BaseView {
         [self.infoView]
             .forEach(self.contentsStackView.addArrangedSubview(_:))
         
-        [self.sumUnitStackView, self.refreshButton, settingButton]
+        [self.sumUnitStackView, self.refreshButton, self.histortButton, self.settingButton]
             .forEach(self.contentsStackView.addArrangedSubview(_:))
         
         [self.totalSumUnitView, self.remainedSumUnitView]
@@ -170,7 +175,7 @@ final class EditView: BaseView {
             make.edges.equalToSuperview().inset(24.0)
         }
         
-        [self.refreshButton, self.settingButton].forEach { view in
+        [self.refreshButton, self.histortButton, self.settingButton].forEach { view in
             view.snp.makeConstraints { make in
                 make.height.equalTo(48.0)
             }

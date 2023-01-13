@@ -9,6 +9,8 @@ import Foundation
 
 struct TimeBlockModel: Codable {
     
+    let deviceList: [String]
+    
     let state: DateManager.State
     let weekday: DateManager.Day
     let year: Int
@@ -16,6 +18,8 @@ struct TimeBlockModel: Codable {
     let day: Int
     var hour: Int
     var min: Int
+    
+    let groupKey: String
     
     init(
         state: DateManager.State,
@@ -26,6 +30,8 @@ struct TimeBlockModel: Codable {
         hour: Int,
         min: Int
     ) {
+        self.deviceList = []
+        
         self.state = state
         self.weekday = weekday
         self.year = year
@@ -33,8 +39,25 @@ struct TimeBlockModel: Codable {
         self.day = day
         self.hour = hour
         self.min = min
+        
+        self.groupKey = "\(year)_\(month)_\(day)"
+    }
+    
+    init(_ realm: RealmTimeBlockModel) {
+        self.deviceList = []
+        
+        self.state = realm.state
+        self.weekday = realm.weekday
+        self.year = realm.year
+        self.month = realm.month
+        self.day = realm.day
+        self.hour = realm.hour
+        self.min = realm.min
+        
+        self.groupKey = realm.groupKey
     }
 }
+
 
 
 extension TimeBlockModel {
@@ -55,10 +78,6 @@ extension TimeBlockModel {
         "\(self.year)_\(self.month)_\(self.day)_\(self.state.en)"
     }
     
-    var groupKey: String {
-        "\(self.year)_\(self.month)_\(self.day)"
-    }
-    
     var date: Date {
         let dateComponents = DateComponents(year: self.year, month: self.month, day: self.day, hour: 0, minute: 0)
         var calendar = Calendar(identifier: .gregorian)
@@ -69,12 +88,16 @@ extension TimeBlockModel {
     static var create: [TimeBlockModel] {
         var calendar = Calendar(identifier: .gregorian)
         calendar.locale = Locale(identifier: "ko_KR")
+        
+//        let testDateComp = DateComponents(year: 2023, month: 1, day: 6)
+//        let testDate = calendar.date(from: testDateComp)!
+        
+//        let testDateComp = DateComponents(year: 2022, month: 12, day: 30)
+//        let testDate = calendar.date(from: testDateComp)!
+        
         let today = Date()
         let weekday = today.weekdayInt()
         let blocks = DateManager.Day.allCases
-            .filter {
-                AppManager.shared.settingData?.days.contains($0) ?? false
-            }
             .map { inDay -> Date in
                 let tempWeekday = inDay.weekdayInt - weekday
                 let tempTimeInterval = TimeInterval(tempWeekday * 24 * 60 * 60)
