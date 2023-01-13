@@ -57,13 +57,7 @@ final class HistoryViewModel: BaseViewModel {
                     }
                     .asObservable()
             }
-            .bind { [weak self] blocks in
-                blocks.forEach {
-                    print($0.first?.groupKey)
-                }
-                
-                self?.output.blocks.accept(blocks)
-            }
+            .bind(to: self.output.blocks)
             .disposed(by: self.disposeBag)
         
         

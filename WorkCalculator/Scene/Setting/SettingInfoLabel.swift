@@ -15,7 +15,7 @@ final class SettingInfoLabel: UILabel {
         super.init(frame: .zero)
         
         self.textColor = .gray900
-        self.font = .boldSystemFont(ofSize: 12.0)
+        self.font = .boldSystemFont(ofSize: 15.0)
     }
     
     required init?(coder: NSCoder) {

@@ -63,7 +63,7 @@ struct TimeBlockModel: Codable {
 extension TimeBlockModel {
     
     var interval: Int {
-        (hour * 60) + min
+        (self.hour * 60) + self.min
     }
     
     var intervalString: String {
@@ -72,6 +72,10 @@ extension TimeBlockModel {
     
     var info: String {
         self.weekday.ko + "요일 " + self.state.ko
+    }
+    
+    var monthDay: String {
+        "\(self.month)월 \(self.day)일"
     }
     
     var firebaseKey: String {
