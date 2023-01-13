@@ -26,7 +26,6 @@ final class HistoryViewModel: BaseViewModel {
     let input = Input()
     let output = Output()
     
-    private let realmData = BehaviorRelay<[TimeBlockModel]>(value: RealmManager.read() ?? [])
     
     
     
@@ -36,9 +35,12 @@ final class HistoryViewModel: BaseViewModel {
         super.init()
         
         self.input.viewDidAppear
-            .withLatestFrom(self.realmData)
-            .flatMap { data in
-                FirebaseProvider.getAllTimeBlock(data)
+            .flatMap {
+                FirebaseProvider.getAllTimeBlock()
+            }
+            .map { getData -> [TimeBlockModel] in
+                let realmData = RealmManager.read() ?? []
+                return getData + realmData
             }
             .flatMap { blocks in
                 Observable.from(blocks)
@@ -55,12 +57,12 @@ final class HistoryViewModel: BaseViewModel {
                     }
                     .asObservable()
             }
-            .bind { blocks in
-//                blocks.forEach {
-//                    print($0.first?.groupKey)
-//                }
+            .bind { [weak self] blocks in
+                blocks.forEach {
+                    print($0.first?.groupKey)
+                }
                 
-                self.output.blocks.accept(blocks)
+                self?.output.blocks.accept(blocks)
             }
             .disposed(by: self.disposeBag)
         

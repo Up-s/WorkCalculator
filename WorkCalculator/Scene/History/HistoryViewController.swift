@@ -43,6 +43,10 @@ final class HistoryViewController: BaseViewController {
     }
     
     private func bindViewModel() {
+        self.rootView.naviView.leftButton.rx.tap
+            .bind(to: self.viewModel.base.dismissDidTap)
+            .disposed(by: self.disposeBag)
+        
         self.rx.viewDidAppear
             .bind(to: self.viewModel.input.viewDidAppear)
             .disposed(by: self.disposeBag)

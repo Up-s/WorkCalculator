@@ -13,7 +13,7 @@ import RxSwift
 final class FirebaseProvider {
     
     
-    
+    // SplashViewModel
     class func create() -> Observable<Void> {
         Observable<Void>.create { observer -> Disposable in
             
@@ -43,46 +43,8 @@ final class FirebaseProvider {
     }
     
     
-    
-    class func shareID(_ shareID: String?) -> Observable<Void> {
-        Observable<Void>.create { observer -> Disposable in
-            
-            guard let shareID = shareID else {
-                observer.onError(FirebaseError.emptyData)
-                return Disposables.create()
-            }
-            
-            Firestore
-                .firestore()
-                .collection(FirebaseRoot.data)
-                .document(shareID)
-                .getDocument { snapshot, error in
-                    if let error = error {
-                        observer.onError(error)
-                        
-                    } else {
-                        guard
-                            let data = snapshot?.data(),
-                            let settingData = try? FirebaseDecoder().decode(SettingModel.self, from: data)
-                        else {
-                            observer.onError(FirebaseError.emptyData)
-                            return
-                        }
-                        
-                        UserDefaultsManager.firebaseID = shareID
-                        AppManager.shared.settingData = settingData
-                        
-                        observer.onNext(())
-                        observer.onCompleted()
-                    }
-                }
-            
-            return Disposables.create()
-        }
-    }
-    
-    
-    
+    // SplashViewModel
+    // UpdateViewModel
     class func getSettingData() -> Observable<Void> {
         Observable<Void>.create { observer -> Disposable in
             
@@ -117,7 +79,7 @@ final class FirebaseProvider {
     }
     
     
-    
+    // UpdateViewModel
     class func setSettingData(_ data: SettingModel) -> Observable<Void> {
         Observable<Void>.create { observer -> Disposable in
             
@@ -145,7 +107,8 @@ final class FirebaseProvider {
     }
     
     
-    
+    // SplashViewMdoel
+    // UpdateViewModel
     class func getTimeBlock(_ block: TimeBlockModel) -> Observable<TimeBlockModel> {
         Observable<TimeBlockModel>.create { observer -> Disposable in
             
@@ -193,7 +156,10 @@ final class FirebaseProvider {
     class func createTimeBlock(_ block: TimeBlockModel, completion: @escaping (Result<Void, Error>) -> Void) {
         
         let documentID = UserDefaultsManager.firebaseID!
-        let data = try! FirebaseEncoder().encode(block) as! [String: Any]
+        let deviceUUID = UserDefaultsManager.deviceUUID!
+        
+        var data = try! FirebaseEncoder().encode(block) as! [String: Any]
+        data[deviceUUID] = false
         
         Firestore
             .firestore()
@@ -211,7 +177,8 @@ final class FirebaseProvider {
             }
     }
     
-    
+    // PickerViewModel
+    // NumberPadViewModel
     class func setTimeBlock(_ block: TimeBlockModel) -> Observable<TimeBlockModel> {
         Observable<TimeBlockModel>.create { observer -> Disposable in
             
@@ -248,8 +215,8 @@ final class FirebaseProvider {
     }
     
     
-    
-    class func getAllTimeBlock(_ realmData: [TimeBlockModel]) -> Observable<[TimeBlockModel]> {
+    // HistoryViewModel
+    class func getAllTimeBlock() -> Observable<[TimeBlockModel]> {
         Observable<[TimeBlockModel]>.create { observer -> Disposable in
             
             let documentID = UserDefaultsManager.firebaseID!
@@ -260,7 +227,7 @@ final class FirebaseProvider {
                 .collection(FirebaseRoot.data)
                 .document(documentID)
                 .collection(FirebaseRoot.timeBlock)
-                .whereField(FirebaseFieldKey.deviceList, isNotEqualTo: deviceUUID)
+                .whereField(deviceUUID, isEqualTo: false)
                 .getDocuments { snapshot, error in
                     if let error = error {
                         observer.onError(error)
@@ -271,18 +238,22 @@ final class FirebaseProvider {
                             return
                         }
                         
-                        var blocks = documents.compactMap { document in
+                        let blocks = documents.compactMap { document in
                             try? FirebaseDecoder().decode(TimeBlockModel.self, from: document.data())
                         }
                         
-                        blocks.forEach { block in
-                            print("\n--------------------------------------------", block.groupKey)
-                            self.setDeviceList(block)
-                        }
+                        let filterBlocks = blocks
+                            .filter { block in
+                                let keys = AppManager.shared.timeBlocks.compactMap { $0.first?.groupKey }
+                                return !keys.contains(block.groupKey)
+                            }
                         
-                        RealmManager.create(blocks: blocks)
+                        filterBlocks
+                            .forEach { block in
+                                self.updateDevice(block.firebaseKey, state: true)
+                            }
                         
-                        blocks.append(contentsOf: realmData)
+                        RealmManager.create(blocks: filterBlocks)
                         
                         observer.onNext(blocks)
                         observer.onCompleted()
@@ -293,18 +264,170 @@ final class FirebaseProvider {
         }
     }
     
-    class func setDeviceList(_ timeBlock: TimeBlockModel) {
+    
+    // UpdateViewModel
+    class func share(_ shareID: String) -> Observable<Void> {
+        Observable<Void>.create { observer -> Disposable in
+            
+            Firestore
+                .firestore()
+                .collection(FirebaseRoot.data)
+                .document(shareID)
+                .getDocument { snapshot, error in
+                    if let error = error {
+                        observer.onError(error)
+                        
+                    } else {
+                        guard
+                            let data = snapshot?.data(),
+                            var settingData = try? FirebaseDecoder().decode(SettingModel.self, from: data)
+                        else {
+                            observer.onError(FirebaseError.emptyData)
+                            return
+                        }
+                        
+                        // 기존 데이터 삭제
+                        let deleteDocumentID = UserDefaultsManager.firebaseID!
+                        Firestore
+                            .firestore()
+                            .collection(FirebaseRoot.data)
+                            .document(deleteDocumentID)
+                            .delete()
+                        
+                        
+                        // 데이터 추가
+                        settingData.deviceList.append(UserDefaultsManager.deviceUUID!)
+                        
+                        AppManager.shared.settingData = settingData
+                        UserDefaultsManager.firebaseID = shareID
+                        RealmManager.deleteAll()
+                        
+                        self.addDevice()
+                        
+                        observer.onNext(())
+                        observer.onCompleted()
+                    }
+                }
+            
+            return Disposables.create()
+        }
+    }
+    
+    
+    
+    class func addDevice() {
         let documentID = UserDefaultsManager.firebaseID!
-        let deviceUUID = UserDefaultsManager.deviceUUID!
-        var deviceList = timeBlock.deviceList
-        deviceList.append(deviceUUID)
+        let deviceList = AppManager.shared.settingData?.deviceList ?? []
+        
+        guard !deviceList.isEmpty else { return }
+        
+        Firestore
+            .firestore()
+            .collection(FirebaseRoot.data)
+            .document(documentID)
+            .updateData([FirebaseFieldKey.deviceList: deviceList])
         
         Firestore
             .firestore()
             .collection(FirebaseRoot.data)
             .document(documentID)
             .collection(FirebaseRoot.timeBlock)
-            .document(timeBlock.firebaseKey)
-            .updateData([FirebaseFieldKey.deviceList: deviceList])
+            .getDocuments { snapshot, error in
+                if let error = error {
+                    print("\n😱😱😱😱😱😱", #fileID, #function, error)
+                    
+                } else {
+                    guard let documents = snapshot?.documents else {
+                        return
+                    }
+                    
+                    documents
+                        .map { $0.documentID }
+                        .forEach {
+                            self.updateDevice($0, state: false)
+                        }
+                }
+            }
+    }
+    
+    
+    
+    class func updateDevice(_ document: String, state: Bool) {
+        let documentID = UserDefaultsManager.firebaseID!
+        let deviceUUID = UserDefaultsManager.deviceUUID!
+        
+        Firestore
+            .firestore()
+            .collection(FirebaseRoot.data)
+            .document(documentID)
+            .collection(FirebaseRoot.timeBlock)
+            .document(document)
+            .updateData([deviceUUID: state])
+    }
+    
+    
+    // UpdateViewModel
+    class func shareCancel() -> Observable<Void>  {
+        let tempDocumentID = UserDefaultsManager.firebaseID!
+        let tempDeviceUUID = UserDefaultsManager.deviceUUID!
+        let tempDeviceList = AppManager.shared.settingData?.deviceList
+        
+        return self.create()
+            .do(
+                onNext: {
+                    var deviceList = [String]()
+                    
+                    if var list = tempDeviceList, let firstIndex = list.firstIndex(of: tempDeviceUUID) {
+                        list.remove(at: firstIndex)
+                        deviceList = list
+                    }
+                    
+                    guard !deviceList.isEmpty else { return }
+                    
+                    Firestore
+                        .firestore()
+                        .collection(FirebaseRoot.data)
+                        .document(tempDocumentID)
+                        .updateData([FirebaseFieldKey.deviceList: deviceList])
+                    
+                    Firestore
+                        .firestore()
+                        .collection(FirebaseRoot.data)
+                        .document(tempDocumentID)
+                        .collection(FirebaseRoot.timeBlock)
+                        .getDocuments { snapshot, error in
+                            if let error = error {
+                                print("\n😱😱😱😱😱😱", #fileID, #function, error)
+                                
+                            } else {
+                                guard let documents = snapshot?.documents else {
+                                    return
+                                }
+                                
+                                documents
+                                    .map { $0.documentID }
+                                    .forEach {
+                                        self.deleteDevice(
+                                            dataDocumentID: tempDocumentID,
+                                            timeBlockDocumentID: $0,
+                                            deviceUUID: tempDeviceUUID
+                                        )
+                                    }
+                            }
+                        }
+                }
+            )
+    }
+    
+    
+    
+    class func deleteDevice(dataDocumentID: String, timeBlockDocumentID: String, deviceUUID: String) {
+        Firestore
+            .firestore()
+            .collection(FirebaseRoot.data)
+            .document(dataDocumentID)
+            .collection(FirebaseRoot.timeBlock)
+            .document(timeBlockDocumentID)
+            .updateData([deviceUUID: FieldValue.delete()])
     }
 }

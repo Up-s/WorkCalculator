@@ -42,4 +42,17 @@ final class RealmManager {
             return nil
         }
     }
+    
+    class func deleteAll() {
+        do {
+            let realm = try Realm()
+            try realm.write {
+                realm.deleteAll()
+            }
+            
+        } catch {
+            print("\n😱😱😱😱😱😱", #fileID, #function, error)
+            return
+        }
+    }
 }

@@ -17,7 +17,7 @@ final class SettingIDView: UIView {
     
     private let contentsStackView = UPsStackView(axis: .vertical, spacing: 8.0)
     private let titleLabel = SettingInfoLabel().then { view in
-        view.text = "공유 아이디"
+        view.text = "공유 아이디 (최대 3대 연결 가능)"
     }
     private let idStackView = UPsStackView(axis: .horizontal, spacing: 16.0, margin: UIEdgeInsets(all: 8.0)).then { view in
         view.backgroundColor = .gray200
@@ -35,9 +35,11 @@ final class SettingIDView: UIView {
     }
     let shareButton = UIButton().then { view in
         view.setTitle("등록", for: .normal)
-        view.setTitleColor(.white, for: .normal)
-        view.titleLabel?.font = .boldSystemFont(ofSize: 18.0)
         view.backgroundColor = .systemTeal
+    }
+    let shareCancelButton = UIButton().then { view in
+        view.setTitle("등록 해제", for: .normal)
+        view.backgroundColor = .systemPurple
     }
     
     
@@ -64,9 +66,16 @@ final class SettingIDView: UIView {
     // MARK: - UI
     
     private func setAttribute() {
+        [self.shareButton, self.shareCancelButton].forEach { view in
+            view.setTitleColor(.white, for: .normal)
+            view.titleLabel?.font = .boldSystemFont(ofSize: 18.0)
+        }
+        
+        
+        
         self.addSubview(self.contentsStackView)
         
-        [self.titleLabel, self.idStackView, self.shareButton]
+        [self.titleLabel, self.idStackView, self.shareButton, self.shareCancelButton]
             .forEach(self.contentsStackView.addArrangedSubview(_:))
         
         [self.idLabel, self.copyButton]
@@ -82,8 +91,10 @@ final class SettingIDView: UIView {
             make.width.equalTo(48.0)
         }
         
-        self.shareButton.snp.makeConstraints { make in
-            make.height.equalTo(40.0)
+        [self.shareButton, self.shareCancelButton].forEach { view in
+            view.snp.makeConstraints { make in
+                make.height.equalTo(40.0)
+            }
         }
     }
 }
