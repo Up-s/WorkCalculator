@@ -51,5 +51,17 @@ final class HistoryViewController: BaseViewController {
             .bind(to: self.viewModel.input.viewDidAppear)
             .disposed(by: self.disposeBag)
         
+        
+        
+        self.viewModel.output.dayBlocks
+            .bind(
+                to: self.rootView.tableView.rx.items(
+                    cellIdentifier: HistoryTableViewCell.identifier,
+                    cellType: HistoryTableViewCell.self
+                )
+            ) { row, element, cell in
+                cell.setData(element)
+            }
+            .disposed(by: self.disposeBag)
     }
 }

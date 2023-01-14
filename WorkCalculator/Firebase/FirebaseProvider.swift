@@ -156,10 +156,12 @@ final class FirebaseProvider {
     class func createTimeBlock(_ block: TimeBlockModel, completion: @escaping (Result<Void, Error>) -> Void) {
         
         let documentID = UserDefaultsManager.firebaseID!
-        let deviceUUID = UserDefaultsManager.deviceUUID!
         
         var data = try! FirebaseEncoder().encode(block) as! [String: Any]
-        data[deviceUUID] = false
+        let deviceList = AppManager.shared.settingData?.deviceList ?? []
+        deviceList.forEach { deviceUUID in
+            data[deviceUUID] = false
+        }
         
         Firestore
             .firestore()
@@ -388,12 +390,6 @@ final class FirebaseProvider {
                         .firestore()
                         .collection(FirebaseRoot.data)
                         .document(tempDocumentID)
-                        .updateData([FirebaseFieldKey.deviceList: deviceList])
-                    
-                    Firestore
-                        .firestore()
-                        .collection(FirebaseRoot.data)
-                        .document(tempDocumentID)
                         .collection(FirebaseRoot.timeBlock)
                         .getDocuments { snapshot, error in
                             if let error = error {
@@ -415,6 +411,12 @@ final class FirebaseProvider {
                                     }
                             }
                         }
+                    
+                    Firestore
+                        .firestore()
+                        .collection(FirebaseRoot.data)
+                        .document(tempDocumentID)
+                        .updateData([FirebaseFieldKey.deviceList: deviceList])
                 }
             )
     }

@@ -18,14 +18,13 @@ final class HistoryViewModel: BaseViewModel {
     }
     
     struct Output {
-        let blocks = BehaviorRelay<[[TimeBlockModel]]>(value: [])
+        let dayBlocks = BehaviorRelay<[DayBlockModel]>(value: [])
     }
     
     // MARK: - Property
     
     let input = Input()
     let output = Output()
-    
     
     
     
@@ -42,25 +41,28 @@ final class HistoryViewModel: BaseViewModel {
                 let realmData = RealmManager.read() ?? []
                 return getData + realmData
             }
-            .flatMap { blocks in
-                Observable.from(blocks)
+            .flatMap { getBlocks in
+                return Observable.from(getBlocks)
                     .groupBy { $0.groupKey }
                     .flatMap { $0.toArray() }
                     .toArray()
-                    .map { temp in
-                        temp.sorted { $0[0].date < $1[0].date }
-                    }
-                    .map { temp in
-                        temp.map { block in
-                            block.sorted { $0.state.index < $1.state.index }
-                        }
+                    .map { blocks in
+                        blocks
+                            .sorted { $0[0].date > $1[0].date }
+                            .map { inBlocks in
+                                inBlocks
+                                    .sorted { $0.state.index < $1.state.index }
+                            }
+                            .map { inBlocks in
+                                DayBlockModel(timeBlocks: inBlocks)
+                            }
                     }
                     .asObservable()
             }
-            .bind(to: self.output.blocks)
+            .bind(to: self.output.dayBlocks)
             .disposed(by: self.disposeBag)
         
         
-
+        
     }
 }

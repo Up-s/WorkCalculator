@@ -17,6 +17,10 @@ final class HistoryView: BaseView, NavigationProtocol {
     
     var navigationView: BaseNavigationView
     
+    let tableView = UITableView().then { view in
+        view.register(cellType: HistoryTableViewCell.self)
+    }
+    
     
     
     // MARK: - Life Cycle
@@ -49,9 +53,16 @@ final class HistoryView: BaseView, NavigationProtocol {
         self.navigationView.titleLabel.text = "이전 기록"
         
         
+        
+        self.addSubview(self.tableView)
     }
     
     private func setConstraint() {
+        let guide = self.safeAreaLayoutGuide
         
+        self.tableView.snp.makeConstraints { make in
+            make.top.equalTo(self.navigationView.snp.bottom)
+            make.leading.trailing.bottom.equalTo(guide)
+        }
     }
 }
