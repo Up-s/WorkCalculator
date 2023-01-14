@@ -17,6 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        // MARK: - DeviceUUID
+        
+        if UserDefaultsManager.deviceUUID == nil {
+            UserDefaultsManager.deviceUUID = UUID().uuidString
+        }
+        
+        
+        
         // MARK: - Firebase
         
         FirebaseApp.configure()

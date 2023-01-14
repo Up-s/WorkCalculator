@@ -61,6 +61,15 @@ class DateManager {
         case end
         case rest
         
+        init(_ int: Int) {
+            switch int {
+            case 0: self = .start
+            case 1: self = .end
+            case 2: self = .rest
+            default: fatalError()
+            }
+        }
+        
         var ko: String {
             switch self {
             case .start:  return "출근"

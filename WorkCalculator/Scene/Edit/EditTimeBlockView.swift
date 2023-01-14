@@ -35,14 +35,14 @@ final class EditTimeBlockView: UIView {
         view.font = .boldSystemFont(ofSize: 16.0)
     }
     
-    let weekday: DateManager.Day
+    private let timeBlock: TimeBlockModel
     
     
     
     // MARK: - Life Cycle
     
-    init(_ weekday: DateManager.Day) {
-        self.weekday = weekday
+    init(_ timeBlock: TimeBlockModel) {
+        self.timeBlock = timeBlock
         
         super.init(frame: .zero)
         
@@ -63,7 +63,7 @@ final class EditTimeBlockView: UIView {
     // MARK: - UI
     
     private func setAttribute() {
-        self.dayLabel.text = self.weekday.ko
+        self.dayLabel.text = self.timeBlock.weekday.ko
         
         [self.startTimeButton, self.endTimeButton, self.restTimeButton].forEach { view in
             view.setTitle("00:00", for: .normal)

@@ -16,6 +16,7 @@ final class SettingViewModel: BaseViewModel {
     struct Input {
         let copyDidTap = PublishRelay<Void>()
         let shareDidTap = PublishRelay<Void>()
+        let shareCancelDidTap = PublishRelay<Void>()
         let selectDay = PublishRelay<DateManager.Day>()
         let baseHour = BehaviorRelay<Int?>(value: nil)
         let inputType = BehaviorRelay<Int?>(value: nil)
@@ -97,6 +98,7 @@ final class SettingViewModel: BaseViewModel {
         
         self.shareID
             .compactMap { $0 }
+            .filter { !$0.isEmpty }
             .bind { [weak self] id in
                 guard let self = self else { return }
                 let inType = UpdateType.share(id)
@@ -105,6 +107,17 @@ final class SettingViewModel: BaseViewModel {
                 self.coordinator.transition(scene: scene, style: .root)
             }
             .disposed(by: self.disposeBag)
+        
+        self.input.shareCancelDidTap
+            .bind { [weak self] id in
+                guard let self = self else { return }
+                let inType = UpdateType.shareCancel
+                let viewModel = UpdateViewModel(inType)
+                let scene = Scene.update(viewModel)
+                self.coordinator.transition(scene: scene, style: .root)
+            }
+            .disposed(by: self.disposeBag)
+            
         
         self.input.selectDay
             .withLatestFrom(self.output.selectDays) { item, days in

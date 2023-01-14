@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		BD0344D929707972001B3010 /* EditInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0344D829707972001B3010 /* EditInfoView.swift */; };
 		BD13E963297072C800A7EE31 /* GoogleService-Info-Debug.plist in Resources */ = {isa = PBXBuildFile; fileRef = BD13E962297072C800A7EE31 /* GoogleService-Info-Debug.plist */; };
+		BD412A50297254D400FCA4BF /* DayBlockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD412A4F297254D400FCA4BF /* DayBlockModel.swift */; };
+		BD412A5229725D4400FCA4BF /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD412A5129725D4400FCA4BF /* HistoryTableViewCell.swift */; };
+		BD412A5429725E1900FCA4BF /* HistoryTimeBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD412A5329725E1900FCA4BF /* HistoryTimeBlockView.swift */; };
 		BD470D402966C4CE00404AB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D3F2966C4CE00404AB4 /* AppDelegate.swift */; };
 		BD470D492966C4CF00404AB4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD470D482966C4CF00404AB4 /* Assets.xcassets */; };
 		BD470D542966C66E00404AB4 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D532966C66E00404AB4 /* SplashViewController.swift */; };
@@ -33,6 +36,11 @@
 		BD6E36D7296ECFC90077E8DB /* UpdateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6E36D6296ECFC90077E8DB /* UpdateViewModel.swift */; };
 		BD6E36DA296EE6EC0077E8DB /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6E36D9296EE6EC0077E8DB /* ProgressView.swift */; };
 		BD6E36DD296FF0740077E8DB /* UpdateDateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6E36DC296FF0740077E8DB /* UpdateDateModel.swift */; };
+		BD6E36E7297121430077E8DB /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6E36E6297121430077E8DB /* HistoryView.swift */; };
+		BD6E36E9297121470077E8DB /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6E36E8297121470077E8DB /* HistoryViewController.swift */; };
+		BD6E36EB2971214C0077E8DB /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6E36EA2971214C0077E8DB /* HistoryViewModel.swift */; };
+		BD730B11297147CC001E6B4D /* RealmTimeBlockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD730B10297147CC001E6B4D /* RealmTimeBlockModel.swift */; };
+		BD730B1329714B71001E6B4D /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD730B1229714B71001E6B4D /* RealmManager.swift */; };
 		BD7831372968679200907452 /* FirebaseRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7831362968679200907452 /* FirebaseRoot.swift */; };
 		BD783139296867AA00907452 /* FirebaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD783138296867AA00907452 /* FirebaseError.swift */; };
 		BD78313B2968684000907452 /* FirebaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD78313A2968684000907452 /* FirebaseProvider.swift */; };
@@ -61,6 +69,9 @@
 		50AC98ACB26649BCF5B1BED1 /* Pods_WorkCalculator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WorkCalculator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD0344D829707972001B3010 /* EditInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInfoView.swift; sourceTree = "<group>"; };
 		BD13E962297072C800A7EE31 /* GoogleService-Info-Debug.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Debug.plist"; sourceTree = "<group>"; };
+		BD412A4F297254D400FCA4BF /* DayBlockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayBlockModel.swift; sourceTree = "<group>"; };
+		BD412A5129725D4400FCA4BF /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
+		BD412A5329725E1900FCA4BF /* HistoryTimeBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTimeBlockView.swift; sourceTree = "<group>"; };
 		BD470D3C2966C4CE00404AB4 /* WorkCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD470D3F2966C4CE00404AB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BD470D482966C4CF00404AB4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -87,6 +98,11 @@
 		BD6E36D6296ECFC90077E8DB /* UpdateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewModel.swift; sourceTree = "<group>"; };
 		BD6E36D9296EE6EC0077E8DB /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		BD6E36DC296FF0740077E8DB /* UpdateDateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateDateModel.swift; sourceTree = "<group>"; };
+		BD6E36E6297121430077E8DB /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		BD6E36E8297121470077E8DB /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		BD6E36EA2971214C0077E8DB /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
+		BD730B10297147CC001E6B4D /* RealmTimeBlockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmTimeBlockModel.swift; sourceTree = "<group>"; };
+		BD730B1229714B71001E6B4D /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		BD7831362968679200907452 /* FirebaseRoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRoot.swift; sourceTree = "<group>"; };
 		BD783138296867AA00907452 /* FirebaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseError.swift; sourceTree = "<group>"; };
 		BD78313A2968684000907452 /* FirebaseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseProvider.swift; sourceTree = "<group>"; };
@@ -199,8 +215,10 @@
 		BD470D5A2966C8BF00404AB4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				BD470D882966F80F00404AB4 /* TimeBlockModel.swift */,
 				BD78313C29686BD800907452 /* SettingModel.swift */,
+				BD412A4F297254D400FCA4BF /* DayBlockModel.swift */,
+				BD470D882966F80F00404AB4 /* TimeBlockModel.swift */,
+				BD730B10297147CC001E6B4D /* RealmTimeBlockModel.swift */,
 				BD6E36DC296FF0740077E8DB /* UpdateDateModel.swift */,
 				BD78314B2968825100907452 /* InputType.swift */,
 			);
@@ -216,6 +234,7 @@
 				BD470D642966C9F000404AB4 /* Edit */,
 				BD470D812966EDF900404AB4 /* Picker */,
 				BD783151296ADA1100907452 /* NumberPad */,
+				BD6E36E5297121390077E8DB /* History */,
 				BD7831402968763D00907452 /* Setting */,
 				BD6E36D1296ECF980077E8DB /* Update */,
 			);
@@ -228,6 +247,7 @@
 				BD78313E296871CB00907452 /* AppManager.swift */,
 				BD470D782966DDD600404AB4 /* DateManager.swift */,
 				BD9A16C8296736430093FB1C /* UserDefaultsManager.swift */,
+				BD730B1229714B71001E6B4D /* RealmManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -283,6 +303,18 @@
 				BD6E36CF296E94D40077E8DB /* InputButtonView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		BD6E36E5297121390077E8DB /* History */ = {
+			isa = PBXGroup;
+			children = (
+				BD412A5329725E1900FCA4BF /* HistoryTimeBlockView.swift */,
+				BD412A5129725D4400FCA4BF /* HistoryTableViewCell.swift */,
+				BD6E36E6297121430077E8DB /* HistoryView.swift */,
+				BD6E36E8297121470077E8DB /* HistoryViewController.swift */,
+				BD6E36EA2971214C0077E8DB /* HistoryViewModel.swift */,
+			);
+			path = History;
 			sourceTree = "<group>";
 		};
 		BD7831402968763D00907452 /* Setting */ = {
@@ -462,12 +494,14 @@
 				BD78313D29686BD800907452 /* SettingModel.swift in Sources */,
 				BD470D722966D42700404AB4 /* EditTimeBlockViewModel.swift in Sources */,
 				BD6E36CE296E86460077E8DB /* NumberPadCollectionViewCell.swift in Sources */,
+				BD730B1329714B71001E6B4D /* RealmManager.swift in Sources */,
 				BD470D792966DDD600404AB4 /* DateManager.swift in Sources */,
 				BD7831462968765400907452 /* SettingViewModel.swift in Sources */,
 				BD470D6A2966CA1900404AB4 /* EditViewModel.swift in Sources */,
 				BD6E36D7296ECFC90077E8DB /* UpdateViewModel.swift in Sources */,
 				BD783155296ADA2C00907452 /* NumberPadViewController.swift in Sources */,
 				BD470D562966C74400404AB4 /* Scene.swift in Sources */,
+				BD6E36EB2971214C0077E8DB /* HistoryViewModel.swift in Sources */,
 				BD783153296ADA2700907452 /* NumberPadView.swift in Sources */,
 				BD9962FE296C389000601874 /* SettingDaysView.swift in Sources */,
 				BD470D832966EE1800404AB4 /* PickerView.swift in Sources */,
@@ -475,6 +509,7 @@
 				BD0344D929707972001B3010 /* EditInfoView.swift in Sources */,
 				BD470D542966C66E00404AB4 /* SplashViewController.swift in Sources */,
 				BD6E36DA296EE6EC0077E8DB /* ProgressView.swift in Sources */,
+				BD6E36E7297121430077E8DB /* HistoryView.swift in Sources */,
 				BD78313F296871CB00907452 /* AppManager.swift in Sources */,
 				BD6E36D0296E94D40077E8DB /* InputButtonView.swift in Sources */,
 				BD78313B2968684000907452 /* FirebaseProvider.swift in Sources */,
@@ -484,15 +519,20 @@
 				BD783139296867AA00907452 /* FirebaseError.swift in Sources */,
 				BD7831482968773C00907452 /* SettingIDView.swift in Sources */,
 				BD470D662966CA1000404AB4 /* EditView.swift in Sources */,
+				BD6E36E9297121470077E8DB /* HistoryViewController.swift in Sources */,
 				BD470D6E2966CA6C00404AB4 /* SplashViewModel.swift in Sources */,
 				BD6E36DD296FF0740077E8DB /* UpdateDateModel.swift in Sources */,
 				BD470D702966CC1700404AB4 /* EditTimeBlockView.swift in Sources */,
+				BD730B11297147CC001E6B4D /* RealmTimeBlockModel.swift in Sources */,
+				BD412A5429725E1900FCA4BF /* HistoryTimeBlockView.swift in Sources */,
 				BD470D402966C4CE00404AB4 /* AppDelegate.swift in Sources */,
 				BD7831372968679200907452 /* FirebaseRoot.swift in Sources */,
 				BD6E36D3296ECFBB0077E8DB /* UpdateView.swift in Sources */,
+				BD412A5229725D4400FCA4BF /* HistoryTableViewCell.swift in Sources */,
 				BD470D682966CA1500404AB4 /* EditViewController.swift in Sources */,
 				BD470D6C2966CA6500404AB4 /* SplashView.swift in Sources */,
 				BD7831422968764B00907452 /* SettingView.swift in Sources */,
+				BD412A50297254D400FCA4BF /* DayBlockModel.swift in Sources */,
 				BD9A16C7296725E70093FB1C /* EditSumUnitView.swift in Sources */,
 				BD78314A296878B700907452 /* SettingInputTypeView.swift in Sources */,
 				BD470D852966EE1C00404AB4 /* PickerViewController.swift in Sources */,

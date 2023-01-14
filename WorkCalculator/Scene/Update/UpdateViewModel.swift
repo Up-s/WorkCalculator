@@ -14,6 +14,7 @@ import UPsKit
 enum UpdateType {
     case refresh
     case share(String)
+    case shareCancel
     case setting(SettingModel)
 }
 
@@ -33,7 +34,8 @@ final class UpdateViewModel: BaseViewModel {
     let output = Output()
     
     let inType: BehaviorRelay<UpdateType>
-    private let timeObserver: Observable<Int>
+    private let timeObserver = Observable<Int>.interval(.milliseconds(5), scheduler: MainScheduler.instance)
+    private let errorObserver = PublishRelay<Void>()
     
     
     
@@ -41,9 +43,6 @@ final class UpdateViewModel: BaseViewModel {
     
     init(_ inType: UpdateType) {
         self.inType = BehaviorRelay<UpdateType>(value: inType)
-        
-        self.timeObserver = Observable<Int>
-            .interval(.milliseconds(5), scheduler: MainScheduler.instance)
         
         super.init()
         
@@ -65,7 +64,10 @@ final class UpdateViewModel: BaseViewModel {
                     return FirebaseProvider.getSettingData()
                     
                 case .share(let id):
-                    return FirebaseProvider.shareID(id)
+                    return FirebaseProvider.share(id)
+                    
+                case .shareCancel:
+                    return FirebaseProvider.shareCancel()
                     
                 case .setting(let data):
                     return FirebaseProvider.setSettingData(data)
@@ -73,6 +75,7 @@ final class UpdateViewModel: BaseViewModel {
             }
             .catch { [weak self] error in
                 self?.debugLog(#function, #line, error)
+                self?.errorObserver.accept(())
                 return Observable.empty()
             }
             .map { TimeBlockModel.create }
@@ -98,6 +101,14 @@ final class UpdateViewModel: BaseViewModel {
                 AppManager.shared.timeBlocks = blocks
                 
                 let scene = Scene.edit
+                self?.coordinator.transition(scene: scene, style: .root)
+            }
+            .disposed(by: self.disposeBag)
+        
+        self.errorObserver
+            .delay(.seconds(4), scheduler: MainScheduler.instance)
+            .bind { [weak self] in
+                let scene = Scene.splash
                 self?.coordinator.transition(scene: scene, style: .root)
             }
             .disposed(by: self.disposeBag)

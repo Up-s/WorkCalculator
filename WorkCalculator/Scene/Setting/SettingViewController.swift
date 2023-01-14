@@ -42,8 +42,8 @@ final class SettingViewController: BaseViewController {
     }
     
     private func bindViewModel() {
-        self.rootView.naviView.leftButton.rx.tap
-            .bind(to: self.viewModel.base.dismissDidTap)
+        self.rootView.navigationView.leftButton.rx.tap
+            .bind(to: self.viewModel.base.backDidTap)
             .disposed(by: self.disposeBag)
         
         self.rootView.idView.copyButton.rx.tap
@@ -52,6 +52,10 @@ final class SettingViewController: BaseViewController {
         
         self.rootView.idView.shareButton.rx.tap
             .bind(to: self.viewModel.input.shareDidTap)
+            .disposed(by: self.disposeBag)
+        
+        self.rootView.idView.shareCancelButton.rx.tap
+            .bind(to: self.viewModel.input.shareCancelDidTap)
             .disposed(by: self.disposeBag)
         
         self.rootView.daysView.daysTableView.rx.modelSelected(DateManager.Day.self)

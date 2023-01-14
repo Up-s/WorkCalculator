@@ -31,11 +31,6 @@ final class EditTimeBlockViewModel: BaseViewModel {
     let input = Input()
     let output = Output()
     
-    private let userDefault = UserDefaults.standard
-    private let encoder = PropertyListEncoder()
-    private let decoder = PropertyListDecoder()
-    
-    let weekday: DateManager.Day
     let startTimeBlock: BehaviorRelay<TimeBlockModel>
     let endTimeBlock: BehaviorRelay<TimeBlockModel>
     let restTimeBlock: BehaviorRelay<TimeBlockModel>
@@ -48,7 +43,6 @@ final class EditTimeBlockViewModel: BaseViewModel {
     // MARK: - Interface
     
     init(_ timeBlock: [TimeBlockModel]) {
-        self.weekday = timeBlock[0].weekday
         self.startTimeBlock = BehaviorRelay<TimeBlockModel>(value: timeBlock[0])
         self.endTimeBlock = BehaviorRelay<TimeBlockModel>(value: timeBlock[1])
         self.restTimeBlock = BehaviorRelay<TimeBlockModel>(value: timeBlock[2])
