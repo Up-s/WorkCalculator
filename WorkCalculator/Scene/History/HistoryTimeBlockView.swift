@@ -16,13 +16,13 @@ final class HistoryTimeBlockView: UIView {
     // MARK: - Property
     
     private let contentsStackView = UPsStackView(axis: .vertical, spacing: 8.0)
-    private let titleLabel = UILabel().then { view in
+    let titleLabel = UILabel().then { view in
         view.textAlignment = .center
         view.textColor = .gray900
         view.font = .boldSystemFont(ofSize: 15.0)
         view.backgroundColor = .gray100
     }
-    private let timeLabel = UILabel().then { view in
+    let timeLabel = UILabel().then { view in
         view.textAlignment = .center
         view.textColor = .gray900
         view.font = .boldSystemFont(ofSize: 25.0)
@@ -47,12 +47,6 @@ final class HistoryTimeBlockView: UIView {
     
     
     // MARK: - Interface
-    
-    func setData(_ timeBlock: TimeBlockModel) {
-        self.titleLabel.text = timeBlock.state.ko
-        
-        self.timeLabel.text = timeBlock.intervalString
-    }
     
     
     

@@ -13,12 +13,12 @@ import RxSwift
 
 final class RealmManager {
     
-    class func create(blocks: [TimeBlockModel]) {
+    class func create(blocks: [BlockModel]) {
         do {
             let realm = try Realm()
             try realm.write {
                 let data = blocks.map { block in
-                    RealmTimeBlockModel(block)
+                    RealmBlockModel(block)
                 }
                 realm.add(data)
             }
@@ -27,13 +27,13 @@ final class RealmManager {
         }
     }
     
-    class func read() -> [TimeBlockModel]? {
+    class func read() -> [BlockModel]? {
         do {
             let realm = try Realm()
-            let items = realm.objects(RealmTimeBlockModel.self)
+            let items = realm.objects(RealmBlockModel.self)
             let realmArray = Array(items)
             let blocks = realmArray.map { item in
-                TimeBlockModel(item)
+                BlockModel(item)
             }
             return blocks
             

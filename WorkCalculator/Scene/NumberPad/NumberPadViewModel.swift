@@ -25,28 +25,26 @@ final class NumberPadViewModel: BaseViewModel {
         let numberPadList = BehaviorRelay<[String]>(value: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "", "0", "⌫"])
     }
     
-    let timer = BehaviorRelay<String>(value: "")
-    let timeBlock = PublishRelay<TimeBlockModel>()
-    
-    
-    
     // MARK: - Property
     
     let input = Input()
     let output = Output()
     
+    let timer = BehaviorRelay<String>(value: "")
+    let callbackOb = PublishRelay<(DateManager.State, Int)>()
+    
     
     
     // MARK: - Interface
     
-    init(_ timeBlock: TimeBlockModel) {
+    init(_ state: DateManager.State, _ block: BlockModel) {
         super.init()
         
-        Observable.just(timeBlock.info)
+        Observable.just(block.getInfo(state) )
             .bind(to: self.output.title)
             .disposed(by: self.disposeBag)
         
-        Observable.just(timeBlock.intervalString)
+        Observable.just(block.getIntervalString(state))
             .bind(to: self.output.timer)
             .disposed(by: self.disposeBag)
         
@@ -58,7 +56,7 @@ final class NumberPadViewModel: BaseViewModel {
         
         self.input.okDidTap
             .withLatestFrom(self.timer)
-            .compactMap { [weak self] timer -> TimeBlockModel? in
+            .compactMap { [weak self] timer -> (Int, Int)? in
                 guard let self = self else { return nil }
                 
                 guard timer.count == 4 else {
@@ -80,17 +78,18 @@ final class NumberPadViewModel: BaseViewModel {
                     return nil
                 }
                 
-                var editTimeBlock = timeBlock
-                editTimeBlock.hour = hour
-                editTimeBlock.min = min
-                return editTimeBlock
+                return (hour, min)
             }
-            .flatMap { editTimeBlock in
-                FirebaseProvider.setTimeBlock(editTimeBlock)
+            .flatMap { hour, min in
+                FirebaseProvider.setBlock(
+                    key: block.key,
+                    state: state,
+                    time: (hour * 60) + min
+                )
             }
             .subscribe(
-                onNext: { [weak self] editTimeBlock in
-                    self?.timeBlock.accept(editTimeBlock)
+                onNext: { [weak self] time in
+                    self?.callbackOb.accept((state, time))
                     self?.coordinator.dismiss(animated: false)
                 },
                 onError: { [weak self] error in
@@ -98,7 +97,6 @@ final class NumberPadViewModel: BaseViewModel {
                 }
             )
             .disposed(by: self.disposeBag)
-        
         
         self.input.inputNumber
             .filter { [weak self] index in
@@ -139,7 +137,5 @@ final class NumberPadViewModel: BaseViewModel {
             }
             .bind(to: self.output.timer)
             .disposed(by: self.disposeBag)
-        
-        
     }
 }

@@ -49,30 +49,49 @@ final class SettingViewModel: BaseViewModel {
         super.init()
         
         self.input.copyDidTap
-            .bind {
-                UIPasteboard.general.string = UserDefaultsManager.firebaseID
-                SceneCoordinator.shared.toast("공유 아이디가 복사 되었습니다")
+            .map { _ -> Bool in
+                let deviceCount = AppManager.shared.settingData?.deviceList.count ?? 0
+                return deviceCount < AppManager.shared.maxDeviceCount
+            }
+            .bind { [weak self] state in
+                switch state {
+                case true:
+                    UIPasteboard.general.string = UserDefaultsManager.firebaseID
+                    SceneCoordinator.shared.toast("공유 아이디가 복사 되었습니다")
+                    
+                case false:
+                    self?.coordinator.toast("최대 3대 연결 가능합니다")
+                }
             }
             .disposed(by: self.disposeBag)
         
         self.input.shareDidTap
-            .bind { [weak self] in
-                let actions: [UPsAlertActionProtocol] = [
-                    UPsAlertAction(
-                        title: "공유하기",
-                        handler: { _ in
-                            self?.shareAlert.accept(())
-                        }
-                    ),
-                    UPsAlertCancelAction()
-                ]
-                
-                self?.coordinator.alert(
-                    title: "주 의",
-                    message: "공유하게되면 현재 아이디로 되어 있는 기록은 모두 삭제됩니다",
-                    actions: actions
-                )
-                
+            .map { _ -> Bool in
+                let deviceCount = AppManager.shared.settingData?.deviceList.count ?? 0
+                return deviceCount < AppManager.shared.maxDeviceCount
+            }
+            .bind { [weak self] state in
+                switch state {
+                case true:
+                    let actions: [UPsAlertActionProtocol] = [
+                        UPsAlertAction(
+                            title: "공유하기",
+                            handler: { _ in
+                                self?.shareAlert.accept(())
+                            }
+                        ),
+                        UPsAlertCancelAction()
+                    ]
+                    
+                    self?.coordinator.alert(
+                        title: "주 의",
+                        message: "공유하게되면 현재 아이디로 되어 있는 기록은 모두 삭제됩니다",
+                        actions: actions
+                    )
+                    
+                case false:
+                    self?.coordinator.toast("최대 3대 연결 가능합니다")
+                }
             }
             .disposed(by: self.disposeBag)
         
@@ -109,12 +128,21 @@ final class SettingViewModel: BaseViewModel {
             .disposed(by: self.disposeBag)
         
         self.input.shareCancelDidTap
-            .bind { [weak self] id in
-                guard let self = self else { return }
-                let inType = UpdateType.shareCancel
-                let viewModel = UpdateViewModel(inType)
-                let scene = Scene.update(viewModel)
-                self.coordinator.transition(scene: scene, style: .root)
+            .map { _ -> Bool in
+                let deviceCount = AppManager.shared.settingData?.deviceList.count ?? 0
+                return deviceCount < AppManager.shared.maxDeviceCount
+            }
+            .bind { [weak self] state in
+                switch state {
+                case true:
+                    let inType = UpdateType.shareCancel
+                    let viewModel = UpdateViewModel(inType)
+                    let scene = Scene.update(viewModel)
+                    self?.coordinator.transition(scene: scene, style: .root)
+                    
+                case false:
+                    self?.coordinator.toast("최소 1개는 연결되어 있어야 합니다")
+                }
             }
             .disposed(by: self.disposeBag)
             

@@ -12,8 +12,6 @@ import RxSwift
 
 final class FirebaseProvider {
     
-    
-    // SplashViewModel
     class func create() -> Observable<Void> {
         Observable<Void>.create { observer -> Disposable in
             
@@ -43,8 +41,7 @@ final class FirebaseProvider {
     }
     
     
-    // SplashViewModel
-    // UpdateViewModel
+    
     class func getSettingData() -> Observable<Void> {
         Observable<Void>.create { observer -> Disposable in
             
@@ -79,7 +76,7 @@ final class FirebaseProvider {
     }
     
     
-    // UpdateViewModel
+    
     class func setSettingData(_ data: SettingModel) -> Observable<Void> {
         Observable<Void>.create { observer -> Disposable in
             
@@ -107,107 +104,114 @@ final class FirebaseProvider {
     }
     
     
-    // SplashViewMdoel
-    // UpdateViewModel
-    class func getTimeBlock(_ block: TimeBlockModel) -> Observable<TimeBlockModel> {
-        Observable<TimeBlockModel>.create { observer -> Disposable in
-            
+    
+    class func getBlock(_ block: BlockModel) -> Observable<BlockModel> {
+        Observable<BlockModel>.create { observer -> Disposable in
+
             let documentID = UserDefaultsManager.firebaseID!
-            
+
             Firestore
                 .firestore()
                 .collection(FirebaseRoot.data)
                 .document(documentID)
-                .collection(FirebaseRoot.timeBlock)
-                .document(block.firebaseKey)
+                .collection(FirebaseRoot.block)
+                .document(block.key)
                 .getDocument { snapshot, error in
                     if let error = error {
                         observer.onError(error)
-                        
+
                     } else {
                         switch snapshot?.data() {
                         case .none:
-                            self.createTimeBlock(block) { result in
+                            self.createBlock(block) { result in
                                 switch result {
                                 case .failure(let error):
                                     observer.onError(error)
-                                    
+
                                 case .success:
                                     observer.onNext(block)
                                     observer.onCompleted()
                                 }
                             }
-                            
+
                         case .some(let data):
-                            let temp = try! FirebaseDecoder().decode(TimeBlockModel.self, from: data)
-                            
+                            let temp = try! FirebaseDecoder().decode(BlockModel.self, from: data)
+
                             observer.onNext(temp)
                             observer.onCompleted()
                         }
                     }
                 }
-            
+
             return Disposables.create()
         }
     }
     
     
     
-    class func createTimeBlock(_ block: TimeBlockModel, completion: @escaping (Result<Void, Error>) -> Void) {
-        
+    class func createBlock(_ block: BlockModel, completion: @escaping (Result<Void, Error>) -> Void) {
+
         let documentID = UserDefaultsManager.firebaseID!
-        
+
         var data = try! FirebaseEncoder().encode(block) as! [String: Any]
         let deviceList = AppManager.shared.settingData?.deviceList ?? []
         deviceList.forEach { deviceUUID in
             data[deviceUUID] = false
         }
-        
+
         Firestore
             .firestore()
             .collection(FirebaseRoot.data)
             .document(documentID)
-            .collection(FirebaseRoot.timeBlock)
-            .document(block.firebaseKey)
+            .collection(FirebaseRoot.block)
+            .document(block.key)
             .setData(data) { error in
                 if let error = error {
                     completion(.failure(error))
-                    
+
                 } else {
                     completion(.success(()))
                 }
             }
     }
     
-    // PickerViewModel
-    // NumberPadViewModel
-    class func setTimeBlock(_ block: TimeBlockModel) -> Observable<TimeBlockModel> {
-        Observable<TimeBlockModel>.create { observer -> Disposable in
+    
+    
+    class func setBlock(key: String, state: DateManager.State, time: Int) -> Observable<Int> {
+        Observable<Int>.create { observer -> Disposable in
             
             let documentID = UserDefaultsManager.firebaseID!
-            let data = try! FirebaseEncoder().encode(block) as! [String: Any]
+            var data = [String: Any]()
+            switch state {
+            case .start:
+                data[FirebaseFieldKey.startTime] = time
+            case .end:
+                data[FirebaseFieldKey.endTime] = time
+            case .rest:
+                data[FirebaseFieldKey.restTime] = time
+            }
             
             Firestore
                 .firestore()
                 .collection(FirebaseRoot.data)
                 .document(documentID)
-                .collection(FirebaseRoot.timeBlock)
-                .document(block.firebaseKey)
-                .setData(data) { error in
+                .collection(FirebaseRoot.block)
+                .document(key)
+                .updateData(data) { error in
                     if let error = error {
                         observer.onError(error)
                         
                     } else {
-                        let update = UpdateDateModel()
-                        let updateData = try! FirebaseEncoder().encode(update) as! [String: Any]
+                        let updateDate = UpdateDateModel()
+                        let updateDateData = try! FirebaseEncoder().encode(updateDate) as! [String: Any]
                         
                         Firestore
                             .firestore()
                             .collection(FirebaseRoot.data)
                             .document(documentID)
-                            .updateData(updateData)
+                            .updateData(updateDateData)
                         
-                        observer.onNext(block)
+                        observer.onNext(time)
                         observer.onCompleted()
                     }
                 }
@@ -218,8 +222,8 @@ final class FirebaseProvider {
     
     
     // HistoryViewModel
-    class func getAllTimeBlock() -> Observable<[TimeBlockModel]> {
-        Observable<[TimeBlockModel]>.create { observer -> Disposable in
+    class func getHistoryBlock() -> Observable<[BlockModel]> {
+        Observable<[BlockModel]>.create { observer -> Disposable in
             
             let documentID = UserDefaultsManager.firebaseID!
             let deviceUUID = UserDefaultsManager.deviceUUID!
@@ -228,7 +232,7 @@ final class FirebaseProvider {
                 .firestore()
                 .collection(FirebaseRoot.data)
                 .document(documentID)
-                .collection(FirebaseRoot.timeBlock)
+                .collection(FirebaseRoot.block)
                 .whereField(deviceUUID, isEqualTo: false)
                 .getDocuments { snapshot, error in
                     if let error = error {
@@ -241,18 +245,18 @@ final class FirebaseProvider {
                         }
                         
                         let blocks = documents.compactMap { document in
-                            try? FirebaseDecoder().decode(TimeBlockModel.self, from: document.data())
+                            try? FirebaseDecoder().decode(BlockModel.self, from: document.data())
                         }
                         
                         let filterBlocks = blocks
                             .filter { block in
-                                let keys = AppManager.shared.timeBlocks.compactMap { $0.first?.groupKey }
-                                return !keys.contains(block.groupKey)
+                                let keys = AppManager.shared.blocks.compactMap { $0.key }
+                                return !keys.contains(block.key)
                             }
                         
                         filterBlocks
                             .forEach { block in
-                                self.updateDevice(block.firebaseKey, state: true)
+                                self.updateDevice(block.key, state: true)
                             }
                         
                         RealmManager.create(blocks: filterBlocks)
@@ -265,6 +269,7 @@ final class FirebaseProvider {
             return Disposables.create()
         }
     }
+    
     
     
     // UpdateViewModel
@@ -333,7 +338,7 @@ final class FirebaseProvider {
             .firestore()
             .collection(FirebaseRoot.data)
             .document(documentID)
-            .collection(FirebaseRoot.timeBlock)
+            .collection(FirebaseRoot.block)
             .getDocuments { snapshot, error in
                 if let error = error {
                     print("\n😱😱😱😱😱😱", #fileID, #function, error)
@@ -362,7 +367,7 @@ final class FirebaseProvider {
             .firestore()
             .collection(FirebaseRoot.data)
             .document(documentID)
-            .collection(FirebaseRoot.timeBlock)
+            .collection(FirebaseRoot.block)
             .document(document)
             .updateData([deviceUUID: state])
     }
@@ -390,7 +395,7 @@ final class FirebaseProvider {
                         .firestore()
                         .collection(FirebaseRoot.data)
                         .document(tempDocumentID)
-                        .collection(FirebaseRoot.timeBlock)
+                        .collection(FirebaseRoot.block)
                         .getDocuments { snapshot, error in
                             if let error = error {
                                 print("\n😱😱😱😱😱😱", #fileID, #function, error)
@@ -428,7 +433,7 @@ final class FirebaseProvider {
             .firestore()
             .collection(FirebaseRoot.data)
             .document(dataDocumentID)
-            .collection(FirebaseRoot.timeBlock)
+            .collection(FirebaseRoot.block)
             .document(timeBlockDocumentID)
             .updateData([deviceUUID: FieldValue.delete()])
     }

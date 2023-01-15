@@ -49,17 +49,20 @@ final class HistoryTableViewCell: UITableViewCell, CellIdentifiable {
     
     // MARK: - Interface
     
-    func setData(_ data: DayBlockModel) {
+    func setData(_ data: BlockModel) {
         self.titleLabel.text = data.info
         
         let startView = HistoryTimeBlockView()
-        startView.setData(data.startTimeBlock)
+        startView.titleLabel.text = DateManager.State.start.ko
+        startView.timeLabel.text = data.startIntervalString
         
         let endView = HistoryTimeBlockView()
-        endView.setData(data.endTimeBlock)
+        endView.titleLabel.text = DateManager.State.end.ko
+        endView.timeLabel.text = data.endIntervalString
         
         let restView = HistoryTimeBlockView()
-        restView.setData(data.restTimeBlock)
+        restView.titleLabel.text = DateManager.State.rest.ko
+        restView.timeLabel.text = data.restIntervalString
         
         [startView, endView, restView]
             .forEach(self.timeBlcokStackView.addArrangedSubview(_:))

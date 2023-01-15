@@ -53,7 +53,7 @@ final class HistoryViewController: BaseViewController {
         
         
         
-        self.viewModel.output.dayBlocks
+        self.viewModel.output.blocks
             .bind(
                 to: self.rootView.tableView.rx.items(
                     cellIdentifier: HistoryTableViewCell.identifier,

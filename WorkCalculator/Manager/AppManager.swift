@@ -13,5 +13,7 @@ final class AppManager {
     private init () {}
     
     var settingData: SettingModel?
-    var timeBlocks: [[TimeBlockModel]] = []
+    var blocks: [BlockModel] = []
+    
+    let maxDeviceCount = 3
 }

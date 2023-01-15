@@ -56,7 +56,7 @@ final class EditViewController: BaseViewController {
         
         
         
-        self.viewModel.timeBlockViewModels
+        self.viewModel.output.blockViewModels
             .bind { [weak self] viewModels in
                 self?.rootView.createUnitView(viewModels)
             }

@@ -25,9 +25,6 @@ final class EditView: BaseView, NavigationProtocol {
     
     private let infoView = EditInfoView()
     
-    var timeBlockViews: [EditTimeBlockView] = []
-    var timeBlockViewModels: [EditTimeBlockViewModel] = []
-    
     private let sumUnitStackView = UPsStackView(axis: .horizontal, distribution: .fillEqually, spacing: 16.0)
     let totalSumUnitView = EditSumUnitView().then { view in
         view.titleLabel.text = "총 근무시간"
@@ -95,42 +92,47 @@ final class EditView: BaseView, NavigationProtocol {
         self.remainedSumUnitView.subLabel.text = remainedText
     }
     
-    func createUnitView(_ blockViewModels: [EditTimeBlockViewModel]) {
+    func createUnitView(_ blockViewModels: [EditBlockViewModel]) {
         blockViewModels
-            .compactMap { timeBlockViewModel -> EditTimeBlockView? in
-                let timeBlock = timeBlockViewModel.startTimeBlock.value
-                let timeBlockView = EditTimeBlockView(timeBlock)
+            .compactMap { blockViewModel -> EditBlockView? in
+                let blockView = EditBlockView()
                 
-                timeBlockView.startTimeButton.rx.tap
-                    .bind(to: timeBlockViewModel.input.startDidTap)
+                blockView.dayLabel.text = blockViewModel.weekDay.ko
+                
+                blockView.startButton.rx.tap
+                    .bind(to: blockViewModel.input.startDidTap)
                     .disposed(by: self.disposeBag)
                 
-                timeBlockView.endTimeButton.rx.tap
-                    .bind(to: timeBlockViewModel.input.endDidTap)
+                blockView.endButton.rx.tap
+                    .bind(to: blockViewModel.input.endDidTap)
                     .disposed(by: self.disposeBag)
                 
-                timeBlockView.restTimeButton.rx.tap
-                    .bind(to: timeBlockViewModel.input.restDidTap)
+                blockView.restButton.rx.tap
+                    .bind(to: blockViewModel.input.restDidTap)
                     .disposed(by: self.disposeBag)
                 
                 
-                timeBlockViewModel.output.startTime
-                    .bind(to: timeBlockView.startTimeButton.rx.title())
+                blockViewModel.output.startTime
+                    .toHourMin()
+                    .bind(to: blockView.startButton.rx.title())
                     .disposed(by: self.disposeBag)
                 
-                timeBlockViewModel.output.endTime
-                    .bind(to: timeBlockView.endTimeButton.rx.title())
+                blockViewModel.output.endTime
+                    .toHourMin()
+                    .bind(to: blockView.endButton.rx.title())
                     .disposed(by: self.disposeBag)
                 
-                timeBlockViewModel.output.restTime
-                    .bind(to: timeBlockView.restTimeButton.rx.title())
+                blockViewModel.output.restTime
+                    .toHourMin()
+                    .bind(to: blockView.restButton.rx.title())
                     .disposed(by: self.disposeBag)
                 
-                timeBlockViewModel.output.runTime
-                    .bind(to: timeBlockView.runTimeLabel.rx.text)
+                blockViewModel.output.runTime
+                    .toRestHourMin()
+                    .bind(to: blockView.runTimeLabel.rx.text)
                     .disposed(by: self.disposeBag)
                 
-                return timeBlockView
+                return blockView
             }
             .enumerated()
             .forEach { index, view in

@@ -20,6 +20,7 @@ final class EditViewModel: BaseViewModel {
     }
     
     struct Output {
+        let blockViewModels = BehaviorRelay<[EditBlockViewModel]>(value: [])
         let sumRunTime = BehaviorRelay<Int>(value: 0)
     }
     
@@ -28,8 +29,6 @@ final class EditViewModel: BaseViewModel {
     let input = Input()
     let output = Output()
     
-    let timeBlockViewModels = BehaviorRelay<[EditTimeBlockViewModel]>(value: [])
-    
     
     
     // MARK: - Interface
@@ -37,26 +36,23 @@ final class EditViewModel: BaseViewModel {
     init() {
         super.init()
         
-        Observable.from(AppManager.shared.timeBlocks)
-            .map { blocks in
-                blocks.filter { block in
-                    AppManager.shared.settingData?.days.contains(block.weekday) ?? false
-                }
+        Observable.from(AppManager.shared.blocks)
+            .filter { block in
+                AppManager.shared.settingData?.days.contains(block.weekday) ?? false
             }
-            .filter { !$0.isEmpty }
             .map { blocks in
-                EditTimeBlockViewModel(blocks)
+                EditBlockViewModel(blocks)
             }
             .toArray()
             .asObservable()
-            .bind(to: self.timeBlockViewModels)
+            .bind(to: self.output.blockViewModels)
             .disposed(by: self.disposeBag)
         
-        self.timeBlockViewModels
+        self.output.blockViewModels
             .filter { !$0.isEmpty }
             .bind { [weak self] array in
                 guard let self = self else { return }
-                let runTimes = array.map { $0.runTime }
+                let runTimes = array.map { $0.output.runTime }
                 
                 Observable
                     .combineLatest(runTimes) { $0.reduce(0, +) }

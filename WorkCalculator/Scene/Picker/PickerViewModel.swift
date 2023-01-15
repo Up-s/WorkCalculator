@@ -21,6 +21,7 @@ final class PickerViewModel: BaseViewModel {
     struct Output {
         let title = BehaviorRelay<String?>(value: nil)
         let state = BehaviorRelay<DateManager.State?>(value: nil)
+        let time = BehaviorRelay<Int>(value: 0)
     }
     
     // MARK: - Property
@@ -28,21 +29,17 @@ final class PickerViewModel: BaseViewModel {
     let input = Input()
     let output = Output()
     
-    let timeBlock = PublishRelay<TimeBlockModel>()
+    let callbackOb = PublishRelay<(DateManager.State, Int)>()
     
     
     
     // MARK: - Interface
     
-    init(_ timeBlock: TimeBlockModel) {
+    init(_ state: DateManager.State, _ block: BlockModel) {
         super.init()
         
-        Observable.just(timeBlock.info)
+        Observable.just(block.getInfo(state) )
             .bind(to: self.output.title)
-            .disposed(by: self.disposeBag)
-        
-        Observable.just(timeBlock.state)
-            .bind(to: self.output.state)
             .disposed(by: self.disposeBag)
         
         self.input.cancelDidTap
@@ -52,18 +49,16 @@ final class PickerViewModel: BaseViewModel {
             .disposed(by: self.disposeBag)
         
         self.input.okDidTap
-            .map { (hour, min) -> TimeBlockModel in
-                var editTimeBlock = timeBlock
-                editTimeBlock.hour = hour
-                editTimeBlock.min = min
-                return editTimeBlock
-            }
-            .flatMap { editTimeBlock in
-                FirebaseProvider.setTimeBlock(editTimeBlock)
+            .flatMap { hour, min in
+                FirebaseProvider.setBlock(
+                    key: block.key,
+                    state: state,
+                    time: (hour * 60) + min
+                )
             }
             .subscribe(
-                onNext: { [weak self] editTimeBlock in
-                    self?.timeBlock.accept(editTimeBlock)
+                onNext: { [weak self] time in
+                    self?.callbackOb.accept((state, time))
                     self?.coordinator.dismiss(animated: false)
                 },
                 onError: { [weak self] error in

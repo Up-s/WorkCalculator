@@ -25,8 +25,6 @@ final class SplashViewModel: BaseViewModel {
     let input = Input()
     let output = Output()
     
-    private let timeBlockProvider = PublishRelay<[TimeBlockModel]>()
-    private let temp = BehaviorRelay<[[TimeBlockModel]]>(value: [])
     
     
     // MARK: - Interface
@@ -44,27 +42,19 @@ final class SplashViewModel: BaseViewModel {
                 self?.debugLog(#function, #line, error)
                 return FirebaseProvider.create()
             }
-            .map { TimeBlockModel.create }
+            .map { BlockModel.create }
             .flatMap { blocks in
                 Observable.from(blocks)
                     .flatMap { block in
-                        FirebaseProvider.getTimeBlock(block)
+                        FirebaseProvider.getBlock(block)
                     }
-                    .groupBy { $0.groupKey }
-                    .flatMap { $0.toArray() }
                     .toArray()
-                    .map { temp in
-                        temp.sorted { $0[0].date < $1[0].date }
+                    .map { blocks in
+                        blocks.sorted { $0.date < $1.date }
                     }
-                    .map { temp in
-                        temp.map { block in
-                            block.sorted { $0.state.index < $1.state.index }
-                        }
-                    }
-                    .asObservable()
             }
             .bind { [weak self] blocks in
-                AppManager.shared.timeBlocks = blocks
+                AppManager.shared.blocks = blocks
                 
                 let scene = Scene.edit
                 self?.coordinator.transition(scene: scene, style: .root)
