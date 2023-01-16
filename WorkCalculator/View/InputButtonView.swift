@@ -15,7 +15,7 @@ final class InputButtonView: UIView {
     
     // MARK: - Property
     
-    private let contentsStackView = UPsStackView(axis: .horizontal, distribution: .fillEqually, spacing: 2.0).then { view in
+    private let contentsStackView = UPsStackView(axis: .horizontal, alignment: .center, distribution: .fillProportionally, spacing: 2.0).then { view in
         view.backgroundColor = .gray200
         view.layer.cornerRadius = 8.0
         view.layer.masksToBounds = true
@@ -24,6 +24,11 @@ final class InputButtonView: UIView {
         view.setTitle("취소", for: .normal)
         view.setTitleColor(.gray600, for: .normal)
         view.titleLabel?.font = .boldSystemFont(ofSize: 20.0)
+    }
+    let lineView = UIView().then { view in
+        view.backgroundColor = .gray600
+        view.layer.cornerRadius = 1.0
+        view.layer.masksToBounds = true
     }
     let okButton = UIButton().then { view in
         view.setTitle("선택", for: .normal)
@@ -57,7 +62,7 @@ final class InputButtonView: UIView {
     private func setAttribute() {
         self.addSubview(self.contentsStackView)
         
-        [self.cancelButton, self.okButton]
+        [self.cancelButton, self.lineView, self.okButton]
             .forEach(self.contentsStackView.addArrangedSubview(_:))
     }
     
@@ -65,6 +70,11 @@ final class InputButtonView: UIView {
         self.contentsStackView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
             make.height.equalTo(48.0)
+        }
+        
+        self.lineView.snp.makeConstraints { make in
+            make.width.equalTo(2.0)
+            make.height.equalTo(32.0)
         }
     }
 }

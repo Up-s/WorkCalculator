@@ -68,13 +68,20 @@ final class NumberPadViewModel: BaseViewModel {
                 let hour = timerInt / 100
                 let min = timerInt % 100
                 
-                guard hour < 24 else {
+                guard hour <= 24 else {
                     self.coordinator.toast("24시간 아래로 입력해주세요")
                     return nil
                 }
                 
                 guard min < 60 else {
                     self.coordinator.toast("60분 아래로 입력해주세요")
+                    return nil
+                }
+                
+                let maxTime = 24 * 60
+                
+                guard timerInt <= maxTime else {
+                    self.coordinator.toast("24:00 까지 입력 가능합니다")
                     return nil
                 }
                 

@@ -244,6 +244,8 @@ final class FirebaseProvider {
                             return
                         }
                         
+                        print("\n--------------------------------------------", documentID.count)
+                        
                         let blocks = documents.compactMap { document in
                             try? FirebaseDecoder().decode(BlockModel.self, from: document.data())
                         }
