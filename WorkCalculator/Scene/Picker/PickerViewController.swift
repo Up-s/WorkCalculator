@@ -52,11 +52,9 @@ final class PickerViewController: BaseViewController {
     
     private func bindViewModel() {
         self.rx.viewDidAppear
-            .compactMap { $0 }
-            .withLatestFrom(self.viewModel.output.state)
-            .filter { $0 == .start || $0 == .end }
-            .bind { [weak self] _ in
-                self?.rootView.setData()
+            .withLatestFrom(self.viewModel.output.time)
+            .bind { [weak self] time in
+                self?.rootView.setData(time)
             }
             .disposed(by: self.disposeBag)
         

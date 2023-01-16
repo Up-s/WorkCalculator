@@ -53,10 +53,9 @@ final class PickerView: BaseView {
     
     // MARK: - Interface
     
-    func setData() {
-        let date = Date()
-        let hour = date.hourInt()
-        let min = date.minuteInt()
+    func setData(_ time: Int) {
+        let hour = time / 60
+        let min = time % 60
         
         self.selectHour = hour
         self.selectMin = min

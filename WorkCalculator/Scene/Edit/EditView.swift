@@ -12,17 +12,18 @@ import SnapKit
 import Then
 import UPsKit
 
-final class EditView: BaseView {
+final class EditView: BaseView, NavigationProtocol {
     
     // MARK: - Property
     
-    private let contentsScrollView = UIScrollView()
-    private let contentsStackView = UPsStackView(axis: .vertical, spacing: 24.0)
+    var navigationView: BaseNavigationView
+    
+    private let contentsScrollView = UIScrollView().then { view in
+        view.showsVerticalScrollIndicator = false
+    }
+    private let contentsStackView = UPsStackView(axis: .vertical, spacing: 32.0)
     
     private let infoView = EditInfoView()
-    
-    var timeBlockViews: [EditTimeBlockView] = []
-    var timeBlockViewModels: [EditTimeBlockViewModel] = []
     
     private let sumUnitStackView = UPsStackView(axis: .horizontal, distribution: .fillEqually, spacing: 16.0)
     let totalSumUnitView = EditSumUnitView().then { view in
@@ -32,16 +33,16 @@ final class EditView: BaseView {
         view.titleLabel.text = "남은 근무시간"
     }
     let refreshButton = UIButton().then { view in
-        view.setTitle("갱신", for: .normal)
-        view.setTitleColor(.white, for: .normal)
-        view.titleLabel?.font = .boldSystemFont(ofSize: 20.0)
-        view.backgroundColor = .systemBlue
+        let image = UIImage.sfConfiguration(name: "icloud.and.arrow.down", color: .systemBlue)
+        view.setImage(image, for: .normal)
+    }
+    let histortButton = UIButton().then { view in
+        let image = UIImage.sfConfiguration(name: "rectangle.stack", color: .systemBlue)
+        view.setImage(image, for: .normal)
     }
     let settingButton = UIButton().then { view in
-        view.setTitle("설정", for: .normal)
-        view.setTitleColor(.white, for: .normal)
-        view.titleLabel?.font = .boldSystemFont(ofSize: 20.0)
-        view.backgroundColor = .systemGreen
+        let image = UIImage.sfConfiguration(name: "gearshape", color: .systemBlue)
+        view.setImage(image, for: .normal)
     }
     
     private let disposeBag = DisposeBag()
@@ -51,8 +52,11 @@ final class EditView: BaseView {
     // MARK: - Life Cycle
     
     override init() {
+        self.navigationView = BaseNavigationView(.none(0.0))
+        
         super.init()
         
+        self.setNavigation()
         self.setAttribute()
         self.setConstraint()
     }
@@ -88,50 +92,51 @@ final class EditView: BaseView {
         self.remainedSumUnitView.subLabel.text = remainedText
     }
     
-    func createUnitView(_ blockViewModels: [EditTimeBlockViewModel]) {
+    func createUnitView(_ blockViewModels: [EditBlockViewModel]) {
         blockViewModels
-            .compactMap { timeBlockViewModel -> EditTimeBlockView? in
-                let weekday = timeBlockViewModel.weekday
+            .compactMap { blockViewModel -> EditBlockView? in
+                let blockView = EditBlockView()
                 
-                let isSelect = AppManager.shared.settingData?.days.contains(weekday) ?? false
-                guard isSelect else { return nil }
+                blockView.dayLabel.text = blockViewModel.weekDay.ko
                 
-                let timeBlockView = EditTimeBlockView(weekday)
-                
-                timeBlockView.startTimeButton.rx.tap
-                    .bind(to: timeBlockViewModel.input.startDidTap)
+                blockView.startButton.rx.tap
+                    .bind(to: blockViewModel.input.startDidTap)
                     .disposed(by: self.disposeBag)
                 
-                timeBlockView.endTimeButton.rx.tap
-                    .bind(to: timeBlockViewModel.input.endDidTap)
+                blockView.endButton.rx.tap
+                    .bind(to: blockViewModel.input.endDidTap)
                     .disposed(by: self.disposeBag)
                 
-                timeBlockView.restTimeButton.rx.tap
-                    .bind(to: timeBlockViewModel.input.restDidTap)
+                blockView.restButton.rx.tap
+                    .bind(to: blockViewModel.input.restDidTap)
                     .disposed(by: self.disposeBag)
                 
                 
-                timeBlockViewModel.output.startTime
-                    .bind(to: timeBlockView.startTimeButton.rx.title())
+                blockViewModel.output.startTime
+                    .toHourMin()
+                    .bind(to: blockView.startButton.rx.title())
                     .disposed(by: self.disposeBag)
                 
-                timeBlockViewModel.output.endTime
-                    .bind(to: timeBlockView.endTimeButton.rx.title())
+                blockViewModel.output.endTime
+                    .toHourMin()
+                    .bind(to: blockView.endButton.rx.title())
                     .disposed(by: self.disposeBag)
                 
-                timeBlockViewModel.output.restTime
-                    .bind(to: timeBlockView.restTimeButton.rx.title())
+                blockViewModel.output.restTime
+                    .toHourMin()
+                    .bind(to: blockView.restButton.rx.title())
                     .disposed(by: self.disposeBag)
                 
-                timeBlockViewModel.output.runTime
-                    .bind(to: timeBlockView.runTimeLabel.rx.text)
+                blockViewModel.output.runTime
+                    .toRestHourMin()
+                    .bind(to: blockView.runTimeLabel.rx.text)
                     .disposed(by: self.disposeBag)
                 
-                return timeBlockView
+                return blockView
             }
             .enumerated()
             .forEach { index, view in
-                self.contentsStackView.insertArrangedSubview(view, at: index + 1)
+                self.contentsStackView.insertArrangedSubview(view, at: index)
             }
     }
     
@@ -142,16 +147,20 @@ final class EditView: BaseView {
     private func setAttribute() {
         self.backgroundColor = .light
         
+        self.navigationView.titleLabel.text = "칼퇴 계산기"
+        
+        [self.refreshButton, self.histortButton, self.settingButton].forEach { view in
+            self.navigationView.addNavigationRightStackView(view)
+        }
+        
         
         
         self.addSubview(self.contentsScrollView)
         
-        self.contentsScrollView.addSubview(self.contentsStackView)
+        [self.infoView, self.contentsStackView]
+            .forEach(self.contentsScrollView.addSubview(_:))
         
-        [self.infoView]
-            .forEach(self.contentsStackView.addArrangedSubview(_:))
-        
-        [self.sumUnitStackView, self.refreshButton, settingButton]
+        [self.sumUnitStackView]
             .forEach(self.contentsStackView.addArrangedSubview(_:))
         
         [self.totalSumUnitView, self.remainedSumUnitView]
@@ -162,18 +171,19 @@ final class EditView: BaseView {
         let guide = self.safeAreaLayoutGuide
         
         self.contentsScrollView.snp.makeConstraints { make in
-            make.edges.equalTo(guide)
+            make.top.equalTo(self.navigationView.snp.bottom)
+            make.leading.trailing.bottom.equalTo(guide)
+        }
+        
+        self.infoView.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview().inset(24.0)
+            make.width.equalToSuperview().inset(24.0)
         }
         
         self.contentsStackView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.edges.equalToSuperview().inset(24.0)
-        }
-        
-        [self.refreshButton, self.settingButton].forEach { view in
-            view.snp.makeConstraints { make in
-                make.height.equalTo(48.0)
-            }
+            make.top.equalTo(self.infoView.snp.bottom).offset(20.0)
+            make.leading.trailing.bottom.equalToSuperview().inset(24.0)
+            make.width.equalToSuperview().inset(24.0)
         }
     }
 }

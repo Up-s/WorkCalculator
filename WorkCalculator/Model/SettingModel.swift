@@ -9,6 +9,7 @@ import Foundation
 
 struct SettingModel: Codable {
     
+    var deviceList: [String]
     let createDate: Date
     let latestBlockDate: Date
     var days: [DateManager.Day]
@@ -16,6 +17,7 @@ struct SettingModel: Codable {
     var inputType: Int
     
     init() {
+        self.deviceList = [UserDefaultsManager.deviceUUID!]
         self.createDate =  Date()
         self.latestBlockDate =  Date()
         self.days = [.mon, .tue, .wed, .thu, .fri]

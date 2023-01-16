@@ -14,6 +14,7 @@ import UPsKit
 enum UpdateType {
     case refresh
     case share(String)
+    case shareCancel
     case setting(SettingModel)
 }
 
@@ -33,7 +34,8 @@ final class UpdateViewModel: BaseViewModel {
     let output = Output()
     
     let inType: BehaviorRelay<UpdateType>
-    private let timeObserver: Observable<Int>
+    private let timeObserver = Observable<Int>.interval(.milliseconds(5), scheduler: MainScheduler.instance)
+    private let errorObserver = PublishRelay<Void>()
     
     
     
@@ -41,9 +43,6 @@ final class UpdateViewModel: BaseViewModel {
     
     init(_ inType: UpdateType) {
         self.inType = BehaviorRelay<UpdateType>(value: inType)
-        
-        self.timeObserver = Observable<Int>
-            .interval(.milliseconds(10), scheduler: MainScheduler.instance)
         
         super.init()
         
@@ -59,14 +58,16 @@ final class UpdateViewModel: BaseViewModel {
             .disposed(by: self.disposeBag)
         
         self.input.viewDidAppear
-            .delay(.seconds(2), scheduler: MainScheduler.instance)
             .flatMap {
                 switch inType {
                 case .refresh:
                     return FirebaseProvider.getSettingData()
                     
                 case .share(let id):
-                    return FirebaseProvider.shareID(id)
+                    return FirebaseProvider.share(id)
+                    
+                case .shareCancel:
+                    return FirebaseProvider.shareCancel()
                     
                 case .setting(let data):
                     return FirebaseProvider.setSettingData(data)
@@ -74,31 +75,32 @@ final class UpdateViewModel: BaseViewModel {
             }
             .catch { [weak self] error in
                 self?.debugLog(#function, #line, error)
+                self?.errorObserver.accept(())
                 return Observable.empty()
             }
-            .map { TimeBlockModel.create }
+            .map { BlockModel.create }
             .flatMap { blocks in
                 Observable.from(blocks)
                     .flatMap { block in
-                        FirebaseProvider.getTimeBlock(block)
+                        FirebaseProvider.getBlock(block)
                     }
-                    .groupBy { $0.groupKey }
-                    .flatMap { $0.toArray() }
                     .toArray()
-                    .map { temp in
-                        temp.sorted { $0[0].date < $1[0].date }
+                    .map { blocks in
+                        blocks.sorted { $0.date < $1.date }
                     }
-                    .map { temp in
-                        temp.map { block in
-                            block.sorted { $0.state.index < $1.state.index }
-                        }
-                    }
-                    .asObservable()
             }
             .bind { [weak self] blocks in
-                AppManager.shared.timeBlocks = blocks
+                AppManager.shared.blocks = blocks
                 
                 let scene = Scene.edit
+                self?.coordinator.transition(scene: scene, style: .root)
+            }
+            .disposed(by: self.disposeBag)
+        
+        self.errorObserver
+            .delay(.seconds(4), scheduler: MainScheduler.instance)
+            .bind { [weak self] in
+                let scene = Scene.splash
                 self?.coordinator.transition(scene: scene, style: .root)
             }
             .disposed(by: self.disposeBag)

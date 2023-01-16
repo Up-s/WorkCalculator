@@ -17,6 +17,9 @@ target 'WorkCalculator' do
   pod 'Firebase/Messaging', '~> 9'
   pod 'Firebase/Storage', '~> 9'
   
+  pod 'Realm', '~> 10'
+  pod 'RealmSwift', '~> 10'
+  
   pod 'UPsKit'
 
 end

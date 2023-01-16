@@ -1,5 +1,5 @@
 //
-//  EditTimeBlockView.swift
+//  EditBlockView.swift
 //  WorkCalculator
 //
 //  Created by YouUp Lee on 2023/01/05.
@@ -11,7 +11,7 @@ import SnapKit
 import Then
 import UPsKit
 
-final class EditTimeBlockView: UIView {
+final class EditBlockView: UIView {
     
     // MARK: - Property
     
@@ -22,9 +22,9 @@ final class EditTimeBlockView: UIView {
         view.font = .boldSystemFont(ofSize: 20.0)
     }
     private let dateStackView = UPsStackView(axis: .horizontal, distribution: .fillEqually, spacing: 16.0)
-    let startTimeButton = UIButton()
-    let endTimeButton = UIButton()
-    let restTimeButton = UIButton()
+    let startButton = UIButton()
+    let endButton = UIButton()
+    let restButton = UIButton()
     let runTimeInfoLabel = UILabel().then { view in
         view.text = "일일근무시간"
         view.textColor = .gray900
@@ -35,15 +35,11 @@ final class EditTimeBlockView: UIView {
         view.font = .boldSystemFont(ofSize: 16.0)
     }
     
-    let weekday: DateManager.Day
-    
     
     
     // MARK: - Life Cycle
     
-    init(_ weekday: DateManager.Day) {
-        self.weekday = weekday
-        
+    init() {
         super.init(frame: .zero)
         
         self.setAttribute()
@@ -63,9 +59,7 @@ final class EditTimeBlockView: UIView {
     // MARK: - UI
     
     private func setAttribute() {
-        self.dayLabel.text = self.weekday.ko
-        
-        [self.startTimeButton, self.endTimeButton, self.restTimeButton].forEach { view in
+        [self.startButton, self.endButton, self.restButton].forEach { view in
             view.setTitle("00:00", for: .normal)
             view.setTitleColor(.gray900, for: .normal)
             view.titleLabel?.font = .boldSystemFont(ofSize: 20.0)
@@ -77,7 +71,7 @@ final class EditTimeBlockView: UIView {
         [self.dayLabel, self.dateStackView, self.runTimeInfoLabel, self.runTimeLabel]
             .forEach(self.addSubview(_:))
         
-        [self.startTimeButton, self.endTimeButton, self.restTimeButton]
+        [self.startButton, self.endButton, self.restButton]
             .forEach(self.dateStackView.addArrangedSubview(_:))
     }
     

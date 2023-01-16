@@ -15,7 +15,6 @@ final class UpdateView: BaseView {
     
     // MARK: - Property
     
-    
     var currentProgressView: ProgressView?
     
     
@@ -59,11 +58,10 @@ final class UpdateView: BaseView {
     // MARK: - UI
     
     private func setAttribute() {
-        
+        self.backgroundColor = .light
     }
     
     private func setConstraint() {
         
     }
 }
-

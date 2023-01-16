@@ -15,10 +15,12 @@ final class EditViewModel: BaseViewModel {
     
     struct Input {
         let refreshDidTap = PublishRelay<Void>()
+        let historyDidTap = PublishRelay<Void>()
         let settingDidTap = PublishRelay<Void>()
     }
     
     struct Output {
+        let blockViewModels = BehaviorRelay<[EditBlockViewModel]>(value: [])
         let sumRunTime = BehaviorRelay<Int>(value: 0)
     }
     
@@ -27,8 +29,6 @@ final class EditViewModel: BaseViewModel {
     let input = Input()
     let output = Output()
     
-    let timeBlockViewModels = BehaviorRelay<[EditTimeBlockViewModel]>(value: [])
-    
     
     
     // MARK: - Interface
@@ -36,20 +36,23 @@ final class EditViewModel: BaseViewModel {
     init() {
         super.init()
         
-        Observable.from(AppManager.shared.timeBlocks)
+        Observable.from(AppManager.shared.blocks)
+            .filter { block in
+                AppManager.shared.settingData?.days.contains(block.weekday) ?? false
+            }
             .map { blocks in
-                EditTimeBlockViewModel(blocks)
+                EditBlockViewModel(blocks)
             }
             .toArray()
             .asObservable()
-            .bind(to: self.timeBlockViewModels)
+            .bind(to: self.output.blockViewModels)
             .disposed(by: self.disposeBag)
         
-        self.timeBlockViewModels
+        self.output.blockViewModels
             .filter { !$0.isEmpty }
             .bind { [weak self] array in
                 guard let self = self else { return }
-                let runTimes = array.map { $0.runTime }
+                let runTimes = array.map { $0.output.runTime }
                 
                 Observable
                     .combineLatest(runTimes) { $0.reduce(0, +) }
@@ -68,10 +71,19 @@ final class EditViewModel: BaseViewModel {
             }
             .disposed(by: self.disposeBag)
         
+        self.input.historyDidTap
+            .throttle(.seconds(2), scheduler: MainScheduler.instance)
+            .bind { [weak self] in
+                let scene = Scene.history
+                self?.coordinator.transition(scene: scene, style: .push)
+            }
+            .disposed(by: self.disposeBag)
+        
         self.input.settingDidTap
+            .throttle(.seconds(2), scheduler: MainScheduler.instance)
             .bind { [weak self] in
                 let scene = Scene.setting
-                self?.coordinator.transition(scene: scene, style: .modal(.fullScreen))
+                self?.coordinator.transition(scene: scene, style: .push)
             }
             .disposed(by: self.disposeBag)
     }
