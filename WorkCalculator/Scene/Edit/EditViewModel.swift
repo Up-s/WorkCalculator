@@ -62,12 +62,24 @@ final class EditViewModel: BaseViewModel {
             .disposed(by: self.disposeBag)
         
         self.input.refreshDidTap
-            .throttle(.seconds(2), scheduler: MainScheduler.instance)
-            .bind { [weak self] in
-                let inTpye = UpdateType.refresh
-                let viewModel = UpdateViewModel(inTpye)
-                let scene = Scene.update(viewModel)
-                self?.coordinator.transition(scene: scene, style: .root)
+            .map { _ -> (Bool, Int) in
+                guard let refreshDate = AppManager.shared.refreshDate else { return (true, 0) }
+                let distance = refreshDate.distance(to: Date())
+                return (distance > TimeInterval(AppManager.shared.refreshInterval), Int(distance))
+            }
+            .bind { [weak self] state, interval in
+                switch state {
+                case true:
+                    AppManager.shared.refreshDate = Date()
+                    
+                    let inTpye = UpdateType.refresh
+                    let viewModel = UpdateViewModel(inTpye)
+                    let scene = Scene.update(viewModel)
+                    self?.coordinator.transition(scene: scene, style: .root)
+                    
+                case false:
+                    self?.coordinator.toast("\(AppManager.shared.refreshInterval - interval)초 후 데이터 갱신이 가능합니다")
+                }
             }
             .disposed(by: self.disposeBag)
         

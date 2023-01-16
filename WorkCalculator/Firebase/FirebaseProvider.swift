@@ -244,26 +244,33 @@ final class FirebaseProvider {
                             return
                         }
                         
-                        print("\n--------------------------------------------", documentID.count)
-                        
                         let blocks = documents.compactMap { document in
                             try? FirebaseDecoder().decode(BlockModel.self, from: document.data())
                         }
                         
-                        let filterBlocks = blocks
-                            .filter { block in
+                        var currentBlock = [BlockModel]()
+                        var oldBlock = [BlockModel]()
+                        
+                        blocks
+                            .forEach { block in
                                 let keys = AppManager.shared.blocks.compactMap { $0.key }
-                                return !keys.contains(block.key)
+                                switch keys.contains(block.key) {
+                                case true:
+                                    currentBlock.append(block)
+                                    
+                                case false:
+                                    oldBlock.append(block)
+                                }
                             }
                         
-                        filterBlocks
+                        oldBlock
                             .forEach { block in
                                 self.updateDevice(block.key, state: true)
                             }
                         
-                        RealmManager.create(blocks: filterBlocks)
+                        RealmManager.create(blocks: oldBlock)
                         
-                        observer.onNext(blocks)
+                        observer.onNext(currentBlock)
                         observer.onCompleted()
                     }
                 }
@@ -392,6 +399,8 @@ final class FirebaseProvider {
                     }
                     
                     guard !deviceList.isEmpty else { return }
+                    
+                    RealmManager.deleteAll()
                     
                     Firestore
                         .firestore()

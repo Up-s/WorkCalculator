@@ -130,7 +130,7 @@ final class SettingViewModel: BaseViewModel {
         self.input.shareCancelDidTap
             .map { _ -> Bool in
                 let deviceCount = AppManager.shared.settingData?.deviceList.count ?? 0
-                return deviceCount < AppManager.shared.maxDeviceCount
+                return deviceCount > 1
             }
             .bind { [weak self] state in
                 switch state {

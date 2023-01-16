@@ -62,6 +62,11 @@ final class HistoryViewController: BaseViewController {
             .bind(to: self.viewModel.input.selectIndex)
             .disposed(by: self.disposeBag)
         
+        self.rootView.dayCollectionView.rx.itemSelected
+            .map { _ in }
+            .bind(to: self.rootView.dayCollectionView.rx.reload)
+            .disposed(by: self.disposeBag)
+        
         
         
         self.viewModel.output.title
@@ -75,12 +80,16 @@ final class HistoryViewController: BaseViewController {
                     cellIdentifier: HistoryCollectionViewCell.identifier,
                     cellType: HistoryCollectionViewCell.self
                 )
-            ) { row, element, cell in
+            ) { [weak self] row, element, cell in
                 cell.setData(element)
+                
+                let selectIndex = self?.viewModel.input.selectIndex.value ?? 0
+                let state = selectIndex == row
+                cell.setBorder(state)
             }
             .disposed(by: self.disposeBag)
         
-        self.viewModel.output.block
+        self.viewModel.output.selectBlock
             .compactMap { $0 }
             .distinctUntilChanged()
             .bind { [weak self] block in

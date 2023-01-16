@@ -57,6 +57,13 @@ final class HistoryCollectionViewCell: UICollectionViewCell, CellIdentifiable {
         self.runTimeLabel.text = data.intervalString
     }
     
+    func setBorder(_ select: Bool) {
+        self.contentsStackView.layer.borderColor = select ?
+                                                    UIColor.systemBlue.cgColor :
+                                                    UIColor.clear.cgColor
+        self.contentsStackView.layer.borderWidth = 2.0
+    }
+    
     
     
     // MARK: - UI

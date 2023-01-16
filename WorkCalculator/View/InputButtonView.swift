@@ -73,8 +73,8 @@ final class InputButtonView: UIView {
         }
         
         self.lineView.snp.makeConstraints { make in
-            make.width.equalTo(2.0)
-            make.height.equalTo(32.0)
+            make.width.equalTo(1.0)
+            make.height.equalTo(24.0)
         }
     }
 }
