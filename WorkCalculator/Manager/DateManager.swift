@@ -5,7 +5,7 @@
 //  Created by YouUp Lee on 2023/01/05.
 //
 
-import Foundation
+import UIKit
 
 class DateManager {
     
@@ -52,6 +52,14 @@ class DateManager {
             case .thu: return 5
             case .fri: return 6
             case .sat: return 7
+            }
+        }
+        
+        var color: UIColor {
+            switch self {
+            case .sun: return .systemPink
+            case .sat: return .systemBlue
+            default: return .gray900
             }
         }
     }

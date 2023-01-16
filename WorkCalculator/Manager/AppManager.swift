@@ -14,6 +14,7 @@ final class AppManager {
     
     var settingData: SettingModel?
     var blocks: [BlockModel] = []
-    
+    var refreshDate: Date?
+    let refreshInterval = 30
     let maxDeviceCount = 3
 }

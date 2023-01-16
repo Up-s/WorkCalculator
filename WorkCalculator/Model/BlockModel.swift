@@ -49,8 +49,9 @@ struct BlockModel: Codable {
         self.restTime = realm.restTime
     }
 }
-    
-    
+
+
+
 extension BlockModel {
     
     var startHour: Int {
@@ -117,10 +118,15 @@ extension BlockModel {
         "\(self.month)월 \(self.day)일"
     }
     
+    var yearMonth: String {
+        "\(self.year)년   \(self.month)월"
+    }
+    
     var key: String {
         "\(self.year)_\(self.month)_\(self.day)"
     }
 }
+
 
 
 extension BlockModel {
@@ -165,11 +171,23 @@ extension BlockModel {
 
 
 
+extension BlockModel: Equatable {
+    
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        lhs.key == rhs.key
+    }
+}
+
+
+
 extension BlockModel {
     
     static var create: [BlockModel] {
         var calendar = Calendar(identifier: .gregorian)
         calendar.locale = Locale(identifier: "ko_KR")
+        
+//        let testDateComp = DateComponents(year: 2022, month: 11, day: 24)
+//        let testDate = calendar.date(from: testDateComp)!
         
 //        let testDateComp = DateComponents(year: 2023, month: 1, day: 5)
 //        let testDate = calendar.date(from: testDateComp)!

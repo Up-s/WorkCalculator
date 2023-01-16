@@ -15,10 +15,14 @@ final class HistoryViewModel: BaseViewModel {
     
     struct Input {
         let viewDidAppear = PublishRelay<Void>()
+        let willCellIndex = BehaviorRelay<Int>(value: 0)
+        let selectIndex = BehaviorRelay<Int>(value: 0)
     }
     
     struct Output {
+        let title = PublishRelay<String>()
         let blocks = BehaviorRelay<[BlockModel]>(value: [])
+        let selectBlock = BehaviorRelay<BlockModel?>(value: nil)
     }
     
     // MARK: - Property
@@ -49,6 +53,22 @@ final class HistoryViewModel: BaseViewModel {
                     }
             }
             .bind(to: self.output.blocks)
+            .disposed(by: self.disposeBag)
+        
+        Observable
+            .combineLatest(
+                self.input.willCellIndex,
+                self.output.blocks.filter({ !$0.isEmpty })
+            ) { $1[$0].yearMonth }
+            .bind(to: self.output.title)
+            .disposed(by: self.disposeBag)
+        
+        Observable
+            .combineLatest(
+                self.input.selectIndex,
+                self.output.blocks.filter({ !$0.isEmpty })
+            ) { $1[$0] }
+            .bind(to: self.output.selectBlock)
             .disposed(by: self.disposeBag)
     }
 }
