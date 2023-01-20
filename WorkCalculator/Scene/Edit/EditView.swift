@@ -97,7 +97,7 @@ final class EditView: BaseView, NavigationProtocol {
             .compactMap { blockViewModel -> EditBlockView? in
                 let blockView = EditBlockView()
                 
-                blockView.dayLabel.text = blockViewModel.weekDay.ko
+                blockView.dayLabel.text = blockViewModel.inBlock.weekday.ko
                 
                 blockView.startButton.rx.tap
                     .bind(to: blockViewModel.input.startDidTap)
@@ -131,6 +131,14 @@ final class EditView: BaseView, NavigationProtocol {
                     .toRestHourMin()
                     .bind(to: blockView.runTimeLabel.rx.text)
                     .disposed(by: self.disposeBag)
+                
+                blockViewModel.output.runTime
+                    .map { time -> UIColor in
+                        return time >= 0 ? UIColor.gray900 : UIColor.systemRed
+                    }
+                    .bind(to: blockView.runTimeLabel.rx.textColor)
+                    .disposed(by: self.disposeBag)
+                
                 
                 return blockView
             }

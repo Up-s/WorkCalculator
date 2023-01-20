@@ -56,7 +56,7 @@ final class NumberPadViewModel: BaseViewModel {
         
         self.input.okDidTap
             .withLatestFrom(self.timer)
-            .compactMap { [weak self] timer -> (Int, Int)? in
+            .compactMap { [weak self] timer -> Int? in
                 guard let self = self else { return nil }
                 
                 guard timer.count == 4 else {
@@ -86,18 +86,18 @@ final class NumberPadViewModel: BaseViewModel {
                     return nil
                 }
                 
-                return (hour, min)
+                return runTime
             }
-            .flatMap { hour, min in
+            .flatMap { runTime in
                 FirebaseProvider.setBlock(
                     key: block.key,
                     state: state,
-                    time: (hour * 60) + min
+                    runTime: runTime
                 )
             }
             .subscribe(
-                onNext: { [weak self] time in
-                    self?.callbackOb.accept((state, time))
+                onNext: { [weak self] runTime in
+                    self?.callbackOb.accept((state, runTime))
                     self?.coordinator.dismiss(animated: false)
                 },
                 onError: { [weak self] error in

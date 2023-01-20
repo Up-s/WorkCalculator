@@ -177,18 +177,18 @@ final class FirebaseProvider {
     
     
     
-    class func setBlock(key: String, state: DateManager.State, time: Int) -> Observable<Int> {
+    class func setBlock(key: String, state: DateManager.State, runTime: Int) -> Observable<Int> {
         Observable<Int>.create { observer -> Disposable in
             
             let documentID = UserDefaultsManager.firebaseID!
             var data = [String: Any]()
             switch state {
             case .start:
-                data[FirebaseFieldKey.startTime] = time
+                data[FirebaseFieldKey.startTime] = runTime
             case .end:
-                data[FirebaseFieldKey.endTime] = time
+                data[FirebaseFieldKey.endTime] = runTime
             case .rest:
-                data[FirebaseFieldKey.restTime] = time
+                data[FirebaseFieldKey.restTime] = runTime
             }
             
             Firestore
@@ -211,7 +211,7 @@ final class FirebaseProvider {
                             .document(documentID)
                             .updateData(updateDateData)
                         
-                        observer.onNext(time)
+                        observer.onNext(runTime)
                         observer.onCompleted()
                     }
                 }

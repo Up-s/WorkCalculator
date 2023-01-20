@@ -31,7 +31,7 @@ final class EditBlockViewModel: BaseViewModel {
     let input = Input()
     let output = Output()
     
-    let weekDay: DateManager.Day
+    var inBlock: BlockModel
     private let presentOb = PublishRelay<(DateManager.State, Int)>()
     private let callbackOb = PublishRelay<(DateManager.State, Int)>()
   
@@ -41,19 +41,19 @@ final class EditBlockViewModel: BaseViewModel {
     // MARK: - Interface
     
     init(_ block: BlockModel) {
-        self.weekDay = block.weekday
+        self.inBlock = block
         
         super.init()
         
-        Observable.just(block.getTime(.start))
+        Observable.just(self.inBlock.getTime(.start))
             .bind(to: self.output.startTime)
             .disposed(by: self.disposeBag)
         
-        Observable.just(block.getTime(.end))
+        Observable.just(self.inBlock.getTime(.end))
             .bind(to: self.output.endTime)
             .disposed(by: self.disposeBag)
         
-        Observable.just(block.getTime(.rest))
+        Observable.just(self.inBlock.getTime(.rest))
             .bind(to: self.output.restTime)
             .disposed(by: self.disposeBag)
         
@@ -88,20 +88,20 @@ final class EditBlockViewModel: BaseViewModel {
                 let inputType: Int = AppManager.shared.settingData?.inputType ?? 0
                 switch inputType {
                 case 0:
-                    let viewModel = PickerViewModel(state, block)
+                    let viewModel = PickerViewModel(state, self.inBlock)
+                    viewModel.callbackOb
+                        .bind(to: self.callbackOb)
+                        .disposed(by: viewModel.disposeBag)
+                    
                     scene = .picker(viewModel)
                     
-                    viewModel.callbackOb
-                        .bind(to: self.callbackOb)
-                        .disposed(by: viewModel.disposeBag)
-                    
                 case 1:
-                    let viewModel = NumberPadViewModel(state, block)
-                    scene = .numberPad(viewModel)
-                    
+                    let viewModel = NumberPadViewModel(state, self.inBlock)
                     viewModel.callbackOb
                         .bind(to: self.callbackOb)
                         .disposed(by: viewModel.disposeBag)
+                    
+                    scene = .numberPad(viewModel)
                     
                 default:
                     fatalError()
@@ -113,6 +113,8 @@ final class EditBlockViewModel: BaseViewModel {
         
         self.callbackOb
             .bind { state, time in
+                self.inBlock.updateTime(state, time: time)
+                
                 switch state {
                 case .start:
                     self.output.startTime.accept(time)
