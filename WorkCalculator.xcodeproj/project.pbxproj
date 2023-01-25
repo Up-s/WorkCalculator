@@ -62,6 +62,7 @@
 		BD9D7B1929744FE700B311EB /* Extension+Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9D7B1829744FE700B311EB /* Extension+Int.swift */; };
 		BD9D7B1B29745A6700B311EB /* RealmBlockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9D7B1A29745A6700B311EB /* RealmBlockModel.swift */; };
 		BDBC33CE2974199F0073754E /* BlockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBC33CD2974199F0073754E /* BlockModel.swift */; };
+		BDBC4F20297A7EB0007C1C1A /* AppConfigureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBC4F1F297A7EB0007C1C1A /* AppConfigureModel.swift */; };
 		BDE6D02B2967DC1D00F79CB6 /* SplashViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDE6D02A2967DC1D00F79CB6 /* SplashViewController.storyboard */; };
 		FE2F56DEA624171BBC2E1B0A /* Pods_WorkCalculator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50AC98ACB26649BCF5B1BED1 /* Pods_WorkCalculator.framework */; };
 /* End PBXBuildFile section */
@@ -126,6 +127,7 @@
 		BD9D7B1829744FE700B311EB /* Extension+Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Int.swift"; sourceTree = "<group>"; };
 		BD9D7B1A29745A6700B311EB /* RealmBlockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBlockModel.swift; sourceTree = "<group>"; };
 		BDBC33CD2974199F0073754E /* BlockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockModel.swift; sourceTree = "<group>"; };
+		BDBC4F1F297A7EB0007C1C1A /* AppConfigureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigureModel.swift; sourceTree = "<group>"; };
 		BDE6D02A2967DC1D00F79CB6 /* SplashViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SplashViewController.storyboard; sourceTree = "<group>"; };
 		F578C96866DECC6C0B77A42D /* Pods-WorkCalculator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkCalculator.release.xcconfig"; path = "Target Support Files/Pods-WorkCalculator/Pods-WorkCalculator.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -220,6 +222,7 @@
 		BD470D5A2966C8BF00404AB4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BDBC4F1F297A7EB0007C1C1A /* AppConfigureModel.swift */,
 				BDBC33CD2974199F0073754E /* BlockModel.swift */,
 				BD9D7B1A29745A6700B311EB /* RealmBlockModel.swift */,
 				BD78313C29686BD800907452 /* SettingModel.swift */,
@@ -505,6 +508,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD78314E2968859B00907452 /* SettingHourSliderView.swift in Sources */,
+				BDBC4F20297A7EB0007C1C1A /* AppConfigureModel.swift in Sources */,
 				BD9D7B1929744FE700B311EB /* Extension+Int.swift in Sources */,
 				BD78313D29686BD800907452 /* SettingModel.swift in Sources */,
 				BD470D722966D42700404AB4 /* EditBlockViewModel.swift in Sources */,
@@ -699,7 +703,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.0;
+				MARKETING_VERSION = 1.3.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.QEDStudio.WorkCalculatorDebug;
@@ -732,10 +736,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.0;
+				MARKETING_VERSION = 1.3.1;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.QEDStudio.WorkCalculator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

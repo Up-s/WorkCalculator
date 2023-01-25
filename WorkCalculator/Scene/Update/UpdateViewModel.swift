@@ -74,8 +74,23 @@ final class UpdateViewModel: BaseViewModel {
                 }
             }
             .catch { [weak self] error in
-                self?.debugLog(#function, #line, error)
-                self?.errorObserver.accept(())
+                guard let firebaseError = error as? FirebaseError else { return Observable.empty() }
+                
+                let errorMessage: String
+                switch firebaseError {
+                case .firebaseError(let error):
+                    errorMessage = "잠시 후 다시 시도해 주세요.\nService Error \(error.localizedDescription)"
+                    
+                case .parsingError:
+                    errorMessage = "잠시 후 다시 시도해 주세요.\nParsing Error"
+                    
+                case .emptyData:
+                    errorMessage = "데이터가 없습니다"
+                    self?.errorObserver.accept(())
+                }
+                
+                self?.coordinator.toast(errorMessage)
+                
                 return Observable.empty()
             }
             .map { BlockModel.create }
