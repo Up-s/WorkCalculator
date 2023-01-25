@@ -12,6 +12,37 @@ import RxSwift
 
 final class FirebaseProvider {
     
+    class func minVersion() -> Observable<AppConfigureModel> {
+        Observable<AppConfigureModel>.create { observer -> Disposable in
+            
+            Firestore
+                .firestore()
+                .collection(FirebaseRoot.app)
+                .document(FirebaseRoot.configure)
+                .getDocument { snapshot, error in
+                    if let error = error {
+                        observer.onError(error)
+                        
+                    } else {
+                        guard
+                            let data = snapshot?.data(),
+                            let appData = try? FirebaseDecoder().decode(AppConfigureModel.self, from: data)
+                        else {
+                            observer.onError(FirebaseError.emptyData)
+                            return
+                        }
+                        
+                        observer.onNext(appData)
+                        observer.onCompleted()
+                    }
+                }
+            
+            return Disposables.create()
+        }
+    }
+    
+    
+    
     class func create() -> Observable<Void> {
         Observable<Void>.create { observer -> Disposable in
             
@@ -60,7 +91,7 @@ final class FirebaseProvider {
                             let data = snapshot?.data(),
                             let settingData = try? FirebaseDecoder().decode(SettingModel.self, from: data)
                         else {
-                            observer.onError(FirebaseError.parsingError)
+                            observer.onError(FirebaseError.emptyData)
                             return
                         }
                         
@@ -240,7 +271,7 @@ final class FirebaseProvider {
                         
                     } else {
                         guard let documents = snapshot?.documents else {
-                            observer.onError(FirebaseError.parsingError)
+                            observer.onError(FirebaseError.emptyData)
                             return
                         }
                         
