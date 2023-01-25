@@ -8,6 +8,6 @@
 import Foundation
 
 struct AppConfigureModel: Codable {
-    
-    let minVersion: [Int]
+  
+  let minVersion: [Int]
 }

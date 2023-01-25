@@ -11,20 +11,20 @@ import CodableFirebase
 import Firebase
 
 struct FirebaseRoot {
-    
-    static let app = "app"
-    static let configure = "configure"
-    
-    static let data = "data"
-    static let block = "block"
+  
+  static let app = "app"
+  static let configure = "configure"
+  
+  static let data = "data"
+  static let block = "block"
 }
 
 struct FirebaseFieldKey {
-    
-    static let deviceList = "deviceList"
-    static let startTime = "startTime"
-    static let endTime = "endTime"
-    static let restTime = "restTime"
+  
+  static let deviceList = "deviceList"
+  static let startTime = "startTime"
+  static let endTime = "endTime"
+  static let restTime = "restTime"
 }
 
 extension DocumentReference: DocumentReferenceType {}

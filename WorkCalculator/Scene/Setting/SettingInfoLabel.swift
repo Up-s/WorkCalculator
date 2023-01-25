@@ -10,15 +10,15 @@ import UIKit
 import UPsKit
 
 final class SettingInfoLabel: UILabel {
+  
+  init() {
+    super.init(frame: .zero)
     
-    init() {
-        super.init(frame: .zero)
-        
-        self.textColor = .gray900
-        self.font = .boldSystemFont(ofSize: 15.0)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    self.textColor = .gray900
+    self.font = .boldSystemFont(ofSize: 15.0)
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
 }

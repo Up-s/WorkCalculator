@@ -8,6 +8,6 @@
 import Foundation
 
 struct UpdateDateModel: Codable {
-    
-    var latestBlockDate = Date()
+  
+  var latestBlockDate = Date()
 }

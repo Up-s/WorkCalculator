@@ -8,8 +8,8 @@
 import Foundation
 
 enum FirebaseError: Error {
-    
-    case firebaseError(Error)
-    case emptyData
-    case parsingError
+  
+  case firebaseError(Error)
+  case emptyData
+  case parsingError
 }

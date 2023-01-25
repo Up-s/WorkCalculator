@@ -8,23 +8,23 @@
 import Foundation
 
 final class UserDefaultsManager {
-    
-    enum Key: String, CaseIterable {
-        case deviceUUID
-        case firebaseID
-    }
-    
-    private static let userDefault = UserDefaults.standard
-    
-    
-    
-    static var deviceUUID: String? {
-        get { self.userDefault.string(forKey: Key.deviceUUID.rawValue) }
-        set { self.userDefault.set(newValue, forKey: Key.deviceUUID.rawValue) }
-    }
-    
-    static var firebaseID: String? {
-        get { self.userDefault.string(forKey: Key.firebaseID.rawValue) }
-        set { self.userDefault.set(newValue, forKey: Key.firebaseID.rawValue) }
-    }
+  
+  enum Key: String, CaseIterable {
+    case deviceUUID
+    case firebaseID
+  }
+  
+  private static let userDefault = UserDefaults.standard
+  
+  
+  
+  static var deviceUUID: String? {
+    get { self.userDefault.string(forKey: Key.deviceUUID.rawValue) }
+    set { self.userDefault.set(newValue, forKey: Key.deviceUUID.rawValue) }
+  }
+  
+  static var firebaseID: String? {
+    get { self.userDefault.string(forKey: Key.firebaseID.rawValue) }
+    set { self.userDefault.set(newValue, forKey: Key.firebaseID.rawValue) }
+  }
 }
