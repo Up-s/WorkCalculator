@@ -21,14 +21,16 @@ final class FirebaseProvider {
                 .document(FirebaseRoot.configure)
                 .getDocument { snapshot, error in
                     if let error = error {
-                        observer.onError(error)
+                        observer.onError(FirebaseError.firebaseError(error))
                         
                     } else {
-                        guard
-                            let data = snapshot?.data(),
-                            let appData = try? FirebaseDecoder().decode(AppConfigureModel.self, from: data)
-                        else {
+                        guard let data = snapshot?.data() else {
                             observer.onError(FirebaseError.emptyData)
+                            return
+                        }
+                        
+                        guard let appData = try? FirebaseDecoder().decode(AppConfigureModel.self, from: data) else {
+                            observer.onError(FirebaseError.parsingError)
                             return
                         }
                         
@@ -54,10 +56,11 @@ final class FirebaseProvider {
                 .collection(FirebaseRoot.data)
                 .addDocument(data: data) { error in
                     if let error = error {
-                        observer.onError(error)
+                        observer.onError(FirebaseError.firebaseError(error))
                         
                     } else {
                         AppManager.shared.settingData = setting
+                        RealmManager.deleteAll()
                         
                         observer.onNext(())
                         observer.onCompleted()
@@ -84,14 +87,16 @@ final class FirebaseProvider {
                 .document(documentID)
                 .getDocument { snapshot, error in
                     if let error = error {
-                        observer.onError(error)
+                        observer.onError(FirebaseError.firebaseError(error))
                         
                     } else {
-                        guard
-                            let data = snapshot?.data(),
-                            let settingData = try? FirebaseDecoder().decode(SettingModel.self, from: data)
-                        else {
+                        guard let data = snapshot?.data() else {
                             observer.onError(FirebaseError.emptyData)
+                            return
+                        }
+                        
+                        guard let settingData = try? FirebaseDecoder().decode(SettingModel.self, from: data) else {
+                            observer.onError(FirebaseError.parsingError)
                             return
                         }
                         
@@ -120,7 +125,7 @@ final class FirebaseProvider {
                 .document(documentID)
                 .setData(encoderData) { error in
                     if let error = error {
-                        observer.onError(error)
+                        observer.onError(FirebaseError.firebaseError(error))
                         
                     } else {
                         AppManager.shared.settingData = data
@@ -149,7 +154,7 @@ final class FirebaseProvider {
                 .document(block.key)
                 .getDocument { snapshot, error in
                     if let error = error {
-                        observer.onError(error)
+                        observer.onError(FirebaseError.firebaseError(error))
 
                     } else {
                         switch snapshot?.data() {
@@ -157,7 +162,7 @@ final class FirebaseProvider {
                             self.createBlock(block) { result in
                                 switch result {
                                 case .failure(let error):
-                                    observer.onError(error)
+                                    observer.onError(FirebaseError.firebaseError(error))
 
                                 case .success:
                                     observer.onNext(block)
@@ -267,10 +272,10 @@ final class FirebaseProvider {
                 .whereField(deviceUUID, isEqualTo: false)
                 .getDocuments { snapshot, error in
                     if let error = error {
-                        observer.onError(error)
+                        observer.onError(FirebaseError.firebaseError(error))
                         
                     } else {
-                        guard let documents = snapshot?.documents else {
+                        guard let documents = snapshot?.documents, documents.count > 0 else {
                             observer.onError(FirebaseError.emptyData)
                             return
                         }
@@ -322,14 +327,16 @@ final class FirebaseProvider {
                 .document(shareID)
                 .getDocument { snapshot, error in
                     if let error = error {
-                        observer.onError(error)
+                        observer.onError(FirebaseError.firebaseError(error))
                         
                     } else {
-                        guard
-                            let data = snapshot?.data(),
-                            var settingData = try? FirebaseDecoder().decode(SettingModel.self, from: data)
-                        else {
+                        guard let data = snapshot?.data() else {
                             observer.onError(FirebaseError.emptyData)
+                            return
+                        }
+                        
+                        guard var settingData = try? FirebaseDecoder().decode(SettingModel.self, from: data) else {
+                            observer.onError(FirebaseError.parsingError)
                             return
                         }
                         

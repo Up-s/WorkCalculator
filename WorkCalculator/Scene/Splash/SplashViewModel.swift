@@ -26,6 +26,7 @@ final class SplashViewModel: BaseViewModel {
     let output = Output()
     
     private let firebaseOb = PublishRelay<Void>()
+    private let emptyOb = PublishRelay<Void>()
     
     
     
@@ -85,8 +86,24 @@ final class SplashViewModel: BaseViewModel {
                     FirebaseProvider.getSettingData()
             }
             .catch { [weak self] error in
-                self?.base.networkError.accept(error)
-                return .empty()
+                guard let firebaseError = error as? FirebaseError else { return Observable.empty() }
+                
+                let errorMessage: String
+                switch firebaseError {
+                case .firebaseError(let error):
+                    errorMessage = "잠시 후 다시 시도해 주세요.\nService Error \(error.localizedDescription)"
+                    
+                case .parsingError:
+                    errorMessage = "잠시 후 다시 시도해 주세요.\nParsing Error"
+                    
+                case .emptyData:
+                    errorMessage = "데이터가 없습니다"
+                    self?.emptyOb.accept(())
+                }
+                
+                self?.coordinator.toast(errorMessage)
+                
+                return Observable.empty()
             }
             .map { BlockModel.create }
             .flatMap { blocks in
@@ -104,6 +121,28 @@ final class SplashViewModel: BaseViewModel {
 
                 let scene = Scene.edit
                 self?.coordinator.transition(scene: scene, style: .root)
+            }
+            .disposed(by: self.disposeBag)
+        
+        self.emptyOb
+            .bind { [weak self] in
+                let actions: [UPsAlertActionProtocol] = [
+                    UPsAlertAction(
+                        title: "재발급",
+                        handler: { _ in
+                            UserDefaultsManager.firebaseID = nil
+                            
+                            let scene = Scene.splash
+                            self?.coordinator.transition(scene: scene, style: .root)
+                        }
+                    ),
+                    UPsAlertCancelAction()
+                ]
+                
+                self?.coordinator.alert(
+                    title: "데이터가 없습니다",
+                    actions: actions
+                )
             }
             .disposed(by: self.disposeBag)
     }
