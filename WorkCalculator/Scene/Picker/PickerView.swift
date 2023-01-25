@@ -29,7 +29,7 @@ final class PickerView: BaseView {
     let pickerView = UIPickerView()
     let inputButtonView = InputButtonView()
     
-    private let hourList: [String] = { (0...23).map { String($0) } }()
+    private let hourList: [String] = { (0...24).map { String($0) } }()
     private let minList: [String] = { (0...59).map { String($0) } }()
     var selectHour: Int = 0
     var selectMin: Int = 0

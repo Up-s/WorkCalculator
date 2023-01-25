@@ -42,6 +42,10 @@ final class PickerViewModel: BaseViewModel {
             .bind(to: self.output.title)
             .disposed(by: self.disposeBag)
         
+        Observable.just(block.getTime(state))
+            .bind(to: self.output.time)
+            .disposed(by: self.disposeBag)
+        
         self.input.cancelDidTap
             .bind { [weak self] in
                 self?.coordinator.dismiss(animated: false)
@@ -49,16 +53,29 @@ final class PickerViewModel: BaseViewModel {
             .disposed(by: self.disposeBag)
         
         self.input.okDidTap
-            .flatMap { hour, min in
+            .compactMap { [weak self] (hour, min) -> Int? in
+                guard let self = self else { return nil }
+                
+                let maxTime = 24 * 60
+                let runTime = (hour * 60) + min
+                
+                guard runTime <= maxTime else {
+                    self.coordinator.toast("24:00 까지 입력 가능합니다")
+                    return nil
+                }
+                
+                return runTime
+            }
+            .flatMap { runTime in
                 FirebaseProvider.setBlock(
                     key: block.key,
                     state: state,
-                    time: (hour * 60) + min
+                    runTime: runTime
                 )
             }
             .subscribe(
-                onNext: { [weak self] time in
-                    self?.callbackOb.accept((state, time))
+                onNext: { [weak self] runTime in
+                    self?.callbackOb.accept((state, runTime))
                     self?.coordinator.dismiss(animated: false)
                 },
                 onError: { [weak self] error in

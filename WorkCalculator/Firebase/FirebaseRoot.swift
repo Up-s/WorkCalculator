@@ -13,6 +13,8 @@ import Firebase
 struct FirebaseRoot {
     
     static let app = "app"
+    static let configure = "configure"
+    
     static let data = "data"
     static let block = "block"
 }
