@@ -75,7 +75,7 @@ final class EditView: BaseView, NavigationProtocol {
     let sumRunTimeHour = sumRunTime / 60
     let sumRunTimeMin = sumRunTime % 60
     let sumRunTimeText = String(format: "%d시간 %02d분", sumRunTimeHour, sumRunTimeMin)
-    let keyword = String(max / 60) + "시간"
+    let keyword = "[\(String(max / 60))시간]"
     let totalText = sumRunTimeText + "\n" + keyword
     let attributedText = NSMutableAttributedString.make(
       text: totalText,
