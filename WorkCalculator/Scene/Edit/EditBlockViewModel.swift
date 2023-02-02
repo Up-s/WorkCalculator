@@ -83,30 +83,34 @@ final class EditBlockViewModel: BaseViewModel {
       .bind { [weak self] state, time in
         guard let self = self else { return }
         
-        let scene: Scene
+//        let scene: Scene
+//
+//        let inputType: Int = AppManager.shared.settingData?.inputType ?? 0
+//        switch inputType {
+//        case 0:
+//          let viewModel = PickerViewModel(state, self.inBlock)
+//          viewModel.callbackOb
+//            .bind(to: self.callbackOb)
+//            .disposed(by: viewModel.disposeBag)
+//
+//          scene = .picker(viewModel)
+//
+//        case 1:
+//          let viewModel = NumberPadViewModel(state, self.inBlock)
+//          viewModel.callbackOb
+//            .bind(to: self.callbackOb)
+//            .disposed(by: viewModel.disposeBag)
+//
+//          scene = .numberPad(viewModel)
+//
+//        default:
+//          fatalError()
+//        }
+//
+//        self.coordinator.transition(scene: scene, style: .modal(.overFullScreen), animated: false)
         
-        let inputType: Int = AppManager.shared.settingData?.inputType ?? 0
-        switch inputType {
-        case 0:
-          let viewModel = PickerViewModel(state, self.inBlock)
-          viewModel.callbackOb
-            .bind(to: self.callbackOb)
-            .disposed(by: viewModel.disposeBag)
-          
-          scene = .picker(viewModel)
-          
-        case 1:
-          let viewModel = NumberPadViewModel(state, self.inBlock)
-          viewModel.callbackOb
-            .bind(to: self.callbackOb)
-            .disposed(by: viewModel.disposeBag)
-          
-          scene = .numberPad(viewModel)
-          
-        default:
-          fatalError()
-        }
-        
+        let viewModel = InputViewModel(state, self.inBlock)
+        let scene = Scene.input(viewModel)
         self.coordinator.transition(scene: scene, style: .modal(.overFullScreen), animated: false)
       }
       .disposed(by: self.disposeBag)

@@ -14,7 +14,6 @@ struct SettingModel: Codable {
   let latestBlockDate: Date
   var days: [DateManager.Day]
   var workBaseHour: Int
-  var inputType: Int
   
   init() {
     self.deviceList = [UserDefaultsManager.deviceUUID!]
@@ -22,6 +21,5 @@ struct SettingModel: Codable {
     self.latestBlockDate =  Date()
     self.days = [.mon, .tue, .wed, .thu, .fri]
     self.workBaseHour = 40
-    self.inputType = 0
   }
 }

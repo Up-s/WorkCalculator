@@ -49,7 +49,6 @@
 		BD7831442968765000907452 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7831432968765000907452 /* SettingViewController.swift */; };
 		BD7831462968765400907452 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7831452968765400907452 /* SettingViewModel.swift */; };
 		BD7831482968773C00907452 /* SettingIDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7831472968773C00907452 /* SettingIDView.swift */; };
-		BD78314A296878B700907452 /* SettingInputTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD783149296878B700907452 /* SettingInputTypeView.swift */; };
 		BD78314C2968825100907452 /* InputType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD78314B2968825100907452 /* InputType.swift */; };
 		BD78314E2968859B00907452 /* SettingHourSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD78314D2968859B00907452 /* SettingHourSliderView.swift */; };
 		BD7831502968876700907452 /* SettingInfoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD78314F2968876700907452 /* SettingInfoLabel.swift */; };
@@ -63,6 +62,13 @@
 		BD9D7B1B29745A6700B311EB /* RealmBlockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9D7B1A29745A6700B311EB /* RealmBlockModel.swift */; };
 		BDBC33CE2974199F0073754E /* BlockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBC33CD2974199F0073754E /* BlockModel.swift */; };
 		BDBC4F20297A7EB0007C1C1A /* AppConfigureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBC4F1F297A7EB0007C1C1A /* AppConfigureModel.swift */; };
+		BDD454FA298BC935005C6BC6 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD454F9298BC935005C6BC6 /* InputView.swift */; };
+		BDD454FC298BC93B005C6BC6 /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD454FB298BC93B005C6BC6 /* InputViewController.swift */; };
+		BDD454FE298BC940005C6BC6 /* InputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD454FD298BC940005C6BC6 /* InputViewModel.swift */; };
+		BDD45500298BCD45005C6BC6 /* InputPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD454FF298BCD45005C6BC6 /* InputPickerView.swift */; };
+		BDD45502298BCD4B005C6BC6 /* InputPadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD45501298BCD4B005C6BC6 /* InputPadView.swift */; };
+		BDD45504298BCD53005C6BC6 /* InputSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD45503298BCD53005C6BC6 /* InputSliderView.swift */; };
+		BDD45506298BE2B9005C6BC6 /* InputPadCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD45505298BE2B9005C6BC6 /* InputPadCollectionViewCell.swift */; };
 		BDE6D02B2967DC1D00F79CB6 /* SplashViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDE6D02A2967DC1D00F79CB6 /* SplashViewController.storyboard */; };
 		FE2F56DEA624171BBC2E1B0A /* Pods_WorkCalculator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50AC98ACB26649BCF5B1BED1 /* Pods_WorkCalculator.framework */; };
 /* End PBXBuildFile section */
@@ -114,7 +120,6 @@
 		BD7831432968765000907452 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		BD7831452968765400907452 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		BD7831472968773C00907452 /* SettingIDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingIDView.swift; sourceTree = "<group>"; };
-		BD783149296878B700907452 /* SettingInputTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingInputTypeView.swift; sourceTree = "<group>"; };
 		BD78314B2968825100907452 /* InputType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputType.swift; sourceTree = "<group>"; };
 		BD78314D2968859B00907452 /* SettingHourSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingHourSliderView.swift; sourceTree = "<group>"; };
 		BD78314F2968876700907452 /* SettingInfoLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingInfoLabel.swift; sourceTree = "<group>"; };
@@ -128,6 +133,13 @@
 		BD9D7B1A29745A6700B311EB /* RealmBlockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBlockModel.swift; sourceTree = "<group>"; };
 		BDBC33CD2974199F0073754E /* BlockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockModel.swift; sourceTree = "<group>"; };
 		BDBC4F1F297A7EB0007C1C1A /* AppConfigureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigureModel.swift; sourceTree = "<group>"; };
+		BDD454F9298BC935005C6BC6 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
+		BDD454FB298BC93B005C6BC6 /* InputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
+		BDD454FD298BC940005C6BC6 /* InputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewModel.swift; sourceTree = "<group>"; };
+		BDD454FF298BCD45005C6BC6 /* InputPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputPickerView.swift; sourceTree = "<group>"; };
+		BDD45501298BCD4B005C6BC6 /* InputPadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputPadView.swift; sourceTree = "<group>"; };
+		BDD45503298BCD53005C6BC6 /* InputSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputSliderView.swift; sourceTree = "<group>"; };
+		BDD45505298BE2B9005C6BC6 /* InputPadCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputPadCollectionViewCell.swift; sourceTree = "<group>"; };
 		BDE6D02A2967DC1D00F79CB6 /* SplashViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SplashViewController.storyboard; sourceTree = "<group>"; };
 		F578C96866DECC6C0B77A42D /* Pods-WorkCalculator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkCalculator.release.xcconfig"; path = "Target Support Files/Pods-WorkCalculator/Pods-WorkCalculator.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -237,6 +249,7 @@
 			children = (
 				BD470D3F2966C4CE00404AB4 /* AppDelegate.swift */,
 				BD470D552966C74400404AB4 /* Scene.swift */,
+				BDD454F8298BC92A005C6BC6 /* Input */,
 				BD470D632966C9EA00404AB4 /* Splash */,
 				BD470D642966C9F000404AB4 /* Edit */,
 				BD470D812966EDF900404AB4 /* Picker */,
@@ -307,7 +320,6 @@
 			isa = PBXGroup;
 			children = (
 				BD6E36D9296EE6EC0077E8DB /* ProgressView.swift */,
-				BD6E36CF296E94D40077E8DB /* InputButtonView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -333,7 +345,6 @@
 				BD7831472968773C00907452 /* SettingIDView.swift */,
 				BD9962FD296C389000601874 /* SettingDaysView.swift */,
 				BD78314D2968859B00907452 /* SettingHourSliderView.swift */,
-				BD783149296878B700907452 /* SettingInputTypeView.swift */,
 				BD7831412968764B00907452 /* SettingView.swift */,
 				BD7831432968765000907452 /* SettingViewController.swift */,
 				BD7831452968765400907452 /* SettingViewModel.swift */,
@@ -370,6 +381,21 @@
 				BD9D7B1829744FE700B311EB /* Extension+Int.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		BDD454F8298BC92A005C6BC6 /* Input */ = {
+			isa = PBXGroup;
+			children = (
+				BDD454FF298BCD45005C6BC6 /* InputPickerView.swift */,
+				BDD45505298BE2B9005C6BC6 /* InputPadCollectionViewCell.swift */,
+				BDD45501298BCD4B005C6BC6 /* InputPadView.swift */,
+				BDD45503298BCD53005C6BC6 /* InputSliderView.swift */,
+				BD6E36CF296E94D40077E8DB /* InputButtonView.swift */,
+				BDD454F9298BC935005C6BC6 /* InputView.swift */,
+				BDD454FB298BC93B005C6BC6 /* InputViewController.swift */,
+				BDD454FD298BC940005C6BC6 /* InputViewModel.swift */,
+			);
+			path = Input;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -518,13 +544,19 @@
 				BD7831462968765400907452 /* SettingViewModel.swift in Sources */,
 				BD470D6A2966CA1900404AB4 /* EditViewModel.swift in Sources */,
 				BD6E36D7296ECFC90077E8DB /* UpdateViewModel.swift in Sources */,
+				BDD45500298BCD45005C6BC6 /* InputPickerView.swift in Sources */,
+				BDD454FC298BC93B005C6BC6 /* InputViewController.swift in Sources */,
 				BD783155296ADA2C00907452 /* NumberPadViewController.swift in Sources */,
+				BDD45504298BCD53005C6BC6 /* InputSliderView.swift in Sources */,
 				BD470D562966C74400404AB4 /* Scene.swift in Sources */,
 				BD6E36EB2971214C0077E8DB /* HistoryViewModel.swift in Sources */,
 				BD783153296ADA2700907452 /* NumberPadView.swift in Sources */,
+				BDD454FA298BC935005C6BC6 /* InputView.swift in Sources */,
 				BD9962FE296C389000601874 /* SettingDaysView.swift in Sources */,
 				BD470D832966EE1800404AB4 /* PickerView.swift in Sources */,
+				BDD454FE298BC940005C6BC6 /* InputViewModel.swift in Sources */,
 				BD9A16C9296736430093FB1C /* UserDefaultsManager.swift in Sources */,
+				BDD45506298BE2B9005C6BC6 /* InputPadCollectionViewCell.swift in Sources */,
 				BD0344D929707972001B3010 /* EditInfoView.swift in Sources */,
 				BD470D542966C66E00404AB4 /* SplashViewController.swift in Sources */,
 				BDBC33CE2974199F0073754E /* BlockModel.swift in Sources */,
@@ -552,9 +584,9 @@
 				BD412A5229725D4400FCA4BF /* HistoryTableViewCell.swift in Sources */,
 				BD470D682966CA1500404AB4 /* EditViewController.swift in Sources */,
 				BD470D6C2966CA6500404AB4 /* SplashView.swift in Sources */,
+				BDD45502298BCD4B005C6BC6 /* InputPadView.swift in Sources */,
 				BD7831422968764B00907452 /* SettingView.swift in Sources */,
 				BD9A16C7296725E70093FB1C /* EditSumUnitView.swift in Sources */,
-				BD78314A296878B700907452 /* SettingInputTypeView.swift in Sources */,
 				BD470D852966EE1C00404AB4 /* PickerViewController.swift in Sources */,
 				BD6E36D5296ECFC20077E8DB /* UpdateViewController.swift in Sources */,
 				BD78314C2968825100907452 /* InputType.swift in Sources */,

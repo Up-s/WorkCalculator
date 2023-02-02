@@ -20,7 +20,6 @@ final class PickerViewModel: BaseViewModel {
   
   struct Output {
     let title = BehaviorRelay<String?>(value: nil)
-    let state = BehaviorRelay<DateManager.State?>(value: nil)
     let time = BehaviorRelay<Int>(value: 0)
   }
   

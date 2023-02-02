@@ -68,11 +68,6 @@ final class SettingViewController: BaseViewController {
       .bind(to: self.viewModel.input.baseHour)
       .disposed(by: self.disposeBag)
     
-    self.rootView.inputTypeView.segmentedControl.rx.selectedSegmentIndex
-      .filter { $0 != -1 }
-      .bind(to: self.viewModel.input.inputType)
-      .disposed(by: self.disposeBag)
-    
     self.rootView.saveButton.rx.tap
       .throttle(.seconds(2), scheduler: MainScheduler.instance)
       .bind(to: self.viewModel.input.saveDidTap)
@@ -106,11 +101,6 @@ final class SettingViewController: BaseViewController {
     self.viewModel.output.baseHour
       .compactMap { $0 }
       .bind(to: self.rootView.hourView.hourLabel.rx.text)
-      .disposed(by: self.disposeBag)
-    
-    self.viewModel.output.inputType
-      .compactMap { $0 }
-      .bind(to: self.rootView.inputTypeView.segmentedControl.rx.selectedSegmentIndex)
       .disposed(by: self.disposeBag)
     
   }

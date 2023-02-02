@@ -19,7 +19,6 @@ final class SettingViewModel: BaseViewModel {
     let shareCancelDidTap = PublishRelay<Void>()
     let selectDay = PublishRelay<DateManager.Day>()
     let baseHour = BehaviorRelay<Int?>(value: nil)
-    let inputType = BehaviorRelay<Int?>(value: nil)
     let saveDidTap = PublishRelay<Void>()
   }
   
@@ -27,7 +26,6 @@ final class SettingViewModel: BaseViewModel {
     let selectDays = BehaviorRelay<[DateManager.Day]>(value: AppManager.shared.settingData?.days ?? [])
     let allDays = BehaviorRelay<[DateManager.Day]>(value: DateManager.Day.allCases)
     let baseHour = BehaviorRelay<String?>(value: nil)
-    let inputType = BehaviorRelay<Int?>(value: nil)
   }
   
   
@@ -176,13 +174,6 @@ final class SettingViewModel: BaseViewModel {
         
         let text = String(hour) + "시간"
         self?.output.baseHour.accept(text)
-      }
-      .disposed(by: self.disposeBag)
-    
-    self.input.inputType
-      .compactMap { $0 }
-      .bind { [weak self] in
-        self?.settingData.inputType = $0
       }
       .disposed(by: self.disposeBag)
     

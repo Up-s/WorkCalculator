@@ -9,13 +9,15 @@ import Foundation
 
 enum InputType: Int, CaseIterable {
   
-  case sliderPicker = 0
-  case numberPad
+  case picker = 0
+  case pad
+  case slider
   
   var title: String {
     switch self {
-    case .sliderPicker: return "슬라이더"
-    case .numberPad: return "키패드"
+    case .picker: return "Picker"
+    case .pad: return "Pad"
+    case .slider: return "Slider"
     }
   }
 }

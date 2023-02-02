@@ -10,7 +10,6 @@ import UIKit
 import RxCocoa
 import RxSwift
 import UPsKit
-import UIKit
 
 final class SplashViewController: BaseViewController {
   

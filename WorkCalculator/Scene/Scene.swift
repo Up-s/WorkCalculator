@@ -12,6 +12,7 @@ enum Scene: SceneProtocol {
   
   case splash
   case edit
+  case input(InputViewModel)
   case picker(PickerViewModel)
   case numberPad(NumberPadViewModel)
   case history
@@ -26,6 +27,9 @@ enum Scene: SceneProtocol {
       
     case .edit:
       return EditViewController()
+      
+    case .input(let viewModel):
+      return InputViewController(viewModel)
       
     case .picker(let viewModel):
       return PickerViewController(viewModel)
