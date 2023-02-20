@@ -1,5 +1,5 @@
 //
-//  EditViewController.swift
+//  MainViewController.swift
 //  WorkCalculator
 //
 //  Created by YouUp Lee on 2023/01/05.
@@ -11,12 +11,12 @@ import RxCocoa
 import RxSwift
 import UPsKit
 
-final class EditViewController: BaseViewController {
+final class MainViewController: BaseViewController {
   
   // MARK: - Property
   
-  private let rootView = EditView()
-  private let viewModel = EditViewModel()
+  private let rootView = MainWeekView()
+  private let viewModel = MainViewModel()
   
   
   

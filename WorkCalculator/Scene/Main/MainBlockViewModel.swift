@@ -1,5 +1,5 @@
 //
-//  EditBlockViewModel.swift
+//  MainBlockViewModel.swift
 //  WorkCalculator
 //
 //  Created by YouUp Lee on 2023/01/05.
@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 import UPsKit
 
-final class EditBlockViewModel: BaseViewModel {
+final class MainBlockViewModel: BaseViewModel {
   
   struct Input {
     let startDidTap = PublishRelay<Void>()

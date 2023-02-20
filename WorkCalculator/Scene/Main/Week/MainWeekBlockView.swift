@@ -1,5 +1,5 @@
 //
-//  EditBlockView.swift
+//  MainWeekBlockView.swift
 //  WorkCalculator
 //
 //  Created by YouUp Lee on 2023/01/05.
@@ -11,7 +11,7 @@ import SnapKit
 import Then
 import UPsKit
 
-final class EditBlockView: UIView {
+final class MainWeekBlockView: UIView {
   
   // MARK: - Property
   

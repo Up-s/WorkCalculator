@@ -25,7 +25,7 @@ enum Scene: SceneProtocol {
       return SplashViewController()
       
     case .edit:
-      return EditViewController()
+      return MainViewController()
       
     case .picker(let viewModel):
       return PickerViewController(viewModel)

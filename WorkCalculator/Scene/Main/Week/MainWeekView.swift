@@ -1,5 +1,5 @@
 //
-//  EditView.swift
+//  MainWeekView.swift
 //  WorkCalculator
 //
 //  Created by YouUp Lee on 2023/01/05.
@@ -12,7 +12,7 @@ import SnapKit
 import Then
 import UPsKit
 
-final class EditView: BaseView, NavigationProtocol {
+final class MainWeekView: BaseView, NavigationProtocol {
   
   // MARK: - Property
   
@@ -23,13 +23,13 @@ final class EditView: BaseView, NavigationProtocol {
   }
   private let contentsStackView = UPsStackView(axis: .vertical, spacing: 32.0)
   
-  private let infoView = EditInfoView()
+  private let infoView = MainWeekInfoView()
   
   private let sumUnitStackView = UPsStackView(axis: .horizontal, distribution: .fillEqually, spacing: 16.0)
-  let totalSumUnitView = EditSumUnitView().then { view in
+  let totalSumUnitView = MainWeekSumUnitView().then { view in
     view.titleLabel.text = "총 근무시간"
   }
-  let remainedSumUnitView = EditSumUnitView().then { view in
+  let remainedSumUnitView = MainWeekSumUnitView().then { view in
     view.titleLabel.text = "남은 근무시간"
   }
   let refreshButton = UIButton().then { view in
@@ -92,10 +92,10 @@ final class EditView: BaseView, NavigationProtocol {
     self.remainedSumUnitView.subLabel.text = remainedText
   }
   
-  func createUnitView(_ blockViewModels: [EditBlockViewModel]) {
+  func createUnitView(_ blockViewModels: [MainBlockViewModel]) {
     blockViewModels
-      .compactMap { blockViewModel -> EditBlockView? in
-        let blockView = EditBlockView()
+      .compactMap { blockViewModel -> MainWeekBlockView? in
+        let blockView = MainWeekBlockView()
         
         blockView.dayLabel.text = blockViewModel.inBlock.weekday.ko
         

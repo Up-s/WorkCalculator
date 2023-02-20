@@ -1,5 +1,5 @@
 //
-//  EditViewModel.swift
+//  MainViewModel.swift
 //  WorkCalculator
 //
 //  Created by YouUp Lee on 2023/01/05.
@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 import UPsKit
 
-final class EditViewModel: BaseViewModel {
+final class MainViewModel: BaseViewModel {
   
   struct Input {
     let refreshDidTap = PublishRelay<Void>()
@@ -20,7 +20,7 @@ final class EditViewModel: BaseViewModel {
   }
   
   struct Output {
-    let blockViewModels = BehaviorRelay<[EditBlockViewModel]>(value: [])
+    let blockViewModels = BehaviorRelay<[MainBlockViewModel]>(value: [])
     let sumRunTime = BehaviorRelay<Int>(value: 0)
   }
   
@@ -41,7 +41,7 @@ final class EditViewModel: BaseViewModel {
         AppManager.shared.settingData?.days.contains(block.weekday) ?? false
       }
       .map { blocks in
-        EditBlockViewModel(blocks)
+        MainBlockViewModel(blocks)
       }
       .toArray()
       .asObservable()
