@@ -12,6 +12,7 @@ final class UserDefaultsManager {
   enum Key: String, CaseIterable {
     case deviceUUID
     case firebaseID
+    case mainType
   }
   
   private static let userDefault = UserDefaults.standard
@@ -26,5 +27,18 @@ final class UserDefaultsManager {
   static var firebaseID: String? {
     get { self.userDefault.string(forKey: Key.firebaseID.rawValue) }
     set { self.userDefault.set(newValue, forKey: Key.firebaseID.rawValue) }
+  }
+  
+  static var mainType: MainViewType {
+    get {
+      guard
+        let string = self.userDefault.string(forKey: Key.mainType.rawValue),
+        let type = MainViewType(rawValue: string)
+      else {
+        return .week
+      }
+      return type
+    }
+    set { self.userDefault.set(newValue.rawValue, forKey: Key.mainType.rawValue) }
   }
 }

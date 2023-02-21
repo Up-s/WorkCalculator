@@ -15,12 +15,22 @@ final class MainViewController: BaseViewController {
   
   // MARK: - Property
   
-  private let rootView = MainWeekView()
-  private let viewModel = MainViewModel()
+  private let rootView: MainViewProtocol
+  private let viewModel: MainViewModel
   
   
   
   // MARK: - Life Cycle
+  
+  init(_ viewModel: MainViewModel) {
+    self.viewModel = viewModel
+    self.rootView = viewModel.mainView
+    super.init()
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
   
   override func loadView() {
     self.view = self.rootView
@@ -57,15 +67,11 @@ final class MainViewController: BaseViewController {
     
     
     self.viewModel.output.blockViewModels
-      .bind { [weak self] viewModels in
-        self?.rootView.createUnitView(viewModels)
-      }
+      .bind(to: self.rootView.blockViewModels)
       .disposed(by: self.disposeBag)
     
     self.viewModel.output.sumRunTime
-      .bind { [weak self] in
-        self?.rootView.setData($0)
-      }
+      .bind(to: self.rootView.runTime)
       .disposed(by: self.disposeBag)
   }
 }

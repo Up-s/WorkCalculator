@@ -29,6 +29,16 @@ final class MainViewModel: BaseViewModel {
   let input = Input()
   let output = Output()
   
+  var mainView: MainViewProtocol {
+    switch UserDefaultsManager.mainType {
+    case .week:
+      return MainWeekView()
+      
+    case .day:
+      return MainWeekView()
+    }
+  }
+  
   
   
   // MARK: - Interface

@@ -107,7 +107,8 @@ final class UpdateViewModel: BaseViewModel {
       .bind { [weak self] blocks in
         AppManager.shared.blocks = blocks
         
-        let scene = Scene.edit
+        let viewModel = MainViewModel()
+        let scene = Scene.main(viewModel)
         self?.coordinator.transition(scene: scene, style: .root)
       }
       .disposed(by: self.disposeBag)

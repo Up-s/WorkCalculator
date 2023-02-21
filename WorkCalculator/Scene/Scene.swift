@@ -11,7 +11,7 @@ import UPsKit
 enum Scene: SceneProtocol {
   
   case splash
-  case edit
+  case main(MainViewModel)
   case picker(PickerViewModel)
   case numberPad(NumberPadViewModel)
   case history
@@ -24,8 +24,8 @@ enum Scene: SceneProtocol {
     case .splash:
       return SplashViewController()
       
-    case .edit:
-      return MainViewController()
+    case .main(let viewModel):
+      return MainViewController(viewModel)
       
     case .picker(let viewModel):
       return PickerViewController(viewModel)

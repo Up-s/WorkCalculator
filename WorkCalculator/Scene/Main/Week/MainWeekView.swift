@@ -12,11 +12,11 @@ import SnapKit
 import Then
 import UPsKit
 
-final class MainWeekView: BaseView, NavigationProtocol {
+final class MainWeekView: BaseView, MainViewProtocol {
   
   // MARK: - Property
   
-  var navigationView: BaseNavigationView
+  let navigationView: BaseNavigationView = BaseNavigationView(.none(0.0))
   
   private let contentsScrollView = UIScrollView().then { view in
     view.showsVerticalScrollIndicator = false
@@ -31,6 +31,10 @@ final class MainWeekView: BaseView, NavigationProtocol {
   }
   let remainedSumUnitView = MainWeekSumUnitView().then { view in
     view.titleLabel.text = "남은 근무시간"
+  }
+  let viewChangeButton = UIButton().then { view in
+    let image = UIImage.sfConfiguration(name: "rectangle.portrait.on.rectangle.portrait", color: .systemBlue)
+    view.setImage(image, for: .normal)
   }
   let refreshButton = UIButton().then { view in
     let image = UIImage.sfConfiguration(name: "icloud.and.arrow.down", color: .systemBlue)
@@ -52,8 +56,6 @@ final class MainWeekView: BaseView, NavigationProtocol {
   // MARK: - Life Cycle
   
   override init() {
-    self.navigationView = BaseNavigationView(.none(0.0))
-    
     super.init()
     
     self.setNavigation()
@@ -69,83 +71,87 @@ final class MainWeekView: BaseView, NavigationProtocol {
   
   // MARK: - Interface
   
-  func setData(_ sumRunTime: Int) {
-    let max = (AppManager.shared.settingData?.workBaseHour ?? 40) * 60
-    
-    let sumRunTimeHour = sumRunTime / 60
-    let sumRunTimeMin = sumRunTime % 60
-    let sumRunTimeText = String(format: "%d시간 %02d분", sumRunTimeHour, sumRunTimeMin)
-    let keyword = "[\(String(max / 60))시간]"
-    let totalText = sumRunTimeText + "\n" + keyword
-    let attributedText = NSMutableAttributedString.make(
-      text: totalText,
-      keyword: keyword,
-      keywordFont: .systemFont(ofSize: 16.0),
-      keywordColor: .gray900
-    )
-    self.totalSumUnitView.subLabel.attributedText = attributedText
-    
-    let remained = max - sumRunTime
-    let remainedHour = remained / 60
-    let remainedMin = remained % 60
-    let remainedText = String(format: "%d시간 %02d분", remainedHour, remainedMin)
-    self.remainedSumUnitView.subLabel.text = remainedText
+  var runTime: Binder<Int> {
+    return Binder(self) { view, runTime in
+      let max = (AppManager.shared.settingData?.workBaseHour ?? 40) * 60
+      
+      let sumRunTimeHour = runTime / 60
+      let sumRunTimeMin = runTime % 60
+      let sumRunTimeText = String(format: "%d시간 %02d분", sumRunTimeHour, sumRunTimeMin)
+      let keyword = "[\(String(max / 60))시간]"
+      let totalText = sumRunTimeText + "\n" + keyword
+      let attributedText = NSMutableAttributedString.make(
+        text: totalText,
+        keyword: keyword,
+        keywordFont: .systemFont(ofSize: 16.0),
+        keywordColor: .gray900
+      )
+      view.totalSumUnitView.subLabel.attributedText = attributedText
+      
+      let remained = max - runTime
+      let remainedHour = remained / 60
+      let remainedMin = remained % 60
+      let remainedText = String(format: "%d시간 %02d분", remainedHour, remainedMin)
+      view.remainedSumUnitView.subLabel.text = remainedText
+    }
   }
   
-  func createUnitView(_ blockViewModels: [MainBlockViewModel]) {
-    blockViewModels
-      .compactMap { blockViewModel -> MainWeekBlockView? in
-        let blockView = MainWeekBlockView()
-        
-        blockView.dayLabel.text = blockViewModel.inBlock.weekday.ko
-        
-        blockView.startButton.rx.tap
-          .bind(to: blockViewModel.input.startDidTap)
-          .disposed(by: self.disposeBag)
-        
-        blockView.endButton.rx.tap
-          .bind(to: blockViewModel.input.endDidTap)
-          .disposed(by: self.disposeBag)
-        
-        blockView.restButton.rx.tap
-          .bind(to: blockViewModel.input.restDidTap)
-          .disposed(by: self.disposeBag)
-        
-        
-        blockViewModel.output.startTime
-          .toHourMin()
-          .bind(to: blockView.startButton.rx.title())
-          .disposed(by: self.disposeBag)
-        
-        blockViewModel.output.endTime
-          .toHourMin()
-          .bind(to: blockView.endButton.rx.title())
-          .disposed(by: self.disposeBag)
-        
-        blockViewModel.output.restTime
-          .toHourMin()
-          .bind(to: blockView.restButton.rx.title())
-          .disposed(by: self.disposeBag)
-        
-        blockViewModel.output.runTime
-          .toRestHourMin()
-          .bind(to: blockView.runTimeLabel.rx.text)
-          .disposed(by: self.disposeBag)
-        
-        blockViewModel.output.runTime
-          .map { time -> UIColor in
-            return time >= 0 ? UIColor.gray900 : UIColor.systemRed
-          }
-          .bind(to: blockView.runTimeLabel.rx.textColor)
-          .disposed(by: self.disposeBag)
-        
-        
-        return blockView
-      }
-      .enumerated()
-      .forEach { index, view in
-        self.contentsStackView.insertArrangedSubview(view, at: index)
-      }
+  var blockViewModels: Binder<[MainBlockViewModel]> {
+    return Binder(self) { view, blockViewModels in
+      blockViewModels
+        .compactMap { blockViewModel -> MainWeekBlockView? in
+          let blockView = MainWeekBlockView()
+          
+          blockView.dayLabel.text = blockViewModel.inBlock.weekday.ko
+          
+          blockView.startButton.rx.tap
+            .bind(to: blockViewModel.input.startDidTap)
+            .disposed(by: view.disposeBag)
+          
+          blockView.endButton.rx.tap
+            .bind(to: blockViewModel.input.endDidTap)
+            .disposed(by: view.disposeBag)
+          
+          blockView.restButton.rx.tap
+            .bind(to: blockViewModel.input.restDidTap)
+            .disposed(by: view.disposeBag)
+          
+          
+          blockViewModel.output.startTime
+            .toHourMin()
+            .bind(to: blockView.startButton.rx.title())
+            .disposed(by: view.disposeBag)
+          
+          blockViewModel.output.endTime
+            .toHourMin()
+            .bind(to: blockView.endButton.rx.title())
+            .disposed(by: view.disposeBag)
+          
+          blockViewModel.output.restTime
+            .toHourMin()
+            .bind(to: blockView.restButton.rx.title())
+            .disposed(by: view.disposeBag)
+          
+          blockViewModel.output.runTime
+            .toRestHourMin()
+            .bind(to: blockView.runTimeLabel.rx.text)
+            .disposed(by: view.disposeBag)
+          
+          blockViewModel.output.runTime
+            .map { time -> UIColor in
+              return time >= 0 ? UIColor.gray900 : UIColor.systemRed
+            }
+            .bind(to: blockView.runTimeLabel.rx.textColor)
+            .disposed(by: view.disposeBag)
+          
+          
+          return blockView
+        }
+        .enumerated()
+        .forEach { index, blockView in
+          view.contentsStackView.insertArrangedSubview(blockView, at: index)
+        }
+    }
   }
   
   
@@ -157,7 +163,7 @@ final class MainWeekView: BaseView, NavigationProtocol {
     
     self.navigationView.titleLabel.text = "칼퇴 계산기"
     
-    [self.refreshButton, self.histortButton, self.settingButton].forEach { view in
+    [self.viewChangeButton, self.refreshButton, self.histortButton, self.settingButton].forEach { view in
       self.navigationView.addNavigationRightStackView(view)
     }
     
