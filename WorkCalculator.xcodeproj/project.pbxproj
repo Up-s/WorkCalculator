@@ -11,6 +11,8 @@
 		BD0C9B0D29A378750053CAB2 /* MainViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0C9B0C29A378750053CAB2 /* MainViewProtocol.swift */; };
 		BD0C9B0F29A37C430053CAB2 /* MainViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0C9B0E29A37C430053CAB2 /* MainViewType.swift */; };
 		BD13E963297072C800A7EE31 /* GoogleService-Info-Debug.plist in Resources */ = {isa = PBXBuildFile; fileRef = BD13E962297072C800A7EE31 /* GoogleService-Info-Debug.plist */; };
+		BD3C031329A4CA98006F9044 /* MainDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3C031229A4CA98006F9044 /* MainDayView.swift */; };
+		BD3C031629A4D223006F9044 /* MainDayInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3C031529A4D223006F9044 /* MainDayInfoView.swift */; };
 		BD412A5229725D4400FCA4BF /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD412A5129725D4400FCA4BF /* HistoryTableViewCell.swift */; };
 		BD412A5429725E1900FCA4BF /* HistoryTimeBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD412A5329725E1900FCA4BF /* HistoryTimeBlockView.swift */; };
 		BD470D402966C4CE00404AB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D3F2966C4CE00404AB4 /* AppDelegate.swift */; };
@@ -76,6 +78,8 @@
 		BD0C9B0C29A378750053CAB2 /* MainViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewProtocol.swift; sourceTree = "<group>"; };
 		BD0C9B0E29A37C430053CAB2 /* MainViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewType.swift; sourceTree = "<group>"; };
 		BD13E962297072C800A7EE31 /* GoogleService-Info-Debug.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Debug.plist"; sourceTree = "<group>"; };
+		BD3C031229A4CA98006F9044 /* MainDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDayView.swift; sourceTree = "<group>"; };
+		BD3C031529A4D223006F9044 /* MainDayInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDayInfoView.swift; sourceTree = "<group>"; };
 		BD412A5129725D4400FCA4BF /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		BD412A5329725E1900FCA4BF /* HistoryTimeBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTimeBlockView.swift; sourceTree = "<group>"; };
 		BD470D3C2966C4CE00404AB4 /* WorkCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -179,6 +183,8 @@
 		BD0C9B0B29A3734B0053CAB2 /* Day */ = {
 			isa = PBXGroup;
 			children = (
+				BD3C031529A4D223006F9044 /* MainDayInfoView.swift */,
+				BD3C031229A4CA98006F9044 /* MainDayView.swift */,
 			);
 			path = Day;
 			sourceTree = "<group>";
@@ -295,9 +301,9 @@
 		BD470D642966C9F000404AB4 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				BD0C9B0C29A378750053CAB2 /* MainViewProtocol.swift */,
-				BD0C9B0B29A3734B0053CAB2 /* Day */,
 				BD0C9B0A29A36F040053CAB2 /* Week */,
+				BD0C9B0B29A3734B0053CAB2 /* Day */,
+				BD0C9B0C29A378750053CAB2 /* MainViewProtocol.swift */,
 				BD470D672966CA1500404AB4 /* MainViewController.swift */,
 				BD470D692966CA1900404AB4 /* MainViewModel.swift */,
 				BD470D712966D42700404AB4 /* MainBlockViewModel.swift */,
@@ -539,6 +545,7 @@
 				BD470D792966DDD600404AB4 /* DateManager.swift in Sources */,
 				BD7831462968765400907452 /* SettingViewModel.swift in Sources */,
 				BD470D6A2966CA1900404AB4 /* MainViewModel.swift in Sources */,
+				BD3C031329A4CA98006F9044 /* MainDayView.swift in Sources */,
 				BD6E36D7296ECFC90077E8DB /* UpdateViewModel.swift in Sources */,
 				BD783155296ADA2C00907452 /* NumberPadViewController.swift in Sources */,
 				BD470D562966C74400404AB4 /* Scene.swift in Sources */,
@@ -555,6 +562,7 @@
 				BD6E36E7297121430077E8DB /* HistoryView.swift in Sources */,
 				BD78313F296871CB00907452 /* AppManager.swift in Sources */,
 				BD6E36D0296E94D40077E8DB /* InputButtonView.swift in Sources */,
+				BD3C031629A4D223006F9044 /* MainDayInfoView.swift in Sources */,
 				BD78313B2968684000907452 /* FirebaseProvider.swift in Sources */,
 				BD7831442968765000907452 /* SettingViewController.swift in Sources */,
 				BD470D872966EE2100404AB4 /* PickerViewModel.swift in Sources */,

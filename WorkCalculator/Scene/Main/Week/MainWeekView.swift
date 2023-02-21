@@ -17,22 +17,7 @@ final class MainWeekView: BaseView, MainViewProtocol {
   // MARK: - Property
   
   let navigationView: BaseNavigationView = BaseNavigationView(.none(0.0))
-  
-  private let contentsScrollView = UIScrollView().then { view in
-    view.showsVerticalScrollIndicator = false
-  }
-  private let contentsStackView = UPsStackView(axis: .vertical, spacing: 32.0)
-  
-  private let infoView = MainWeekInfoView()
-  
-  private let sumUnitStackView = UPsStackView(axis: .horizontal, distribution: .fillEqually, spacing: 16.0)
-  let totalSumUnitView = MainWeekSumUnitView().then { view in
-    view.titleLabel.text = "총 근무시간"
-  }
-  let remainedSumUnitView = MainWeekSumUnitView().then { view in
-    view.titleLabel.text = "남은 근무시간"
-  }
-  let viewChangeButton = UIButton().then { view in
+  let changeViewButton = UIButton().then { view in
     let image = UIImage.sfConfiguration(name: "rectangle.portrait.on.rectangle.portrait", color: .systemBlue)
     view.setImage(image, for: .normal)
   }
@@ -47,6 +32,19 @@ final class MainWeekView: BaseView, MainViewProtocol {
   let settingButton = UIButton().then { view in
     let image = UIImage.sfConfiguration(name: "gearshape", color: .systemBlue)
     view.setImage(image, for: .normal)
+  }
+  
+  private let contentsScrollView = UIScrollView().then { view in
+    view.showsVerticalScrollIndicator = false
+  }
+  private let contentsStackView = UPsStackView(axis: .vertical, spacing: 32.0)
+  private let infoView = MainWeekInfoView()
+  private let sumUnitStackView = UPsStackView(axis: .horizontal, distribution: .fillEqually, spacing: 16.0)
+  let totalSumUnitView = MainWeekSumUnitView().then { view in
+    view.titleLabel.text = "총 근무시간"
+  }
+  let remainedSumUnitView = MainWeekSumUnitView().then { view in
+    view.titleLabel.text = "남은 근무시간"
   }
   
   private let disposeBag = DisposeBag()
@@ -163,7 +161,7 @@ final class MainWeekView: BaseView, MainViewProtocol {
     
     self.navigationView.titleLabel.text = "칼퇴 계산기"
     
-    [self.viewChangeButton, self.refreshButton, self.histortButton, self.settingButton].forEach { view in
+    [self.changeViewButton, self.refreshButton, self.histortButton, self.settingButton].forEach { view in
       self.navigationView.addNavigationRightStackView(view)
     }
     

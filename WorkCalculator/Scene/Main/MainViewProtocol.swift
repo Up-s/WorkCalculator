@@ -12,7 +12,7 @@ import UPsKit
 
 protocol MainViewProtocol: UIView, NavigationProtocol {
   
-  var viewChangeButton: UIButton { get }
+  var changeViewButton: UIButton { get }
   var refreshButton: UIButton { get }
   var histortButton: UIButton { get }
   var settingButton: UIButton { get }

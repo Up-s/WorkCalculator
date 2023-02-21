@@ -52,6 +52,10 @@ final class MainViewController: BaseViewController {
   }
   
   private func bindViewModel() {
+    self.rootView.changeViewButton.rx.tap
+      .bind(to: self.viewModel.input.changeViewDidTap)
+      .disposed(by: self.disposeBag)
+    
     self.rootView.refreshButton.rx.tap
       .bind(to: self.viewModel.input.refreshDidTap)
       .disposed(by: self.disposeBag)

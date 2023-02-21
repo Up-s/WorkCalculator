@@ -14,6 +14,7 @@ import UPsKit
 final class MainViewModel: BaseViewModel {
   
   struct Input {
+    let changeViewDidTap = PublishRelay<Void>()
     let refreshDidTap = PublishRelay<Void>()
     let historyDidTap = PublishRelay<Void>()
     let settingDidTap = PublishRelay<Void>()
@@ -33,9 +34,9 @@ final class MainViewModel: BaseViewModel {
     switch UserDefaultsManager.mainType {
     case .week:
       return MainWeekView()
-      
+
     case .day:
-      return MainWeekView()
+      return MainDayView()
     }
   }
   
@@ -70,6 +71,25 @@ final class MainViewModel: BaseViewModel {
           .disposed(by: self.disposeBag)
       }
       .disposed(by: self.disposeBag)
+    
+    self.input.changeViewDidTap
+      .map { UserDefaultsManager.mainType }
+      .bind { [weak self] type in
+        guard let self = self else { return }
+        
+        switch type {
+        case .week:
+          UserDefaultsManager.mainType = .day
+          
+        case .day:
+          UserDefaultsManager.mainType = .week
+        }
+        
+        let scene = Scene.splash
+        self.coordinator.transition(scene: scene, style: .root)
+      }
+      .disposed(by: self.disposeBag)
+      
     
     self.input.refreshDidTap
       .map { _ -> (Bool, Int) in
