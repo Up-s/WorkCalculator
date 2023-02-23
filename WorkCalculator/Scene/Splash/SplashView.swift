@@ -51,8 +51,6 @@ final class SplashView: BaseView {
   // MARK: - UI
   
   private func setAttribute() {
-    self.backgroundColor = .gray100
-    
     self.addSubview(self.titleLabel)
     
     #if DEBUG

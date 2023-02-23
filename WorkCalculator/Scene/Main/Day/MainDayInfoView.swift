@@ -15,7 +15,7 @@ final class MainDayInfoView: UIView {
   
   // MARK: - Property
   
-  private let runTimeLabel = UPsPaddingLabel(x: 4.0, y: 2.0).then { view in
+  private let runTimeLabel = UPsPaddingLabel(x: 8.0, y: 4.0).then { view in
     view.backgroundColor = .gray200
     view.text = "0시간 00분"
     view.textAlignment = .center
@@ -24,8 +24,24 @@ final class MainDayInfoView: UIView {
     view.layer.cornerRadius = 4.0
     view.layer.masksToBounds = true
   }
+  private let remainedLabel = UILabel().then { view in
+    view.text = "남은시간: 0시간 00분"
+    view.textAlignment = .center
+    view.textColor = .systemPurple
+    view.font = .boldSystemFont(ofSize: 12.0)
+    view.layer.cornerRadius = 4.0
+    view.layer.masksToBounds = true
+  }
+  private let baseLabel = UILabel().then { view in
+    view.text = "0시간"
+    view.textAlignment = .center
+    view.textColor = .systemPink
+    view.font = .boldSystemFont(ofSize: 12.0)
+    view.layer.cornerRadius = 4.0
+    view.layer.masksToBounds = true
+  }
   private let progressBackView = UIView().then { view in
-    view.backgroundColor = .gray300
+    view.backgroundColor = .gray200
     view.layer.cornerRadius = Metric.progressHeight / 2.0
     view.layer.masksToBounds = true
   }
@@ -33,7 +49,7 @@ final class MainDayInfoView: UIView {
     view.backgroundColor = .systemGreen
   }
   private let flagView = UIView().then { view in
-    view.backgroundColor = .systemRed
+    view.backgroundColor = .systemPink
   }
   
   
@@ -61,6 +77,9 @@ final class MainDayInfoView: UIView {
       self.flagView.snp.makeConstraints { make in
         make.centerX.equalTo(fullTime)
       }
+      self.baseLabel.snp.makeConstraints { make in
+        make.centerX.equalTo(self.flagView)
+      }
     }
   }
   
@@ -74,12 +93,21 @@ final class MainDayInfoView: UIView {
     let sumRunTimeText = String(format: "%d시간 %02d분", sumRunTimeHour, sumRunTimeMin)
     self.runTimeLabel.text = sumRunTimeText
     
+    let workBaseHour = AppManager.shared.settingData?.workBaseHour ?? 40
+    let workBaseMin = workBaseHour * 60
+    let remained = workBaseMin - runTime
+    let remainedHour = remained / 60
+    let remainedMin = remained % 60
+    let remainedText = String(format: "남은시간: %d시간 %02d분", remainedHour, remainedMin)
+    self.remainedLabel.text = remainedText
+    
+    self.baseLabel.text = "\(workBaseHour)시간"
+    
     DispatchQueue.main.asyncAfter(
       deadline: .now() + 0.2,
       execute: { [weak self] in
         guard let self = self else { return }
-        let workBaseHour = (AppManager.shared.settingData?.workBaseHour ?? 40) * 60
-        let percent = CGFloat(Int((CGFloat(runTime) / CGFloat(workBaseHour)) * 100.0)) / 100.0
+        let percent = CGFloat(Int((CGFloat(runTime) / CGFloat(workBaseMin)) * 100.0)) / 100.0
         let labelWidth = self.runTimeLabel.bounds.width
         let backWidth = self.progressBackView.bounds.width
         let fullTime = backWidth * 0.8
@@ -104,7 +132,6 @@ final class MainDayInfoView: UIView {
             self.layoutIfNeeded()
           }
         )
-        
         
         UIView.animate(
           withDuration: 2.7,
@@ -137,8 +164,7 @@ final class MainDayInfoView: UIView {
   // MARK: - UI
   
   private func setAttribute() {
-    
-    [self.runTimeLabel, self.progressBackView]
+    [self.runTimeLabel, self.progressBackView, self.remainedLabel, self.baseLabel]
       .forEach(self.addSubview(_:))
     
     [self.progressBarView, self.flagView]
@@ -148,13 +174,22 @@ final class MainDayInfoView: UIView {
   private func setConstraint() {
     self.runTimeLabel.snp.makeConstraints { make in
       make.leading.equalTo(self.progressBackView)
-      make.top.equalToSuperview().offset(24.0)
+      make.top.equalToSuperview().offset(16.0)
     }
     
     self.progressBackView.snp.makeConstraints { make in
-      make.top.equalTo(self.runTimeLabel.snp.bottom).offset(6.0)
-      make.leading.trailing.bottom.equalToSuperview().inset(24.0)
+      make.top.equalTo(self.runTimeLabel.snp.bottom).offset(8.0)
+      make.leading.trailing.equalToSuperview().inset(24.0)
       make.height.equalTo(Metric.progressHeight)
+    }
+    
+    self.remainedLabel.snp.makeConstraints { make in
+      make.top.equalTo(self.progressBackView.snp.bottom).offset(8.0)
+      make.leading.bottom.equalToSuperview().inset(24.0)
+    }
+    
+    self.baseLabel.snp.makeConstraints { make in
+      make.top.equalTo(self.progressBackView.snp.bottom).offset(8.0)
     }
     
     self.progressBarView.snp.makeConstraints { make in

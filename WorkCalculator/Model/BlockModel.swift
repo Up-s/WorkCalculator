@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BlockModel: Codable {
+final class BlockModel: Codable {
   
   let weekInfo: String
   let weekday: DateManager.Day
@@ -157,7 +157,7 @@ extension BlockModel {
     }
   }
   
-  mutating func updateTime(_ state: DateManager.State, time: Int) {
+  func updateTime(_ state: DateManager.State, time: Int) {
     switch state {
     case .start:
       self.startTime = time
@@ -173,7 +173,7 @@ extension BlockModel {
 
 extension BlockModel: Equatable {
   
-  static func == (lhs: Self, rhs: Self) -> Bool {
+  static func == (lhs: BlockModel, rhs: BlockModel) -> Bool {
     lhs.key == rhs.key
   }
 }

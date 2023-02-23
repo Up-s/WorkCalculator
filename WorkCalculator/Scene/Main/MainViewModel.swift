@@ -23,6 +23,7 @@ final class MainViewModel: BaseViewModel {
   struct Output {
     let blockViewModels = BehaviorRelay<[MainBlockViewModel]>(value: [])
     let sumRunTime = BehaviorRelay<Int>(value: 0)
+    let message = PublishRelay<String?>()
   }
   
   // MARK: - Property
@@ -39,6 +40,9 @@ final class MainViewModel: BaseViewModel {
       return MainDayView()
     }
   }
+  
+  private let messageTimerOb = Observable<Int>.interval(.seconds(10), scheduler: MainScheduler.instance)
+  private let messageListOb = Observable.just(["일해라~ 일!! 일해라~ 일!! 일해라~ 일!! 일해라~ 일!! 일해라~ 일!! 일해라~ 일!!", "일해라~ 일!! 일해라~ 일!! 일해라~ 일!!", "일해라~ 일!! 일해라~ 일!! 일해라~ 일!! 일해라~ 일!!"])
   
   
   
@@ -61,10 +65,10 @@ final class MainViewModel: BaseViewModel {
     
     self.output.blockViewModels
       .filter { !$0.isEmpty }
-      .bind { [weak self] array in
+      .bind { [weak self] models in
         guard let self = self else { return }
-        let runTimes = array.map { $0.output.runTime }
         
+        let runTimes = models.map { $0.output.runTime }
         Observable
           .combineLatest(runTimes) { $0.reduce(0, +) }
           .bind(to: self.output.sumRunTime)
@@ -73,11 +77,10 @@ final class MainViewModel: BaseViewModel {
       .disposed(by: self.disposeBag)
     
     self.input.changeViewDidTap
-      .map { UserDefaultsManager.mainType }
-      .bind { [weak self] type in
+      .bind { [weak self] _ in
         guard let self = self else { return }
         
-        switch type {
+        switch UserDefaultsManager.mainType {
         case .week:
           UserDefaultsManager.mainType = .day
           
@@ -85,7 +88,8 @@ final class MainViewModel: BaseViewModel {
           UserDefaultsManager.mainType = .week
         }
         
-        let scene = Scene.splash
+        let viewModel = MainViewModel()
+        let scene = Scene.main(viewModel)
         self.coordinator.transition(scene: scene, style: .root)
       }
       .disposed(by: self.disposeBag)
@@ -128,5 +132,14 @@ final class MainViewModel: BaseViewModel {
         self?.coordinator.transition(scene: scene, style: .push)
       }
       .disposed(by: self.disposeBag)
+    
+    self.messageTimerOb
+      .withLatestFrom(self.messageListOb) { index, list -> String in
+        let i = index % list.count
+        return list[i]
+      }
+      .bind(to: self.output.message)
+      .disposed(by: self.disposeBag)
+    
   }
 }

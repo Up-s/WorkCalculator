@@ -16,7 +16,9 @@ final class MainWeekView: BaseView, MainViewProtocol {
   
   // MARK: - Property
   
-  let navigationView: BaseNavigationView = BaseNavigationView(.none(0.0))
+  let navigationView: BaseNavigationView = BaseNavigationView(.none(0.0)).then { view in
+    view.titleLabel.text = "칼퇴 계산기"
+  }
   let changeViewButton = UIButton().then { view in
     let image = UIImage.sfConfiguration(name: "rectangle.portrait.on.rectangle.portrait", color: .systemBlue)
     view.setImage(image, for: .normal)
@@ -57,6 +59,7 @@ final class MainWeekView: BaseView, MainViewProtocol {
     super.init()
     
     self.setNavigation()
+    self.setNavigationButton()
     self.setAttribute()
     self.setConstraint()
   }
@@ -68,31 +71,6 @@ final class MainWeekView: BaseView, MainViewProtocol {
   
   
   // MARK: - Interface
-  
-  var runTime: Binder<Int> {
-    return Binder(self) { view, runTime in
-      let max = (AppManager.shared.settingData?.workBaseHour ?? 40) * 60
-      
-      let sumRunTimeHour = runTime / 60
-      let sumRunTimeMin = runTime % 60
-      let sumRunTimeText = String(format: "%d시간 %02d분", sumRunTimeHour, sumRunTimeMin)
-      let keyword = "[\(String(max / 60))시간]"
-      let totalText = sumRunTimeText + "\n" + keyword
-      let attributedText = NSMutableAttributedString.make(
-        text: totalText,
-        keyword: keyword,
-        keywordFont: .systemFont(ofSize: 16.0),
-        keywordColor: .gray900
-      )
-      view.totalSumUnitView.subLabel.attributedText = attributedText
-      
-      let remained = max - runTime
-      let remainedHour = remained / 60
-      let remainedMin = remained % 60
-      let remainedText = String(format: "%d시간 %02d분", remainedHour, remainedMin)
-      view.remainedSumUnitView.subLabel.text = remainedText
-    }
-  }
   
   var blockViewModels: Binder<[MainBlockViewModel]> {
     return Binder(self) { view, blockViewModels in
@@ -152,21 +130,41 @@ final class MainWeekView: BaseView, MainViewProtocol {
     }
   }
   
+  var runTime: Binder<Int> {
+    return Binder(self) { view, runTime in
+      let max = (AppManager.shared.settingData?.workBaseHour ?? 40) * 60
+      
+      let sumRunTimeHour = runTime / 60
+      let sumRunTimeMin = runTime % 60
+      let sumRunTimeText = String(format: "%d시간 %02d분", sumRunTimeHour, sumRunTimeMin)
+      let keyword = "[\(String(max / 60))시간]"
+      let totalText = sumRunTimeText + "\n" + keyword
+      let attributedText = NSMutableAttributedString.make(
+        text: totalText,
+        keyword: keyword,
+        keywordFont: .systemFont(ofSize: 16.0),
+        keywordColor: .gray900
+      )
+      view.totalSumUnitView.subLabel.attributedText = attributedText
+      
+      let remained = max - runTime
+      let remainedHour = remained / 60
+      let remainedMin = remained % 60
+      let remainedText = String(format: "%d시간 %02d분", remainedHour, remainedMin)
+      view.remainedSumUnitView.subLabel.text = remainedText
+    }
+  }
+  
+  var message: Binder<String?> {
+    return Binder(self) { _, _ in
+      
+    }
+  }
   
   
   // MARK: - UI
   
   private func setAttribute() {
-    self.backgroundColor = .light
-    
-    self.navigationView.titleLabel.text = "칼퇴 계산기"
-    
-    [self.changeViewButton, self.refreshButton, self.histortButton, self.settingButton].forEach { view in
-      self.navigationView.addNavigationRightStackView(view)
-    }
-    
-    
-    
     self.addSubview(self.contentsScrollView)
     
     [self.infoView, self.contentsStackView]

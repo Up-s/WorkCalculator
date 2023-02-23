@@ -15,7 +15,9 @@ final class HistoryView: BaseView, NavigationProtocol {
   
   // MARK: - Property
   
-  var navigationView: BaseNavigationView
+  let navigationView: BaseNavigationView = BaseNavigationView(.pop).then { view in
+    view.titleLabel.text = "이전 기록"
+  }
   
   let tableView = UITableView().then { view in
     view.register(cellType: HistoryTableViewCell.self)
@@ -26,8 +28,6 @@ final class HistoryView: BaseView, NavigationProtocol {
   // MARK: - Life Cycle
   
   override init() {
-    self.navigationView = BaseNavigationView(.pop)
-    
     super.init()
     
     self.setNavigation()
@@ -48,12 +48,6 @@ final class HistoryView: BaseView, NavigationProtocol {
   // MARK: - UI
   
   private func setAttribute() {
-    self.backgroundColor = .light
-    
-    self.navigationView.titleLabel.text = "이전 기록"
-    
-    
-    
     self.addSubview(self.tableView)
   }
   

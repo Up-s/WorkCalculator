@@ -11,6 +11,9 @@
 		BD0C9B0D29A378750053CAB2 /* MainViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0C9B0C29A378750053CAB2 /* MainViewProtocol.swift */; };
 		BD0C9B0F29A37C430053CAB2 /* MainViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0C9B0E29A37C430053CAB2 /* MainViewType.swift */; };
 		BD13E963297072C800A7EE31 /* GoogleService-Info-Debug.plist in Resources */ = {isa = PBXBuildFile; fileRef = BD13E962297072C800A7EE31 /* GoogleService-Info-Debug.plist */; };
+		BD311DB829A75A0B008F0515 /* MainDayMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD311DB729A75A0B008F0515 /* MainDayMessageView.swift */; };
+		BD311DBA29A7A46B008F0515 /* MainDayBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD311DB929A7A46B008F0515 /* MainDayBlockView.swift */; };
+		BD311DBC29A7A4EC008F0515 /* MainDayBlockCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD311DBB29A7A4EC008F0515 /* MainDayBlockCollectionViewCell.swift */; };
 		BD3C031329A4CA98006F9044 /* MainDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3C031229A4CA98006F9044 /* MainDayView.swift */; };
 		BD3C031629A4D223006F9044 /* MainDayInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3C031529A4D223006F9044 /* MainDayInfoView.swift */; };
 		BD412A5229725D4400FCA4BF /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD412A5129725D4400FCA4BF /* HistoryTableViewCell.swift */; };
@@ -78,6 +81,9 @@
 		BD0C9B0C29A378750053CAB2 /* MainViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewProtocol.swift; sourceTree = "<group>"; };
 		BD0C9B0E29A37C430053CAB2 /* MainViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewType.swift; sourceTree = "<group>"; };
 		BD13E962297072C800A7EE31 /* GoogleService-Info-Debug.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Debug.plist"; sourceTree = "<group>"; };
+		BD311DB729A75A0B008F0515 /* MainDayMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDayMessageView.swift; sourceTree = "<group>"; };
+		BD311DB929A7A46B008F0515 /* MainDayBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDayBlockView.swift; sourceTree = "<group>"; };
+		BD311DBB29A7A4EC008F0515 /* MainDayBlockCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDayBlockCollectionViewCell.swift; sourceTree = "<group>"; };
 		BD3C031229A4CA98006F9044 /* MainDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDayView.swift; sourceTree = "<group>"; };
 		BD3C031529A4D223006F9044 /* MainDayInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDayInfoView.swift; sourceTree = "<group>"; };
 		BD412A5129725D4400FCA4BF /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
@@ -184,6 +190,9 @@
 			isa = PBXGroup;
 			children = (
 				BD3C031529A4D223006F9044 /* MainDayInfoView.swift */,
+				BD311DB729A75A0B008F0515 /* MainDayMessageView.swift */,
+				BD311DB929A7A46B008F0515 /* MainDayBlockView.swift */,
+				BD311DBB29A7A4EC008F0515 /* MainDayBlockCollectionViewCell.swift */,
 				BD3C031229A4CA98006F9044 /* MainDayView.swift */,
 			);
 			path = Day;
@@ -575,6 +584,7 @@
 				BD6E36DD296FF0740077E8DB /* UpdateDateModel.swift in Sources */,
 				BD730B1829752446001E6B4D /* ReHistoryView.swift in Sources */,
 				BD470D702966CC1700404AB4 /* MainWeekBlockView.swift in Sources */,
+				BD311DBC29A7A4EC008F0515 /* MainDayBlockCollectionViewCell.swift in Sources */,
 				BD730B1A2975245D001E6B4D /* HistoryCollectionViewCell.swift in Sources */,
 				BD412A5429725E1900FCA4BF /* HistoryTimeBlockView.swift in Sources */,
 				BD0C9B0D29A378750053CAB2 /* MainViewProtocol.swift in Sources */,
@@ -586,9 +596,11 @@
 				BD470D6C2966CA6500404AB4 /* SplashView.swift in Sources */,
 				BD7831422968764B00907452 /* SettingView.swift in Sources */,
 				BD9A16C7296725E70093FB1C /* MainWeekSumUnitView.swift in Sources */,
+				BD311DBA29A7A46B008F0515 /* MainDayBlockView.swift in Sources */,
 				BD78314A296878B700907452 /* SettingInputTypeView.swift in Sources */,
 				BD470D852966EE1C00404AB4 /* PickerViewController.swift in Sources */,
 				BD6E36D5296ECFC20077E8DB /* UpdateViewController.swift in Sources */,
+				BD311DB829A75A0B008F0515 /* MainDayMessageView.swift in Sources */,
 				BD78314C2968825100907452 /* InputType.swift in Sources */,
 				BD7831502968876700907452 /* SettingInfoLabel.swift in Sources */,
 				BD783157296ADA3200907452 /* NumberPadViewModel.swift in Sources */,

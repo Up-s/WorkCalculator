@@ -77,5 +77,9 @@ final class MainViewController: BaseViewController {
     self.viewModel.output.sumRunTime
       .bind(to: self.rootView.runTime)
       .disposed(by: self.disposeBag)
+    
+    self.viewModel.output.message
+      .bind(to: self.rootView.message)
+      .disposed(by: self.disposeBag)
   }
 }

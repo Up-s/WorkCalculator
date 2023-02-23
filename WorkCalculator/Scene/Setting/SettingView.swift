@@ -16,7 +16,9 @@ final class SettingView: BaseView, NavigationProtocol {
   
   // MARK: - Property
   
-  var navigationView: BaseNavigationView
+  let navigationView: BaseNavigationView = BaseNavigationView(.pop).then { view in
+    view.titleLabel.text = "설정"
+  }
   
   private let contentsScrollView = UIScrollView()
   private let contentsStackView = UPsStackView(axis: .vertical, spacing: 40.0)
@@ -36,8 +38,6 @@ final class SettingView: BaseView, NavigationProtocol {
   // MARK: - Life Cycle
   
   override init() {
-    self.navigationView = BaseNavigationView(.pop)
-    
     super.init()
     
     self.setNavigation()
@@ -58,11 +58,6 @@ final class SettingView: BaseView, NavigationProtocol {
   // MARK: - UI
   
   private func setAttribute() {
-    self.backgroundColor = .light
-    
-    self.navigationView.titleLabel.text = "설정"
-    
-    
     self.addSubview(self.contentsScrollView)
     
     self.contentsScrollView.addSubview(self.contentsStackView)
