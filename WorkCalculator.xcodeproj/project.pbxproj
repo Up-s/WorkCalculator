@@ -18,6 +18,7 @@
 		BD3C031629A4D223006F9044 /* MainDayInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3C031529A4D223006F9044 /* MainDayInfoView.swift */; };
 		BD412A5229725D4400FCA4BF /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD412A5129725D4400FCA4BF /* HistoryTableViewCell.swift */; };
 		BD412A5429725E1900FCA4BF /* HistoryTimeBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD412A5329725E1900FCA4BF /* HistoryTimeBlockView.swift */; };
+		BD449F6429A8BB7F00C00693 /* NotionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD449F6329A8BB7F00C00693 /* NotionModel.swift */; };
 		BD470D402966C4CE00404AB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D3F2966C4CE00404AB4 /* AppDelegate.swift */; };
 		BD470D492966C4CF00404AB4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD470D482966C4CF00404AB4 /* Assets.xcassets */; };
 		BD470D542966C66E00404AB4 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D532966C66E00404AB4 /* SplashViewController.swift */; };
@@ -70,6 +71,7 @@
 		BD9D7B1B29745A6700B311EB /* RealmBlockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9D7B1A29745A6700B311EB /* RealmBlockModel.swift */; };
 		BDBC33CE2974199F0073754E /* BlockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBC33CD2974199F0073754E /* BlockModel.swift */; };
 		BDBC4F20297A7EB0007C1C1A /* AppConfigureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBC4F1F297A7EB0007C1C1A /* AppConfigureModel.swift */; };
+		BDDAA9B029A89F82000001EB /* NotionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDAA9AF29A89F82000001EB /* NotionProvider.swift */; };
 		BDE6D02B2967DC1D00F79CB6 /* SplashViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDE6D02A2967DC1D00F79CB6 /* SplashViewController.storyboard */; };
 		FE2F56DEA624171BBC2E1B0A /* Pods_WorkCalculator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50AC98ACB26649BCF5B1BED1 /* Pods_WorkCalculator.framework */; };
 /* End PBXBuildFile section */
@@ -88,6 +90,7 @@
 		BD3C031529A4D223006F9044 /* MainDayInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDayInfoView.swift; sourceTree = "<group>"; };
 		BD412A5129725D4400FCA4BF /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		BD412A5329725E1900FCA4BF /* HistoryTimeBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTimeBlockView.swift; sourceTree = "<group>"; };
+		BD449F6329A8BB7F00C00693 /* NotionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotionModel.swift; sourceTree = "<group>"; };
 		BD470D3C2966C4CE00404AB4 /* WorkCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD470D3F2966C4CE00404AB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BD470D482966C4CF00404AB4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -142,6 +145,7 @@
 		BD9D7B1A29745A6700B311EB /* RealmBlockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBlockModel.swift; sourceTree = "<group>"; };
 		BDBC33CD2974199F0073754E /* BlockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockModel.swift; sourceTree = "<group>"; };
 		BDBC4F1F297A7EB0007C1C1A /* AppConfigureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigureModel.swift; sourceTree = "<group>"; };
+		BDDAA9AF29A89F82000001EB /* NotionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotionProvider.swift; sourceTree = "<group>"; };
 		BDE6D02A2967DC1D00F79CB6 /* SplashViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SplashViewController.storyboard; sourceTree = "<group>"; };
 		F578C96866DECC6C0B77A42D /* Pods-WorkCalculator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkCalculator.release.xcconfig"; path = "Target Support Files/Pods-WorkCalculator/Pods-WorkCalculator.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -241,6 +245,7 @@
 				BD8F87812968665E0086F6C1 /* Firebase */,
 				BD470D5A2966C8BF00404AB4 /* Model */,
 				BD470D5C2966C8D100404AB4 /* Manager */,
+				BDDAA9AE29A89F5C000001EB /* Provider */,
 				BD470D592966C8B300404AB4 /* Support */,
 			);
 			path = WorkCalculator;
@@ -266,6 +271,7 @@
 				BD6E36DC296FF0740077E8DB /* UpdateDateModel.swift */,
 				BD78314B2968825100907452 /* InputType.swift */,
 				BD0C9B0E29A37C430053CAB2 /* MainViewType.swift */,
+				BD449F6329A8BB7F00C00693 /* NotionModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -407,6 +413,14 @@
 				BD9D7B1829744FE700B311EB /* Extension+Int.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		BDDAA9AE29A89F5C000001EB /* Provider */ = {
+			isa = PBXGroup;
+			children = (
+				BDDAA9AF29A89F82000001EB /* NotionProvider.swift */,
+			);
+			path = Provider;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -560,8 +574,10 @@
 				BD470D562966C74400404AB4 /* Scene.swift in Sources */,
 				BD6E36EB2971214C0077E8DB /* HistoryViewModel.swift in Sources */,
 				BD783153296ADA2700907452 /* NumberPadView.swift in Sources */,
+				BD449F6429A8BB7F00C00693 /* NotionModel.swift in Sources */,
 				BD0C9B0F29A37C430053CAB2 /* MainViewType.swift in Sources */,
 				BD9962FE296C389000601874 /* SettingDaysView.swift in Sources */,
+				BDDAA9B029A89F82000001EB /* NotionProvider.swift in Sources */,
 				BD470D832966EE1800404AB4 /* PickerView.swift in Sources */,
 				BD9A16C9296736430093FB1C /* UserDefaultsManager.swift in Sources */,
 				BD0344D929707972001B3010 /* MainWeekInfoView.swift in Sources */,
