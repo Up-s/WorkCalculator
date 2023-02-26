@@ -73,24 +73,27 @@ final class UpdateViewModel: BaseViewModel {
           return FirebaseProvider.setSettingData(data)
         }
       }
-      .catch { [weak self] error in
-        guard let firebaseError = error as? FirebaseError else { return Observable.empty() }
-        
+      .`catch` { [weak self] error in
+        guard let firebaseError = error as? NetworkError else { return Observable.empty() }
+
         let errorMessage: String
         switch firebaseError {
-        case .firebaseError(let error):
-          errorMessage = "잠시 후 다시 시도해 주세요.\nService Error \(error.localizedDescription)"
+        case .emptyData:
+          errorMessage = "데이터가 없습니다"
           
         case .parsingError:
           errorMessage = "잠시 후 다시 시도해 주세요.\nParsing Error"
-          
-        case .emptyData:
-          errorMessage = "데이터가 없습니다"
           self?.errorObserver.accept(())
+          
+        case .urlError:
+          errorMessage = "URL Error"
+          
+        case .firebaseError(let error):
+          errorMessage = "잠시 후 다시 시도해 주세요.\nService Error \(error.localizedDescription)"
         }
-        
+
         self?.coordinator.toast(errorMessage)
-        
+
         return Observable.empty()
       }
       .map { BlockModel.create }

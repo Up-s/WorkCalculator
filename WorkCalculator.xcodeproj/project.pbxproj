@@ -49,7 +49,7 @@
 		BD730B1829752446001E6B4D /* ReHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD730B1729752446001E6B4D /* ReHistoryView.swift */; };
 		BD730B1A2975245D001E6B4D /* HistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD730B192975245D001E6B4D /* HistoryCollectionViewCell.swift */; };
 		BD7831372968679200907452 /* FirebaseRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7831362968679200907452 /* FirebaseRoot.swift */; };
-		BD783139296867AA00907452 /* FirebaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD783138296867AA00907452 /* FirebaseError.swift */; };
+		BD783139296867AA00907452 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD783138296867AA00907452 /* NetworkError.swift */; };
 		BD78313B2968684000907452 /* FirebaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD78313A2968684000907452 /* FirebaseProvider.swift */; };
 		BD78313D29686BD800907452 /* SettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD78313C29686BD800907452 /* SettingModel.swift */; };
 		BD78313F296871CB00907452 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD78313E296871CB00907452 /* AppManager.swift */; };
@@ -123,7 +123,7 @@
 		BD730B1729752446001E6B4D /* ReHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReHistoryView.swift; sourceTree = "<group>"; };
 		BD730B192975245D001E6B4D /* HistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		BD7831362968679200907452 /* FirebaseRoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRoot.swift; sourceTree = "<group>"; };
-		BD783138296867AA00907452 /* FirebaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseError.swift; sourceTree = "<group>"; };
+		BD783138296867AA00907452 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		BD78313A2968684000907452 /* FirebaseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseProvider.swift; sourceTree = "<group>"; };
 		BD78313C29686BD800907452 /* SettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModel.swift; sourceTree = "<group>"; };
 		BD78313E296871CB00907452 /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
@@ -401,7 +401,6 @@
 				BD13E95D29706FEE00A7EE31 /* Debug */,
 				BD13E95E29706FF300A7EE31 /* Release */,
 				BD7831362968679200907452 /* FirebaseRoot.swift */,
-				BD783138296867AA00907452 /* FirebaseError.swift */,
 				BD78313A2968684000907452 /* FirebaseProvider.swift */,
 			);
 			path = Firebase;
@@ -418,6 +417,7 @@
 		BDDAA9AE29A89F5C000001EB /* Provider */ = {
 			isa = PBXGroup;
 			children = (
+				BD783138296867AA00907452 /* NetworkError.swift */,
 				BDDAA9AF29A89F82000001EB /* NotionProvider.swift */,
 			);
 			path = Provider;
@@ -591,7 +591,7 @@
 				BD78313B2968684000907452 /* FirebaseProvider.swift in Sources */,
 				BD7831442968765000907452 /* SettingViewController.swift in Sources */,
 				BD470D872966EE2100404AB4 /* PickerViewModel.swift in Sources */,
-				BD783139296867AA00907452 /* FirebaseError.swift in Sources */,
+				BD783139296867AA00907452 /* NetworkError.swift in Sources */,
 				BD7831482968773C00907452 /* SettingIDView.swift in Sources */,
 				BD9D7B1B29745A6700B311EB /* RealmBlockModel.swift in Sources */,
 				BD470D662966CA1000404AB4 /* MainWeekView.swift in Sources */,
