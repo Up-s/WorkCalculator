@@ -16,7 +16,7 @@ final class MainWeekView: BaseView, MainViewProtocol {
   
   // MARK: - Property
   
-  let navigationView: BaseNavigationView = BaseNavigationView(.none(0.0)).then { view in
+  let navigationView: BaseNavigationView = BaseNavigationView(.none).then { view in
     view.titleLabel.text = "칼퇴 계산기"
   }
   let changeViewButton = UIButton().then { view in
