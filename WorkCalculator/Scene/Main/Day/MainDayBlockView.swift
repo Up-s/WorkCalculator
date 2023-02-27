@@ -20,6 +20,9 @@ final class MainDayBlockView: UIView {
     layout.scrollDirection = .horizontal
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     collectionView.register(cellType: MainDayBlockCollectionViewCell.self)
+    collectionView.showsHorizontalScrollIndicator = false
+    collectionView.backgroundColor = .clear
+    collectionView.decelerationRate = UIScrollView.DecelerationRate.fast
     return collectionView
   }()
   
@@ -56,7 +59,7 @@ final class MainDayBlockView: UIView {
   
   private func setConstraint() {
     self.snp.makeConstraints { make in
-      make.height.equalTo(320.0)
+      make.height.equalTo(420.0)
     }
     
     self.blockCollectionView.snp.makeConstraints { make in
@@ -73,6 +76,34 @@ final class MainDayBlockView: UIView {
 }
 
 
+// MARK: - UICollectionViewDelegate
+
+extension MainDayBlockView: UICollectionViewDelegate {
+  
+  func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+    let width = scrollView.bounds.size.width - Metric.xInset - Metric.spacing - Metric.padding
+    let cellWidthIncludingSpacing = width + Metric.spacing
+    var offset = targetContentOffset.pointee
+    let index = (offset.x + scrollView.contentInset.left) / cellWidthIncludingSpacing
+    var roundedIndex = round(index)
+    
+    if scrollView.contentOffset.x > targetContentOffset.pointee.x {
+      roundedIndex = floor(index)
+    } else {
+      roundedIndex = ceil(index)
+    }
+    
+    offset = CGPoint(
+      x: (roundedIndex * cellWidthIncludingSpacing) - scrollView.contentInset.left,
+      y: -scrollView.contentInset.top
+    )
+    targetContentOffset.pointee = offset
+  }
+}
+
+
+
+// MARK: - UICollectionViewDelegateFlowLayout
 
 extension MainDayBlockView: UICollectionViewDelegateFlowLayout {
   

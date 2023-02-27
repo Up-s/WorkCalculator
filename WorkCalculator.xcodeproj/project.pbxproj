@@ -69,6 +69,7 @@
 		BD9A16C9296736430093FB1C /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9A16C8296736430093FB1C /* UserDefaultsManager.swift */; };
 		BD9D7B1929744FE700B311EB /* Extension+Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9D7B1829744FE700B311EB /* Extension+Int.swift */; };
 		BD9D7B1B29745A6700B311EB /* RealmBlockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9D7B1A29745A6700B311EB /* RealmBlockModel.swift */; };
+		BDBB18B529ACDE3E00A90D53 /* TimeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBB18B429ACDE3E00A90D53 /* TimeButtonView.swift */; };
 		BDBC33CE2974199F0073754E /* BlockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBC33CD2974199F0073754E /* BlockModel.swift */; };
 		BDBC4F20297A7EB0007C1C1A /* AppConfigureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBC4F1F297A7EB0007C1C1A /* AppConfigureModel.swift */; };
 		BDDAA9B029A89F82000001EB /* NotionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDAA9AF29A89F82000001EB /* NotionProvider.swift */; };
@@ -143,6 +144,7 @@
 		BD9A16C8296736430093FB1C /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		BD9D7B1829744FE700B311EB /* Extension+Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Int.swift"; sourceTree = "<group>"; };
 		BD9D7B1A29745A6700B311EB /* RealmBlockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBlockModel.swift; sourceTree = "<group>"; };
+		BDBB18B429ACDE3E00A90D53 /* TimeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeButtonView.swift; sourceTree = "<group>"; };
 		BDBC33CD2974199F0073754E /* BlockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockModel.swift; sourceTree = "<group>"; };
 		BDBC4F1F297A7EB0007C1C1A /* AppConfigureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigureModel.swift; sourceTree = "<group>"; };
 		BDDAA9AF29A89F82000001EB /* NotionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotionProvider.swift; sourceTree = "<group>"; };
@@ -351,6 +353,7 @@
 			children = (
 				BD6E36D9296EE6EC0077E8DB /* ProgressView.swift */,
 				BD6E36CF296E94D40077E8DB /* InputButtonView.swift */,
+				BDBB18B429ACDE3E00A90D53 /* TimeButtonView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -604,6 +607,7 @@
 				BD730B1A2975245D001E6B4D /* HistoryCollectionViewCell.swift in Sources */,
 				BD412A5429725E1900FCA4BF /* HistoryTimeBlockView.swift in Sources */,
 				BD0C9B0D29A378750053CAB2 /* MainViewProtocol.swift in Sources */,
+				BDBB18B529ACDE3E00A90D53 /* TimeButtonView.swift in Sources */,
 				BD470D402966C4CE00404AB4 /* AppDelegate.swift in Sources */,
 				BD7831372968679200907452 /* FirebaseRoot.swift in Sources */,
 				BD6E36D3296ECFBB0077E8DB /* UpdateView.swift in Sources */,
