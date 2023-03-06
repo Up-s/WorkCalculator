@@ -7,6 +7,7 @@
 
 import UIKit
 
+import RxCocoa
 import RxSwift
 import SnapKit
 import Then
@@ -66,6 +67,17 @@ final class MainDayView: BaseView, MainViewProtocol {
   
   // MARK: - Interface
   
+  var weekPayDidTap: ControlEvent<Void>? {
+    self.infoView.weekPayView.weekPayButton.rx.tap
+  }
+  
+  var weekPay: Binder<String?> {
+    return Binder(self) { view, weekPay in
+      let title = weekPay ?? "+"
+      view.infoView.weekPayView.weekPayButton.setTitle(title, for: .normal)
+    }
+  }
+  
   var blockViewModels: Binder<[MainBlockViewModel]> {
     return Binder(self) { view, models in
       Observable.just(models)
@@ -83,7 +95,7 @@ final class MainDayView: BaseView, MainViewProtocol {
   
   var runTime: Binder<Int> {
     return Binder(self) { view, runTime in
-      self.infoView.setData(runTime)
+      self.infoView.progressView.setData(runTime)
     }
   }
   
@@ -92,7 +104,6 @@ final class MainDayView: BaseView, MainViewProtocol {
       view.messageView.setMessage(message)
     }
   }
-  
   
   
   

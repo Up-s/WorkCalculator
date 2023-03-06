@@ -7,6 +7,7 @@
 
 import UIKit
 
+import RxCocoa
 import RxSwift
 import SnapKit
 import Then
@@ -71,6 +72,14 @@ final class MainWeekView: BaseView, MainViewProtocol {
   
   
   // MARK: - Interface
+  
+  var weekPayDidTap: ControlEvent<Void>?
+  
+  var weekPay: Binder<String?> {
+    return Binder(self) { _, _ in
+      
+    }
+  }
   
   var blockViewModels: Binder<[MainBlockViewModel]> {
     return Binder(self) { view, blockViewModels in
@@ -160,6 +169,7 @@ final class MainWeekView: BaseView, MainViewProtocol {
       
     }
   }
+  
   
   
   // MARK: - UI

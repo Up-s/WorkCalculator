@@ -7,6 +7,7 @@
 
 import UIKit
 
+import RxCocoa
 import RxSwift
 import UPsKit
 
@@ -16,10 +17,12 @@ protocol MainViewProtocol: UIView, NavigationProtocol {
   var refreshButton: UIButton { get }
   var histortButton: UIButton { get }
   var settingButton: UIButton { get }
+  var weekPayDidTap: ControlEvent<Void>? { get }
   
   var blockViewModels: Binder<[MainBlockViewModel]> { get }
   var runTime: Binder<Int> { get }
   var message: Binder<String?> { get }
+  var weekPay: Binder<String?> { get }
 }
 
 
