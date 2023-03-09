@@ -52,10 +52,6 @@ final class MainViewController: BaseViewController {
   }
   
   private func bindViewModel() {
-    self.rx.viewDidAppear
-      .bind(to: self.viewModel.input.viewDidAppear)
-      .disposed(by: self.disposeBag)
-    
     self.rootView.changeViewButton.rx.tap
       .bind(to: self.viewModel.input.changeViewDidTap)
       .disposed(by: self.disposeBag)
@@ -72,8 +68,12 @@ final class MainViewController: BaseViewController {
       .bind(to: self.viewModel.input.settingDidTap)
       .disposed(by: self.disposeBag)
     
-    self.rootView.weekPayDidTap?
-      .bind(to: self.viewModel.input.weekPayDidTap)
+    self.rootView.weekPayTouchDown?
+      .bind(to: self.viewModel.input.weekPayTouchDown)
+      .disposed(by: self.disposeBag)
+    
+    self.rootView.weekPayTouchOut?
+      .bind(to: self.viewModel.input.weekPayTouchOut)
       .disposed(by: self.disposeBag)
     
     

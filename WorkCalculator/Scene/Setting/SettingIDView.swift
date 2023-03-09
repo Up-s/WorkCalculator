@@ -66,6 +66,11 @@ final class SettingIDView: UIView {
   // MARK: - UI
   
   private func setAttribute() {
+    [self.idStackView, self.idLabel, self.copyButton, self.shareButton, self.shareCancelButton].forEach { view in
+      view.layer.cornerRadius = 8.0
+      view.layer.masksToBounds = true
+    }
+    
     [self.shareButton, self.shareCancelButton].forEach { view in
       view.setTitleColor(.white, for: .normal)
       view.titleLabel?.font = .boldSystemFont(ofSize: 18.0)

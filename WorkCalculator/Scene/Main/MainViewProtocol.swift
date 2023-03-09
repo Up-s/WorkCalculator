@@ -17,7 +17,8 @@ protocol MainViewProtocol: UIView, NavigationProtocol {
   var refreshButton: UIButton { get }
   var histortButton: UIButton { get }
   var settingButton: UIButton { get }
-  var weekPayDidTap: ControlEvent<Void>? { get }
+  var weekPayTouchDown: Observable<Void>? { get }
+  var weekPayTouchOut: Observable<Void>? { get }
   
   var blockViewModels: Binder<[MainBlockViewModel]> { get }
   var runTime: Binder<Int> { get }

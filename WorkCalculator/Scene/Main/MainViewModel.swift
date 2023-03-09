@@ -14,12 +14,12 @@ import UPsKit
 final class MainViewModel: BaseViewModel {
   
   struct Input {
-    let viewDidAppear = PublishRelay<Void>()
     let changeViewDidTap = PublishRelay<Void>()
     let refreshDidTap = PublishRelay<Void>()
     let historyDidTap = PublishRelay<Void>()
     let settingDidTap = PublishRelay<Void>()
-    let weekPayDidTap = PublishRelay<Void>()
+    let weekPayTouchDown = PublishRelay<Void>()
+    let weekPayTouchOut = PublishRelay<Void>()
   }
   
   struct Output {
@@ -44,7 +44,6 @@ final class MainViewModel: BaseViewModel {
     }
   }
   
-  private let hourWageSum = PublishRelay<Void>()
   private let messageTimerOb = Observable<Int>.interval(.seconds(10), scheduler: MainScheduler.instance)
   private let messageListOb = Observable.just(["일해라~ 일!! 일해라~ 일!! 일해라~ 일!! 일해라~ 일!! 일해라~ 일!! 일해라~ 일!!", "일해라~ 일!! 일해라~ 일!! 일해라~ 일!!", "일해라~ 일!! 일해라~ 일!! 일해라~ 일!! 일해라~ 일!!"])
   
@@ -54,10 +53,6 @@ final class MainViewModel: BaseViewModel {
   
   init() {
     super.init()
-    
-    self.input.viewDidAppear
-      .bind(to: self.hourWageSum)
-      .disposed(by: self.disposeBag)
     
     Observable.from(AppManager.shared.blocks)
       .filter { block in
@@ -149,25 +144,8 @@ final class MainViewModel: BaseViewModel {
       .bind(to: self.output.message)
       .disposed(by: self.disposeBag)
     
-    self.input.weekPayDidTap
-      .bind {
-        self.coordinator.alertTextField(
-          title: "행복 계산기",
-          message: "시급을 입력하시면 주간 급여를 계산합니다",
-          keyboardType: .numberPad,
-          actionTitle: "입력",
-          cancel: "닫기",
-          handler: { [weak self] hourlyWage in
-            guard let self = self else { return }
-            UserDefaultsManager.hourWage = Int(hourlyWage ?? "") ?? 0
-            self.hourWageSum.accept(())
-          }
-        )
-      }
-      .disposed(by: self.disposeBag)
-    
     Observable
-      .combineLatest(self.hourWageSum, self.output.sumRunTime) { _, sumRunTime -> String? in
+      .combineLatest(self.input.weekPayTouchDown, self.output.sumRunTime) { _, sumRunTime -> String? in
         guard let hourWage = UserDefaultsManager.hourWage else {
           return nil
         }
@@ -185,6 +163,13 @@ final class MainViewModel: BaseViewModel {
           let sum = Int(minWage * CGFloat(sumRunTime))
           return sum.toWon + "원"
         }
+      }
+      .bind(to: self.output.weekPay)
+      .disposed(by: self.disposeBag)
+    
+    self.input.weekPayTouchOut
+      .map { _ -> String? in
+        return nil
       }
       .bind(to: self.output.weekPay)
       .disposed(by: self.disposeBag)

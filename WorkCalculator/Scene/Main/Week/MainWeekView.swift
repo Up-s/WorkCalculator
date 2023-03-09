@@ -73,7 +73,8 @@ final class MainWeekView: BaseView, MainViewProtocol {
   
   // MARK: - Interface
   
-  var weekPayDidTap: ControlEvent<Void>?
+  var weekPayTouchDown: Observable<Void>?
+  var weekPayTouchOut: Observable<Void>?
   
   var weekPay: Binder<String?> {
     return Binder(self) { _, _ in

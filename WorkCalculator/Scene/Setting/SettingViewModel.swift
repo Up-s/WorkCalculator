@@ -19,6 +19,7 @@ final class SettingViewModel: BaseViewModel {
     let shareCancelDidTap = PublishRelay<Void>()
     let selectDay = PublishRelay<DateManager.Day>()
     let baseHour = BehaviorRelay<Int?>(value: nil)
+    let weekPayDidTap = PublishRelay<Void>()
     let inputType = BehaviorRelay<Int?>(value: nil)
     let saveDidTap = PublishRelay<Void>()
   }
@@ -176,6 +177,21 @@ final class SettingViewModel: BaseViewModel {
         
         let text = String(hour) + "시간"
         self?.output.baseHour.accept(text)
+      }
+      .disposed(by: self.disposeBag)
+    
+    self.input.weekPayDidTap
+      .bind {
+        self.coordinator.alertTextField(
+          title: "행복 계산기",
+          message: "시급을 입력하시면 주간 급여를 계산합니다",
+          keyboardType: .numberPad,
+          actionTitle: "입력",
+          cancel: "닫기",
+          handler: { hourlyWage in
+            UserDefaultsManager.hourWage = Int(hourlyWage ?? "")
+          }
+        )
       }
       .disposed(by: self.disposeBag)
     

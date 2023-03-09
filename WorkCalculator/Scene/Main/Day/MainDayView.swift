@@ -67,13 +67,21 @@ final class MainDayView: BaseView, MainViewProtocol {
   
   // MARK: - Interface
   
-  var weekPayDidTap: ControlEvent<Void>? {
-    self.infoView.weekPayView.weekPayButton.rx.tap
+  var weekPayTouchDown: Observable<Void>? {
+    self.infoView.weekPayView.weekPayButton.rx.controlEvent(.touchDown).asObservable()
+  }
+  
+  var weekPayTouchOut: Observable<Void>? {
+    Observable
+      .merge(
+        self.infoView.weekPayView.weekPayButton.rx.controlEvent(.touchUpInside).asObservable(),
+        self.infoView.weekPayView.weekPayButton.rx.controlEvent(.touchDragOutside).asObservable()
+      )
   }
   
   var weekPay: Binder<String?> {
     return Binder(self) { view, weekPay in
-      let title = weekPay ?? "+"
+      let title = weekPay ?? "💰"
       view.infoView.weekPayView.weekPayButton.setTitle(title, for: .normal)
     }
   }
@@ -110,6 +118,8 @@ final class MainDayView: BaseView, MainViewProtocol {
   // MARK: - UI
   
   private func setAttribute() {
+    
+    
     self.addSubview(self.contentsScrollView)
     
     self.contentsScrollView.addSubview(self.contentsStackView)

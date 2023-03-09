@@ -25,6 +25,7 @@ final class SettingView: BaseView, NavigationProtocol {
   let idView = SettingIDView()
   let daysView = SettingDaysView()
   let hourView = SettingHourSliderView()
+  let weekPayView = SettingWeekPayView()
   let inputTypeView = SettingInputTypeView()
   let saveButton = UIButton().then { view in
     view.setTitle("저장", for: .normal)
@@ -62,7 +63,7 @@ final class SettingView: BaseView, NavigationProtocol {
     
     self.contentsScrollView.addSubview(self.contentsStackView)
     
-    [self.idView, self.daysView, self.hourView, self.inputTypeView, saveButton]
+    [self.idView, self.daysView, self.hourView, self.weekPayView, self.inputTypeView, saveButton]
       .forEach(self.contentsStackView.addArrangedSubview(_:))
   }
   
