@@ -79,10 +79,9 @@ final class MainDayView: BaseView, MainViewProtocol {
       )
   }
   
-  var weekPay: Binder<String?> {
+  var weekPay: Binder<String> {
     return Binder(self) { view, weekPay in
-      let title = weekPay ?? "💰"
-      view.infoView.weekPayView.weekPayButton.setTitle(title, for: .normal)
+      view.infoView.weekPayView.weekPayButton.setTitle(weekPay, for: .normal)
     }
   }
   

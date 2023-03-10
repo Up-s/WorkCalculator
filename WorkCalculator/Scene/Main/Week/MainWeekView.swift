@@ -76,7 +76,7 @@ final class MainWeekView: BaseView, MainViewProtocol {
   var weekPayTouchDown: Observable<Void>?
   var weekPayTouchOut: Observable<Void>?
   
-  var weekPay: Binder<String?> {
+  var weekPay: Binder<String> {
     return Binder(self) { _, _ in
       
     }

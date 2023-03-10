@@ -91,6 +91,7 @@ final class MainViewController: BaseViewController {
       .disposed(by: self.disposeBag)
     
     self.viewModel.output.weekPay
+      .compactMap { $0 }
       .bind(to: self.rootView.weekPay)
       .disposed(by: self.disposeBag)
   }

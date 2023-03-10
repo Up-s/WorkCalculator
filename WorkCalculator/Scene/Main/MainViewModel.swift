@@ -147,7 +147,7 @@ final class MainViewModel: BaseViewModel {
     Observable
       .combineLatest(self.input.weekPayTouchDown, self.output.sumRunTime) { _, sumRunTime -> String? in
         guard let hourWage = UserDefaultsManager.hourWage else {
-          return nil
+          return "-"
         }
         
         let sumRunTimeHour = sumRunTime / 60
@@ -168,8 +168,8 @@ final class MainViewModel: BaseViewModel {
       .disposed(by: self.disposeBag)
     
     self.input.weekPayTouchOut
-      .map { _ -> String? in
-        return nil
+      .map { _ -> String in
+        return "💰"
       }
       .bind(to: self.output.weekPay)
       .disposed(by: self.disposeBag)

@@ -188,8 +188,16 @@ final class SettingViewModel: BaseViewModel {
           keyboardType: .numberPad,
           actionTitle: "입력",
           cancel: "닫기",
-          handler: { hourlyWage in
-            UserDefaultsManager.hourWage = Int(hourlyWage ?? "")
+          handler: { hourWage in
+            guard let hourWage = hourWage, let hourWageInt = Int(hourWage) else { return }
+            
+            switch hourWageInt == 0 {
+            case true:
+              UserDefaultsManager.hourWage = nil
+              
+            case false:
+              UserDefaultsManager.hourWage = hourWageInt
+            }
           }
         )
       }
