@@ -144,8 +144,9 @@ final class MainViewModel: BaseViewModel {
       .bind(to: self.output.message)
       .disposed(by: self.disposeBag)
     
-    Observable
-      .combineLatest(self.input.weekPayTouchDown, self.output.sumRunTime) { _, sumRunTime -> String? in
+    self.input.weekPayTouchDown
+      .withLatestFrom(self.output.sumRunTime)
+      .map { sumRunTime -> String? in
         guard let hourWage = UserDefaultsManager.hourWage else {
           return "-"
         }

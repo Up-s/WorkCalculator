@@ -16,7 +16,7 @@ final class MainDayWeekPayView: UIView {
   // MARK: - Property
   
   let weekPayButton = UIButton().then { view in
-    let title = UserDefaultsManager.hourWage == nil ? "-" : "💰"
+    let title = "💰"
     view.setTitle(title, for: .normal)
     view.setTitleColor(.gray800, for: .normal)
     view.titleLabel?.font = .boldSystemFont(ofSize: 24.0)

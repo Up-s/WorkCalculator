@@ -189,14 +189,12 @@ final class SettingViewModel: BaseViewModel {
           actionTitle: "입력",
           cancel: "닫기",
           handler: { hourWage in
-            guard let hourWage = hourWage, let hourWageInt = Int(hourWage) else { return }
-            
-            switch hourWageInt == 0 {
-            case true:
-              UserDefaultsManager.hourWage = nil
+            switch hourWage {
+            case .some(let hourWage):
+              UserDefaultsManager.hourWage = Int(hourWage)
               
-            case false:
-              UserDefaultsManager.hourWage = hourWageInt
+            case .none:
+              UserDefaultsManager.hourWage = nil
             }
           }
         )
