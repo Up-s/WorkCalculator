@@ -11,7 +11,7 @@ import SnapKit
 import Then
 import UPsKit
 
-final class MainDayWeekPayView: BaseView {
+final class MainDayWeekPayView: UIView {
   
   // MARK: - Property
   
@@ -29,8 +29,8 @@ final class MainDayWeekPayView: BaseView {
   
   // MARK: - Life Cycle
   
-  override init() {
-    super.init()
+  init() {
+    super.init(frame: .zero)
     
     self.setAttribute()
     self.setConstraint()

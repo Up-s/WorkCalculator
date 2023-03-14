@@ -18,8 +18,8 @@ class RealmBlockModel: Object {
   @Persisted var year: Int = 0
   @Persisted var month: Int = 0
   @Persisted var day: Int = 0
-  @Persisted var startTime: Int = 0
-  @Persisted var endTime: Int = 0
+  @Persisted var startTime: Int? = nil
+  @Persisted var endTime: Int? = nil
   @Persisted var restTime: Int = 0
   
   convenience init(_ block: BlockModel) {

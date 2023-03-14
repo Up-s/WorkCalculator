@@ -14,8 +14,8 @@ final class BlockModel: Codable {
   let year: Int
   let month: Int
   let day: Int
-  var startTime: Int
-  var endTime: Int
+  var startTime: Int?
+  var endTime: Int?
   var restTime: Int
   
   init(
@@ -24,8 +24,8 @@ final class BlockModel: Codable {
     year: Int,
     month: Int,
     day: Int,
-    startTime: Int,
-    endTime: Int,
+    startTime: Int?,
+    endTime: Int?,
     restTime: Int
   ) {
     self.weekInfo = weekInfo
@@ -54,26 +54,32 @@ final class BlockModel: Codable {
 
 extension BlockModel {
   
-  var startHour: Int {
-    self.startTime / 60
+  var startHour: Int? {
+    guard let time = self.startTime else { return nil }
+    return time / 60
   }
-  var startMin: Int {
-    self.startTime % 60
+  var startMin: Int? {
+    guard let time = self.startTime else { return nil }
+    return time % 60
   }
-  var startIntervalString: String {
-    String(format: "%02d:%02d", self.startHour, self.startMin)
+  var startIntervalString: String? {
+    guard let hour = self.startHour, let min = self.startMin else { return nil }
+    return String(format: "%02d:%02d", hour, min)
   }
   
   
   
-  var endHour: Int {
-    self.endTime / 60
+  var endHour: Int? {
+    guard let time = self.endTime else { return nil }
+    return time / 60
   }
-  var endMin: Int {
-    self.endTime % 60
+  var endMin: Int? {
+    guard let time = self.endTime else { return nil }
+    return time % 60
   }
-  var endIntervalString: String {
-    String(format: "%02d:%02d", self.endHour, self.endMin)
+  var endIntervalString: String? {
+    guard let hour = self.endHour, let min = self.endMin else { return nil }
+    return String(format: "%02d:%02d", hour, min)
   }
   
   
@@ -90,16 +96,16 @@ extension BlockModel {
   
   
   
-  var interval: Int {
-    let startInterval = self.startTime
-    let endInterval = self.endTime
+  var interval: Int? {
+    guard let startInterval = self.startTime, let endInterval = self.endTime else { return nil }
     let restInterval = self.restTime
     return endInterval - startInterval - restInterval
   }
   
-  var intervalString: String {
-    let hour = self.interval / 60
-    let min = self.interval % 60
+  var intervalString: String? {
+    guard let interval = self.interval else { return nil }
+    let hour = interval / 60
+    let min = interval % 60
     return String(format: "%d시간 %02d분", hour, min)
   }
   
@@ -111,7 +117,11 @@ extension BlockModel {
   }
   
   var info: String {
-    "\(self.monthDay) (\(self.weekday.ko))       근무시간: \(self.intervalString)"
+    var info = "\(self.monthDay) (\(self.weekday.ko))"
+    if let intervalString = self.intervalString {
+      info += "       근무시간: \(intervalString)"
+    }
+    return info
   }
   
   var monthDay: String {
@@ -135,7 +145,7 @@ extension BlockModel {
     self.weekday.ko + "요일 " + state.ko
   }
   
-  func getTime(_ state: DateManager.State) -> Int {
+  func getTime(_ state: DateManager.State) -> Int? {
     switch state {
     case .start:
       return self.startTime
@@ -146,7 +156,7 @@ extension BlockModel {
     }
   }
   
-  func getIntervalString(_ state: DateManager.State) -> String {
+  func getIntervalString(_ state: DateManager.State) -> String? {
     switch state {
     case .start:
       return self.startIntervalString
@@ -217,8 +227,8 @@ extension BlockModel {
           year: day.yearInt(),
           month: day.monthInt(),
           day: day.dayInt(),
-          startTime: 0,
-          endTime: 0,
+          startTime: nil,
+          endTime: nil,
           restTime: 0
         )
       }

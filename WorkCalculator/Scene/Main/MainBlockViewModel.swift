@@ -20,8 +20,8 @@ final class MainBlockViewModel: BaseViewModel {
   }
   
   struct Output {
-    let startTime = BehaviorRelay<Int>(value: 0)
-    let endTime = BehaviorRelay<Int>(value: 0)
+    let startTime = BehaviorRelay<Int?>(value: nil)
+    let endTime = BehaviorRelay<Int?>(value: nil)
     let restTime = BehaviorRelay<Int>(value: 0)
     let runTime = BehaviorRelay<Int>(value: 0)
   }
@@ -32,7 +32,7 @@ final class MainBlockViewModel: BaseViewModel {
   let output = Output()
   
   var inBlock: BlockModel
-  private let presentOb = PublishRelay<(DateManager.State, Int)>()
+  private let presentOb = PublishRelay<(DateManager.State)>()
   private let callbackOb = PublishRelay<(DateManager.State, Int)>()
   
   
@@ -45,42 +45,39 @@ final class MainBlockViewModel: BaseViewModel {
     
     super.init()
     
-    Observable.just(self.inBlock.getTime(.start))
+    Observable.just(self.inBlock.startTime)
       .bind(to: self.output.startTime)
       .disposed(by: self.disposeBag)
     
-    Observable.just(self.inBlock.getTime(.end))
+    Observable.just(self.inBlock.endTime)
       .bind(to: self.output.endTime)
       .disposed(by: self.disposeBag)
     
-    Observable.just(self.inBlock.getTime(.rest))
+    Observable.just(self.inBlock.restTime)
       .bind(to: self.output.restTime)
       .disposed(by: self.disposeBag)
     
     
     
     self.input.startDidTap
-      .withLatestFrom(self.output.startTime)
-      .map { (DateManager.State.start, $0) }
+      .map { DateManager.State.start }
       .bind(to: self.presentOb)
       .disposed(by: self.disposeBag)
     
     self.input.endDidTap
-      .withLatestFrom(self.output.endTime)
-      .map { (DateManager.State.end, $0) }
+      .map { DateManager.State.end }
       .bind(to: self.presentOb)
       .disposed(by: self.disposeBag)
     
     self.input.restDidTap
-      .withLatestFrom(self.output.restTime)
-      .map { (DateManager.State.rest, $0) }
+      .map { DateManager.State.rest }
       .bind(to: self.presentOb)
       .disposed(by: self.disposeBag)
     
     
     
     self.presentOb
-      .bind { [weak self] state, time in
+      .bind { [weak self] state in
         guard let self = self else { return }
         
         let scene: Scene
@@ -130,8 +127,8 @@ final class MainBlockViewModel: BaseViewModel {
     
     Observable
       .combineLatest(
-        self.output.startTime.asObservable(),
-        self.output.endTime.asObservable(),
+        self.output.startTime.map({ return $0 == nil ? 0 : $0!}).asObservable(),
+        self.output.endTime.map({ return $0 == nil ? 0 : $0!}).asObservable(),
         self.output.restTime.asObservable()
       ) { start, end, rest -> Int in
         switch end == 0 {

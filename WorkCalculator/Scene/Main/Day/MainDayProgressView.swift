@@ -114,7 +114,7 @@ final class MainDayProgressView: UIView {
         let progress = fullTime * percent
         
         UIView.animate(
-          withDuration: 3.0,
+          withDuration: 2.0,
           delay: .zero,
           options: .curveEaseInOut,
           animations: {
@@ -134,7 +134,7 @@ final class MainDayProgressView: UIView {
         )
         
         UIView.animate(
-          withDuration: 2.7,
+          withDuration: 1.7,
           delay: 0.3,
           options: .curveEaseInOut,
           animations: {

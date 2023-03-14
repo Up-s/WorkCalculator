@@ -11,7 +11,7 @@ import SnapKit
 import Then
 import UPsKit
 
-final class MainDayInfoView: BaseView {
+final class MainDayInfoView: UIView {
   
   // MARK: - Property
   
@@ -27,8 +27,8 @@ final class MainDayInfoView: BaseView {
   
   // MARK: - Life Cycle
   
-  override init() {
-    super.init()
+  init() {
+    super.init(frame: .zero)
     
     self.setAttribute()
     self.setConstraint()
