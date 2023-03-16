@@ -31,6 +31,6 @@ extension MainViewProtocol {
   
   func setNavigationButton() {
     [self.changeViewButton, self.refreshButton, self.histortButton, self.settingButton]
-      .forEach(self.navigationView.addNavigationRightStackView(_:))
+      .forEach(self.navigationView.addRightStackView(_:))
   }
 }
