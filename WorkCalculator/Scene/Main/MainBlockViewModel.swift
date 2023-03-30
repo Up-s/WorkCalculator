@@ -127,18 +127,27 @@ final class MainBlockViewModel: BaseViewModel {
     
     Observable
       .combineLatest(
-        self.output.startTime.map({ return $0 == nil ? 0 : $0!}).asObservable(),
-        self.output.endTime.map({ return $0 == nil ? 0 : $0!}).asObservable(),
+        self.output.startTime.asObservable(),
+        self.output.endTime.asObservable(),
         self.output.restTime.asObservable()
-      ) { start, end, rest -> Int in
-        switch end == 0 {
+      ) { [weak self] startTime, endTime, restTime -> Int in
+        guard let self = self else { return 0 }
+        guard let startTime = startTime else { return 0 }
+        
+        switch self.inBlock.isToday {
         case true:
-          return 0
+          let hour = Date().hourInt() * 60
+          let min = Date().minuteInt()
+          let currentTime = hour + min
+          let sum = currentTime - startTime - restTime
+          return sum < 0 ? 0 : sum
           
         case false:
-          return end - start - rest
+          guard let endTime = endTime else { return 0 }
+          return endTime - startTime - restTime
         }
       }
       .bind(to: self.output.runTime)
       .disposed(by: self.disposeBag)
-  }}
+  }
+}

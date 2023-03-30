@@ -29,14 +29,14 @@ final class NotionProvider {
           } else {
             guard
               let data = data,
-              let message = try? JSONDecoder().decode(NotionData.self, from: data)
+              let notion = try? JSONDecoder().decode(NotionData.self, from: data)
             else {
               observer.onNext(())
               observer.onCompleted()
               return
             }
             
-            AppManager.shared.message = message.data
+            AppManager.shared.notionData = notion.data
             
             observer.onNext(())
             observer.onCompleted()

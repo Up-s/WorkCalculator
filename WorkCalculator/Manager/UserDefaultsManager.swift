@@ -13,7 +13,7 @@ final class UserDefaultsManager {
     case deviceUUID
     case firebaseID
     case mainType
-    case hourWage
+    case hourlyWage
   }
   
   private static let userDefault = UserDefaults.standard
@@ -43,8 +43,8 @@ final class UserDefaultsManager {
     set { self.userDefault.set(newValue.rawValue, forKey: Key.mainType.rawValue) }
   }
   
-  static var hourWage: Int? {
-    get { self.userDefault.object(forKey: Key.hourWage.rawValue) as? Int }
-    set { self.userDefault.set(newValue, forKey: Key.hourWage.rawValue) }
+  static var hourlyWage: Int? {
+    get { self.userDefault.object(forKey: Key.hourlyWage.rawValue) as? Int }
+    set { self.userDefault.set(newValue, forKey: Key.hourlyWage.rawValue) }
   }
 }

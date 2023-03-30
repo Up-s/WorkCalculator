@@ -165,7 +165,7 @@ final class MainWeekView: BaseView, MainViewProtocol {
     }
   }
   
-  var message: Binder<String?> {
+  var notionData: Binder<NotionModel?> {
     return Binder(self) { _, _ in
       
     }

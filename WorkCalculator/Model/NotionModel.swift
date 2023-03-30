@@ -5,7 +5,7 @@
 //  Created by YouUp Lee on 2023/02/24.
 //
 
-import Foundation
+import UIKit
 
 final class NotionModel {
   
@@ -24,6 +24,15 @@ enum NotionTag: String {
   case blue
   case cyan
   case gray
+  
+  var color: UIColor {
+    switch self {
+    case .red: return UIColor.red
+    case .blue: return UIColor.blue
+    case .cyan: return UIColor.cyan
+    case .gray: return UIColor.gray
+    }
+  }
 }
 
 
@@ -50,9 +59,7 @@ struct NotionData: Codable {
       }
       
       let model = initData
-        .filter {
-          $0.tag == tag
-        }
+        .filter { $0.tag == tag }
         .first
         
       model?.messageList.append(messageContent)

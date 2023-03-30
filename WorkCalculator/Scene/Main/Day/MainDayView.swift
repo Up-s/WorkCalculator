@@ -106,9 +106,9 @@ final class MainDayView: BaseView, MainViewProtocol {
     }
   }
   
-  var message: Binder<String?> {
-    return Binder(self) { view, message in
-      view.messageView.setMessage(message)
+  var notionData: Binder<NotionModel?> {
+    return Binder(self) { view, data in
+      view.messageView.setMessage(data)
     }
   }
   

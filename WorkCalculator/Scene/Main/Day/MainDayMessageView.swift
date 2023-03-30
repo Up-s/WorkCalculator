@@ -45,13 +45,19 @@ final class MainDayMessageView: UIView {
   
   // MARK: - Interface
   
-  func setMessage(_ message: String?) {
+  func setMessage(_ data: NotionModel?) {
+    let message = data?.messageList.randomElement() ?? ""
+    
+    let lastDay = AppManager.shared.settingData?.days.last?.ko ?? "-"
+    let replaceMessage = message.replacingOccurrences(of: "[lastDay]", with: lastDay)
+    
     UIView.transition(
       with: self.messageLabel,
       duration: 1.0,
       options: .transitionFlipFromBottom,
       animations: { [weak self] in
-        self?.messageLabel.text = message
+        self?.messageLabel.backgroundColor = data?.tag.color.withAlphaComponent(0.15)
+        self?.messageLabel.text = replaceMessage
         self?.layoutIfNeeded()
       }
     )

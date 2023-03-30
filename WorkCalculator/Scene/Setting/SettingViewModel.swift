@@ -66,6 +66,7 @@ final class SettingViewModel: BaseViewModel {
       }
       .disposed(by: self.disposeBag)
     
+    
     self.input.shareDidTap
       .map { _ -> Bool in
         let deviceCount = AppManager.shared.settingData?.deviceList.count ?? 0
@@ -96,6 +97,7 @@ final class SettingViewModel: BaseViewModel {
       }
       .disposed(by: self.disposeBag)
     
+    
     self.shareAlert
       .bind { [weak self] in
         self?.coordinator.alertTextField(
@@ -116,6 +118,7 @@ final class SettingViewModel: BaseViewModel {
       }
       .disposed(by: self.disposeBag)
     
+    
     self.shareID
       .compactMap { $0 }
       .filter { !$0.isEmpty }
@@ -127,6 +130,7 @@ final class SettingViewModel: BaseViewModel {
         self.coordinator.transition(scene: scene, style: .root)
       }
       .disposed(by: self.disposeBag)
+    
     
     self.input.shareCancelDidTap
       .map { _ -> Bool in
@@ -164,11 +168,13 @@ final class SettingViewModel: BaseViewModel {
       .bind(to: self.output.selectDays)
       .disposed(by: self.disposeBag)
     
+    
     self.output.selectDays
       .bind { [weak self] days in
         self?.settingData.days = days
       }
       .disposed(by: self.disposeBag)
+    
     
     self.input.baseHour
       .compactMap { $0 }
@@ -180,6 +186,7 @@ final class SettingViewModel: BaseViewModel {
       }
       .disposed(by: self.disposeBag)
     
+    
     self.input.weekPayDidTap
       .bind {
         self.coordinator.alertTextField(
@@ -188,18 +195,19 @@ final class SettingViewModel: BaseViewModel {
           keyboardType: .numberPad,
           actionTitle: "입력",
           cancel: "닫기",
-          handler: { hourWage in
-            switch hourWage {
-            case .some(let hourWage):
-              UserDefaultsManager.hourWage = Int(hourWage)
+          handler: { hourlyWage in
+            switch hourlyWage {
+            case .some(let hourlyWage):
+              UserDefaultsManager.hourlyWage = Int(hourlyWage)
               
             case .none:
-              UserDefaultsManager.hourWage = nil
+              UserDefaultsManager.hourlyWage = nil
             }
           }
         )
       }
       .disposed(by: self.disposeBag)
+    
     
     self.input.inputType
       .compactMap { $0 }
@@ -207,6 +215,7 @@ final class SettingViewModel: BaseViewModel {
         self?.settingData.inputType = $0
       }
       .disposed(by: self.disposeBag)
+    
     
     self.input.saveDidTap
       .bind { [weak self] in

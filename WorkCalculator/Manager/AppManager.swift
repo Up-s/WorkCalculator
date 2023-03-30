@@ -12,7 +12,7 @@ final class AppManager {
   static let shared = AppManager()
   private init () {}
   
-  var message: [NotionModel] = []
+  var notionData: [NotionModel] = []
   var settingData: SettingModel?
   var blocks: [BlockModel] = []
   var refreshDate: Date?

@@ -22,7 +22,7 @@ protocol MainViewProtocol: UIView, NavigationProtocol {
   
   var blockViewModels: Binder<[MainBlockViewModel]> { get }
   var runTime: Binder<Int> { get }
-  var message: Binder<String?> { get }
+  var notionData: Binder<NotionModel?> { get }
   var weekPay: Binder<String> { get }
 }
 

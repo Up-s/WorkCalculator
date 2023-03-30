@@ -54,6 +54,13 @@ final class BlockModel: Codable {
 
 extension BlockModel {
   
+  var isToday: Bool {
+    let todayYear = Date().yearInt()
+    let todayMonth = Date().monthInt()
+    let todayDay = Date().dayInt()
+    return self.year == todayYear && self.month == todayMonth && self.day == todayDay
+  }
+  
   var startHour: Int? {
     guard let time = self.startTime else { return nil }
     return time / 60

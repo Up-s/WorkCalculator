@@ -86,8 +86,8 @@ final class MainViewController: BaseViewController {
       .bind(to: self.rootView.runTime)
       .disposed(by: self.disposeBag)
     
-    self.viewModel.output.message
-      .bind(to: self.rootView.message)
+    self.viewModel.output.notionData
+      .bind(to: self.rootView.notionData)
       .disposed(by: self.disposeBag)
     
     self.viewModel.output.weekPay
