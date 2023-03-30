@@ -25,12 +25,12 @@ final class MainDayBlockCollectionViewCell: UICollectionViewCell, CellIdentifiab
     view.font = .boldSystemFont(ofSize: 80.0)
   }
   private let infoStackView = UPsStackView(axis: .horizontal, spacing: 8.0)
-  let runTimeInfoLabel = UILabel().then { view in
+  private let runTimeInfoLabel = UILabel().then { view in
     view.text = "일일근무시간"
     view.textColor = .gray900
     view.font = .systemFont(ofSize: 16.0)
   }
-  let runTimeLabel = UILabel().then { view in
+  private let runTimeLabel = UILabel().then { view in
     view.textColor = .gray900
     view.font = .boldSystemFont(ofSize: 16.0)
   }
@@ -80,6 +80,19 @@ final class MainDayBlockCollectionViewCell: UICollectionViewCell, CellIdentifiab
       .bind(to: blockViewModel.input.restDidTap)
       .disposed(by: self.disposeBag)
     
+    
+    Observable
+      .combineLatest(blockViewModel.output.startTime, blockViewModel.output.endTime) { start, end -> String in
+        switch (start, end) {
+        case let(x, y) where x != nil && y == nil :
+          return "현재 근무시간"
+          
+        default:
+          return "일일 근무시간"
+        }
+      }
+      .bind(to: self.runTimeInfoLabel.rx.text)
+      .disposed(by: self.disposeBag)
     
     blockViewModel.output.startTime
       .toHourMin()

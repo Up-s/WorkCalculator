@@ -103,6 +103,19 @@ final class MainWeekView: BaseView, MainViewProtocol {
             .disposed(by: view.disposeBag)
           
           
+          Observable
+            .combineLatest(blockViewModel.output.startTime, blockViewModel.output.endTime) { start, end -> String in
+              switch (start, end) {
+              case let(x, y) where x != nil && y == nil :
+                return "현재 근무시간"
+                
+              default:
+                return "일일 근무시간"
+              }
+            }
+            .bind(to: blockView.runTimeInfoLabel.rx.text)
+            .disposed(by: self.disposeBag)
+          
           blockViewModel.output.startTime
             .toHourMin()
             .bind(to: blockView.startButton.rx.title())
