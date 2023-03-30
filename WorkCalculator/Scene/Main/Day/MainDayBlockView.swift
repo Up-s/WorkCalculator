@@ -41,6 +41,30 @@ final class MainDayBlockView: UIView {
     fatalError("init(coder:) has not been implemented")
   }
   
+  private var isLayoutSubviews = false
+  override func layoutSubviews() {
+    super.layoutSubviews()
+    
+    if self.isLayoutSubviews == false {
+      self.isLayoutSubviews = true
+      
+      let days = AppManager.shared.settingData?.days
+        .map { $0.weekdayInt }
+        .reversed() ?? []
+      let todayWeekdayInt = Date().weekdayInt()
+      var weekdayInt = 0
+      for day in days {
+        guard day <= todayWeekdayInt else { continue }
+        weekdayInt = day
+        break
+      }
+      let dayIndex: Int = days.reversed().firstIndex(of: weekdayInt) ?? 0
+      let x = ((self.blockCollectionView.bounds.width - Metric.xInset - Metric.padding) * CGFloat(dayIndex))
+      let point = CGPoint(x: x, y: .zero)
+      self.blockCollectionView.setContentOffset(point, animated: false)
+    }
+  }
+  
   
   
   // MARK: - Interface
@@ -74,6 +98,7 @@ final class MainDayBlockView: UIView {
     static let padding: CGFloat = 12.0
   }
 }
+
 
 
 // MARK: - UICollectionViewDelegate
