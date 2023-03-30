@@ -24,6 +24,8 @@ final class SettingDaysView: UIView {
     view.rowHeight = Metric.rowHeight
     view.separatorStyle = .none
     view.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+    view.layer.cornerRadius = 8.0
+    view.layer.masksToBounds = true
   }
   
   

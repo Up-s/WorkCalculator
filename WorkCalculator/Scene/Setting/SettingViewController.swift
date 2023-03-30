@@ -68,6 +68,10 @@ final class SettingViewController: BaseViewController {
       .bind(to: self.viewModel.input.baseHour)
       .disposed(by: self.disposeBag)
     
+    self.rootView.weekPayView.inputButton.rx.tap
+      .bind(to: self.viewModel.input.weekPayDidTap)
+      .disposed(by: self.disposeBag)
+    
     self.rootView.inputTypeView.segmentedControl.rx.selectedSegmentIndex
       .filter { $0 != -1 }
       .bind(to: self.viewModel.input.inputType)
@@ -112,6 +116,5 @@ final class SettingViewController: BaseViewController {
       .compactMap { $0 }
       .bind(to: self.rootView.inputTypeView.segmentedControl.rx.selectedSegmentIndex)
       .disposed(by: self.disposeBag)
-    
   }
 }

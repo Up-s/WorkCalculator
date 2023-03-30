@@ -1,5 +1,5 @@
 //
-//  EditBlockViewModel.swift
+//  MainBlockViewModel.swift
 //  WorkCalculator
 //
 //  Created by YouUp Lee on 2023/01/05.
@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 import UPsKit
 
-final class EditBlockViewModel: BaseViewModel {
+final class MainBlockViewModel: BaseViewModel {
   
   struct Input {
     let startDidTap = PublishRelay<Void>()
@@ -20,8 +20,8 @@ final class EditBlockViewModel: BaseViewModel {
   }
   
   struct Output {
-    let startTime = BehaviorRelay<Int>(value: 0)
-    let endTime = BehaviorRelay<Int>(value: 0)
+    let startTime = BehaviorRelay<Int?>(value: nil)
+    let endTime = BehaviorRelay<Int?>(value: nil)
     let restTime = BehaviorRelay<Int>(value: 0)
     let runTime = BehaviorRelay<Int>(value: 0)
   }
@@ -32,7 +32,7 @@ final class EditBlockViewModel: BaseViewModel {
   let output = Output()
   
   var inBlock: BlockModel
-  private let presentOb = PublishRelay<(DateManager.State, Int)>()
+  private let presentOb = PublishRelay<(DateManager.State)>()
   private let callbackOb = PublishRelay<(DateManager.State, Int)>()
   
   
@@ -45,42 +45,39 @@ final class EditBlockViewModel: BaseViewModel {
     
     super.init()
     
-    Observable.just(self.inBlock.getTime(.start))
+    Observable.just(self.inBlock.startTime)
       .bind(to: self.output.startTime)
       .disposed(by: self.disposeBag)
     
-    Observable.just(self.inBlock.getTime(.end))
+    Observable.just(self.inBlock.endTime)
       .bind(to: self.output.endTime)
       .disposed(by: self.disposeBag)
     
-    Observable.just(self.inBlock.getTime(.rest))
+    Observable.just(self.inBlock.restTime)
       .bind(to: self.output.restTime)
       .disposed(by: self.disposeBag)
     
     
     
     self.input.startDidTap
-      .withLatestFrom(self.output.startTime)
-      .map { (DateManager.State.start, $0) }
+      .map { DateManager.State.start }
       .bind(to: self.presentOb)
       .disposed(by: self.disposeBag)
     
     self.input.endDidTap
-      .withLatestFrom(self.output.endTime)
-      .map { (DateManager.State.end, $0) }
+      .map { DateManager.State.end }
       .bind(to: self.presentOb)
       .disposed(by: self.disposeBag)
     
     self.input.restDidTap
-      .withLatestFrom(self.output.restTime)
-      .map { (DateManager.State.rest, $0) }
+      .map { DateManager.State.rest }
       .bind(to: self.presentOb)
       .disposed(by: self.disposeBag)
     
     
     
     self.presentOb
-      .bind { [weak self] state, time in
+      .bind { [weak self] state in
         guard let self = self else { return }
         
         let scene: Scene
@@ -133,15 +130,24 @@ final class EditBlockViewModel: BaseViewModel {
         self.output.startTime.asObservable(),
         self.output.endTime.asObservable(),
         self.output.restTime.asObservable()
-      ) { start, end, rest -> Int in
-        switch end == 0 {
+      ) { [weak self] startTime, endTime, restTime -> Int in
+        guard let self = self else { return 0 }
+        guard let startTime = startTime else { return 0 }
+        
+        switch self.inBlock.isToday {
         case true:
-          return 0
+          let hour = Date().hourInt() * 60
+          let min = Date().minuteInt()
+          let currentTime = hour + min
+          let sum = currentTime - startTime - restTime
+          return sum < 0 ? 0 : sum
           
         case false:
-          return end - start - rest
+          guard let endTime = endTime else { return 0 }
+          return endTime - startTime - restTime
         }
       }
       .bind(to: self.output.runTime)
       .disposed(by: self.disposeBag)
-  }}
+  }
+}

@@ -1,5 +1,5 @@
 //
-//  EditSumUnitView.swift
+//  MainWeekSumUnitView.swift
 //  WorkCalculator
 //
 //  Created by YouUp Lee on 2023/01/06.
@@ -11,7 +11,7 @@ import SnapKit
 import Then
 import UPsKit
 
-final class EditSumUnitView: UIView {
+final class MainWeekSumUnitView: UIView {
   
   // MARK: - Property
   

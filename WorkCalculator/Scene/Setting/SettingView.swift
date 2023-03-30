@@ -16,13 +16,16 @@ final class SettingView: BaseView, NavigationProtocol {
   
   // MARK: - Property
   
-  var navigationView: BaseNavigationView
+  let navigationView: BaseNavigationView = BaseNavigationView(.pop).then { view in
+    view.titleLabel.text = "설정"
+  }
   
   private let contentsScrollView = UIScrollView()
   private let contentsStackView = UPsStackView(axis: .vertical, spacing: 40.0)
   let idView = SettingIDView()
   let daysView = SettingDaysView()
   let hourView = SettingHourSliderView()
+  let weekPayView = SettingWeekPayView()
   let inputTypeView = SettingInputTypeView()
   let saveButton = UIButton().then { view in
     view.setTitle("저장", for: .normal)
@@ -36,8 +39,6 @@ final class SettingView: BaseView, NavigationProtocol {
   // MARK: - Life Cycle
   
   override init() {
-    self.navigationView = BaseNavigationView(.pop)
-    
     super.init()
     
     self.setNavigation()
@@ -58,16 +59,11 @@ final class SettingView: BaseView, NavigationProtocol {
   // MARK: - UI
   
   private func setAttribute() {
-    self.backgroundColor = .light
-    
-    self.navigationView.titleLabel.text = "설정"
-    
-    
     self.addSubview(self.contentsScrollView)
     
     self.contentsScrollView.addSubview(self.contentsStackView)
     
-    [self.idView, self.daysView, self.hourView, self.inputTypeView, saveButton]
+    [self.idView, self.daysView, self.hourView, self.weekPayView, self.inputTypeView, saveButton]
       .forEach(self.contentsStackView.addArrangedSubview(_:))
   }
   

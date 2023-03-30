@@ -38,11 +38,11 @@ final class PickerViewModel: BaseViewModel {
   init(_ state: DateManager.State, _ block: BlockModel) {
     super.init()
     
-    Observable.just(block.getInfo(state) )
+    Observable.just(block.getInfo(state))
       .bind(to: self.output.title)
       .disposed(by: self.disposeBag)
     
-    Observable.just(block.getTime(state))
+    Observable.just(block.getTime(state) ?? 0)
       .bind(to: self.output.time)
       .disposed(by: self.disposeBag)
     

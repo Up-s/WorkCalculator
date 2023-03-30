@@ -64,10 +64,10 @@ final class ReHistoryView: BaseView, NavigationProtocol {
       view.removeFromSuperview()
     }
     
-    let start = "출근 - " + data.startIntervalString
-    let end = "퇴근 - " + data.endIntervalString
+    let start = "출근 - " + (data.startIntervalString ?? "--:--")
+    let end = "퇴근 - " + (data.endIntervalString ?? "--:--")
     let rest = "휴식 - " + data.restIntervalString
-    let run = "총 근무 - " + data.intervalString
+    let run = "총 근무 - " + (data.intervalString ?? "--:--")
     
     [start, end, rest, run].forEach { info in
       let infoLabel = UILabel()

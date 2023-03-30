@@ -58,7 +58,7 @@ final class UpdateView: BaseView {
   // MARK: - UI
   
   private func setAttribute() {
-    self.backgroundColor = .light
+    
   }
   
   private func setConstraint() {

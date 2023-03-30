@@ -36,6 +36,30 @@ final class SplashViewModel: BaseViewModel {
     super.init()
     
     self.input.viewDidAppear
+      .flatMap { NotionProvider.getMessage() }
+      .`catch` { [weak self] error in
+        guard let firebaseError = error as? NetworkError else { return Observable.empty() }
+
+        let errorMessage: String
+        switch firebaseError {
+        case .emptyData:
+          errorMessage = "데이터가 없습니다"
+          
+        case .parsingError:
+          errorMessage = "잠시 후 다시 시도해 주세요.\nParsing Error"
+          self?.emptyOb.accept(())
+          
+        case .urlError:
+          errorMessage = "URL Error"
+          
+        case .firebaseError(let error):
+          errorMessage = "잠시 후 다시 시도해 주세요.\nService Error \(error.localizedDescription)"
+        }
+
+        self?.coordinator.toast(errorMessage)
+
+        return Observable.empty()
+      }
       .flatMap {
         FirebaseProvider.minVersion()
       }
@@ -43,7 +67,7 @@ final class SplashViewModel: BaseViewModel {
         let currentVer = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""
         let currentArray = currentVer.components(separatedBy: ".").compactMap { Int($0) }
         let minimumArray = configure.minVersion
-        
+
         var status = false
         for i in 0..<3 {
           let min = minimumArray[i]
@@ -52,14 +76,14 @@ final class SplashViewModel: BaseViewModel {
           guard status else { break }
           continue
         }
-        
+
         return status
       }
       .bind { [weak self] status in
         switch status {
         case true:
           self?.firebaseOb.accept(())
-          
+
         case false:
           let action = UPsAlertAction(
             title: "확인",
@@ -69,7 +93,7 @@ final class SplashViewModel: BaseViewModel {
               UIApplication.shared.open(url)
             }
           )
-          
+
           self?.coordinator.alert(
             title: "업데이트",
             message: "새 버전이 업데이트 되었습니다.\n업데이트 후 사용하실 수 있습니다.\n확인을 누르시면 앱스토어로 이동합니다.",
@@ -78,31 +102,34 @@ final class SplashViewModel: BaseViewModel {
         }
       }
       .disposed(by: self.disposeBag)
-    
+
     self.firebaseOb
       .flatMap {
         UserDefaultsManager.firebaseID == nil ?
         FirebaseProvider.create() :
         FirebaseProvider.getSettingData()
       }
-      .catch { [weak self] error in
-        guard let firebaseError = error as? FirebaseError else { return Observable.empty() }
-        
+      .`catch` { [weak self] error in
+        guard let firebaseError = error as? NetworkError else { return Observable.empty() }
+
         let errorMessage: String
         switch firebaseError {
-        case .firebaseError(let error):
-          errorMessage = "잠시 후 다시 시도해 주세요.\nService Error \(error.localizedDescription)"
+        case .emptyData:
+          errorMessage = "데이터가 없습니다"
           
         case .parsingError:
           errorMessage = "잠시 후 다시 시도해 주세요.\nParsing Error"
-          
-        case .emptyData:
-          errorMessage = "데이터가 없습니다"
           self?.emptyOb.accept(())
+          
+        case .urlError:
+          errorMessage = "URL Error"
+          
+        case .firebaseError(let error):
+          errorMessage = "잠시 후 다시 시도해 주세요.\nService Error \(error.localizedDescription)"
         }
-        
+
         self?.coordinator.toast(errorMessage)
-        
+
         return Observable.empty()
       }
       .map { BlockModel.create }
@@ -118,12 +145,13 @@ final class SplashViewModel: BaseViewModel {
       }
       .bind { [weak self] blocks in
         AppManager.shared.blocks = blocks
-        
-        let scene = Scene.edit
+
+        let viewModel = MainViewModel()
+        let scene = Scene.main(viewModel)
         self?.coordinator.transition(scene: scene, style: .root)
       }
       .disposed(by: self.disposeBag)
-    
+
     self.emptyOb
       .bind { [weak self] in
         let actions: [UPsAlertActionProtocol] = [
@@ -131,14 +159,14 @@ final class SplashViewModel: BaseViewModel {
             title: "재발급",
             handler: { _ in
               UserDefaultsManager.firebaseID = nil
-              
+
               let scene = Scene.splash
               self?.coordinator.transition(scene: scene, style: .root)
             }
           ),
           UPsAlertCancelAction()
         ]
-        
+
         self?.coordinator.alert(
           title: "데이터가 없습니다",
           actions: actions
