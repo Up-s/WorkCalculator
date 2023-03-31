@@ -33,6 +33,24 @@ final class SettingView: BaseView, NavigationProtocol {
     view.titleLabel?.font = .boldSystemFont(ofSize: 20.0)
     view.backgroundColor = .systemBlue
   }
+  private let versionLabel = UILabel().then { view in
+    view.font = .systemFont(ofSize: 12.0)
+    let ver = "\((AppManager.CurrentVersion ?? "-"))(\((AppManager.CurrentBuild) ?? "-"))"
+    let keyword: String
+    #if Debug
+    keyword = "debug_" + ver
+    #else
+    keyword = ver
+    #endif
+    let text = "앱버전   " + keyword
+    let attri = NSMutableAttributedString.make(
+      text: text,
+      keyword: keyword,
+      keywordFont: .systemFont(ofSize: 12.0),
+      keywordColor: .gray700
+    )
+    view.attributedText = attri
+  }
   
   
   
@@ -63,7 +81,7 @@ final class SettingView: BaseView, NavigationProtocol {
     
     self.contentsScrollView.addSubview(self.contentsStackView)
     
-    [self.idView, self.daysView, self.hourView, self.weekPayView, self.inputTypeView, saveButton]
+    [self.idView, self.daysView, self.hourView, self.weekPayView, self.inputTypeView, self.saveButton, self.versionLabel]
       .forEach(self.contentsStackView.addArrangedSubview(_:))
   }
   
