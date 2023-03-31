@@ -44,7 +44,13 @@ final class MainViewModel: BaseViewModel {
     }
   }
   
-  private let messageTimerOb = Observable<Int>.interval(.seconds(3), scheduler: MainScheduler.instance)
+  private var messageTimerOb: Observable<Int> {
+    #if Debug
+    return Observable<Int>.timer(.seconds(1), period: .seconds(3), scheduler: MainScheduler.instance)
+    #else
+    return Observable<Int>.timer(.seconds(1), period: .seconds(60), scheduler: MainScheduler.instance)
+    #endif
+  }
   
   // 오늘 전날까지 근무한 일수
   private var workdayCount: Int {
