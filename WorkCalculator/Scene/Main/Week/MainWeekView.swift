@@ -104,16 +104,22 @@ final class MainWeekView: BaseView, MainViewProtocol {
           
           
           Observable
-            .combineLatest(blockViewModel.output.startTime, blockViewModel.output.endTime) { start, end -> String in
-              switch (start, end) {
-              case let(x, y) where x != nil && y == nil :
-                return "현재 근무시간"
+            .combineLatest(blockViewModel.output.startTime, blockViewModel.output.endTime) { start, end -> Bool in
+              return start != nil && end == nil && blockViewModel.inBlock.isToday
+            }
+            .bind { isState in
+              switch isState {
+              case true:
+                blockView.runTimeInfoLabel.text = "현재까지 근무시간"
+                blockView.runTimeInfoLabel.font = .boldSystemFont(ofSize: 16.0)
+                blockView.runTimeInfoLabel.textColor = .systemBlue
                 
-              default:
-                return "일일 근무시간"
+              case false:
+                blockView.runTimeInfoLabel.text = "일일 근무시간"
+                blockView.runTimeInfoLabel.font = .systemFont(ofSize: 16.0)
+                blockView.runTimeInfoLabel.textColor = .gray900
               }
             }
-            .bind(to: blockView.runTimeInfoLabel.rx.text)
             .disposed(by: self.disposeBag)
           
           blockViewModel.output.startTime

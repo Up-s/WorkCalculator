@@ -82,16 +82,23 @@ final class MainDayBlockCollectionViewCell: UICollectionViewCell, CellIdentifiab
     
     
     Observable
-      .combineLatest(blockViewModel.output.startTime, blockViewModel.output.endTime) { start, end -> String in
-        switch (start, end) {
-        case let(x, y) where x != nil && y == nil :
-          return "현재 근무시간"
+      .combineLatest(blockViewModel.output.startTime, blockViewModel.output.endTime) { start, end -> Bool in
+        return start != nil && end == nil && blockViewModel.inBlock.isToday
+      }
+      .bind { [weak self] isState in
+        guard let self = self else { return }
+        switch isState {
+        case true:
+          self.runTimeInfoLabel.text = "현재까지 근무시간"
+          self.runTimeInfoLabel.font = .boldSystemFont(ofSize: 16.0)
+          self.runTimeInfoLabel.textColor = .systemBlue
           
-        default:
-          return "일일 근무시간"
+        case false:
+          self.runTimeInfoLabel.text = "일일 근무시간"
+          self.runTimeInfoLabel.font = .systemFont(ofSize: 16.0)
+          self.runTimeInfoLabel.textColor = .gray900
         }
       }
-      .bind(to: self.runTimeInfoLabel.rx.text)
       .disposed(by: self.disposeBag)
     
     blockViewModel.output.startTime

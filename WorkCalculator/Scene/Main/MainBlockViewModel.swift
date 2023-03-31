@@ -134,13 +134,13 @@ final class MainBlockViewModel: BaseViewModel {
         guard let self = self else { return 0 }
         guard let startTime = startTime else { return 0 }
         
-        switch self.inBlock.isToday {
+        switch (self.inBlock.isToday && endTime == nil) {
         case true:
           let hour = Date().hourInt() * 60
           let min = Date().minuteInt()
           let currentTime = hour + min
           let sum = currentTime - startTime - restTime
-          return sum < 0 ? 0 : sum
+          return sum
           
         case false:
           guard let endTime = endTime else { return 0 }
