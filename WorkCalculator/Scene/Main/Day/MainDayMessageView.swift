@@ -56,7 +56,7 @@ final class MainDayMessageView: UIView {
       duration: 1.0,
       options: .transitionFlipFromBottom,
       animations: { [weak self] in
-        self?.messageLabel.backgroundColor = data?.tag.color.withAlphaComponent(0.1)
+        self?.messageLabel.backgroundColor = data?.tag.color
         self?.messageLabel.text = replaceMessage
         self?.layoutIfNeeded()
       }

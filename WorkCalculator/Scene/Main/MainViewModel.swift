@@ -191,6 +191,12 @@ final class MainViewModel: BaseViewModel {
         // 현재까지 총 근무 시간
         let sumRunTime = self.output.sumRunTime.value
         
+        if sumRunTime == 0 {
+          return AppManager.shared.notionData
+            .filter { $0.tag == .white }
+            .first
+        }
+        
         // 주간 총 근무 시간
         let workBaseHour = (AppManager.shared.settingData?.workBaseHour ?? 0) * 60
         
@@ -218,7 +224,7 @@ final class MainViewModel: BaseViewModel {
             .filter { $0.tag == .red }
             .first
           
-        case (tx + todayRunTime - (1 * 60)) ..< (tx + todayRunTime): // blue
+        case (tx + todayRunTime - (1 * 60)) ... (tx + todayRunTime): // blue
           return AppManager.shared.notionData
             .filter { $0.tag == .blue }
             .first
