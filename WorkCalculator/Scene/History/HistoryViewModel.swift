@@ -55,6 +55,7 @@ final class HistoryViewModel: BaseViewModel {
       .bind(to: self.output.blocks)
       .disposed(by: self.disposeBag)
     
+    
     Observable
       .combineLatest(
         self.input.willCellIndex,
@@ -62,6 +63,7 @@ final class HistoryViewModel: BaseViewModel {
       ) { $1[$0].yearMonth }
       .bind(to: self.output.title)
       .disposed(by: self.disposeBag)
+    
     
     Observable
       .combineLatest(

@@ -74,12 +74,13 @@
 		BDD004D529B6082B009ADFA9 /* MainDayWeekPayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD004D429B6082B009ADFA9 /* MainDayWeekPayView.swift */; };
 		BDDAA9B029A89F82000001EB /* NotionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDAA9AF29A89F82000001EB /* NotionProvider.swift */; };
 		BDE6D02B2967DC1D00F79CB6 /* SplashViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDE6D02A2967DC1D00F79CB6 /* SplashViewController.storyboard */; };
-		FE2F56DEA624171BBC2E1B0A /* Pods_WorkCalculator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50AC98ACB26649BCF5B1BED1 /* Pods_WorkCalculator.framework */; };
+		F9D04C3E9AF4D05ABAEB6BF8 /* Pods_WorkCalculator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E01E167EA625AAB2B174D74 /* Pods_WorkCalculator.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		27D318A083CACEDC4BEF5015 /* Pods-WorkCalculator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkCalculator.debug.xcconfig"; path = "Target Support Files/Pods-WorkCalculator/Pods-WorkCalculator.debug.xcconfig"; sourceTree = "<group>"; };
-		50AC98ACB26649BCF5B1BED1 /* Pods_WorkCalculator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WorkCalculator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		282BB29EB689755EE339DE9D /* Pods-WorkCalculator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkCalculator.debug.xcconfig"; path = "Target Support Files/Pods-WorkCalculator/Pods-WorkCalculator.debug.xcconfig"; sourceTree = "<group>"; };
+		49D5D506206269E961977F99 /* Pods-WorkCalculator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkCalculator.release.xcconfig"; path = "Target Support Files/Pods-WorkCalculator/Pods-WorkCalculator.release.xcconfig"; sourceTree = "<group>"; };
+		8E01E167EA625AAB2B174D74 /* Pods_WorkCalculator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WorkCalculator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD0344D829707972001B3010 /* MainWeekInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWeekInfoView.swift; sourceTree = "<group>"; };
 		BD0C9B0C29A378750053CAB2 /* MainViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewProtocol.swift; sourceTree = "<group>"; };
 		BD0C9B0E29A37C430053CAB2 /* MainViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewType.swift; sourceTree = "<group>"; };
@@ -149,7 +150,6 @@
 		BDD004D429B6082B009ADFA9 /* MainDayWeekPayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDayWeekPayView.swift; sourceTree = "<group>"; };
 		BDDAA9AF29A89F82000001EB /* NotionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotionProvider.swift; sourceTree = "<group>"; };
 		BDE6D02A2967DC1D00F79CB6 /* SplashViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SplashViewController.storyboard; sourceTree = "<group>"; };
-		F578C96866DECC6C0B77A42D /* Pods-WorkCalculator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkCalculator.release.xcconfig"; path = "Target Support Files/Pods-WorkCalculator/Pods-WorkCalculator.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,17 +157,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE2F56DEA624171BBC2E1B0A /* Pods_WorkCalculator.framework in Frameworks */,
+				F9D04C3E9AF4D05ABAEB6BF8 /* Pods_WorkCalculator.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3FE919CA46CE3FF36B6473BC /* Frameworks */ = {
+		86E6D73BED3BF5790B574F79 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				50AC98ACB26649BCF5B1BED1 /* Pods_WorkCalculator.framework */,
+				8E01E167EA625AAB2B174D74 /* Pods_WorkCalculator.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -175,8 +175,8 @@
 		98DE9976053F8BFF538EBBB7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				27D318A083CACEDC4BEF5015 /* Pods-WorkCalculator.debug.xcconfig */,
-				F578C96866DECC6C0B77A42D /* Pods-WorkCalculator.release.xcconfig */,
+				282BB29EB689755EE339DE9D /* Pods-WorkCalculator.debug.xcconfig */,
+				49D5D506206269E961977F99 /* Pods-WorkCalculator.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -228,7 +228,7 @@
 				BD470D3E2966C4CE00404AB4 /* WorkCalculator */,
 				BD470D3D2966C4CE00404AB4 /* Products */,
 				98DE9976053F8BFF538EBBB7 /* Pods */,
-				3FE919CA46CE3FF36B6473BC /* Frameworks */,
+				86E6D73BED3BF5790B574F79 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -433,12 +433,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BD470D502966C4CF00404AB4 /* Build configuration list for PBXNativeTarget "WorkCalculator" */;
 			buildPhases = (
-				AEB5393DD6347B60B2751040 /* [CP] Check Pods Manifest.lock */,
+				67B4DFCFB9AD68ED8E1E42D8 /* [CP] Check Pods Manifest.lock */,
 				BD470D382966C4CE00404AB4 /* Sources */,
 				BD470D392966C4CE00404AB4 /* Frameworks */,
 				BD470D3A2966C4CE00404AB4 /* Resources */,
 				BD13E9612970702C00A7EE31 /* Setup Firebase Run Script */,
-				9190841C203C0F5FB1AD6763 /* [CP] Embed Pods Frameworks */,
+				45FB962CAE942A7FEE219A6C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -497,7 +497,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		9190841C203C0F5FB1AD6763 /* [CP] Embed Pods Frameworks */ = {
+		45FB962CAE942A7FEE219A6C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -514,7 +514,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WorkCalculator/Pods-WorkCalculator-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AEB5393DD6347B60B2751040 /* [CP] Check Pods Manifest.lock */ = {
+		67B4DFCFB9AD68ED8E1E42D8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -552,7 +552,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "case \"${CONFIGURATION}\" in \n\"DEBUG\" ) \ncp -r \"$SRCROOT/${PRODUCT_NAME}/Firebase/Debug/GoogleService-Info-Debug.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\" ;; \n\"RELEASE\" ) \ncp -r \"$SRCROOT/${PRODUCT_NAME}/Firebase/Release/GoogleService-Info-Release.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\" ;; *) ;; \nesac\n";
+			shellScript = "case \"${CONFIGURATION}\" in \n\"Debug\" ) \ncp -r \"$SRCROOT/${PRODUCT_NAME}/Firebase/Debug/GoogleService-Info-Debug.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\" ;; \n\"Release\" ) \ncp -r \"$SRCROOT/${PRODUCT_NAME}/Firebase/Release/GoogleService-Info-Release.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\" ;; *) ;; \nesac\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -663,13 +663,13 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
+				ENABLE_TESTABILITY = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -685,8 +685,9 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = Debug;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Debug;
 		};
@@ -726,8 +727,10 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -737,8 +740,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = Release;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
@@ -747,7 +751,7 @@
 		};
 		BD470D512966C4CF00404AB4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 27D318A083CACEDC4BEF5015 /* Pods-WorkCalculator.debug.xcconfig */;
+			baseConfigurationReference = 282BB29EB689755EE339DE9D /* Pods-WorkCalculator.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -770,10 +774,10 @@
 				);
 				MARKETING_VERSION = 2.0.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.QEDStudio.WorkCalculatorDebug;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = Debug;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -782,12 +786,12 @@
 		};
 		BD470D522966C4CF00404AB4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F578C96866DECC6C0B77A42D /* Pods-WorkCalculator.release.xcconfig */;
+			baseConfigurationReference = 49D5D506206269E961977F99 /* Pods-WorkCalculator.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = ZLN97H98PA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WorkCalculator/Support/Info.plist;
@@ -803,10 +807,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.0.0;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.QEDStudio.WorkCalculator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = Release;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

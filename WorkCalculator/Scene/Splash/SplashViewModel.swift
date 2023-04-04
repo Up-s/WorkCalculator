@@ -120,7 +120,8 @@ final class SplashViewModel: BaseViewModel {
       }
       .bind(to: self.firebaseOb)
       .disposed(by: self.disposeBag)
-
+    
+    
     self.firebaseOb
       .flatMap {
         UserDefaultsManager.firebaseID == nil ?
@@ -169,7 +170,8 @@ final class SplashViewModel: BaseViewModel {
         self?.coordinator.transition(scene: scene, style: .root)
       }
       .disposed(by: self.disposeBag)
-
+    
+    
     self.emptyOb
       .bind { [weak self] in
         let actions: [UPsAlertActionProtocol] = [

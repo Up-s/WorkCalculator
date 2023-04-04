@@ -188,8 +188,8 @@ final class SettingViewModel: BaseViewModel {
     
     
     self.input.weekPayDidTap
-      .bind {
-        self.coordinator.alertTextField(
+      .bind { [weak self] in
+        self?.coordinator.alertTextField(
           title: "행복 계산기",
           message: "시급을 입력하시면 주간 급여를 계산합니다",
           keyboardType: .numberPad,
