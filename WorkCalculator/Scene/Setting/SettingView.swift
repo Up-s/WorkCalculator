@@ -37,7 +37,7 @@ final class SettingView: BaseView, NavigationProtocol {
     view.font = .systemFont(ofSize: 12.0)
     let ver = "\((AppManager.CurrentVersion ?? "-"))(\((AppManager.CurrentBuild) ?? "-"))"
     let keyword: String
-    #if Debug
+    #if DEBUG
     keyword = "debug_" + ver
     #else
     keyword = ver

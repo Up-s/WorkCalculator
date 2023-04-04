@@ -45,7 +45,7 @@ final class MainViewModel: BaseViewModel {
   }
   
   private var messageTimerOb: Observable<Int> {
-    #if Debug
+    #if DEBUG
     return Observable<Int>.timer(.seconds(1), period: .seconds(3), scheduler: MainScheduler.instance)
     #else
     return Observable<Int>.timer(.seconds(1), period: .seconds(60), scheduler: MainScheduler.instance)
