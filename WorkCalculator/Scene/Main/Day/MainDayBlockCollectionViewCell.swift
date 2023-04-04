@@ -18,6 +18,10 @@ final class MainDayBlockCollectionViewCell: UICollectionViewCell, CellIdentifiab
   // MARK: - Property
   
   private let contentsStackView = UPsStackView(axis: .vertical, alignment: .center, spacing: 24.0)
+  private let dateLabel = UILabel().then { view in
+    view.textColor = .gray600
+    view.font = .boldSystemFont(ofSize: 12.0)
+  }
   private let dayLabel = UILabel().then { view in
     view.backgroundColor = .gray200
     view.textAlignment = .center
@@ -81,6 +85,11 @@ final class MainDayBlockCollectionViewCell: UICollectionViewCell, CellIdentifiab
       .disposed(by: self.disposeBag)
     
     
+    
+    Observable.just(blockViewModel.inBlock.monthDay)
+      .bind(to: self.dateLabel.rx.text)
+      .disposed(by: self.disposeBag)
+    
     Observable
       .combineLatest(blockViewModel.output.startTime, blockViewModel.output.endTime) { start, end -> Bool in
         return start != nil && end == nil && blockViewModel.inBlock.isToday
@@ -140,7 +149,8 @@ final class MainDayBlockCollectionViewCell: UICollectionViewCell, CellIdentifiab
     
     
     
-    self.contentView.addSubview(self.contentsStackView)
+    [self.contentsStackView, self.dateLabel]
+      .forEach(self.contentView.addSubview(_:))
     
     [self.dayLabel, self.infoStackView, self.startButtonView, self.endButtonView, self.restButtonView]
       .forEach(self.contentsStackView.addArrangedSubview(_:))
@@ -152,6 +162,10 @@ final class MainDayBlockCollectionViewCell: UICollectionViewCell, CellIdentifiab
   private func setConstraint() {
     self.contentsStackView.snp.makeConstraints { make in
       make.center.equalToSuperview()
+    }
+    
+    self.dateLabel.snp.makeConstraints { make in
+      make.top.leading.equalToSuperview().inset(12.0)
     }
   }
 }
