@@ -36,6 +36,8 @@ final class SplashViewModel: BaseViewModel {
   init() {
     super.init()
     
+//    FirebaseProvider.removeEmptyTime()
+    
     self.input.viewDidAppear
       .flatMap {
         FirebaseProvider.minVersion()
@@ -44,25 +46,25 @@ final class SplashViewModel: BaseViewModel {
         let currentVer = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""
         let currentArray = currentVer.components(separatedBy: ".").compactMap { Int($0) }
         let minimumArray = configure.minVersion
-        
+
         if currentArray[0] > minimumArray[0] {
           return true
-          
+
         } else if currentArray[0] < minimumArray[0] {
           return false
-          
+
         } else if currentArray[1] > minimumArray[1] {
           return true
-          
+
         } else if currentArray[1] < minimumArray[1] {
           return false
-          
+
         } else if currentArray[2] > minimumArray[2] {
           return true
-          
+
         } else if currentArray[2] < minimumArray[2] {
           return false
-          
+
         } else {
           return true
         }
@@ -90,8 +92,8 @@ final class SplashViewModel: BaseViewModel {
         }
       }
       .disposed(by: self.disposeBag)
-    
-    
+
+
     self.notionOb
       .flatMap { NotionProvider.getMessage() }
       .`catch` { [weak self] error in
@@ -101,13 +103,13 @@ final class SplashViewModel: BaseViewModel {
         switch firebaseError {
         case .emptyData:
           errorMessage = "데이터가 없습니다"
-          
+
         case .parsingError:
           errorMessage = "잠시 후 다시 시도해 주세요.\nParsing Error"
-          
+
         case .urlError:
           errorMessage = "URL Error"
-          
+
         case .firebaseError(let error):
           errorMessage = "잠시 후 다시 시도해 주세요.\nService Error \(error.localizedDescription)"
         }
@@ -133,13 +135,13 @@ final class SplashViewModel: BaseViewModel {
         case .emptyData:
           errorMessage = "데이터가 없습니다"
           self?.emptyOb.accept(())
-          
+
         case .parsingError:
           errorMessage = "잠시 후 다시 시도해 주세요.\nParsing Error"
-          
+
         case .urlError:
           errorMessage = "URL Error"
-          
+
         case .firebaseError(let error):
           errorMessage = "잠시 후 다시 시도해 주세요.\nService Error \(error.localizedDescription)"
         }
