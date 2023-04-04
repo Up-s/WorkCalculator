@@ -224,12 +224,12 @@ final class MainViewModel: BaseViewModel {
             .filter { $0.tag == .red }
             .first
           
-        case (tx + todayRunTime - (1 * 60)) ... (tx + todayRunTime): // blue
+        case (tx + todayRunTime - (1 * 60)) ..< (tx + todayRunTime + 5): // blue
           return AppManager.shared.notionData
             .filter { $0.tag == .blue }
             .first
           
-        case (tx + todayRunTime)...: // cyan
+        case (tx + todayRunTime + 5)...: // cyan
           return AppManager.shared.notionData
             .filter { $0.tag == .cyan }
             .first

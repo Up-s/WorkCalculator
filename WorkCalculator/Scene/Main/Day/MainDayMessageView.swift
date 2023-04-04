@@ -19,6 +19,7 @@ final class MainDayMessageView: UIView {
     view.adjustsFontSizeToFitWidth = true
     view.numberOfLines = 2
     view.backgroundColor = .gray200
+    view.text = "QEDStudio"
     view.textAlignment = .center
     view.textColor = .gray900
     view.font = .boldSystemFont(ofSize: 18.0)
