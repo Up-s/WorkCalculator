@@ -36,7 +36,7 @@ final class UserDefaultsManager {
         let string = self.userDefault.string(forKey: Key.mainType.rawValue),
         let type = MainViewType(rawValue: string)
       else {
-        return .week
+        return .day
       }
       return type
     }
