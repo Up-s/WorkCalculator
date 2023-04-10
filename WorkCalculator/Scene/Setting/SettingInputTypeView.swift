@@ -22,6 +22,8 @@ final class SettingInputTypeView: UIView {
   let segmentedControl = UISegmentedControl(items: InputType.allCases.map { $0.title }).then { view in
     let font = UIFont.boldSystemFont(ofSize: 16.0)
     view.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
+    view.layer.cornerRadius = 8.0
+    view.layer.masksToBounds = true
   }
   
   

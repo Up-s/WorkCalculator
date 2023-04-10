@@ -21,16 +21,16 @@ final class FirebaseProvider {
         .document(FirebaseRoot.configure)
         .getDocument { snapshot, error in
           if let error = error {
-            observer.onError(FirebaseError.firebaseError(error))
+            observer.onError(NetworkError.firebaseError(error))
             
           } else {
             guard let data = snapshot?.data() else {
-              observer.onError(FirebaseError.emptyData)
+              observer.onError(NetworkError.emptyData)
               return
             }
             
             guard let appData = try? FirebaseDecoder().decode(AppConfigureModel.self, from: data) else {
-              observer.onError(FirebaseError.parsingError)
+              observer.onError(NetworkError.parsingError)
               return
             }
             
@@ -56,7 +56,7 @@ final class FirebaseProvider {
         .collection(FirebaseRoot.data)
         .addDocument(data: data) { error in
           if let error = error {
-            observer.onError(FirebaseError.firebaseError(error))
+            observer.onError(NetworkError.firebaseError(error))
             
           } else {
             AppManager.shared.settingData = setting
@@ -87,16 +87,16 @@ final class FirebaseProvider {
         .document(documentID)
         .getDocument { snapshot, error in
           if let error = error {
-            observer.onError(FirebaseError.firebaseError(error))
+            observer.onError(NetworkError.firebaseError(error))
             
           } else {
             guard let data = snapshot?.data() else {
-              observer.onError(FirebaseError.emptyData)
+              observer.onError(NetworkError.emptyData)
               return
             }
             
             guard let settingData = try? FirebaseDecoder().decode(SettingModel.self, from: data) else {
-              observer.onError(FirebaseError.parsingError)
+              observer.onError(NetworkError.parsingError)
               return
             }
             
@@ -125,7 +125,7 @@ final class FirebaseProvider {
         .document(documentID)
         .setData(encoderData) { error in
           if let error = error {
-            observer.onError(FirebaseError.firebaseError(error))
+            observer.onError(NetworkError.firebaseError(error))
             
           } else {
             AppManager.shared.settingData = data
@@ -154,7 +154,7 @@ final class FirebaseProvider {
         .document(block.key)
         .getDocument { snapshot, error in
           if let error = error {
-            observer.onError(FirebaseError.firebaseError(error))
+            observer.onError(NetworkError.firebaseError(error))
             
           } else {
             switch snapshot?.data() {
@@ -162,7 +162,7 @@ final class FirebaseProvider {
               self.createBlock(block) { result in
                 switch result {
                 case .failure(let error):
-                  observer.onError(FirebaseError.firebaseError(error))
+                  observer.onError(NetworkError.firebaseError(error))
                   
                 case .success:
                   observer.onNext(block)
@@ -272,11 +272,11 @@ final class FirebaseProvider {
         .whereField(deviceUUID, isEqualTo: false)
         .getDocuments { snapshot, error in
           if let error = error {
-            observer.onError(FirebaseError.firebaseError(error))
+            observer.onError(NetworkError.firebaseError(error))
             
           } else {
             guard let documents = snapshot?.documents, documents.count > 0 else {
-              observer.onError(FirebaseError.emptyData)
+              observer.onError(NetworkError.emptyData)
               return
             }
             
@@ -327,16 +327,16 @@ final class FirebaseProvider {
         .document(shareID)
         .getDocument { snapshot, error in
           if let error = error {
-            observer.onError(FirebaseError.firebaseError(error))
+            observer.onError(NetworkError.firebaseError(error))
             
           } else {
             guard let data = snapshot?.data() else {
-              observer.onError(FirebaseError.emptyData)
+              observer.onError(NetworkError.emptyData)
               return
             }
             
             guard var settingData = try? FirebaseDecoder().decode(SettingModel.self, from: data) else {
-              observer.onError(FirebaseError.parsingError)
+              observer.onError(NetworkError.parsingError)
               return
             }
             
@@ -485,5 +485,53 @@ final class FirebaseProvider {
       .collection(FirebaseRoot.block)
       .document(timeBlockDocumentID)
       .updateData([deviceUUID: FieldValue.delete()])
+  }
+  
+  
+  
+  class func removeEmptyTime() {
+    Firestore
+      .firestore()
+      .collection(FirebaseRoot.data)
+      .getDocuments { dataSnapshot, dataError in
+        if let error = dataError {
+          print("\n---------- removeEmptyTime dataError ----------", error)
+          
+        } else {
+          guard let dataDocuments = dataSnapshot?.documents.compactMap({ $0.documentID }) else { return }
+          
+          dataDocuments.forEach { dataID in
+            Firestore
+              .firestore()
+              .collection(FirebaseRoot.data)
+              .document(dataID)
+              .collection(FirebaseRoot.block)
+              .getDocuments { blockSnapshot, blockError in
+                if let error = blockError {
+                  print("\n---------- removeEmptyTime blockError ----------", error)
+                  
+                } else {
+                  let fieldKey = "startTime"
+                  
+                  blockSnapshot?.documents
+                    .compactMap { document -> String? in
+                      let documentData = document.data()
+                      guard let time = documentData[fieldKey] as? Int, time == 0 else { return nil }
+                      return document.documentID
+                    }
+                    .forEach { blockID in
+                      Firestore
+                        .firestore()
+                        .collection(FirebaseRoot.data)
+                        .document(dataID)
+                        .collection(FirebaseRoot.block)
+                        .document(blockID)
+                        .updateData([fieldKey: FieldValue.delete()])
+                    }
+                }
+              }
+          }
+        }
+      }
   }
 }

@@ -1,8 +1,8 @@
 //
-//  EditSumUnitView.swift
+//  SettingWeekPayView.swift
 //  WorkCalculator
 //
-//  Created by YouUp Lee on 2023/01/06.
+//  Created by YouUp Lee on 2023/03/09.
 //
 
 import UIKit
@@ -11,18 +11,23 @@ import SnapKit
 import Then
 import UPsKit
 
-final class EditSumUnitView: UIView {
+final class SettingWeekPayView: UIView {
   
   // MARK: - Property
   
   private let contentsStackView = UPsStackView(axis: .vertical, spacing: 8.0)
-  let titleLabel = UILabel().then { view in
-    view.font = .boldSystemFont(ofSize: 20.0)
+  private let titleLabel = SettingInfoLabel().then { view in
+    view.text = "행복 계산기"
   }
-  let subLabel = UILabel().then { view in
-    view.font = .boldSystemFont(ofSize: 22.0)
-    view.numberOfLines = 2
+  let inputButton = UIButton().then { view in
+    view.setTitle("시급 입력하기", for: .normal)
+    view.setTitleColor(.gray900, for: .normal)
+    view.titleLabel?.font = .boldSystemFont(ofSize: 20.0)
+    view.backgroundColor = .gray200
+    view.layer.cornerRadius = 8.0
+    view.layer.masksToBounds = true
   }
+  
   
   
   
@@ -48,17 +53,9 @@ final class EditSumUnitView: UIView {
   // MARK: - UI
   
   private func setAttribute() {
-    [self.titleLabel, self.subLabel].forEach { view in
-      view.backgroundColor = .gray300
-      view.textAlignment = .center
-      view.textColor = .gray900
-    }
-    
-    
-    
     self.addSubview(self.contentsStackView)
     
-    [self.titleLabel, self.subLabel]
+    [self.titleLabel, self.inputButton]
       .forEach(self.contentsStackView.addArrangedSubview(_:))
   }
   
@@ -67,12 +64,8 @@ final class EditSumUnitView: UIView {
       make.edges.equalToSuperview()
     }
     
-    self.titleLabel.snp.makeConstraints { make in
-      make.height.equalTo(40.0)
-    }
-    
-    self.subLabel.snp.makeConstraints { make in
-      make.height.equalTo(88.0)
+    self.inputButton.snp.makeConstraints { make in
+      make.height.equalTo(48.0)
     }
   }
 }

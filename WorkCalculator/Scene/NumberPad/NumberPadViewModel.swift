@@ -40,19 +40,22 @@ final class NumberPadViewModel: BaseViewModel {
   init(_ state: DateManager.State, _ block: BlockModel) {
     super.init()
     
-    Observable.just(block.getInfo(state) )
+    Observable.just(block.getInfo(state))
       .bind(to: self.output.title)
       .disposed(by: self.disposeBag)
     
-    Observable.just(block.getIntervalString(state))
+    
+    Observable.just(block.getIntervalString(state) ?? "-")
       .bind(to: self.output.timer)
       .disposed(by: self.disposeBag)
+    
     
     self.input.cancelDidTap
       .bind { [weak self] in
         self?.coordinator.dismiss(animated: false)
       }
       .disposed(by: self.disposeBag)
+    
     
     self.input.okDidTap
       .withLatestFrom(self.timer)
@@ -106,6 +109,7 @@ final class NumberPadViewModel: BaseViewModel {
       )
       .disposed(by: self.disposeBag)
     
+    
     self.input.inputNumber
       .filter { [weak self] index in
         if index == 11 {
@@ -137,6 +141,7 @@ final class NumberPadViewModel: BaseViewModel {
       .compactMap { $0 }
       .bind(to: self.timer)
       .disposed(by: self.disposeBag)
+    
     
     self.timer
       .skip(1)

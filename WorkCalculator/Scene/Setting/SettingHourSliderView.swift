@@ -21,6 +21,8 @@ final class SettingHourSliderView: UIView {
   }
   private let hourStackView = UPsStackView(axis: .horizontal, spacing: 16.0, margin: UIEdgeInsets(all: 12.0)).then { view in
     view.backgroundColor = .gray200
+    view.layer.cornerRadius = 8.0
+    view.layer.masksToBounds = true
   }
   let hourLabel = UILabel().then { view in
     view.textColor = .gray900

@@ -16,8 +16,7 @@ final class HistoryViewController: BaseViewController {
   
   // MARK: - Property
   
-  //    private let rootView = HistoryView()
-  private let rootView = ReHistoryView()
+  private let rootView = HistoryView()
   private let viewModel = HistoryViewModel()
   
   

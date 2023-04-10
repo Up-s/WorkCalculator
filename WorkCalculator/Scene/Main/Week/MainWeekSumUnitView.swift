@@ -1,8 +1,8 @@
 //
-//  HistoryTimeBlockView.swift
+//  MainWeekSumUnitView.swift
 //  WorkCalculator
 //
-//  Created by YouUp Lee on 2023/01/14.
+//  Created by YouUp Lee on 2023/01/06.
 //
 
 import UIKit
@@ -11,22 +11,17 @@ import SnapKit
 import Then
 import UPsKit
 
-final class HistoryTimeBlockView: UIView {
+final class MainWeekSumUnitView: UIView {
   
   // MARK: - Property
   
   private let contentsStackView = UPsStackView(axis: .vertical, spacing: 8.0)
   let titleLabel = UILabel().then { view in
-    view.textAlignment = .center
-    view.textColor = .gray900
-    view.font = .boldSystemFont(ofSize: 15.0)
-    view.backgroundColor = .gray100
+    view.font = .boldSystemFont(ofSize: 20.0)
   }
-  let timeLabel = UILabel().then { view in
-    view.textAlignment = .center
-    view.textColor = .gray900
-    view.font = .boldSystemFont(ofSize: 25.0)
-    view.backgroundColor = .gray200
+  let subLabel = UILabel().then { view in
+    view.font = .boldSystemFont(ofSize: 22.0)
+    view.numberOfLines = 2
   }
   
   
@@ -53,9 +48,17 @@ final class HistoryTimeBlockView: UIView {
   // MARK: - UI
   
   private func setAttribute() {
+    [self.titleLabel, self.subLabel].forEach { view in
+      view.backgroundColor = .gray300
+      view.textAlignment = .center
+      view.textColor = .gray900
+    }
+    
+    
+    
     self.addSubview(self.contentsStackView)
     
-    [self.titleLabel, self.timeLabel]
+    [self.titleLabel, self.subLabel]
       .forEach(self.contentsStackView.addArrangedSubview(_:))
   }
   
@@ -65,11 +68,11 @@ final class HistoryTimeBlockView: UIView {
     }
     
     self.titleLabel.snp.makeConstraints { make in
-      make.height.equalTo(24.0)
+      make.height.equalTo(40.0)
     }
     
-    self.timeLabel.snp.makeConstraints { make in
-      make.height.equalTo(56.0)
+    self.subLabel.snp.makeConstraints { make in
+      make.height.equalTo(88.0)
     }
   }
 }

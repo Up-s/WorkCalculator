@@ -7,22 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BD0344D929707972001B3010 /* EditInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0344D829707972001B3010 /* EditInfoView.swift */; };
+		BD0344D929707972001B3010 /* MainWeekInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0344D829707972001B3010 /* MainWeekInfoView.swift */; };
+		BD0C9B0D29A378750053CAB2 /* MainViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0C9B0C29A378750053CAB2 /* MainViewProtocol.swift */; };
+		BD0C9B0F29A37C430053CAB2 /* MainViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0C9B0E29A37C430053CAB2 /* MainViewType.swift */; };
 		BD13E963297072C800A7EE31 /* GoogleService-Info-Debug.plist in Resources */ = {isa = PBXBuildFile; fileRef = BD13E962297072C800A7EE31 /* GoogleService-Info-Debug.plist */; };
-		BD412A5229725D4400FCA4BF /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD412A5129725D4400FCA4BF /* HistoryTableViewCell.swift */; };
-		BD412A5429725E1900FCA4BF /* HistoryTimeBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD412A5329725E1900FCA4BF /* HistoryTimeBlockView.swift */; };
+		BD311DB829A75A0B008F0515 /* MainDayMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD311DB729A75A0B008F0515 /* MainDayMessageView.swift */; };
+		BD311DBA29A7A46B008F0515 /* MainDayBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD311DB929A7A46B008F0515 /* MainDayBlockView.swift */; };
+		BD311DBC29A7A4EC008F0515 /* MainDayBlockCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD311DBB29A7A4EC008F0515 /* MainDayBlockCollectionViewCell.swift */; };
+		BD343C2229BA19AC0075A048 /* SettingWeekPayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD343C2129BA19AC0075A048 /* SettingWeekPayView.swift */; };
+		BD3C031329A4CA98006F9044 /* MainDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3C031229A4CA98006F9044 /* MainDayView.swift */; };
+		BD3C031629A4D223006F9044 /* MainDayProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3C031529A4D223006F9044 /* MainDayProgressView.swift */; };
+		BD449F6429A8BB7F00C00693 /* NotionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD449F6329A8BB7F00C00693 /* NotionModel.swift */; };
 		BD470D402966C4CE00404AB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D3F2966C4CE00404AB4 /* AppDelegate.swift */; };
 		BD470D492966C4CF00404AB4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD470D482966C4CF00404AB4 /* Assets.xcassets */; };
 		BD470D542966C66E00404AB4 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D532966C66E00404AB4 /* SplashViewController.swift */; };
 		BD470D562966C74400404AB4 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D552966C74400404AB4 /* Scene.swift */; };
 		BD470D582966C88E00404AB4 /* GoogleService-Info-Release.plist in Resources */ = {isa = PBXBuildFile; fileRef = BD470D572966C88E00404AB4 /* GoogleService-Info-Release.plist */; };
-		BD470D662966CA1000404AB4 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D652966CA1000404AB4 /* EditView.swift */; };
-		BD470D682966CA1500404AB4 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D672966CA1500404AB4 /* EditViewController.swift */; };
-		BD470D6A2966CA1900404AB4 /* EditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D692966CA1900404AB4 /* EditViewModel.swift */; };
+		BD470D662966CA1000404AB4 /* MainWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D652966CA1000404AB4 /* MainWeekView.swift */; };
+		BD470D682966CA1500404AB4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D672966CA1500404AB4 /* MainViewController.swift */; };
+		BD470D6A2966CA1900404AB4 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D692966CA1900404AB4 /* MainViewModel.swift */; };
 		BD470D6C2966CA6500404AB4 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D6B2966CA6500404AB4 /* SplashView.swift */; };
 		BD470D6E2966CA6C00404AB4 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D6D2966CA6C00404AB4 /* SplashViewModel.swift */; };
-		BD470D702966CC1700404AB4 /* EditBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D6F2966CC1700404AB4 /* EditBlockView.swift */; };
-		BD470D722966D42700404AB4 /* EditBlockViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D712966D42700404AB4 /* EditBlockViewModel.swift */; };
+		BD470D702966CC1700404AB4 /* MainWeekBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D6F2966CC1700404AB4 /* MainWeekBlockView.swift */; };
+		BD470D722966D42700404AB4 /* MainBlockViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D712966D42700404AB4 /* MainBlockViewModel.swift */; };
 		BD470D792966DDD600404AB4 /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D782966DDD600404AB4 /* DateManager.swift */; };
 		BD470D832966EE1800404AB4 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D822966EE1800404AB4 /* PickerView.swift */; };
 		BD470D852966EE1C00404AB4 /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD470D842966EE1C00404AB4 /* PickerViewController.swift */; };
@@ -34,14 +41,13 @@
 		BD6E36D7296ECFC90077E8DB /* UpdateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6E36D6296ECFC90077E8DB /* UpdateViewModel.swift */; };
 		BD6E36DA296EE6EC0077E8DB /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6E36D9296EE6EC0077E8DB /* ProgressView.swift */; };
 		BD6E36DD296FF0740077E8DB /* UpdateDateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6E36DC296FF0740077E8DB /* UpdateDateModel.swift */; };
-		BD6E36E7297121430077E8DB /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6E36E6297121430077E8DB /* HistoryView.swift */; };
 		BD6E36E9297121470077E8DB /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6E36E8297121470077E8DB /* HistoryViewController.swift */; };
 		BD6E36EB2971214C0077E8DB /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6E36EA2971214C0077E8DB /* HistoryViewModel.swift */; };
 		BD730B1329714B71001E6B4D /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD730B1229714B71001E6B4D /* RealmManager.swift */; };
-		BD730B1829752446001E6B4D /* ReHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD730B1729752446001E6B4D /* ReHistoryView.swift */; };
+		BD730B1829752446001E6B4D /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD730B1729752446001E6B4D /* HistoryView.swift */; };
 		BD730B1A2975245D001E6B4D /* HistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD730B192975245D001E6B4D /* HistoryCollectionViewCell.swift */; };
 		BD7831372968679200907452 /* FirebaseRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7831362968679200907452 /* FirebaseRoot.swift */; };
-		BD783139296867AA00907452 /* FirebaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD783138296867AA00907452 /* FirebaseError.swift */; };
+		BD783139296867AA00907452 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD783138296867AA00907452 /* NetworkError.swift */; };
 		BD78313B2968684000907452 /* FirebaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD78313A2968684000907452 /* FirebaseProvider.swift */; };
 		BD78313D29686BD800907452 /* SettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD78313C29686BD800907452 /* SettingModel.swift */; };
 		BD78313F296871CB00907452 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD78313E296871CB00907452 /* AppManager.swift */; };
@@ -57,23 +63,35 @@
 		BD783155296ADA2C00907452 /* NumberPadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD783154296ADA2C00907452 /* NumberPadViewController.swift */; };
 		BD783157296ADA3200907452 /* NumberPadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD783156296ADA3200907452 /* NumberPadViewModel.swift */; };
 		BD9962FE296C389000601874 /* SettingDaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9962FD296C389000601874 /* SettingDaysView.swift */; };
-		BD9A16C7296725E70093FB1C /* EditSumUnitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9A16C6296725E70093FB1C /* EditSumUnitView.swift */; };
+		BD9A16C7296725E70093FB1C /* MainWeekSumUnitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9A16C6296725E70093FB1C /* MainWeekSumUnitView.swift */; };
 		BD9A16C9296736430093FB1C /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9A16C8296736430093FB1C /* UserDefaultsManager.swift */; };
 		BD9D7B1929744FE700B311EB /* Extension+Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9D7B1829744FE700B311EB /* Extension+Int.swift */; };
 		BD9D7B1B29745A6700B311EB /* RealmBlockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9D7B1A29745A6700B311EB /* RealmBlockModel.swift */; };
+		BDBB18B529ACDE3E00A90D53 /* TimeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBB18B429ACDE3E00A90D53 /* TimeButtonView.swift */; };
 		BDBC33CE2974199F0073754E /* BlockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBC33CD2974199F0073754E /* BlockModel.swift */; };
 		BDBC4F20297A7EB0007C1C1A /* AppConfigureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBC4F1F297A7EB0007C1C1A /* AppConfigureModel.swift */; };
+		BDD004D329B60355009ADFA9 /* MainDayInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD004D229B60355009ADFA9 /* MainDayInfoView.swift */; };
+		BDD004D529B6082B009ADFA9 /* MainDayWeekPayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD004D429B6082B009ADFA9 /* MainDayWeekPayView.swift */; };
+		BDDAA9B029A89F82000001EB /* NotionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDAA9AF29A89F82000001EB /* NotionProvider.swift */; };
 		BDE6D02B2967DC1D00F79CB6 /* SplashViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDE6D02A2967DC1D00F79CB6 /* SplashViewController.storyboard */; };
-		FE2F56DEA624171BBC2E1B0A /* Pods_WorkCalculator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50AC98ACB26649BCF5B1BED1 /* Pods_WorkCalculator.framework */; };
+		F9D04C3E9AF4D05ABAEB6BF8 /* Pods_WorkCalculator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E01E167EA625AAB2B174D74 /* Pods_WorkCalculator.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		27D318A083CACEDC4BEF5015 /* Pods-WorkCalculator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkCalculator.debug.xcconfig"; path = "Target Support Files/Pods-WorkCalculator/Pods-WorkCalculator.debug.xcconfig"; sourceTree = "<group>"; };
-		50AC98ACB26649BCF5B1BED1 /* Pods_WorkCalculator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WorkCalculator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BD0344D829707972001B3010 /* EditInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInfoView.swift; sourceTree = "<group>"; };
+		282BB29EB689755EE339DE9D /* Pods-WorkCalculator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkCalculator.debug.xcconfig"; path = "Target Support Files/Pods-WorkCalculator/Pods-WorkCalculator.debug.xcconfig"; sourceTree = "<group>"; };
+		49D5D506206269E961977F99 /* Pods-WorkCalculator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkCalculator.release.xcconfig"; path = "Target Support Files/Pods-WorkCalculator/Pods-WorkCalculator.release.xcconfig"; sourceTree = "<group>"; };
+		8E01E167EA625AAB2B174D74 /* Pods_WorkCalculator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WorkCalculator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD0344D829707972001B3010 /* MainWeekInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWeekInfoView.swift; sourceTree = "<group>"; };
+		BD0C9B0C29A378750053CAB2 /* MainViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewProtocol.swift; sourceTree = "<group>"; };
+		BD0C9B0E29A37C430053CAB2 /* MainViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewType.swift; sourceTree = "<group>"; };
 		BD13E962297072C800A7EE31 /* GoogleService-Info-Debug.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Debug.plist"; sourceTree = "<group>"; };
-		BD412A5129725D4400FCA4BF /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
-		BD412A5329725E1900FCA4BF /* HistoryTimeBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTimeBlockView.swift; sourceTree = "<group>"; };
+		BD311DB729A75A0B008F0515 /* MainDayMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDayMessageView.swift; sourceTree = "<group>"; };
+		BD311DB929A7A46B008F0515 /* MainDayBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDayBlockView.swift; sourceTree = "<group>"; };
+		BD311DBB29A7A4EC008F0515 /* MainDayBlockCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDayBlockCollectionViewCell.swift; sourceTree = "<group>"; };
+		BD343C2129BA19AC0075A048 /* SettingWeekPayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingWeekPayView.swift; sourceTree = "<group>"; };
+		BD3C031229A4CA98006F9044 /* MainDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDayView.swift; sourceTree = "<group>"; };
+		BD3C031529A4D223006F9044 /* MainDayProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDayProgressView.swift; sourceTree = "<group>"; };
+		BD449F6329A8BB7F00C00693 /* NotionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotionModel.swift; sourceTree = "<group>"; };
 		BD470D3C2966C4CE00404AB4 /* WorkCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD470D3F2966C4CE00404AB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BD470D482966C4CF00404AB4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -81,13 +99,13 @@
 		BD470D532966C66E00404AB4 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		BD470D552966C74400404AB4 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		BD470D572966C88E00404AB4 /* GoogleService-Info-Release.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Release.plist"; sourceTree = "<group>"; };
-		BD470D652966CA1000404AB4 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
-		BD470D672966CA1500404AB4 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
-		BD470D692966CA1900404AB4 /* EditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewModel.swift; sourceTree = "<group>"; };
+		BD470D652966CA1000404AB4 /* MainWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWeekView.swift; sourceTree = "<group>"; };
+		BD470D672966CA1500404AB4 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		BD470D692966CA1900404AB4 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		BD470D6B2966CA6500404AB4 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		BD470D6D2966CA6C00404AB4 /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
-		BD470D6F2966CC1700404AB4 /* EditBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBlockView.swift; sourceTree = "<group>"; };
-		BD470D712966D42700404AB4 /* EditBlockViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBlockViewModel.swift; sourceTree = "<group>"; };
+		BD470D6F2966CC1700404AB4 /* MainWeekBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWeekBlockView.swift; sourceTree = "<group>"; };
+		BD470D712966D42700404AB4 /* MainBlockViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBlockViewModel.swift; sourceTree = "<group>"; };
 		BD470D782966DDD600404AB4 /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		BD470D822966EE1800404AB4 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		BD470D842966EE1C00404AB4 /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
@@ -99,14 +117,13 @@
 		BD6E36D6296ECFC90077E8DB /* UpdateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewModel.swift; sourceTree = "<group>"; };
 		BD6E36D9296EE6EC0077E8DB /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		BD6E36DC296FF0740077E8DB /* UpdateDateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateDateModel.swift; sourceTree = "<group>"; };
-		BD6E36E6297121430077E8DB /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		BD6E36E8297121470077E8DB /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		BD6E36EA2971214C0077E8DB /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		BD730B1229714B71001E6B4D /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
-		BD730B1729752446001E6B4D /* ReHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReHistoryView.swift; sourceTree = "<group>"; };
+		BD730B1729752446001E6B4D /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		BD730B192975245D001E6B4D /* HistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		BD7831362968679200907452 /* FirebaseRoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRoot.swift; sourceTree = "<group>"; };
-		BD783138296867AA00907452 /* FirebaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseError.swift; sourceTree = "<group>"; };
+		BD783138296867AA00907452 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		BD78313A2968684000907452 /* FirebaseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseProvider.swift; sourceTree = "<group>"; };
 		BD78313C29686BD800907452 /* SettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModel.swift; sourceTree = "<group>"; };
 		BD78313E296871CB00907452 /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
@@ -122,14 +139,17 @@
 		BD783154296ADA2C00907452 /* NumberPadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPadViewController.swift; sourceTree = "<group>"; };
 		BD783156296ADA3200907452 /* NumberPadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPadViewModel.swift; sourceTree = "<group>"; };
 		BD9962FD296C389000601874 /* SettingDaysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDaysView.swift; sourceTree = "<group>"; };
-		BD9A16C6296725E70093FB1C /* EditSumUnitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSumUnitView.swift; sourceTree = "<group>"; };
+		BD9A16C6296725E70093FB1C /* MainWeekSumUnitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWeekSumUnitView.swift; sourceTree = "<group>"; };
 		BD9A16C8296736430093FB1C /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		BD9D7B1829744FE700B311EB /* Extension+Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Int.swift"; sourceTree = "<group>"; };
 		BD9D7B1A29745A6700B311EB /* RealmBlockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBlockModel.swift; sourceTree = "<group>"; };
+		BDBB18B429ACDE3E00A90D53 /* TimeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeButtonView.swift; sourceTree = "<group>"; };
 		BDBC33CD2974199F0073754E /* BlockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockModel.swift; sourceTree = "<group>"; };
 		BDBC4F1F297A7EB0007C1C1A /* AppConfigureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigureModel.swift; sourceTree = "<group>"; };
+		BDD004D229B60355009ADFA9 /* MainDayInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDayInfoView.swift; sourceTree = "<group>"; };
+		BDD004D429B6082B009ADFA9 /* MainDayWeekPayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDayWeekPayView.swift; sourceTree = "<group>"; };
+		BDDAA9AF29A89F82000001EB /* NotionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotionProvider.swift; sourceTree = "<group>"; };
 		BDE6D02A2967DC1D00F79CB6 /* SplashViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SplashViewController.storyboard; sourceTree = "<group>"; };
-		F578C96866DECC6C0B77A42D /* Pods-WorkCalculator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkCalculator.release.xcconfig"; path = "Target Support Files/Pods-WorkCalculator/Pods-WorkCalculator.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,17 +157,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE2F56DEA624171BBC2E1B0A /* Pods_WorkCalculator.framework in Frameworks */,
+				F9D04C3E9AF4D05ABAEB6BF8 /* Pods_WorkCalculator.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3FE919CA46CE3FF36B6473BC /* Frameworks */ = {
+		86E6D73BED3BF5790B574F79 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				50AC98ACB26649BCF5B1BED1 /* Pods_WorkCalculator.framework */,
+				8E01E167EA625AAB2B174D74 /* Pods_WorkCalculator.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -155,10 +175,35 @@
 		98DE9976053F8BFF538EBBB7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				27D318A083CACEDC4BEF5015 /* Pods-WorkCalculator.debug.xcconfig */,
-				F578C96866DECC6C0B77A42D /* Pods-WorkCalculator.release.xcconfig */,
+				282BB29EB689755EE339DE9D /* Pods-WorkCalculator.debug.xcconfig */,
+				49D5D506206269E961977F99 /* Pods-WorkCalculator.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		BD0C9B0A29A36F040053CAB2 /* Week */ = {
+			isa = PBXGroup;
+			children = (
+				BD0344D829707972001B3010 /* MainWeekInfoView.swift */,
+				BD470D6F2966CC1700404AB4 /* MainWeekBlockView.swift */,
+				BD9A16C6296725E70093FB1C /* MainWeekSumUnitView.swift */,
+				BD470D652966CA1000404AB4 /* MainWeekView.swift */,
+			);
+			path = Week;
+			sourceTree = "<group>";
+		};
+		BD0C9B0B29A3734B0053CAB2 /* Day */ = {
+			isa = PBXGroup;
+			children = (
+				BD3C031529A4D223006F9044 /* MainDayProgressView.swift */,
+				BDD004D429B6082B009ADFA9 /* MainDayWeekPayView.swift */,
+				BDD004D229B60355009ADFA9 /* MainDayInfoView.swift */,
+				BD311DB729A75A0B008F0515 /* MainDayMessageView.swift */,
+				BD311DB929A7A46B008F0515 /* MainDayBlockView.swift */,
+				BD311DBB29A7A4EC008F0515 /* MainDayBlockCollectionViewCell.swift */,
+				BD3C031229A4CA98006F9044 /* MainDayView.swift */,
+			);
+			path = Day;
 			sourceTree = "<group>";
 		};
 		BD13E95D29706FEE00A7EE31 /* Debug */ = {
@@ -183,7 +228,7 @@
 				BD470D3E2966C4CE00404AB4 /* WorkCalculator */,
 				BD470D3D2966C4CE00404AB4 /* Products */,
 				98DE9976053F8BFF538EBBB7 /* Pods */,
-				3FE919CA46CE3FF36B6473BC /* Frameworks */,
+				86E6D73BED3BF5790B574F79 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -204,6 +249,7 @@
 				BD8F87812968665E0086F6C1 /* Firebase */,
 				BD470D5A2966C8BF00404AB4 /* Model */,
 				BD470D5C2966C8D100404AB4 /* Manager */,
+				BDDAA9AE29A89F5C000001EB /* Provider */,
 				BD470D592966C8B300404AB4 /* Support */,
 			);
 			path = WorkCalculator;
@@ -228,6 +274,8 @@
 				BD78313C29686BD800907452 /* SettingModel.swift */,
 				BD6E36DC296FF0740077E8DB /* UpdateDateModel.swift */,
 				BD78314B2968825100907452 /* InputType.swift */,
+				BD0C9B0E29A37C430053CAB2 /* MainViewType.swift */,
+				BD449F6329A8BB7F00C00693 /* NotionModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -238,7 +286,7 @@
 				BD470D3F2966C4CE00404AB4 /* AppDelegate.swift */,
 				BD470D552966C74400404AB4 /* Scene.swift */,
 				BD470D632966C9EA00404AB4 /* Splash */,
-				BD470D642966C9F000404AB4 /* Edit */,
+				BD470D642966C9F000404AB4 /* Main */,
 				BD470D812966EDF900404AB4 /* Picker */,
 				BD783151296ADA1100907452 /* NumberPad */,
 				BD6E36E5297121390077E8DB /* History */,
@@ -269,18 +317,17 @@
 			path = Splash;
 			sourceTree = "<group>";
 		};
-		BD470D642966C9F000404AB4 /* Edit */ = {
+		BD470D642966C9F000404AB4 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				BD0344D829707972001B3010 /* EditInfoView.swift */,
-				BD470D6F2966CC1700404AB4 /* EditBlockView.swift */,
-				BD9A16C6296725E70093FB1C /* EditSumUnitView.swift */,
-				BD470D652966CA1000404AB4 /* EditView.swift */,
-				BD470D672966CA1500404AB4 /* EditViewController.swift */,
-				BD470D692966CA1900404AB4 /* EditViewModel.swift */,
-				BD470D712966D42700404AB4 /* EditBlockViewModel.swift */,
+				BD0C9B0A29A36F040053CAB2 /* Week */,
+				BD0C9B0B29A3734B0053CAB2 /* Day */,
+				BD0C9B0C29A378750053CAB2 /* MainViewProtocol.swift */,
+				BD470D672966CA1500404AB4 /* MainViewController.swift */,
+				BD470D692966CA1900404AB4 /* MainViewModel.swift */,
+				BD470D712966D42700404AB4 /* MainBlockViewModel.swift */,
 			);
-			path = Edit;
+			path = Main;
 			sourceTree = "<group>";
 		};
 		BD470D812966EDF900404AB4 /* Picker */ = {
@@ -308,6 +355,7 @@
 			children = (
 				BD6E36D9296EE6EC0077E8DB /* ProgressView.swift */,
 				BD6E36CF296E94D40077E8DB /* InputButtonView.swift */,
+				BDBB18B429ACDE3E00A90D53 /* TimeButtonView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -315,11 +363,8 @@
 		BD6E36E5297121390077E8DB /* History */ = {
 			isa = PBXGroup;
 			children = (
-				BD412A5329725E1900FCA4BF /* HistoryTimeBlockView.swift */,
-				BD412A5129725D4400FCA4BF /* HistoryTableViewCell.swift */,
-				BD6E36E6297121430077E8DB /* HistoryView.swift */,
 				BD730B192975245D001E6B4D /* HistoryCollectionViewCell.swift */,
-				BD730B1729752446001E6B4D /* ReHistoryView.swift */,
+				BD730B1729752446001E6B4D /* HistoryView.swift */,
 				BD6E36E8297121470077E8DB /* HistoryViewController.swift */,
 				BD6E36EA2971214C0077E8DB /* HistoryViewModel.swift */,
 			);
@@ -333,6 +378,7 @@
 				BD7831472968773C00907452 /* SettingIDView.swift */,
 				BD9962FD296C389000601874 /* SettingDaysView.swift */,
 				BD78314D2968859B00907452 /* SettingHourSliderView.swift */,
+				BD343C2129BA19AC0075A048 /* SettingWeekPayView.swift */,
 				BD783149296878B700907452 /* SettingInputTypeView.swift */,
 				BD7831412968764B00907452 /* SettingView.swift */,
 				BD7831432968765000907452 /* SettingViewController.swift */,
@@ -358,7 +404,6 @@
 				BD13E95D29706FEE00A7EE31 /* Debug */,
 				BD13E95E29706FF300A7EE31 /* Release */,
 				BD7831362968679200907452 /* FirebaseRoot.swift */,
-				BD783138296867AA00907452 /* FirebaseError.swift */,
 				BD78313A2968684000907452 /* FirebaseProvider.swift */,
 			);
 			path = Firebase;
@@ -372,6 +417,15 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		BDDAA9AE29A89F5C000001EB /* Provider */ = {
+			isa = PBXGroup;
+			children = (
+				BD783138296867AA00907452 /* NetworkError.swift */,
+				BDDAA9AF29A89F82000001EB /* NotionProvider.swift */,
+			);
+			path = Provider;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -379,12 +433,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BD470D502966C4CF00404AB4 /* Build configuration list for PBXNativeTarget "WorkCalculator" */;
 			buildPhases = (
-				AEB5393DD6347B60B2751040 /* [CP] Check Pods Manifest.lock */,
+				67B4DFCFB9AD68ED8E1E42D8 /* [CP] Check Pods Manifest.lock */,
 				BD470D382966C4CE00404AB4 /* Sources */,
 				BD470D392966C4CE00404AB4 /* Frameworks */,
 				BD470D3A2966C4CE00404AB4 /* Resources */,
 				BD13E9612970702C00A7EE31 /* Setup Firebase Run Script */,
-				9190841C203C0F5FB1AD6763 /* [CP] Embed Pods Frameworks */,
+				45FB962CAE942A7FEE219A6C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -443,7 +497,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		9190841C203C0F5FB1AD6763 /* [CP] Embed Pods Frameworks */ = {
+		45FB962CAE942A7FEE219A6C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -460,7 +514,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WorkCalculator/Pods-WorkCalculator-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AEB5393DD6347B60B2751040 /* [CP] Check Pods Manifest.lock */ = {
+		67B4DFCFB9AD68ED8E1E42D8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -511,52 +565,62 @@
 				BDBC4F20297A7EB0007C1C1A /* AppConfigureModel.swift in Sources */,
 				BD9D7B1929744FE700B311EB /* Extension+Int.swift in Sources */,
 				BD78313D29686BD800907452 /* SettingModel.swift in Sources */,
-				BD470D722966D42700404AB4 /* EditBlockViewModel.swift in Sources */,
+				BD470D722966D42700404AB4 /* MainBlockViewModel.swift in Sources */,
 				BD6E36CE296E86460077E8DB /* NumberPadCollectionViewCell.swift in Sources */,
 				BD730B1329714B71001E6B4D /* RealmManager.swift in Sources */,
 				BD470D792966DDD600404AB4 /* DateManager.swift in Sources */,
 				BD7831462968765400907452 /* SettingViewModel.swift in Sources */,
-				BD470D6A2966CA1900404AB4 /* EditViewModel.swift in Sources */,
+				BD470D6A2966CA1900404AB4 /* MainViewModel.swift in Sources */,
+				BD3C031329A4CA98006F9044 /* MainDayView.swift in Sources */,
 				BD6E36D7296ECFC90077E8DB /* UpdateViewModel.swift in Sources */,
 				BD783155296ADA2C00907452 /* NumberPadViewController.swift in Sources */,
 				BD470D562966C74400404AB4 /* Scene.swift in Sources */,
 				BD6E36EB2971214C0077E8DB /* HistoryViewModel.swift in Sources */,
 				BD783153296ADA2700907452 /* NumberPadView.swift in Sources */,
+				BD449F6429A8BB7F00C00693 /* NotionModel.swift in Sources */,
+				BD0C9B0F29A37C430053CAB2 /* MainViewType.swift in Sources */,
 				BD9962FE296C389000601874 /* SettingDaysView.swift in Sources */,
+				BDDAA9B029A89F82000001EB /* NotionProvider.swift in Sources */,
 				BD470D832966EE1800404AB4 /* PickerView.swift in Sources */,
 				BD9A16C9296736430093FB1C /* UserDefaultsManager.swift in Sources */,
-				BD0344D929707972001B3010 /* EditInfoView.swift in Sources */,
+				BD0344D929707972001B3010 /* MainWeekInfoView.swift in Sources */,
 				BD470D542966C66E00404AB4 /* SplashViewController.swift in Sources */,
 				BDBC33CE2974199F0073754E /* BlockModel.swift in Sources */,
 				BD6E36DA296EE6EC0077E8DB /* ProgressView.swift in Sources */,
-				BD6E36E7297121430077E8DB /* HistoryView.swift in Sources */,
 				BD78313F296871CB00907452 /* AppManager.swift in Sources */,
+				BD343C2229BA19AC0075A048 /* SettingWeekPayView.swift in Sources */,
+				BDD004D529B6082B009ADFA9 /* MainDayWeekPayView.swift in Sources */,
 				BD6E36D0296E94D40077E8DB /* InputButtonView.swift in Sources */,
+				BD3C031629A4D223006F9044 /* MainDayProgressView.swift in Sources */,
 				BD78313B2968684000907452 /* FirebaseProvider.swift in Sources */,
 				BD7831442968765000907452 /* SettingViewController.swift in Sources */,
 				BD470D872966EE2100404AB4 /* PickerViewModel.swift in Sources */,
-				BD783139296867AA00907452 /* FirebaseError.swift in Sources */,
+				BD783139296867AA00907452 /* NetworkError.swift in Sources */,
 				BD7831482968773C00907452 /* SettingIDView.swift in Sources */,
 				BD9D7B1B29745A6700B311EB /* RealmBlockModel.swift in Sources */,
-				BD470D662966CA1000404AB4 /* EditView.swift in Sources */,
+				BD470D662966CA1000404AB4 /* MainWeekView.swift in Sources */,
 				BD6E36E9297121470077E8DB /* HistoryViewController.swift in Sources */,
 				BD470D6E2966CA6C00404AB4 /* SplashViewModel.swift in Sources */,
 				BD6E36DD296FF0740077E8DB /* UpdateDateModel.swift in Sources */,
-				BD730B1829752446001E6B4D /* ReHistoryView.swift in Sources */,
-				BD470D702966CC1700404AB4 /* EditBlockView.swift in Sources */,
+				BD730B1829752446001E6B4D /* HistoryView.swift in Sources */,
+				BD470D702966CC1700404AB4 /* MainWeekBlockView.swift in Sources */,
+				BD311DBC29A7A4EC008F0515 /* MainDayBlockCollectionViewCell.swift in Sources */,
 				BD730B1A2975245D001E6B4D /* HistoryCollectionViewCell.swift in Sources */,
-				BD412A5429725E1900FCA4BF /* HistoryTimeBlockView.swift in Sources */,
+				BD0C9B0D29A378750053CAB2 /* MainViewProtocol.swift in Sources */,
+				BDBB18B529ACDE3E00A90D53 /* TimeButtonView.swift in Sources */,
 				BD470D402966C4CE00404AB4 /* AppDelegate.swift in Sources */,
 				BD7831372968679200907452 /* FirebaseRoot.swift in Sources */,
 				BD6E36D3296ECFBB0077E8DB /* UpdateView.swift in Sources */,
-				BD412A5229725D4400FCA4BF /* HistoryTableViewCell.swift in Sources */,
-				BD470D682966CA1500404AB4 /* EditViewController.swift in Sources */,
+				BD470D682966CA1500404AB4 /* MainViewController.swift in Sources */,
 				BD470D6C2966CA6500404AB4 /* SplashView.swift in Sources */,
 				BD7831422968764B00907452 /* SettingView.swift in Sources */,
-				BD9A16C7296725E70093FB1C /* EditSumUnitView.swift in Sources */,
+				BD9A16C7296725E70093FB1C /* MainWeekSumUnitView.swift in Sources */,
+				BD311DBA29A7A46B008F0515 /* MainDayBlockView.swift in Sources */,
 				BD78314A296878B700907452 /* SettingInputTypeView.swift in Sources */,
 				BD470D852966EE1C00404AB4 /* PickerViewController.swift in Sources */,
+				BDD004D329B60355009ADFA9 /* MainDayInfoView.swift in Sources */,
 				BD6E36D5296ECFC20077E8DB /* UpdateViewController.swift in Sources */,
+				BD311DB829A75A0B008F0515 /* MainDayMessageView.swift in Sources */,
 				BD78314C2968825100907452 /* InputType.swift in Sources */,
 				BD7831502968876700907452 /* SettingInfoLabel.swift in Sources */,
 				BD783157296ADA3200907452 /* NumberPadViewModel.swift in Sources */,
@@ -599,13 +663,13 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
+				ENABLE_TESTABILITY = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -621,8 +685,9 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = Debug;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Debug;
 		};
@@ -662,8 +727,10 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -673,7 +740,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = Release;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
@@ -682,12 +751,12 @@
 		};
 		BD470D512966C4CF00404AB4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 27D318A083CACEDC4BEF5015 /* Pods-WorkCalculator.debug.xcconfig */;
+			baseConfigurationReference = 282BB29EB689755EE339DE9D /* Pods-WorkCalculator.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = ZLN97H98PA;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -703,11 +772,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.2;
+				MARKETING_VERSION = 2.0.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.QEDStudio.WorkCalculatorDebug;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = Debug;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -716,12 +786,12 @@
 		};
 		BD470D522966C4CF00404AB4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F578C96866DECC6C0B77A42D /* Pods-WorkCalculator.release.xcconfig */;
+			baseConfigurationReference = 49D5D506206269E961977F99 /* Pods-WorkCalculator.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = ZLN97H98PA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WorkCalculator/Support/Info.plist;
@@ -736,11 +806,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.2;
-				ONLY_ACTIVE_ARCH = NO;
+				MARKETING_VERSION = 2.0.0;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.QEDStudio.WorkCalculator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = Release;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
