@@ -35,6 +35,10 @@ final class MainBlockViewModel: BaseViewModel {
   private let presentOb = PublishRelay<(DateManager.State)>()
   private let callbackOb = PublishRelay<(DateManager.State, Int)>()
   
+  private var runTimerOb: Observable<Int> {
+    return Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
+  }
+  
   
   
   
@@ -127,10 +131,11 @@ final class MainBlockViewModel: BaseViewModel {
     
     Observable
       .combineLatest(
+        self.runTimerOb.asObservable(),
         self.output.startTime.asObservable(),
         self.output.endTime.asObservable(),
         self.output.restTime.asObservable()
-      ) { [weak self] startTime, endTime, restTime -> Int in
+      ) { [weak self] _, startTime, endTime, restTime -> Int in
         guard let self = self else { return 0 }
         guard let startTime = startTime else { return 0 }
         
@@ -147,6 +152,7 @@ final class MainBlockViewModel: BaseViewModel {
           return endTime - startTime - restTime
         }
       }
+      .distinctUntilChanged()
       .bind(to: self.output.runTime)
       .disposed(by: self.disposeBag)
   }
