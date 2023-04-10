@@ -46,7 +46,6 @@ final class UpdateViewModel: BaseViewModel {
     
     super.init()
     
-    
     Observable
       .combineLatest(
         self.input.viewDidAppear.asObservable(),
@@ -56,6 +55,7 @@ final class UpdateViewModel: BaseViewModel {
       }
       .bind(to: self.output.progress)
       .disposed(by: self.disposeBag)
+    
     
     self.input.viewDidAppear
       .flatMap {
@@ -115,6 +115,7 @@ final class UpdateViewModel: BaseViewModel {
         self?.coordinator.transition(scene: scene, style: .root)
       }
       .disposed(by: self.disposeBag)
+    
     
     self.errorObserver
       .delay(.seconds(4), scheduler: MainScheduler.instance)

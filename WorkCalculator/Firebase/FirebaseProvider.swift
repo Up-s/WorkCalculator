@@ -486,4 +486,52 @@ final class FirebaseProvider {
       .document(timeBlockDocumentID)
       .updateData([deviceUUID: FieldValue.delete()])
   }
+  
+  
+  
+  class func removeEmptyTime() {
+    Firestore
+      .firestore()
+      .collection(FirebaseRoot.data)
+      .getDocuments { dataSnapshot, dataError in
+        if let error = dataError {
+          print("\n---------- removeEmptyTime dataError ----------", error)
+          
+        } else {
+          guard let dataDocuments = dataSnapshot?.documents.compactMap({ $0.documentID }) else { return }
+          
+          dataDocuments.forEach { dataID in
+            Firestore
+              .firestore()
+              .collection(FirebaseRoot.data)
+              .document(dataID)
+              .collection(FirebaseRoot.block)
+              .getDocuments { blockSnapshot, blockError in
+                if let error = blockError {
+                  print("\n---------- removeEmptyTime blockError ----------", error)
+                  
+                } else {
+                  let fieldKey = "startTime"
+                  
+                  blockSnapshot?.documents
+                    .compactMap { document -> String? in
+                      let documentData = document.data()
+                      guard let time = documentData[fieldKey] as? Int, time == 0 else { return nil }
+                      return document.documentID
+                    }
+                    .forEach { blockID in
+                      Firestore
+                        .firestore()
+                        .collection(FirebaseRoot.data)
+                        .document(dataID)
+                        .collection(FirebaseRoot.block)
+                        .document(blockID)
+                        .updateData([fieldKey: FieldValue.delete()])
+                    }
+                }
+              }
+          }
+        }
+      }
+  }
 }

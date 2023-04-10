@@ -53,7 +53,7 @@ final class SplashView: BaseView {
   private func setAttribute() {
     self.addSubview(self.titleLabel)
     
-    #if DEBUG
+    #if Debug
     self.addSubview(self.debugLabel)
     #endif
   }
@@ -67,7 +67,7 @@ final class SplashView: BaseView {
     }
     
     
-    #if DEBUG
+    #if Debug
     self.debugLabel.snp.makeConstraints { make in
       make.centerX.equalToSuperview()
       make.top.equalTo(self.titleLabel.snp.bottom).offset(16.0)

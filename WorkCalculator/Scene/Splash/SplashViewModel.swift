@@ -25,6 +25,7 @@ final class SplashViewModel: BaseViewModel {
   let input = Input()
   let output = Output()
   
+  private let notionOb = PublishRelay<Void>()
   private let firebaseOb = PublishRelay<Void>()
   private let emptyOb = PublishRelay<Void>()
   
@@ -35,31 +36,9 @@ final class SplashViewModel: BaseViewModel {
   init() {
     super.init()
     
+//    FirebaseProvider.removeEmptyTime()
+    
     self.input.viewDidAppear
-      .flatMap { NotionProvider.getMessage() }
-      .`catch` { [weak self] error in
-        guard let firebaseError = error as? NetworkError else { return Observable.empty() }
-
-        let errorMessage: String
-        switch firebaseError {
-        case .emptyData:
-          errorMessage = "데이터가 없습니다"
-          
-        case .parsingError:
-          errorMessage = "잠시 후 다시 시도해 주세요.\nParsing Error"
-          self?.emptyOb.accept(())
-          
-        case .urlError:
-          errorMessage = "URL Error"
-          
-        case .firebaseError(let error):
-          errorMessage = "잠시 후 다시 시도해 주세요.\nService Error \(error.localizedDescription)"
-        }
-
-        self?.coordinator.toast(errorMessage)
-
-        return Observable.empty()
-      }
       .flatMap {
         FirebaseProvider.minVersion()
       }
@@ -68,21 +47,32 @@ final class SplashViewModel: BaseViewModel {
         let currentArray = currentVer.components(separatedBy: ".").compactMap { Int($0) }
         let minimumArray = configure.minVersion
 
-        var status = false
-        for i in 0..<3 {
-          let min = minimumArray[i]
-          let cur = currentArray[i]
-          status = min <= cur
-          guard status else { break }
-          continue
-        }
+        if currentArray[0] > minimumArray[0] {
+          return true
 
-        return status
+        } else if currentArray[0] < minimumArray[0] {
+          return false
+
+        } else if currentArray[1] > minimumArray[1] {
+          return true
+
+        } else if currentArray[1] < minimumArray[1] {
+          return false
+
+        } else if currentArray[2] > minimumArray[2] {
+          return true
+
+        } else if currentArray[2] < minimumArray[2] {
+          return false
+
+        } else {
+          return true
+        }
       }
       .bind { [weak self] status in
         switch status {
         case true:
-          self?.firebaseOb.accept(())
+          self?.notionOb.accept(())
 
         case false:
           let action = UPsAlertAction(
@@ -103,6 +93,35 @@ final class SplashViewModel: BaseViewModel {
       }
       .disposed(by: self.disposeBag)
 
+
+    self.notionOb
+      .flatMap { NotionProvider.getMessage() }
+      .`catch` { [weak self] error in
+        guard let firebaseError = error as? NetworkError else { return Observable.empty() }
+
+        let errorMessage: String
+        switch firebaseError {
+        case .emptyData:
+          errorMessage = "데이터가 없습니다"
+
+        case .parsingError:
+          errorMessage = "잠시 후 다시 시도해 주세요.\nParsing Error"
+
+        case .urlError:
+          errorMessage = "URL Error"
+
+        case .firebaseError(let error):
+          errorMessage = "잠시 후 다시 시도해 주세요.\nService Error \(error.localizedDescription)"
+        }
+
+        self?.coordinator.toast(errorMessage)
+
+        return Observable.empty()
+      }
+      .bind(to: self.firebaseOb)
+      .disposed(by: self.disposeBag)
+    
+    
     self.firebaseOb
       .flatMap {
         UserDefaultsManager.firebaseID == nil ?
@@ -116,14 +135,14 @@ final class SplashViewModel: BaseViewModel {
         switch firebaseError {
         case .emptyData:
           errorMessage = "데이터가 없습니다"
-          
+          self?.emptyOb.accept(())
+
         case .parsingError:
           errorMessage = "잠시 후 다시 시도해 주세요.\nParsing Error"
-          self?.emptyOb.accept(())
-          
+
         case .urlError:
           errorMessage = "URL Error"
-          
+
         case .firebaseError(let error):
           errorMessage = "잠시 후 다시 시도해 주세요.\nService Error \(error.localizedDescription)"
         }
@@ -151,7 +170,8 @@ final class SplashViewModel: BaseViewModel {
         self?.coordinator.transition(scene: scene, style: .root)
       }
       .disposed(by: self.disposeBag)
-
+    
+    
     self.emptyOb
       .bind { [weak self] in
         let actions: [UPsAlertActionProtocol] = [

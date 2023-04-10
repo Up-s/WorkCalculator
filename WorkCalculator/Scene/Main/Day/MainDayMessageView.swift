@@ -19,12 +19,15 @@ final class MainDayMessageView: UIView {
     view.adjustsFontSizeToFitWidth = true
     view.numberOfLines = 2
     view.backgroundColor = .gray200
+    view.text = "QEDStudio"
     view.textAlignment = .center
     view.textColor = .gray900
     view.font = .boldSystemFont(ofSize: 18.0)
     view.layer.cornerRadius = 4.0
     view.layer.masksToBounds = true
   }
+  
+  private var previousMessage: String = ""
   
   
   
@@ -46,7 +49,13 @@ final class MainDayMessageView: UIView {
   // MARK: - Interface
   
   func setMessage(_ data: NotionModel?) {
-    let message = data?.messageList.randomElement() ?? ""
+    var message = ""
+    
+    repeat {
+      message = data?.messageList.randomElement() ?? ""
+    } while self.previousMessage == message
+    
+    self.previousMessage = message
     
     let lastDay = AppManager.shared.settingData?.days.last?.ko ?? "-"
     let replaceMessage = message.replacingOccurrences(of: "[lastDay]", with: lastDay)
@@ -56,8 +65,9 @@ final class MainDayMessageView: UIView {
       duration: 1.0,
       options: .transitionFlipFromBottom,
       animations: { [weak self] in
-        self?.messageLabel.backgroundColor = data?.tag.color.withAlphaComponent(0.15)
         self?.messageLabel.text = replaceMessage
+        self?.messageLabel.textColor = data?.tag.textColor
+        self?.messageLabel.backgroundColor = data?.tag.backgroundColor
         self?.layoutIfNeeded()
       }
     )

@@ -44,7 +44,13 @@ final class MainViewModel: BaseViewModel {
     }
   }
   
-  private let messageTimerOb = Observable<Int>.interval(.seconds(3), scheduler: MainScheduler.instance)
+  private var messageTimerOb: Observable<Int> {
+    #if Debug
+    return Observable<Int>.timer(.seconds(1), period: .seconds(3), scheduler: MainScheduler.instance)
+    #else
+    return Observable<Int>.timer(.seconds(1), period: .seconds(60), scheduler: MainScheduler.instance)
+    #endif
+  }
   
   // 오늘 전날까지 근무한 일수
   private var workdayCount: Int {
@@ -185,6 +191,12 @@ final class MainViewModel: BaseViewModel {
         // 현재까지 총 근무 시간
         let sumRunTime = self.output.sumRunTime.value
         
+        if sumRunTime == 0 {
+          return AppManager.shared.notionData
+            .filter { $0.tag == .white }
+            .first
+        }
+        
         // 주간 총 근무 시간
         let workBaseHour = (AppManager.shared.settingData?.workBaseHour ?? 0) * 60
         
@@ -212,12 +224,12 @@ final class MainViewModel: BaseViewModel {
             .filter { $0.tag == .red }
             .first
           
-        case (tx + todayRunTime - (1 * 60)) ..< (tx + todayRunTime): // blue
+        case (tx + todayRunTime - (1 * 60)) ..< (tx + todayRunTime + 5): // blue
           return AppManager.shared.notionData
             .filter { $0.tag == .blue }
             .first
           
-        case (tx + todayRunTime)...: // cyan
+        case (tx + todayRunTime + 5)...: // cyan
           return AppManager.shared.notionData
             .filter { $0.tag == .cyan }
             .first

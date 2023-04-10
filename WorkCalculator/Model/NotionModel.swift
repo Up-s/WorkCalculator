@@ -7,6 +7,8 @@
 
 import UIKit
 
+import UPsKit
+
 final class NotionModel {
   
   let tag: NotionTag
@@ -20,17 +22,26 @@ final class NotionModel {
 
 enum NotionTag: String {
   
+  case white
   case red
   case blue
   case cyan
   case gray
   
-  var color: UIColor {
+  var textColor: UIColor {
     switch self {
-    case .red: return UIColor.red
-    case .blue: return UIColor.blue
-    case .cyan: return UIColor.cyan
-    case .gray: return UIColor.gray
+    case .gray: return UIColor.white
+    default: return UIColor.gray900
+    }
+  }
+  
+  var backgroundColor: UIColor {
+    switch self {
+    case .white: return UIColor.gray200
+    case .red: return UIColor.red.withAlphaComponent(0.1)
+    case .blue: return UIColor.blue.withAlphaComponent(0.1)
+    case .cyan: return UIColor.cyan.withAlphaComponent(0.1)
+    case .gray: return UIColor.black
     }
   }
 }
@@ -43,6 +54,7 @@ struct NotionData: Codable {
   
   var data: [NotionModel] {
     let initData = [
+      NotionModel(tag: .white, messageList: []),
       NotionModel(tag: .red, messageList: []),
       NotionModel(tag: .blue, messageList: []),
       NotionModel(tag: .cyan, messageList: []),
