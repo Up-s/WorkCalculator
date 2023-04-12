@@ -9,16 +9,16 @@ target 'WorkCalculator' do
   
   pod 'CodableFirebase'
   
-  pod 'Firebase/Analytics', '~> 9.6'
-  pod 'Firebase/Auth', '~> 9.6'
-  pod 'Firebase/Core', '~> 9.6'
-  pod 'Firebase/Crashlytics', '~> 9.6'
-  pod 'Firebase/Firestore', '~> 9.6'
-  pod 'Firebase/Messaging', '~> 9.6'
-  pod 'Firebase/Storage', '~> 9.6'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Core'
+  pod 'Firebase/Crashlytics'
+  pod 'Firebase/Firestore'
+  pod 'Firebase/Messaging'
+  pod 'Firebase/Storage'
   
-  pod 'Realm', '~> 10.38'
-  pod 'RealmSwift', '~> 10.38'
+  pod 'Realm'
+  pod 'RealmSwift'
   
   pod 'UPsKit'
 
