@@ -179,6 +179,7 @@ final class SplashViewModel: BaseViewModel {
             title: "재발급",
             handler: { _ in
               UserDefaultsManager.firebaseID = nil
+              RealmManager.deleteAll()
 
               let scene = Scene.splash
               self?.coordinator.transition(scene: scene, style: .root)
