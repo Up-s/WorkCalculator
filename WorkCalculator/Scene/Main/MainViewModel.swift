@@ -112,17 +112,12 @@ final class MainViewModel: BaseViewModel {
     
     self.output.blockViewModels
       .filter { !$0.isEmpty }
-      .bind { [weak self] models in
-        guard let self = self else { return }
-        
-        let runTimes = models.map { $0.output.runTime }
-        Observable
-          .combineLatest(runTimes) { $0.reduce(0, +) }
-          .bind(to: self.output.sumRunTime)
-          .disposed(by: self.disposeBag)
-      }
+      .map { $0.map { $0.output.runTime } }
+      .flatMap { Observable.combineLatest($0)}
+      .map { $0.reduce(0, +) }
+      .bind(to: self.output.sumRunTime)
       .disposed(by: self.disposeBag)
-    
+      
     
     self.input.changeViewDidTap
       .bind { [weak self] _ in
