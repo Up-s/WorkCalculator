@@ -329,13 +329,13 @@
 		BD470D642966C9F000404AB4 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				BD0C9B0A29A36F040053CAB2 /* Week */,
-				BD0C9B0B29A3734B0053CAB2 /* Day */,
 				BD0C9B0C29A378750053CAB2 /* MainViewProtocol.swift */,
 				BD8145AB29EE998600EEE516 /* MainViewUIComponents.swift */,
+				BD470D712966D42700404AB4 /* MainBlockViewModel.swift */,
+				BD0C9B0A29A36F040053CAB2 /* Week */,
+				BD0C9B0B29A3734B0053CAB2 /* Day */,
 				BD470D672966CA1500404AB4 /* MainViewController.swift */,
 				BD470D692966CA1900404AB4 /* MainViewModel.swift */,
-				BD470D712966D42700404AB4 /* MainBlockViewModel.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
