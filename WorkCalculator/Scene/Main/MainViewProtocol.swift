@@ -13,6 +13,7 @@ import UPsKit
 
 protocol MainViewProtocol: UIView, NavigationProtocol {
   
+  var clockViewButton: UIButton { get }
   var changeViewButton: UIButton { get }
   var refreshButton: UIButton { get }
   var histortButton: UIButton { get }
@@ -30,7 +31,7 @@ protocol MainViewProtocol: UIView, NavigationProtocol {
 extension MainViewProtocol {
   
   func setNavigationButton() {
-    [self.changeViewButton, self.refreshButton, self.histortButton, self.settingButton]
+    [self.clockViewButton, self.changeViewButton, self.refreshButton, self.histortButton, self.settingButton]
       .forEach(self.navigationView.addRightStackView(_:))
   }
 }

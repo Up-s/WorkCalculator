@@ -14,6 +14,7 @@ import UPsKit
 final class MainViewModel: BaseViewModel {
   
   struct Input {
+    let clockViewDidTap = PublishRelay<Void>()
     let changeViewDidTap = PublishRelay<Void>()
     let refreshDidTap = PublishRelay<Void>()
     let historyDidTap = PublishRelay<Void>()
@@ -116,6 +117,15 @@ final class MainViewModel: BaseViewModel {
       .flatMap { Observable.combineLatest($0)}
       .map { $0.reduce(0, +) }
       .bind(to: self.output.sumRunTime)
+      .disposed(by: self.disposeBag)
+    
+    
+    self.input.clockViewDidTap
+      .bind { [weak self] in
+        let viewModel = ClockViewModel()
+        let scene = Scene.clock(viewModel)
+        self?.coordinator.transition(scene: scene, style: .modal(.fullScreen))
+      }
       .disposed(by: self.disposeBag)
       
     

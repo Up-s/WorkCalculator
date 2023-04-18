@@ -63,6 +63,10 @@
 		BD783153296ADA2700907452 /* NumberPadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD783152296ADA2700907452 /* NumberPadView.swift */; };
 		BD783155296ADA2C00907452 /* NumberPadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD783154296ADA2C00907452 /* NumberPadViewController.swift */; };
 		BD783157296ADA3200907452 /* NumberPadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD783156296ADA3200907452 /* NumberPadViewModel.swift */; };
+		BD8145A129EE72DE00EEE516 /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8145A029EE72DE00EEE516 /* ClockView.swift */; };
+		BD8145A329EE72F200EEE516 /* ClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8145A229EE72F200EEE516 /* ClockViewController.swift */; };
+		BD8145A529EE72F800EEE516 /* ClockViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8145A429EE72F800EEE516 /* ClockViewModel.swift */; };
+		BD8145AC29EE998600EEE516 /* MainViewUIComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8145AB29EE998600EEE516 /* MainViewUIComponents.swift */; };
 		BD9962FE296C389000601874 /* SettingDaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9962FD296C389000601874 /* SettingDaysView.swift */; };
 		BD9A16C7296725E70093FB1C /* MainWeekSumUnitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9A16C6296725E70093FB1C /* MainWeekSumUnitView.swift */; };
 		BD9A16C9296736430093FB1C /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9A16C8296736430093FB1C /* UserDefaultsManager.swift */; };
@@ -137,6 +141,10 @@
 		BD783152296ADA2700907452 /* NumberPadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPadView.swift; sourceTree = "<group>"; };
 		BD783154296ADA2C00907452 /* NumberPadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPadViewController.swift; sourceTree = "<group>"; };
 		BD783156296ADA3200907452 /* NumberPadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPadViewModel.swift; sourceTree = "<group>"; };
+		BD8145A029EE72DE00EEE516 /* ClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
+		BD8145A229EE72F200EEE516 /* ClockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockViewController.swift; sourceTree = "<group>"; };
+		BD8145A429EE72F800EEE516 /* ClockViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockViewModel.swift; sourceTree = "<group>"; };
+		BD8145AB29EE998600EEE516 /* MainViewUIComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewUIComponents.swift; sourceTree = "<group>"; };
 		BD9962FD296C389000601874 /* SettingDaysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDaysView.swift; sourceTree = "<group>"; };
 		BD9A16C6296725E70093FB1C /* MainWeekSumUnitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWeekSumUnitView.swift; sourceTree = "<group>"; };
 		BD9A16C8296736430093FB1C /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
@@ -287,6 +295,7 @@
 				BD470D552966C74400404AB4 /* Scene.swift */,
 				BD470D632966C9EA00404AB4 /* Splash */,
 				BD470D642966C9F000404AB4 /* Main */,
+				BD81459F29EE72D000EEE516 /* Clock */,
 				BD470D812966EDF900404AB4 /* Picker */,
 				BD783151296ADA1100907452 /* NumberPad */,
 				BD6E36E5297121390077E8DB /* History */,
@@ -323,6 +332,7 @@
 				BD0C9B0A29A36F040053CAB2 /* Week */,
 				BD0C9B0B29A3734B0053CAB2 /* Day */,
 				BD0C9B0C29A378750053CAB2 /* MainViewProtocol.swift */,
+				BD8145AB29EE998600EEE516 /* MainViewUIComponents.swift */,
 				BD470D672966CA1500404AB4 /* MainViewController.swift */,
 				BD470D692966CA1900404AB4 /* MainViewModel.swift */,
 				BD470D712966D42700404AB4 /* MainBlockViewModel.swift */,
@@ -396,6 +406,16 @@
 				BD783156296ADA3200907452 /* NumberPadViewModel.swift */,
 			);
 			path = NumberPad;
+			sourceTree = "<group>";
+		};
+		BD81459F29EE72D000EEE516 /* Clock */ = {
+			isa = PBXGroup;
+			children = (
+				BD8145A029EE72DE00EEE516 /* ClockView.swift */,
+				BD8145A229EE72F200EEE516 /* ClockViewController.swift */,
+				BD8145A429EE72F800EEE516 /* ClockViewModel.swift */,
+			);
+			path = Clock;
 			sourceTree = "<group>";
 		};
 		BD8F87812968665E0086F6C1 /* Firebase */ = {
@@ -590,6 +610,8 @@
 				BD6E36CE296E86460077E8DB /* NumberPadCollectionViewCell.swift in Sources */,
 				BD730B1329714B71001E6B4D /* RealmManager.swift in Sources */,
 				BD470D792966DDD600404AB4 /* DateManager.swift in Sources */,
+				BD8145AC29EE998600EEE516 /* MainViewUIComponents.swift in Sources */,
+				BD8145A329EE72F200EEE516 /* ClockViewController.swift in Sources */,
 				BD7831462968765400907452 /* SettingViewModel.swift in Sources */,
 				BD470D6A2966CA1900404AB4 /* MainViewModel.swift in Sources */,
 				BD3C031329A4CA98006F9044 /* MainDayView.swift in Sources */,
@@ -622,6 +644,7 @@
 				BD470D662966CA1000404AB4 /* MainWeekView.swift in Sources */,
 				BD6E36E9297121470077E8DB /* HistoryViewController.swift in Sources */,
 				BD470D6E2966CA6C00404AB4 /* SplashViewModel.swift in Sources */,
+				BD8145A529EE72F800EEE516 /* ClockViewModel.swift in Sources */,
 				BD6E36DD296FF0740077E8DB /* UpdateDateModel.swift in Sources */,
 				BD730B1829752446001E6B4D /* HistoryView.swift in Sources */,
 				BD470D702966CC1700404AB4 /* MainWeekBlockView.swift in Sources */,
@@ -631,6 +654,7 @@
 				BDBB18B529ACDE3E00A90D53 /* TimeButtonView.swift in Sources */,
 				BD470D402966C4CE00404AB4 /* AppDelegate.swift in Sources */,
 				BD7831372968679200907452 /* FirebaseRoot.swift in Sources */,
+				BD8145A129EE72DE00EEE516 /* ClockView.swift in Sources */,
 				BD6E36D3296ECFBB0077E8DB /* UpdateView.swift in Sources */,
 				BD470D682966CA1500404AB4 /* MainViewController.swift in Sources */,
 				BD470D6C2966CA6500404AB4 /* SplashView.swift in Sources */,

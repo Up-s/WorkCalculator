@@ -52,6 +52,10 @@ final class MainViewController: BaseViewController {
   }
   
   private func bindViewModel() {
+    self.rootView.clockViewButton.rx.tap
+      .bind(to: self.viewModel.input.clockViewDidTap)
+      .disposed(by: self.disposeBag)
+    
     self.rootView.changeViewButton.rx.tap
       .bind(to: self.viewModel.input.changeViewDidTap)
       .disposed(by: self.disposeBag)

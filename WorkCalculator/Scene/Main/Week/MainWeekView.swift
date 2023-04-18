@@ -20,22 +20,11 @@ final class MainWeekView: BaseView, MainViewProtocol {
   let navigationView: BaseNavigationView = BaseNavigationView(.none).then { view in
     view.titleLabel.text = "칼퇴 계산기"
   }
-  let changeViewButton = UIButton().then { view in
-    let image = UIImage.sfConfiguration(name: "rectangle.portrait.on.rectangle.portrait", color: .systemBlue)
-    view.setImage(image, for: .normal)
-  }
-  let refreshButton = UIButton().then { view in
-    let image = UIImage.sfConfiguration(name: "icloud.and.arrow.down", color: .systemBlue)
-    view.setImage(image, for: .normal)
-  }
-  let histortButton = UIButton().then { view in
-    let image = UIImage.sfConfiguration(name: "rectangle.stack", color: .systemBlue)
-    view.setImage(image, for: .normal)
-  }
-  let settingButton = UIButton().then { view in
-    let image = UIImage.sfConfiguration(name: "gearshape", color: .systemBlue)
-    view.setImage(image, for: .normal)
-  }
+  let clockViewButton = MainViewUIComponents.clockViewButton
+  let changeViewButton = MainViewUIComponents.changeViewButton
+  let refreshButton = MainViewUIComponents.refreshButton
+  let histortButton = MainViewUIComponents.histortButton
+  let settingButton = MainViewUIComponents.settingButton
   
   private let contentsScrollView = UIScrollView().then { view in
     view.showsVerticalScrollIndicator = false
