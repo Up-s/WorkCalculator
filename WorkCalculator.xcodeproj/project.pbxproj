@@ -16,6 +16,15 @@
 		BD311DBA29A7A46B008F0515 /* MainDayBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD311DB929A7A46B008F0515 /* MainDayBlockView.swift */; };
 		BD311DBC29A7A4EC008F0515 /* MainDayBlockCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD311DBB29A7A4EC008F0515 /* MainDayBlockCollectionViewCell.swift */; };
 		BD343C2229BA19AC0075A048 /* SettingWeekPayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD343C2129BA19AC0075A048 /* SettingWeekPayView.swift */; };
+		BD365DFD29F0086300A0839D /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD365DFC29F0086300A0839D /* WidgetKit.framework */; };
+		BD365DFF29F0086300A0839D /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD365DFE29F0086300A0839D /* SwiftUI.framework */; };
+		BD365E0229F0086300A0839D /* InWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD365E0129F0086300A0839D /* InWidgetBundle.swift */; };
+		BD365E0429F0086300A0839D /* InWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD365E0329F0086300A0839D /* InWidgetLiveActivity.swift */; };
+		BD365E0629F0086300A0839D /* InWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD365E0529F0086300A0839D /* InWidget.swift */; };
+		BD365E0929F0086400A0839D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD365E0829F0086400A0839D /* Assets.xcassets */; };
+		BD365E0B29F0086400A0839D /* InWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = BD365E0729F0086300A0839D /* InWidget.intentdefinition */; };
+		BD365E0C29F0086400A0839D /* InWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = BD365E0729F0086300A0839D /* InWidget.intentdefinition */; };
+		BD365E0F29F0086400A0839D /* InWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BD365DFB29F0086300A0839D /* InWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		BD3C031329A4CA98006F9044 /* MainDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3C031229A4CA98006F9044 /* MainDayView.swift */; };
 		BD3C031629A4D223006F9044 /* MainDayProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3C031529A4D223006F9044 /* MainDayProgressView.swift */; };
 		BD449F6429A8BB7F00C00693 /* NotionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD449F6329A8BB7F00C00693 /* NotionModel.swift */; };
@@ -77,6 +86,30 @@
 		BDE6D02B2967DC1D00F79CB6 /* SplashViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDE6D02A2967DC1D00F79CB6 /* SplashViewController.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		BD365E0D29F0086400A0839D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BD470D342966C4CE00404AB4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BD365DFA29F0086300A0839D;
+			remoteInfo = InWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BD365E1029F0086400A0839D /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				BD365E0F29F0086400A0839D /* InWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0292533D607CC8F66ED4F99D /* Pods-WorkCalculator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkCalculator.release.xcconfig"; path = "Target Support Files/Pods-WorkCalculator/Pods-WorkCalculator.release.xcconfig"; sourceTree = "<group>"; };
 		1A299EE53EA8BDDDE6A2F528 /* Pods-WorkCalculator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkCalculator.debug.xcconfig"; path = "Target Support Files/Pods-WorkCalculator/Pods-WorkCalculator.debug.xcconfig"; sourceTree = "<group>"; };
@@ -88,6 +121,15 @@
 		BD311DB929A7A46B008F0515 /* MainDayBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDayBlockView.swift; sourceTree = "<group>"; };
 		BD311DBB29A7A4EC008F0515 /* MainDayBlockCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDayBlockCollectionViewCell.swift; sourceTree = "<group>"; };
 		BD343C2129BA19AC0075A048 /* SettingWeekPayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingWeekPayView.swift; sourceTree = "<group>"; };
+		BD365DFB29F0086300A0839D /* InWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = InWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD365DFC29F0086300A0839D /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		BD365DFE29F0086300A0839D /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		BD365E0129F0086300A0839D /* InWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InWidgetBundle.swift; sourceTree = "<group>"; };
+		BD365E0329F0086300A0839D /* InWidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InWidgetLiveActivity.swift; sourceTree = "<group>"; };
+		BD365E0529F0086300A0839D /* InWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InWidget.swift; sourceTree = "<group>"; };
+		BD365E0729F0086300A0839D /* InWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = InWidget.intentdefinition; sourceTree = "<group>"; };
+		BD365E0829F0086400A0839D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BD365E0A29F0086400A0839D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BD3C031229A4CA98006F9044 /* MainDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDayView.swift; sourceTree = "<group>"; };
 		BD3C031529A4D223006F9044 /* MainDayProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDayProgressView.swift; sourceTree = "<group>"; };
 		BD449F6329A8BB7F00C00693 /* NotionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotionModel.swift; sourceTree = "<group>"; };
@@ -153,6 +195,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		BD365DF829F0086300A0839D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BD365DFF29F0086300A0839D /* SwiftUI.framework in Frameworks */,
+				BD365DFD29F0086300A0839D /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BD470D392966C4CE00404AB4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -177,6 +228,8 @@
 			isa = PBXGroup;
 			children = (
 				C5DBDB7BE9A94270BB44E649 /* Pods_WorkCalculator.framework */,
+				BD365DFC29F0086300A0839D /* WidgetKit.framework */,
+				BD365DFE29F0086300A0839D /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -222,10 +275,24 @@
 			path = Release;
 			sourceTree = "<group>";
 		};
+		BD365E0029F0086300A0839D /* InWidget */ = {
+			isa = PBXGroup;
+			children = (
+				BD365E0129F0086300A0839D /* InWidgetBundle.swift */,
+				BD365E0329F0086300A0839D /* InWidgetLiveActivity.swift */,
+				BD365E0529F0086300A0839D /* InWidget.swift */,
+				BD365E0729F0086300A0839D /* InWidget.intentdefinition */,
+				BD365E0829F0086400A0839D /* Assets.xcassets */,
+				BD365E0A29F0086400A0839D /* Info.plist */,
+			);
+			path = InWidget;
+			sourceTree = "<group>";
+		};
 		BD470D332966C4CE00404AB4 = {
 			isa = PBXGroup;
 			children = (
 				BD470D3E2966C4CE00404AB4 /* WorkCalculator */,
+				BD365E0029F0086300A0839D /* InWidget */,
 				BD470D3D2966C4CE00404AB4 /* Products */,
 				98DE9976053F8BFF538EBBB7 /* Pods */,
 				B39336052794874356CE4D9A /* Frameworks */,
@@ -236,6 +303,7 @@
 			isa = PBXGroup;
 			children = (
 				BD470D3C2966C4CE00404AB4 /* WorkCalculator.app */,
+				BD365DFB29F0086300A0839D /* InWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -429,6 +497,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		BD365DFA29F0086300A0839D /* InWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BD365E1329F0086400A0839D /* Build configuration list for PBXNativeTarget "InWidgetExtension" */;
+			buildPhases = (
+				BD365DF729F0086300A0839D /* Sources */,
+				BD365DF829F0086300A0839D /* Frameworks */,
+				BD365DF929F0086300A0839D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = InWidgetExtension;
+			productName = InWidgetExtension;
+			productReference = BD365DFB29F0086300A0839D /* InWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		BD470D3B2966C4CE00404AB4 /* WorkCalculator */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = BD470D502966C4CF00404AB4 /* Build configuration list for PBXNativeTarget "WorkCalculator" */;
@@ -440,10 +525,12 @@
 				BD13E9612970702C00A7EE31 /* Firebase Run Script */,
 				BD4A206129E4287100563DB0 /* Firebase Crashlytics Run Script */,
 				48FBA9AB1F95261105A21E80 /* [CP] Embed Pods Frameworks */,
+				BD365E1029F0086400A0839D /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				BD365E0E29F0086400A0839D /* PBXTargetDependency */,
 			);
 			name = WorkCalculator;
 			productName = WorkCalculator;
@@ -457,9 +544,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1420;
+				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
+					BD365DFA29F0086300A0839D = {
+						CreatedOnToolsVersion = 14.3;
+					};
 					BD470D3B2966C4CE00404AB4 = {
 						CreatedOnToolsVersion = 14.2;
 					};
@@ -479,11 +569,20 @@
 			projectRoot = "";
 			targets = (
 				BD470D3B2966C4CE00404AB4 /* WorkCalculator */,
+				BD365DFA29F0086300A0839D /* InWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		BD365DF929F0086300A0839D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BD365E0929F0086400A0839D /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BD470D3A2966C4CE00404AB4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -578,6 +677,17 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		BD365DF729F0086300A0839D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BD365E0629F0086300A0839D /* InWidget.swift in Sources */,
+				BD365E0B29F0086400A0839D /* InWidget.intentdefinition in Sources */,
+				BD365E0229F0086300A0839D /* InWidgetBundle.swift in Sources */,
+				BD365E0429F0086300A0839D /* InWidgetLiveActivity.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BD470D382966C4CE00404AB4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -611,6 +721,7 @@
 				BD78313F296871CB00907452 /* AppManager.swift in Sources */,
 				BD343C2229BA19AC0075A048 /* SettingWeekPayView.swift in Sources */,
 				BDD004D529B6082B009ADFA9 /* MainDayWeekPayView.swift in Sources */,
+				BD365E0C29F0086400A0839D /* InWidget.intentdefinition in Sources */,
 				BD6E36D0296E94D40077E8DB /* InputButtonView.swift in Sources */,
 				BD3C031629A4D223006F9044 /* MainDayProgressView.swift in Sources */,
 				BD78313B2968684000907452 /* FirebaseProvider.swift in Sources */,
@@ -650,7 +761,79 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		BD365E0E29F0086400A0839D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BD365DFA29F0086300A0839D /* InWidgetExtension */;
+			targetProxy = BD365E0D29F0086400A0839D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		BD365E1129F0086400A0839D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = ZLN97H98PA;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = InWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = InWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.QEDStudio.WorkCalculator.InWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BD365E1229F0086400A0839D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZLN97H98PA;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = InWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = InWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.QEDStudio.WorkCalculator.InWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		BD470D4E2966C4CF00404AB4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -774,6 +957,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1A299EE53EA8BDDDE6A2F528 /* Pods-WorkCalculator.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -809,6 +993,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0292533D607CC8F66ED4F99D /* Pods-WorkCalculator.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -841,6 +1026,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		BD365E1329F0086400A0839D /* Build configuration list for PBXNativeTarget "InWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BD365E1129F0086400A0839D /* Debug */,
+				BD365E1229F0086400A0839D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		BD470D372966C4CE00404AB4 /* Build configuration list for PBXProject "WorkCalculator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
