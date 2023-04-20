@@ -1001,7 +1001,7 @@
 				DEVELOPMENT_TEAM = ZLN97H98PA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WorkCalculator/Support/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "디버그_칼퇴 계산기";
+				INFOPLIST_KEY_CFBundleDisplayName = "칼퇴 계산기";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = SplashViewController;
 				INFOPLIST_KEY_UIMainStoryboardFile = SplashViewController;
