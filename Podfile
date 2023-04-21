@@ -1,12 +1,6 @@
-# Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
-
 target 'WorkCalculator' do
-  # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for WorkCalculator
-  
   pod 'CodableFirebase'
   
   pod 'Firebase/Analytics'
@@ -22,6 +16,15 @@ target 'WorkCalculator' do
   
   pod 'UPsKit'
 
+end
+
+target 'InWidgetExtension' do
+  use_frameworks!
+
+  pod 'CodableFirebase'
+  
+  pod 'Firebase/Core'
+  pod 'Firebase/Firestore'
 end
 
 post_install do |installer|

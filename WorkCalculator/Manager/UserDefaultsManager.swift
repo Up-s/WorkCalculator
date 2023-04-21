@@ -9,7 +9,7 @@ import Foundation
 
 final class UserDefaultsManager {
   
-  enum Key: String, CaseIterable {
+  private enum Key: String, CaseIterable {
     case deviceUUID
     case firebaseID
     case mainType

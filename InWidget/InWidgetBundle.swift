@@ -10,8 +10,9 @@ import SwiftUI
 
 @main
 struct InWidgetBundle: WidgetBundle {
-    var body: some Widget {
-        InWidget()
-        InWidgetLiveActivity()
-    }
+  
+  var body: some Widget {
+    InWidget()
+    InWidgetLiveActivity()
+  }
 }
